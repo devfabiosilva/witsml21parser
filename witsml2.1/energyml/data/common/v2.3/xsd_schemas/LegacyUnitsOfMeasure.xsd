@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>The LegacyUnitsOfMeasure package contains classes implementing certain oilfield units of measure which are deprecated in the Energistics Unit of Measure Standard but which still exist in legacy data and older systems.
+These classes are incorporated into the relevant measure types while allowing the official MeasureType package to remain consistent with the UoM standard.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="QuantityClass.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:simpleType name="LegacyMassPerVolumeUom">
+		<xs:restriction base="eml:UomEnum">
+			<xs:enumeration value="kg/scm"/>
+			<xs:enumeration value="lbm/1000scf"/>
+			<xs:enumeration value="lbm/1E6scf"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LegacyPressurePerVolumeUom">
+		<xs:restriction base="eml:UomEnum">
+			<xs:enumeration value="Pa/scm"/>
+			<xs:enumeration value="psi/1000scf"/>
+			<xs:enumeration value="psi/1E6scf"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LegacyPressureUom">
+		<xs:restriction base="eml:UomEnum">
+			<xs:enumeration value="psia"/>
+			<xs:enumeration value="psig"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LegacyVolumePerAreaUom">
+		<xs:restriction base="eml:UomEnum">
+			<xs:enumeration value="1E6stb/acre"/>
+			<xs:enumeration value="scf/ft2"/>
+			<xs:enumeration value="scm/m2"/>
+			<xs:enumeration value="stb/acre"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LegacyVolumePerTimeUom">
+		<xs:restriction base="eml:UomEnum">
+			<xs:enumeration value="1000scf/d"/>
+			<xs:enumeration value="1000scf/mo"/>
+			<xs:enumeration value="1000scm/d"/>
+			<xs:enumeration value="1000scm/mo"/>
+			<xs:enumeration value="1000stb/d"/>
+			<xs:enumeration value="1000stb/mo"/>
+			<xs:enumeration value="1E6scf/d"/>
+			<xs:enumeration value="1E6scf/mo"/>
+			<xs:enumeration value="1E6scm/d"/>
+			<xs:enumeration value="1E6scm/mo"/>
+			<xs:enumeration value="1E6stb/d"/>
+			<xs:enumeration value="1E6stb/mo"/>
+			<xs:enumeration value="scf/d"/>
+			<xs:enumeration value="scm/d"/>
+			<xs:enumeration value="scm/h"/>
+			<xs:enumeration value="scm/mo"/>
+			<xs:enumeration value="scm/s"/>
+			<xs:enumeration value="stb/d"/>
+			<xs:enumeration value="stb/mo"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LegacyVolumePerVolumeUom">
+		<xs:restriction base="eml:UomEnum">
+			<xs:enumeration value="1000scf/stb"/>
+			<xs:enumeration value="1E6scf/stb"/>
+			<xs:enumeration value="1E6stb/acre.ft"/>
+			<xs:enumeration value="acre.ft/1E6stb"/>
+			<xs:enumeration value="bbl/1000scf"/>
+			<xs:enumeration value="bbl/1E6scf"/>
+			<xs:enumeration value="bbl/scf"/>
+			<xs:enumeration value="bbl/stb"/>
+			<xs:enumeration value="ft3/scf"/>
+			<xs:enumeration value="ft3/stb"/>
+			<xs:enumeration value="galUS/1000scf"/>
+			<xs:enumeration value="m3/scm"/>
+			<xs:enumeration value="ml/scm"/>
+			<xs:enumeration value="scf/bbl"/>
+			<xs:enumeration value="scf/ft3"/>
+			<xs:enumeration value="scf/scf"/>
+			<xs:enumeration value="scf/stb"/>
+			<xs:enumeration value="scm/m3"/>
+			<xs:enumeration value="scm/scm"/>
+			<xs:enumeration value="scm/stb"/>
+			<xs:enumeration value="stb/1000scf"/>
+			<xs:enumeration value="stb/1000scm"/>
+			<xs:enumeration value="stb/1E6scf"/>
+			<xs:enumeration value="stb/1E6scm"/>
+			<xs:enumeration value="stb/bbl"/>
+			<xs:enumeration value="stb/scm"/>
+			<xs:enumeration value="stb/stb"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LegacyVolumeUom">
+		<xs:restriction base="eml:UomEnum">
+			<xs:enumeration value="1000scm"/>
+			<xs:enumeration value="1000stb"/>
+			<xs:enumeration value="1E6scf"/>
+			<xs:enumeration value="1E6scm"/>
+			<xs:enumeration value="1E6stb"/>
+			<xs:enumeration value="1E9scf"/>
+			<xs:enumeration value="kscf"/>
+			<xs:enumeration value="scf"/>
+			<xs:enumeration value="scm"/>
+			<xs:enumeration value="stb"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MassPerVolumeUomWithLegacy">
+		<xs:union memberTypes="eml:LegacyMassPerVolumeUom eml:MassPerVolumeUom"/>
+	</xs:simpleType>
+	<xs:simpleType name="PressurePerVolumeUomWithLegacy">
+		<xs:union memberTypes="eml:LegacyPressurePerVolumeUom eml:PressurePerVolumeUom"/>
+	</xs:simpleType>
+	<xs:simpleType name="PressureUomWithLegacy">
+		<xs:union memberTypes="eml:LegacyPressureUom eml:PressureUom"/>
+	</xs:simpleType>
+	<xs:simpleType name="VolumePerAreaUomWithLegacy">
+		<xs:union memberTypes="eml:LegacyVolumePerAreaUom eml:VolumePerAreaUom"/>
+	</xs:simpleType>
+	<xs:simpleType name="VolumePerTimeUomWithLegacy">
+		<xs:union memberTypes="eml:LegacyVolumePerTimeUom eml:VolumePerTimeUom"/>
+	</xs:simpleType>
+	<xs:simpleType name="VolumePerVolumeUomWithLegacy">
+		<xs:union memberTypes="eml:LegacyVolumePerVolumeUom eml:VolumePerVolumeUom"/>
+	</xs:simpleType>
+	<xs:simpleType name="VolumeUomWithLegacy">
+		<xs:union memberTypes="eml:LegacyVolumeUom eml:VolumeUom"/>
+	</xs:simpleType>
+</xs:schema>

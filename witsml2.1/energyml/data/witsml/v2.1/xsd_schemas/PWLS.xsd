@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/witsmlv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:witsml="http://www.energistics.org/energyml/data/witsmlv2" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.1" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>Schema containing PWLS data to support the Logs model</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:import namespace="http://www.energistics.org/energyml/data/commonv2" schemaLocation="../../../common/v2.3/xsd_schemas/EmlAllObjects.xsd"/>
+	<xs:simpleType name="LoggingMethod">
+		<xs:annotation>
+			<xs:documentation>Specifies the method of logging used to record or produce the data in the log. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="coiled tubing">
+				<xs:annotation>
+					<xs:documentation>The data of the log is a result of coiled tubing logging.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="computed">
+				<xs:annotation>
+					<xs:documentation>The log is a result of computed analyses from various sources.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="distributed">
+				<xs:annotation>
+					<xs:documentation>The log is derived from various different systems.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LWD">
+				<xs:annotation>
+					<xs:documentation>The data of the log is a result of logging-while-drilling.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="mixed">
+				<xs:annotation>
+					<xs:documentation>The data is derived from multiple logging methods.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MWD">
+				<xs:annotation>
+					<xs:documentation>The data of the log is a result of measurement-while-drilling.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="subsea">
+				<xs:annotation>
+					<xs:documentation>The data is recorded with a subsea sensor.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="surface">
+				<xs:annotation>
+					<xs:documentation>The data is recorded on the surface or in real time.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="wireline">
+				<xs:annotation>
+					<xs:documentation>The data of the log is a result of wireline logging.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LoggingToolClass">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="AAC">
+				<xs:annotation>
+					<xs:documentation>Array Acoustic</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AC">
+				<xs:annotation>
+					<xs:documentation>Acoustic</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ADEN">
+				<xs:annotation>
+					<xs:documentation>Array Density</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AGR">
+				<xs:annotation>
+					<xs:documentation>Array Gamma Ray</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ARIN">
+				<xs:annotation>
+					<xs:documentation>Array Induction Resistivity</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ARLL">
+				<xs:annotation>
+					<xs:documentation>Array Laterolog Resistivity</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AUX">
+				<xs:annotation>
+					<xs:documentation>Auxiliary</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DEN">
+				<xs:annotation>
+					<xs:documentation>Density</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DIP">
+				<xs:annotation>
+					<xs:documentation>Dipmeter</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DIR">
+				<xs:annotation>
+					<xs:documentation>Directional, including gravity, magnetic and gyro tools</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DYN">
+				<xs:annotation>
+					<xs:documentation>Drill String Dynamics, including downhole weight on bit, torque, bending and vibration modes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FPR">
+				<xs:annotation>
+					<xs:documentation>Formation Pressure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GR">
+				<xs:annotation>
+					<xs:documentation>Gamma Ray</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HDIA">
+				<xs:annotation>
+					<xs:documentation>Hole Diameter</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="INTERP">
+				<xs:annotation>
+					<xs:documentation>Petrophysical Interpretation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JOINED_GEOPH">
+				<xs:annotation>
+					<xs:documentation>Joined Geophysical</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JOINED_PETRO">
+				<xs:annotation>
+					<xs:documentation>Joined Petrophysical</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NEU">
+				<xs:annotation>
+					<xs:documentation>Neutron</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NMR">
+				<xs:annotation>
+					<xs:documentation>Nuclear Magnetic Resonance</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="REMP">
+				<xs:annotation>
+					<xs:documentation>Electromagnetic Propagation Resistivity</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RIN">
+				<xs:annotation>
+					<xs:documentation>Induction Resistivity</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RLL">
+				<xs:annotation>
+					<xs:documentation>Laterolog Resistivity</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RMIC">
+				<xs:annotation>
+					<xs:documentation>Micro Resistivity</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SAMP">
+				<xs:annotation>
+					<xs:documentation>Formation Sampling</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SGR">
+				<xs:annotation>
+					<xs:documentation>Spectral Gamma Ray</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SP">
+				<xs:annotation>
+					<xs:documentation>Spontaneous Potential</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SURF">
+				<xs:annotation>
+					<xs:documentation>Surface Sensors</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LoggingToolClassExt">
+		<xs:union memberTypes="witsml:LoggingToolClass eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:element name="ChannelKind" type="witsml:ChannelKind" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ChannelKind">
+		<xs:annotation>
+			<xs:documentation>Common information about a kind of channel, such as channels produced by a sensor on a specific type of equipment. For example, a kind could represent the gamma ray channels from a specific gamma ray logging tool from a specific logging company.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="LoggingCompanyName" type="eml:String256" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Name of the logging company that creates this kind of channel.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingCompanyCode" type="xs:long" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The RP66 organization code assigned to the logging company. The list is available at http://www.energistics.org/geosciences/geology-standards/rp66-organization-codes</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Mnemonic" type="eml:String64" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The mnemonic for this kind of channel.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PropertyKind" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The kind of property for this kind of channel.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MnemonicLIS" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The LIS mnemonic for this kind of channel.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingToolKind" type="eml:DataObjectReference" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The kind of logging tool that creates this kind of channel.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ChannelKindDictionary" type="witsml:ChannelKindDictionary" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ChannelKindDictionary">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="ChannelKind" type="witsml:ChannelKind" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LoggingToolKind" type="witsml:LoggingToolKind" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="LoggingToolKind">
+		<xs:annotation>
+			<xs:documentation>Common information about a kind of logging tool, such as a specific model of logging tool from a logging company.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="LoggingCompanyName" type="eml:String256" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Name of the logging company that operates this kind of logging tool.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingCompanyCode" type="xs:long" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The RP66 organization code assigned to the logging company. The list is available at http://www.energistics.org/geosciences/geology-standards/rp66-organization-codes</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Identifier" type="eml:String64" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The tool code or tool model that uniquely identifies the kind of logging tool.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GroupIdentifier" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The tool group or tool series for the kind of logging tool.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MarketingName" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The marketing name for the kind of logging tool.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Class" type="witsml:LoggingToolClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The class for this kind of logging tool such as AC (Acoustic) or GR (Gamma Ray).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ClassDescription" type="eml:String256" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An optional description of the class for this kind of logging tool. This should be populated when the class is an extension value.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingMethod" type="witsml:LoggingMethod" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The logging method (e.g., LWD, MWD, wireline) for this kind of logging tool.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LoggingToolKindDictionary" type="witsml:LoggingToolKindDictionary" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="LoggingToolKindDictionary">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="LoggingToolKind" type="witsml:LoggingToolKind" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--														-->
+	</xs:schema>

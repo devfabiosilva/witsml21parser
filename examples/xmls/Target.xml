@@ -1,0 +1,153 @@
+<Target uuid="" schemaVersion="" objectVersion="">
+ <Aliases xsi:type="ObjectAlias" authority="">
+  <Identifier xsi:type="String64"></Identifier>
+  <IdentifierKind xsi:type="AliasIdentifierKindExt"></IdentifierKind>
+  <Description xsi:type="String2000"></Description>
+  <EffectiveDateTime xsi:type="TimeStamp">2023-05-06T03:27:34Z</EffectiveDateTime>
+  <TerminationDateTime xsi:type="TimeStamp">2023-05-06T03:27:34Z</TerminationDateTime>
+ </Aliases>
+ <Citation xsi:type="Citation">
+  <Title xsi:type="String256"></Title>
+  <Originator xsi:type="String64"></Originator>
+  <Creation xsi:type="TimeStamp">2023-05-06T03:27:34Z</Creation>
+  <Format xsi:type="String2000"></Format>
+  <Editor xsi:type="String64"></Editor>
+  <LastUpdate xsi:type="TimeStamp">2023-05-06T03:27:34Z</LastUpdate>
+  <Description xsi:type="String2000"></Description>
+  <EditorHistory xsi:type="String64"></EditorHistory>
+  <DescriptiveKeywords xsi:type="String2000"></DescriptiveKeywords>
+ </Citation>
+ <Existence xsi:type="ExistenceKindExt"></Existence>
+ <ObjectVersionReason xsi:type="String2000"></ObjectVersionReason>
+ <BusinessActivityHistory xsi:type="String64"></BusinessActivityHistory>
+ <OSDUIntegration xsi:type="OSDUIntegration">
+  <LineageAssertions xsi:type="OSDULineageAssertion">
+   <ID xsi:type="String256"></ID>
+   <LineageRelationshipKind xsi:type="OSDULineageRelationshipKind">direct</LineageRelationshipKind>
+  </LineageAssertions>
+  <OwnerGroup xsi:type="String256"></OwnerGroup>
+  <ViewerGroup xsi:type="String256"></ViewerGroup>
+  <LegalTags xsi:type="String256"></LegalTags>
+  <OSDUGeoJSON xsi:type="xsd:string"></OSDUGeoJSON>
+  <WGS84Latitude xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</WGS84Latitude>
+  <WGS84Longitude xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</WGS84Longitude>
+  <WGS84LocationMetadata xsi:type="OSDUSpatialLocationIntegration">
+   <SpatialLocationCoordinatesDate xsi:type="TimeStamp">2023-05-06T03:27:34Z</SpatialLocationCoordinatesDate>
+   <QuantitativeAccuracyBand xsi:type="String64"></QuantitativeAccuracyBand>
+   <QualitativeSpatialAccuracyType xsi:type="String64"></QualitativeSpatialAccuracyType>
+   <CoordinateQualityCheckPerformedBy xsi:type="String64"></CoordinateQualityCheckPerformedBy>
+   <CoordinateQualityCheckDateTime xsi:type="TimeStamp">2023-05-06T03:27:34Z</CoordinateQualityCheckDateTime>
+   <CoordinateQualityCheckRemark xsi:type="String256"></CoordinateQualityCheckRemark>
+   <AppliedOperation xsi:type="String256"></AppliedOperation>
+  </WGS84LocationMetadata>
+  <Field xsi:type="String64"></Field>
+  <Country xsi:type="String64"></Country>
+  <State xsi:type="String64"></State>
+  <County xsi:type="String64"></County>
+  <City xsi:type="String64"></City>
+  <Region xsi:type="String64"></Region>
+  <District xsi:type="String64"></District>
+  <Block xsi:type="String64"></Block>
+  <Prospect xsi:type="String64"></Prospect>
+  <Play xsi:type="String64"></Play>
+  <Basin xsi:type="String64"></Basin>
+ </OSDUIntegration>
+ <CustomData xsi:type="CustomData">
+  <!-- extensibility element(s) -->
+ </CustomData>
+ <ExtensionNameValue xsi:type="ExtensionNameValue">
+  <Name xsi:type="String64"></Name>
+  <Value xsi:type="StringMeasure" uom=""></Value>
+  <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+  <DTim xsi:type="TimeStamp">2023-05-06T03:27:34Z</DTim>
+  <Index xsi:type="xsd:long">0</Index>
+  <Description xsi:type="String2000"></Description>
+ </ExtensionNameValue>
+ <ns1:DispNsCenter xsi:type="LengthMeasure" uom="m">0.0</ns1:DispNsCenter>
+ <ns1:DispEwCenter xsi:type="LengthMeasure" uom="m">0.0</ns1:DispEwCenter>
+ <ns1:Tvd xsi:type="AbstractVerticalDepth">
+  <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
+  <Trajectory xsi:type="DataObjectReference">
+   <Uuid xsi:type="UuidString"></Uuid>
+   <ObjectVersion xsi:type="String64"></ObjectVersion>
+   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+   <Title xsi:type="String2000"></Title>
+   <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+   <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+   <ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-06T03:27:34Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ExtensionNameValue>
+  </Trajectory>
+ </ns1:Tvd>
+ <ns1:DispNsOffset xsi:type="LengthMeasure" uom="m">0.0</ns1:DispNsOffset>
+ <ns1:DispEwOffset xsi:type="LengthMeasure" uom="m">0.0</ns1:DispEwOffset>
+ <ns1:ThickAbove xsi:type="LengthMeasure" uom="m">0.0</ns1:ThickAbove>
+ <ns1:ThickBelow xsi:type="LengthMeasure" uom="m">0.0</ns1:ThickBelow>
+ <ns1:Dip xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:Dip>
+ <ns1:Strike xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:Strike>
+ <ns1:Rotation xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:Rotation>
+ <ns1:LenMajorAxis xsi:type="LengthMeasure" uom="m">0.0</ns1:LenMajorAxis>
+ <ns1:WidMinorAxis xsi:type="LengthMeasure" uom="m">0.0</ns1:WidMinorAxis>
+ <ns1:TargetScope xsi:type="ns1:TargetScopeExt"></ns1:TargetScope>
+ <ns1:DispNsSectOrig xsi:type="LengthMeasure" uom="m">0.0</ns1:DispNsSectOrig>
+ <ns1:DispEwSectOrig xsi:type="LengthMeasure" uom="m">0.0</ns1:DispEwSectOrig>
+ <ns1:AziRef xsi:type="NorthReferenceKind">astronomic north</ns1:AziRef>
+ <ns1:CatTarg xsi:type="ns1:TargetCategoryExt"></ns1:CatTarg>
+ <ns1:Location xsi:type="Abstract3dPosition">
+ </ns1:Location>
+ <ns1:TargetSection xsi:type="ns1:TargetSection" uid="">
+  <ns1:SectNumber xsi:type="xsd:long">0</ns1:SectNumber>
+  <ns1:TypeTargetSectionScope xsi:type="ns1:TargetSectionScope">arc</ns1:TypeTargetSectionScope>
+  <ns1:LenRadius xsi:type="LengthMeasure" uom="m">0.0</ns1:LenRadius>
+  <ns1:AngleArc xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:AngleArc>
+  <ns1:ThickAbove xsi:type="LengthMeasure" uom="m">0.0</ns1:ThickAbove>
+  <ns1:ThickBelow xsi:type="LengthMeasure" uom="m">0.0</ns1:ThickBelow>
+  <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-06T03:27:34Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ns1:ExtensionNameValue>
+  <ns1:Location xsi:type="Abstract3dPosition">
+  </ns1:Location>
+ </ns1:TargetSection>
+ <ns1:Wellbore xsi:type="DataObjectReference">
+  <Uuid xsi:type="UuidString"></Uuid>
+  <ObjectVersion xsi:type="String64"></ObjectVersion>
+  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+  <Title xsi:type="String2000"></Title>
+  <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+  <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+  <ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-06T03:27:34Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ExtensionNameValue>
+ </ns1:Wellbore>
+ <ns1:ParentTarget xsi:type="DataObjectReference">
+  <Uuid xsi:type="UuidString"></Uuid>
+  <ObjectVersion xsi:type="String64"></ObjectVersion>
+  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+  <Title xsi:type="String2000"></Title>
+  <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+  <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+  <ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-06T03:27:34Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ExtensionNameValue>
+ </ns1:ParentTarget>
+</Target>

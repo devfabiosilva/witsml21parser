@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>This package contains schemas for elements that are shared by the Energistics domain standards and have been added to EnergyML for better support of and integration with OSDU. </xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="MeasureType.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:simpleType name="OSDULineageRelationshipKind">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="direct">
+				<xs:annotation>
+					<xs:documentation>A resource which was used to derive the asserting work product component through a set of processes and transformations.  The prior data type is usually the same as the derived data type.  For example, the input well log used in creating a new log curve.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="indirect">
+				<xs:annotation>
+					<xs:documentation>A resource which was used during the derivation of the asserting work product component to control the process, but is not directly transformed.  The prior data type is usually different from the derived data type. For example, the velocity model used in migrating a seismic volume, the horizons used to constrain a velocity model.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="reference">
+				<xs:annotation>
+					<xs:documentation>A resource which captures information about the process to create the asserting work product component, but is not used directly in the process. The prior data type is not a required ancestor of the asserting object.  For example, a bibliography relative to a published paper, a published paper used as the basis for the processing algorithm, a geologic interpretation used to QC a seismic velocity model.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="OSDUIntegration">
+		<xs:annotation>
+			<xs:documentation>Container for elemnts and types needed solely for intagration within OSDU.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LineageAssertions" type="eml:OSDULineageAssertion" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OwnerGroup" type="eml:String256" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ViewerGroup" type="eml:String256" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LegalTags" type="eml:String256" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OSDUGeoJSON" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Optional copy of the GeoJSON created by or for OSDU. This presumably contains a WGS84-only version of whatever shape represents the toplevel object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WGS84Latitude" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="WGS84Longitude" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="WGS84LocationMetadata" type="eml:OSDUSpatialLocationIntegration" minOccurs="0" maxOccurs="1"/>
+			<xs:group ref="eml:GeographicContext" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OSDULineageAssertion">
+		<xs:annotation>
+			<xs:documentation>Defines relationships with other objects (any kind of Resource) upon which this work product component depends.  The assertion is directed only from the asserting WPC to ancestor objects, not children.  It should not be used to refer to files or artefacts within the WPC -- the association within the WPC is sufficient and Artefacts are actually children of the main WPC file.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ID" type="eml:String256" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The OSDU identifier of the dependent object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LineageRelationshipKind" type="eml:OSDULineageRelationshipKind" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OSDUReferencePointIntegration">
+		<xs:annotation>
+			<xs:documentation>OSDU-specific details about reference point.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EffectiveDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the reference point became effective.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TerminationDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The data and time when the reference point ceased to be effective.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OSDUSpatialLocationIntegration">
+		<xs:annotation>
+			<xs:documentation>Details about an OSDU Spatial Location.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SpatialLocationCoordinatesDate" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date when coordinates were measured or retrieved.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QuantitativeAccuracyBand" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An approximate quantitative assessment of the quality of a location (accurate to &gt; 500 m (i.e. not very accurate)), to &lt; 1 m, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QualitativeSpatialAccuracyType" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A qualitative description of the quality of a spatial location, e.g. unverifiable, not verified, basic validation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CoordinateQualityCheckPerformedBy" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The user who performed the Quality Check.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CoordinateQualityCheckDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date of the Quality Check.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CoordinateQualityCheckRemark" type="eml:String256" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Freetext remarks on Quality Check.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AppliedOperation" type="eml:String256" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The audit trail of operations applied to the coordinates from the original state to the current state. The list may contain operations applied prior to ingestion as well as the operations applied to produce the Wgs84Coordinates. The text elements refer to ESRI style CRS and Transformation names, which may have to be translated to EPSG standard names.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="GeographicContext">
+		<xs:sequence>
+			<xs:element name="Field" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Country" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="State" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="County" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="City" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Region" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="District" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Block" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Prospect" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Play" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Basin" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:group>
+</xs:schema>

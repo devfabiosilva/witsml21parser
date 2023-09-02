@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/witsmlv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:witsml="http://www.energistics.org/energyml/data/witsmlv2" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.1" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>Schema for pore pressure/fracture gradient data</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:import namespace="http://www.energistics.org/energyml/data/commonv2" schemaLocation="../../../common/v2.3/xsd_schemas/EmlAllObjects.xsd"/>
+	<!--														-->
+	<xs:include schemaLocation="Wellbore.xsd"/>
+	<xs:include schemaLocation="Log.xsd"/>
+	<xs:simpleType name="PPFGDataDerivation">
+		<xs:annotation>
+			<xs:documentation>Specifies the source of PPFG data.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="basin model">
+				<xs:annotation>
+					<xs:documentation>Data resulting from general basin modeling.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="estimated">
+				<xs:annotation>
+					<xs:documentation>Data built as an estimation from another datasource.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="inferred">
+				<xs:annotation>
+					<xs:documentation>Data inferred from parent data.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="measured">
+				<xs:annotation>
+					<xs:documentation>Data resulting from raw measurement on site.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="post-drill interpretation">
+				<xs:annotation>
+					<xs:documentation>Data resulting from a PostDrill Interpretation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="pre-drill interpretation">
+				<xs:annotation>
+					<xs:documentation>Data resulting from a PreDrill Interpretation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="real time">
+				<xs:annotation>
+					<xs:documentation>Raw dataset resulting from real-time acquisition.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="transformed">
+				<xs:annotation>
+					<xs:documentation>Data resulting from a transformation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGDataDerivationExt">
+		<xs:union memberTypes="witsml:PPFGDataDerivation eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGDataProcessing">
+		<xs:annotation>
+			<xs:documentation>The type and level of data processing that has been applied to PPFG data.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="calibrated"/>
+			<xs:enumeration value="corrected"/>
+			<xs:enumeration value="filtered"/>
+			<xs:enumeration value="interpolated"/>
+			<xs:enumeration value="interpreted"/>
+			<xs:enumeration value="normalized"/>
+			<xs:enumeration value="smoothed"/>
+			<xs:enumeration value="transformed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGDataProcessingExt">
+		<xs:union memberTypes="witsml:PPFGDataProcessing eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGFamily">
+		<xs:annotation>
+			<xs:documentation>The Family Type of the PPFG quantity measured, for example 'pore pressure from corrected drilling exponent'. An individual quantity that belongs to a Main Family.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="achievable fracture gradient"/>
+			<xs:enumeration value="breakout width"/>
+			<xs:enumeration value="corrected temperature"/>
+			<xs:enumeration value="effective stress"/>
+			<xs:enumeration value="effective stress gradient"/>
+			<xs:enumeration value="formation temperature"/>
+			<xs:enumeration value="fracture breakdown gradient"/>
+			<xs:enumeration value="fracture breakdown pressure"/>
+			<xs:enumeration value="fracture closure gradient"/>
+			<xs:enumeration value="fracture closure pressure"/>
+			<xs:enumeration value="fracture gradient"/>
+			<xs:enumeration value="fracture initiation pressure"/>
+			<xs:enumeration value="fracture initiation pressure gradient"/>
+			<xs:enumeration value="fracture pressure"/>
+			<xs:enumeration value="fracture propagation pressure"/>
+			<xs:enumeration value="fracture propagation pressure gradient"/>
+			<xs:enumeration value="friction angle (failure criteria)"/>
+			<xs:enumeration value="intermediate principle stress"/>
+			<xs:enumeration value="intermediate principle stress gradient"/>
+			<xs:enumeration value="least principle stress"/>
+			<xs:enumeration value="least principle stress gradient"/>
+			<xs:enumeration value="margin"/>
+			<xs:enumeration value="max horizontal stress"/>
+			<xs:enumeration value="max horizontal stress gradient"/>
+			<xs:enumeration value="maximum horizontal stress azimuth"/>
+			<xs:enumeration value="maximum principle stress"/>
+			<xs:enumeration value="maximum principle stress gradient"/>
+			<xs:enumeration value="mean effective stress"/>
+			<xs:enumeration value="mean effective stress gradient"/>
+			<xs:enumeration value="mean stress"/>
+			<xs:enumeration value="mean stress gradient"/>
+			<xs:enumeration value="measured depth"/>
+			<xs:enumeration value="measured formation pressure"/>
+			<xs:enumeration value="measured formation pressure gradient"/>
+			<xs:enumeration value="minimum horizontal stress"/>
+			<xs:enumeration value="minimum horizontal stress gradient"/>
+			<xs:enumeration value="modeled fracture gradient"/>
+			<xs:enumeration value="mpd back pressure"/>
+			<xs:enumeration value="normal compaction trendline"/>
+			<xs:enumeration value="normal compaction trendline - corrected drilling exponent"/>
+			<xs:enumeration value="normal compaction trendline - density"/>
+			<xs:enumeration value="normal compaction trendline - mechanical specific energy"/>
+			<xs:enumeration value="normal compaction trendline - resistivity"/>
+			<xs:enumeration value="normal compaction trendline - sonic"/>
+			<xs:enumeration value="normal compaction trendline - total porosity"/>
+			<xs:enumeration value="normal effective stress"/>
+			<xs:enumeration value="normal effective stress gradient"/>
+			<xs:enumeration value="normal hydrostatic pressure"/>
+			<xs:enumeration value="normal hydrostatic pressure gradient"/>
+			<xs:enumeration value="overburden gradient"/>
+			<xs:enumeration value="overburden pressure"/>
+			<xs:enumeration value="overpressure"/>
+			<xs:enumeration value="overpressure gradient"/>
+			<xs:enumeration value="pore  pressure"/>
+			<xs:enumeration value="pore pressure estimated from connection gas"/>
+			<xs:enumeration value="pore pressure estimated from density"/>
+			<xs:enumeration value="pore pressure estimated from drill gas"/>
+			<xs:enumeration value="pore pressure estimated from drilling parameter"/>
+			<xs:enumeration value="pore pressure estimated from log"/>
+			<xs:enumeration value="pore pressure estimated from resistivity"/>
+			<xs:enumeration value="pore pressure estimated from seismic velocity"/>
+			<xs:enumeration value="pore pressure estimated from sonic"/>
+			<xs:enumeration value="pore pressure estimated from total porosity"/>
+			<xs:enumeration value="pore pressure from basin model"/>
+			<xs:enumeration value="pore pressure from corrected drilling exponent"/>
+			<xs:enumeration value="pore pressure from mechanical specific energy"/>
+			<xs:enumeration value="pore pressure gradient"/>
+			<xs:enumeration value="pore pressure gradient estimated from connection gas"/>
+			<xs:enumeration value="pore pressure gradient estimated from density"/>
+			<xs:enumeration value="pore pressure gradient estimated from drill gas"/>
+			<xs:enumeration value="pore pressure gradient estimated from drilling parameter"/>
+			<xs:enumeration value="pore pressure gradient estimated from log"/>
+			<xs:enumeration value="pore pressure gradient estimated from resistivity"/>
+			<xs:enumeration value="pore pressure gradient estimated from seismic velocity"/>
+			<xs:enumeration value="pore pressure gradient estimated from sonic"/>
+			<xs:enumeration value="pore pressure gradient estimated from total porosity"/>
+			<xs:enumeration value="pore pressure gradient from basin model"/>
+			<xs:enumeration value="pore pressure gradient from corrected drilling exponent"/>
+			<xs:enumeration value="pore pressure gradient from mechanical specific energy"/>
+			<xs:enumeration value="pore-frac window"/>
+			<xs:enumeration value="safe drilling margin"/>
+			<xs:enumeration value="sedimentation rate"/>
+			<xs:enumeration value="shear failure pressure (collapse pressure)"/>
+			<xs:enumeration value="shear failure pressure gradient (collapse pressure gradient)"/>
+			<xs:enumeration value="strengthened fracture gradient"/>
+			<xs:enumeration value="structurally adjusted pore pressure"/>
+			<xs:enumeration value="structurally adjusted pore pressure gradient"/>
+			<xs:enumeration value="subnormal pressure"/>
+			<xs:enumeration value="temperature annular"/>
+			<xs:enumeration value="temperature bha"/>
+			<xs:enumeration value="true vertical depth"/>
+			<xs:enumeration value="two way time"/>
+			<xs:enumeration value="unconfined compressive strength"/>
+			<xs:enumeration value="vertical effective stress"/>
+			<xs:enumeration value="vertical effective stress gradient"/>
+			<xs:enumeration value="vertical stress"/>
+			<xs:enumeration value="vertical stress gradient"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGFamilyExt">
+		<xs:union memberTypes="witsml:PPFGFamily eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGFamilyMnemonic">
+		<xs:annotation>
+			<xs:documentation>The mnemonic for the Family Type of the PPFG quantity measured.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="BOAngle"/>
+			<xs:enumeration value="ES"/>
+			<xs:enumeration value="ESG"/>
+			<xs:enumeration value="ESN"/>
+			<xs:enumeration value="FA"/>
+			<xs:enumeration value="FBP"/>
+			<xs:enumeration value="FBPG"/>
+			<xs:enumeration value="FCP"/>
+			<xs:enumeration value="FCPG"/>
+			<xs:enumeration value="FG"/>
+			<xs:enumeration value="FG ACHIV"/>
+			<xs:enumeration value="FG BM"/>
+			<xs:enumeration value="FG STREN"/>
+			<xs:enumeration value="FIP"/>
+			<xs:enumeration value="FIPG"/>
+			<xs:enumeration value="FP"/>
+			<xs:enumeration value="FPP"/>
+			<xs:enumeration value="FPPG"/>
+			<xs:enumeration value="FTEMP"/>
+			<xs:enumeration value="IPS"/>
+			<xs:enumeration value="IPSG"/>
+			<xs:enumeration value="LPS"/>
+			<xs:enumeration value="LPSG"/>
+			<xs:enumeration value="MD"/>
+			<xs:enumeration value="MES"/>
+			<xs:enumeration value="MESG"/>
+			<xs:enumeration value="MPD BP"/>
+			<xs:enumeration value="MPS"/>
+			<xs:enumeration value="MPSG"/>
+			<xs:enumeration value="MRGN"/>
+			<xs:enumeration value="MS"/>
+			<xs:enumeration value="MSG"/>
+			<xs:enumeration value="NCT"/>
+			<xs:enumeration value="NCT DT"/>
+			<xs:enumeration value="NCT DXC"/>
+			<xs:enumeration value="NCT MSE"/>
+			<xs:enumeration value="NCT PHIT"/>
+			<xs:enumeration value="NCT RES"/>
+			<xs:enumeration value="NCT RHOB"/>
+			<xs:enumeration value="NESG"/>
+			<xs:enumeration value="OB"/>
+			<xs:enumeration value="OBG"/>
+			<xs:enumeration value="OP"/>
+			<xs:enumeration value="OPG"/>
+			<xs:enumeration value="PFW"/>
+			<xs:enumeration value="PNORM"/>
+			<xs:enumeration value="PNORMG"/>
+			<xs:enumeration value="PP"/>
+			<xs:enumeration value="PP BM"/>
+			<xs:enumeration value="PP CG"/>
+			<xs:enumeration value="PP DG"/>
+			<xs:enumeration value="PP DP"/>
+			<xs:enumeration value="PP DT"/>
+			<xs:enumeration value="PP DXC"/>
+			<xs:enumeration value="PP LOG"/>
+			<xs:enumeration value="PP MEAS"/>
+			<xs:enumeration value="PP MSE"/>
+			<xs:enumeration value="PP PHIT"/>
+			<xs:enumeration value="PP RES"/>
+			<xs:enumeration value="PP RHOB"/>
+			<xs:enumeration value="PP VSEIS"/>
+			<xs:enumeration value="PP ZADJ"/>
+			<xs:enumeration value="PPG"/>
+			<xs:enumeration value="PPG BM"/>
+			<xs:enumeration value="PPG CG"/>
+			<xs:enumeration value="PPG DG"/>
+			<xs:enumeration value="PPG DP"/>
+			<xs:enumeration value="PPG DT"/>
+			<xs:enumeration value="PPG DxC"/>
+			<xs:enumeration value="PPG EST"/>
+			<xs:enumeration value="PPG MEAS"/>
+			<xs:enumeration value="PPG MSE"/>
+			<xs:enumeration value="PPG PHIT"/>
+			<xs:enumeration value="PPG RES"/>
+			<xs:enumeration value="PPG RHOB"/>
+			<xs:enumeration value="PPG VSEIS"/>
+			<xs:enumeration value="PPG ZADJ"/>
+			<xs:enumeration value="PSNORM"/>
+			<xs:enumeration value="SDM"/>
+			<xs:enumeration value="SEDRT"/>
+			<xs:enumeration value="SFP"/>
+			<xs:enumeration value="SFPG"/>
+			<xs:enumeration value="SHAZ"/>
+			<xs:enumeration value="SHmax"/>
+			<xs:enumeration value="SHmaxG"/>
+			<xs:enumeration value="Shmin"/>
+			<xs:enumeration value="ShminG"/>
+			<xs:enumeration value="SV"/>
+			<xs:enumeration value="SVG"/>
+			<xs:enumeration value="TEMP A"/>
+			<xs:enumeration value="TEMP BHA"/>
+			<xs:enumeration value="TEMP C"/>
+			<xs:enumeration value="TVD"/>
+			<xs:enumeration value="TWT"/>
+			<xs:enumeration value="UCS"/>
+			<xs:enumeration value="VES"/>
+			<xs:enumeration value="VESG"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGFamilyMnemonicExt">
+		<xs:union memberTypes="witsml:PPFGFamilyMnemonic eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGMainFamily">
+		<xs:annotation>
+			<xs:documentation>The Main Family Type of the PPFG quantity measured, for example 'pore pressure'. Primarily used for high level data classification.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="compaction trendline"/>
+			<xs:enumeration value="effective stress"/>
+			<xs:enumeration value="effective stress gradient"/>
+			<xs:enumeration value="formation pressure"/>
+			<xs:enumeration value="formation pressure gradient"/>
+			<xs:enumeration value="fracture pressure"/>
+			<xs:enumeration value="fracture pressure gradient"/>
+			<xs:enumeration value="geomechnanics"/>
+			<xs:enumeration value="margin"/>
+			<xs:enumeration value="mpd"/>
+			<xs:enumeration value="overpressure"/>
+			<xs:enumeration value="overpressure gradient"/>
+			<xs:enumeration value="pore pressure"/>
+			<xs:enumeration value="pore pressure gradient"/>
+			<xs:enumeration value="reference"/>
+			<xs:enumeration value="sedimentation rate"/>
+			<xs:enumeration value="stress"/>
+			<xs:enumeration value="stress gradient"/>
+			<xs:enumeration value="temperature"/>
+			<xs:enumeration value="transform model parameter"/>
+			<xs:enumeration value="window"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGMainFamilyExt">
+		<xs:union memberTypes="witsml:PPFGMainFamily eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGModeledLithology">
+		<xs:annotation>
+			<xs:documentation>Specifies the type of lithology modeled in PPFG data.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="carbonate"/>
+			<xs:enumeration value="composite"/>
+			<xs:enumeration value="igneous"/>
+			<xs:enumeration value="salt"/>
+			<xs:enumeration value="sand"/>
+			<xs:enumeration value="shale"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGModeledLithologyExt">
+		<xs:union memberTypes="witsml:PPFGModeledLithology eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGTectonicSetting">
+		<xs:annotation>
+			<xs:documentation>Specifies the source of PPFG data.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="compressional"/>
+			<xs:enumeration value="extensional"/>
+			<xs:enumeration value="strike slip"/>
+			<xs:enumeration value="transpressional"/>
+			<xs:enumeration value="transtensional"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGTectonicSettingExt">
+		<xs:union memberTypes="witsml:PPFGTectonicSetting eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGTransformModelType">
+		<xs:annotation>
+			<xs:documentation>Empirical calibrated models used for pressure calculations from a petrophysical channel (sonic or resistivity).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="apparent poisson's ratio"/>
+			<xs:enumeration value="bowers"/>
+			<xs:enumeration value="diagenetic"/>
+			<xs:enumeration value="eaton"/>
+			<xs:enumeration value="eaton-daines"/>
+			<xs:enumeration value="equivalent depth"/>
+			<xs:enumeration value="k0"/>
+			<xs:enumeration value="stress path"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGTransformModelTypeExt">
+		<xs:union memberTypes="witsml:PPFGTransformModelType eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGUncertaintyClass">
+		<xs:annotation>
+			<xs:documentation>Specifies class of uncertainty for PPFG data.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="high"/>
+			<xs:enumeration value="low"/>
+			<xs:enumeration value="maximum"/>
+			<xs:enumeration value="mean"/>
+			<xs:enumeration value="mid"/>
+			<xs:enumeration value="minimum"/>
+			<xs:enumeration value="most likely"/>
+			<xs:enumeration value="p10"/>
+			<xs:enumeration value="p50"/>
+			<xs:enumeration value="p90"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PPFGUncertaintyClassExt">
+		<xs:union memberTypes="witsml:PPFGUncertaintyClass eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:element name="PPFGChannel" type="witsml:PPFGChannel" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="PPFGChannel">
+		<xs:annotation>
+			<xs:documentation>A channel object specific to pore pressure and fracture gradient modeling. It corresponds roughly to a PPFGDataSetCurve in OSDU.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="witsml:Channel">
+				<xs:sequence>
+					<xs:element name="PPFGDataProcessingApplied" type="witsml:PPFGDataProcessingExt" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>An array of processing operations that have been applied to this channel's data. For example: 'Smoothed', 'Calibrated', etc.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGDerivation" type="witsml:PPFGDataDerivationExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Indicates how the PPFG data in the channel was derived.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGFamily" type="witsml:PPFGFamilyExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The PPFG Family of the PPFG quantity measured, for example 'Pore Pressure from Corrected Drilling Exponent'. An individual channel that belongs to a Main Family.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGFamilyMnemonic" type="witsml:PPFGFamilyMnemonicExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The mnemonic of the PPFG Family.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGMainFamily" type="witsml:PPFGMainFamilyExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The Main Family Type of the PPFG quantity measured, for example 'Pore Pressure'. Primarily used for high level data classification.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGModeledLithology" type="witsml:PPFGModeledLithologyExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The lithology that this channel was modeled on. The assumption is that several different channels will be modeled, each for a specific lithology type, and during drilling, when it is known which lithologyy the well is currently in, users would refer to the channels modeled on the appropropriate type of lithology.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGTransformModelType" type="witsml:PPFGTransformModelTypeExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The empirical calibrated model used for pressure calculations from a petrophysical channel (sonic or resistivity), for example 'Eaton' and 'Bowers',... .</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGUncertaintyClass" type="witsml:PPFGUncertaintyClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The uncertainty class for the channel, for example 'most likely' or 'p50'.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGChannelOSDUIntegration" type="witsml:PPFGChannelOSDUIntegration" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Information about a PPFGChannel that is relevant for OSDU integration but does not have a natural place in a PPFGChannel object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PPFGChannelOSDUIntegration">
+		<xs:annotation>
+			<xs:documentation>Information about a PPFGChannel that is relevant for OSDU integration but does not have a natural place in a PPFGChannel object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RecordDate" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date that the PPFG channel was created by the PPFG practitioner or contractor.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PPFGChannelSet" type="witsml:PPFGChannelSet" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="PPFGChannelSet">
+		<xs:annotation>
+			<xs:documentation>A channel set object specific to pore pressure and fracture gradient modeling. It corresponds roughly to a PPFGDataSet in OSDU.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="witsml:ChannelSet">
+				<xs:sequence>
+					<xs:element name="PPFGComment" type="eml:String2000" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Open comments from the PPFG calculation team.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGDerivation" type="witsml:PPFGDataDerivationExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Nominal indication of how how the PPFG data in the channel set was derived. Individual channels may have different derivations.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGGaugeType" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Free text to describe the type of gauge used for the pressure measurement.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGOffsetWellbore" type="eml:DataObjectReference" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Offset Wellbores included in the context and calculations of this PPFG channel set.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGTectonicSetting" type="witsml:PPFGTectonicSettingExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Tectonic Scenario Setting for Planning and Pore Pressure Practitioners. Built into interpretive curves. Can be, for example 'Strike Slip'.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGChannelSetOSDUIntegration" type="witsml:PPFGChannelSetOSDUIntegration" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Information about a PPFGChannelSet that is relevant for OSDU integration but does not have a natural place in a PPFGChannelSet object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PPFGChannelSetOSDUIntegration">
+		<xs:annotation>
+			<xs:documentation>Information about a PPFGChannelSet that is relevant for OSDU integration but does not have a natural place in a PPFGChanneSet object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RecordDate" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date that the PPFGChanneSet was created by the PPFG practitioner or contractor.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PPFGLog" type="witsml:PPFGLog" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="PPFGLog">
+		<xs:annotation>
+			<xs:documentation>A log object specific to pore pressure and fracture gradient modeling.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="witsml:Log">
+				<xs:sequence>
+					<xs:element name="PPFGComment" type="eml:String2000" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Open comments from the PPFG calculation team.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGDerivation" type="witsml:PPFGDataDerivationExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Nominal indication of how how the PPFG data in the log was derived. Individual channels may have different derivations.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGGaugeType" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Free text to describe the type of gauge used for the pressure measurement.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGOffsetWellbore" type="eml:DataObjectReference" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Offset Wellbores included in the context and calculations of this PPFG log.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGTectonicSetting" type="witsml:PPFGTectonicSettingExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Tectonic Scenario Setting for Planning and Pore Pressure Practitioners. Built into interpretive curves. Can be, for example 'Strike Slip'.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PPFGLogOSDUIntegration" type="witsml:PPFGLogOSDUIntegration" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Information about a PPFGLog that is relevant for OSDU integration but does not have a natural place in a PPFGLog object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PPFGLogOSDUIntegration">
+		<xs:annotation>
+			<xs:documentation>Information about a PPFGLog that is relevant for OSDU integration but does not have a natural place in a PPFGLog object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RecordDate" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date that the PPFG channel set was created by the PPFG practitioner or contractor.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,465 @@
+<DepthRegImage uuid="" schemaVersion="" objectVersion="" uid="">
+ <Aliases xsi:type="ObjectAlias" authority="">
+  <Identifier xsi:type="String64"></Identifier>
+  <IdentifierKind xsi:type="AliasIdentifierKindExt"></IdentifierKind>
+  <Description xsi:type="String2000"></Description>
+  <EffectiveDateTime xsi:type="TimeStamp">2023-05-07T13:11:00Z</EffectiveDateTime>
+  <TerminationDateTime xsi:type="TimeStamp">2023-05-07T13:11:00Z</TerminationDateTime>
+ </Aliases>
+ <Citation xsi:type="Citation">
+  <Title xsi:type="String256"></Title>
+  <Originator xsi:type="String64"></Originator>
+  <Creation xsi:type="TimeStamp">2023-05-07T13:11:00Z</Creation>
+  <Format xsi:type="String2000"></Format>
+  <Editor xsi:type="String64"></Editor>
+  <LastUpdate xsi:type="TimeStamp">2023-05-07T13:11:00Z</LastUpdate>
+  <Description xsi:type="String2000"></Description>
+  <EditorHistory xsi:type="String64"></EditorHistory>
+  <DescriptiveKeywords xsi:type="String2000"></DescriptiveKeywords>
+ </Citation>
+ <Existence xsi:type="ExistenceKindExt"></Existence>
+ <ObjectVersionReason xsi:type="String2000"></ObjectVersionReason>
+ <BusinessActivityHistory xsi:type="String64"></BusinessActivityHistory>
+ <OSDUIntegration xsi:type="OSDUIntegration">
+  <LineageAssertions xsi:type="OSDULineageAssertion">
+   <ID xsi:type="String256"></ID>
+   <LineageRelationshipKind xsi:type="OSDULineageRelationshipKind">direct</LineageRelationshipKind>
+  </LineageAssertions>
+  <OwnerGroup xsi:type="String256"></OwnerGroup>
+  <ViewerGroup xsi:type="String256"></ViewerGroup>
+  <LegalTags xsi:type="String256"></LegalTags>
+  <OSDUGeoJSON xsi:type="xsd:string"></OSDUGeoJSON>
+  <WGS84Latitude xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</WGS84Latitude>
+  <WGS84Longitude xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</WGS84Longitude>
+  <WGS84LocationMetadata xsi:type="OSDUSpatialLocationIntegration">
+   <SpatialLocationCoordinatesDate xsi:type="TimeStamp">2023-05-07T13:11:00Z</SpatialLocationCoordinatesDate>
+   <QuantitativeAccuracyBand xsi:type="String64"></QuantitativeAccuracyBand>
+   <QualitativeSpatialAccuracyType xsi:type="String64"></QualitativeSpatialAccuracyType>
+   <CoordinateQualityCheckPerformedBy xsi:type="String64"></CoordinateQualityCheckPerformedBy>
+   <CoordinateQualityCheckDateTime xsi:type="TimeStamp">2023-05-07T13:11:00Z</CoordinateQualityCheckDateTime>
+   <CoordinateQualityCheckRemark xsi:type="String256"></CoordinateQualityCheckRemark>
+   <AppliedOperation xsi:type="String256"></AppliedOperation>
+  </WGS84LocationMetadata>
+  <Field xsi:type="String64"></Field>
+  <Country xsi:type="String64"></Country>
+  <State xsi:type="String64"></State>
+  <County xsi:type="String64"></County>
+  <City xsi:type="String64"></City>
+  <Region xsi:type="String64"></Region>
+  <District xsi:type="String64"></District>
+  <Block xsi:type="String64"></Block>
+  <Prospect xsi:type="String64"></Prospect>
+  <Play xsi:type="String64"></Play>
+  <Basin xsi:type="String64"></Basin>
+ </OSDUIntegration>
+ <CustomData xsi:type="CustomData">
+  <!-- extensibility element(s) -->
+ </CustomData>
+ <ExtensionNameValue xsi:type="ExtensionNameValue">
+  <Name xsi:type="String64"></Name>
+  <Value xsi:type="StringMeasure" uom=""></Value>
+  <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+  <DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+  <Index xsi:type="xsd:long">0</Index>
+  <Description xsi:type="String2000"></Description>
+ </ExtensionNameValue>
+ <ns1:FileNameType xsi:type="ns1:FileNameType">file name</ns1:FileNameType>
+ <ns1:Mimetype xsi:type="ns1:MimeType">image/tiff</ns1:Mimetype>
+ <ns1:FileName xsi:type="String64"></ns1:FileName>
+ <ns1:FileSize xsi:type="DigitalStorageMeasure" uom="bit">0.0</ns1:FileSize>
+ <ns1:Checksum xsi:type="ns1:MessageDigestType">MD5</ns1:Checksum>
+ <ns1:ImagePixelWidth xsi:type="NonNegativeLong">0</ns1:ImagePixelWidth>
+ <ns1:ImagePixelHeight xsi:type="NonNegativeLong">0</ns1:ImagePixelHeight>
+ <ns1:Version xsi:type="String64"></ns1:Version>
+ <ns1:ImageBoundary xsi:type="ns1:DepthRegRectangle" uid="">
+  <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ns1:ExtensionNameValue>
+  <ns1:Ul xsi:type="ns1:DepthRegPoint">
+   <ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+   <ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+  </ns1:Ul>
+  <ns1:Ur xsi:type="ns1:DepthRegPoint">
+   <ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+   <ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+  </ns1:Ur>
+  <ns1:Ll xsi:type="ns1:DepthRegPoint">
+   <ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+   <ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+  </ns1:Ll>
+  <ns1:Lr xsi:type="ns1:DepthRegPoint">
+   <ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+   <ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+  </ns1:Lr>
+ </ns1:ImageBoundary>
+ <ns1:HeaderSection xsi:type="ns1:DepthRegLogRect" uid="">
+  <ns1:Type xsi:type="ns1:LogRectangleType">header</ns1:Type>
+  <ns1:Name xsi:type="String64"></ns1:Name>
+  <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ns1:ExtensionNameValue>
+  <ns1:Position xsi:type="ns1:DepthRegRectangle" uid="">
+   <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ns1:ExtensionNameValue>
+   <ns1:Ul xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ul>
+   <ns1:Ur xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ur>
+   <ns1:Ll xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ll>
+   <ns1:Lr xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Lr>
+  </ns1:Position>
+ </ns1:HeaderSection>
+ <ns1:LogSection xsi:type="ns1:DepthRegLogSection" uid="">
+  <ns1:LogSectionSequenceNumber xsi:type="NonNegativeLong">0</ns1:LogSectionSequenceNumber>
+  <ns1:LogSectionType xsi:type="ns1:LogSectionType">main</ns1:LogSectionType>
+  <ns1:LogSectionName xsi:type="String64"></ns1:LogSectionName>
+  <ns1:LogMatrix xsi:type="String64"></ns1:LogMatrix>
+  <ns1:ScaleNumerator xsi:type="LengthMeasure" uom="m">0.0</ns1:ScaleNumerator>
+  <ns1:ScaleDenominator xsi:type="GenericMeasure" uom="">0.0</ns1:ScaleDenominator>
+  <ns1:IndexKind xsi:type="DataIndexKind">measured depth</ns1:IndexKind>
+  <ns1:IndexUom xsi:type="String64"></ns1:IndexUom>
+  <ns1:IndexDatum xsi:type="DataObjectReference">
+   <Uuid xsi:type="UuidString"></Uuid>
+   <ObjectVersion xsi:type="String64"></ObjectVersion>
+   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+   <Title xsi:type="String2000"></Title>
+   <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+   <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+   <ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ExtensionNameValue>
+  </ns1:IndexDatum>
+  <ns1:IndexInterval xsi:type="AbstractInterval">
+   <Comment xsi:type="String2000"></Comment>
+  </ns1:IndexInterval>
+  <ns1:VerticalLabel xsi:type="String2000"></ns1:VerticalLabel>
+  <ns1:VerticalRatio xsi:type="String2000"></ns1:VerticalRatio>
+  <ns1:Comment xsi:type="String2000"></ns1:Comment>
+  <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ns1:ExtensionNameValue>
+  <ns1:UpperCurveScaleRect xsi:type="ns1:DepthRegRectangle" uid="">
+   <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ns1:ExtensionNameValue>
+   <ns1:Ul xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ul>
+   <ns1:Ur xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ur>
+   <ns1:Ll xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ll>
+   <ns1:Lr xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Lr>
+  </ns1:UpperCurveScaleRect>
+  <ns1:CalibrationPoint xsi:type="ns1:DepthRegCalibrationPoint" uid="">
+   <ns1:Index xsi:type="GenericMeasure" uom="">0.0</ns1:Index>
+   <ns1:Track xsi:type="String64"></ns1:Track>
+   <ns1:Role xsi:type="ns1:CalibrationPointRole">left edge</ns1:Role>
+   <ns1:CurveName xsi:type="String64"></ns1:CurveName>
+   <ns1:Fraction xsi:type="DimensionlessMeasure" uom="%">0.0</ns1:Fraction>
+   <ns1:Comment xsi:type="String2000"></ns1:Comment>
+   <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ns1:ExtensionNameValue>
+   <ns1:Parameter xsi:type="ns1:DepthRegParameter" uid="">
+<ns1:Mnemonic xsi:type="String64"></ns1:Mnemonic>
+<ns1:Dictionary xsi:type="String64"></ns1:Dictionary>
+<ns1:IndexInterval xsi:type="AbstractInterval">
+ <Comment xsi:type="String2000"></Comment>
+</ns1:IndexInterval>
+<ns1:Value xsi:type="GenericMeasure" uom="">0.0</ns1:Value>
+<ns1:Description xsi:type="String2000"></ns1:Description>
+<!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name xsi:type="String64"></Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description xsi:type="String2000"></Description>
+</ns1:ExtensionNameValue-->
+   </ns1:Parameter>
+   <ns1:Point xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Point>
+  </ns1:CalibrationPoint>
+  <ns1:WhiteSpace xsi:type="ns1:DepthRegRectangle" uid="">
+   <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ns1:ExtensionNameValue>
+   <ns1:Ul xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ul>
+   <ns1:Ur xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ur>
+   <ns1:Ll xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ll>
+   <ns1:Lr xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Lr>
+  </ns1:WhiteSpace>
+  <ns1:LowerCurveScaleRect xsi:type="ns1:DepthRegRectangle" uid="">
+   <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ns1:ExtensionNameValue>
+   <ns1:Ul xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ul>
+   <ns1:Ur xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ur>
+   <ns1:Ll xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ll>
+   <ns1:Lr xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Lr>
+  </ns1:LowerCurveScaleRect>
+  <ns1:LogSectionRect xsi:type="ns1:DepthRegRectangle" uid="">
+   <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ns1:ExtensionNameValue>
+   <ns1:Ul xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ul>
+   <ns1:Ur xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ur>
+   <ns1:Ll xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ll>
+   <ns1:Lr xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Lr>
+  </ns1:LogSectionRect>
+  <ns1:Parameter xsi:type="ns1:DepthRegParameter" uid="">
+   <ns1:Mnemonic xsi:type="String64"></ns1:Mnemonic>
+   <ns1:Dictionary xsi:type="String64"></ns1:Dictionary>
+   <ns1:IndexInterval xsi:type="AbstractInterval">
+<Comment xsi:type="String2000"></Comment>
+   </ns1:IndexInterval>
+   <ns1:Value xsi:type="GenericMeasure" uom="">0.0</ns1:Value>
+   <ns1:Description xsi:type="String2000"></ns1:Description>
+   <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ns1:ExtensionNameValue>
+  </ns1:Parameter>
+  <ns1:Track xsi:type="ns1:DepthRegTrack" uid="">
+   <ns1:Name xsi:type="String64"></ns1:Name>
+   <ns1:Type xsi:type="ns1:LogTrackType">curves</ns1:Type>
+   <ns1:LeftEdge xsi:type="NonNegativeLong">0</ns1:LeftEdge>
+   <ns1:RightEdge xsi:type="NonNegativeLong">0</ns1:RightEdge>
+   <ns1:TrackCurveScaleRect xsi:type="ns1:DepthRegRectangle" uid="">
+<!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name xsi:type="String64"></Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description xsi:type="String2000"></Description>
+</ns1:ExtensionNameValue-->
+<ns1:Ul xsi:type="ns1:DepthRegPoint">
+ <ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+ <ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+</ns1:Ul>
+<ns1:Ur xsi:type="ns1:DepthRegPoint">
+ <ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+ <ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+</ns1:Ur>
+<ns1:Ll xsi:type="ns1:DepthRegPoint">
+ <ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+ <ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+</ns1:Ll>
+<ns1:Lr xsi:type="ns1:DepthRegPoint">
+ <ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+ <ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+</ns1:Lr>
+   </ns1:TrackCurveScaleRect>
+   <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ns1:ExtensionNameValue>
+   <ns1:AssociatedCurve xsi:type="ns1:DepthRegTrackCurve" uid="">
+<ns1:CurveInfo xsi:type="String64"></ns1:CurveInfo>
+<ns1:LineStyle xsi:type="ns1:LineStyle">dashed</ns1:LineStyle>
+<ns1:LineWeight xsi:type="String64"></ns1:LineWeight>
+<ns1:LineColor xsi:type="String64"></ns1:LineColor>
+<ns1:CurveScaleType xsi:type="ns1:ScaleType">linear</ns1:CurveScaleType>
+<ns1:CurveUnit xsi:type="TypeEnum"></ns1:CurveUnit>
+<ns1:CurveLeftScaleValue xsi:type="xsd:double">0.0</ns1:CurveLeftScaleValue>
+<ns1:CurveRightScaleValue xsi:type="xsd:double">0.0</ns1:CurveRightScaleValue>
+<ns1:CurveBackupScaleType xsi:type="ns1:BackupScaleType">x10</ns1:CurveBackupScaleType>
+<ns1:CurveScaleRect xsi:type="ns1:DepthRegRectangle" uid="">
+ <!--ns1:ExtensionNameValue xsi:nil="true"/-->
+ <ns1:Ul xsi:nil="true"/>
+ <ns1:Ur xsi:nil="true"/>
+ <ns1:Ll xsi:nil="true"/>
+ <ns1:Lr xsi:nil="true"/>
+</ns1:CurveScaleRect>
+<ns1:Description xsi:type="String2000"></ns1:Description>
+   </ns1:AssociatedCurve>
+  </ns1:Track>
+  <ns1:ChannelSet xsi:type="DataObjectReference">
+   <Uuid xsi:type="UuidString"></Uuid>
+   <ObjectVersion xsi:type="String64"></ObjectVersion>
+   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+   <Title xsi:type="String2000"></Title>
+   <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+   <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+   <ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ExtensionNameValue>
+  </ns1:ChannelSet>
+ </ns1:LogSection>
+ <ns1:AlternateSection xsi:type="ns1:DepthRegLogRect" uid="">
+  <ns1:Type xsi:type="ns1:LogRectangleType">header</ns1:Type>
+  <ns1:Name xsi:type="String64"></ns1:Name>
+  <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ns1:ExtensionNameValue>
+  <ns1:Position xsi:type="ns1:DepthRegRectangle" uid="">
+   <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ns1:ExtensionNameValue>
+   <ns1:Ul xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ul>
+   <ns1:Ur xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ur>
+   <ns1:Ll xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Ll>
+   <ns1:Lr xsi:type="ns1:DepthRegPoint">
+<ns1:X xsi:type="NonNegativeLong">0</ns1:X>
+<ns1:Y xsi:type="NonNegativeLong">0</ns1:Y>
+   </ns1:Lr>
+  </ns1:Position>
+ </ns1:AlternateSection>
+ <ns1:Wellbore xsi:type="DataObjectReference">
+  <Uuid xsi:type="UuidString"></Uuid>
+  <ObjectVersion xsi:type="String64"></ObjectVersion>
+  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+  <Title xsi:type="String2000"></Title>
+  <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+  <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+  <ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-07T13:11:00Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ExtensionNameValue>
+ </ns1:Wellbore>
+</DepthRegImage>

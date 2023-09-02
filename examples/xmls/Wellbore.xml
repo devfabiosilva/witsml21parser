@@ -1,0 +1,467 @@
+    <Wellbore xsi:type="ns1:Wellbore" uuid="" schemaVersion="" objectVersion="">
+     <ns2:Aliases xsi:type="ns2:ObjectAlias" authority="">
+      <ns2:Identifier xsi:type="ns2:String64"></ns2:Identifier>
+      <ns2:IdentifierKind xsi:type="ns2:AliasIdentifierKindExt"></ns2:IdentifierKind>
+      <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+      <ns2:EffectiveDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:29Z</ns2:EffectiveDateTime>
+      <ns2:TerminationDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:29Z</ns2:TerminationDateTime>
+     </ns2:Aliases>
+     <ns2:Citation xsi:type="ns2:Citation">
+      <ns2:Title xsi:type="ns2:String256"></ns2:Title>
+      <ns2:Originator xsi:type="ns2:String64"></ns2:Originator>
+      <ns2:Creation xsi:type="ns2:TimeStamp">2023-05-06T18:16:29Z</ns2:Creation>
+      <ns2:Format xsi:type="ns2:String2000"></ns2:Format>
+      <ns2:Editor xsi:type="ns2:String64"></ns2:Editor>
+      <ns2:LastUpdate xsi:type="ns2:TimeStamp">2023-05-06T18:16:29Z</ns2:LastUpdate>
+      <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+      <ns2:EditorHistory xsi:type="ns2:String64"></ns2:EditorHistory>
+      <ns2:DescriptiveKeywords xsi:type="ns2:String2000"></ns2:DescriptiveKeywords>
+     </ns2:Citation>
+     <ns2:Existence xsi:type="ns2:ExistenceKindExt"></ns2:Existence>
+     <ns2:ObjectVersionReason xsi:type="ns2:String2000"></ns2:ObjectVersionReason>
+     <ns2:BusinessActivityHistory xsi:type="ns2:String64"></ns2:BusinessActivityHistory>
+     <ns2:OSDUIntegration xsi:type="ns2:OSDUIntegration">
+      <ns2:LineageAssertions xsi:type="ns2:OSDULineageAssertion">
+       <ns2:ID xsi:type="ns2:String256"></ns2:ID>
+       <ns2:LineageRelationshipKind xsi:type="ns2:OSDULineageRelationshipKind">direct</ns2:LineageRelationshipKind>
+      </ns2:LineageAssertions>
+      <ns2:OwnerGroup xsi:type="ns2:String256"></ns2:OwnerGroup>
+      <ns2:ViewerGroup xsi:type="ns2:String256"></ns2:ViewerGroup>
+      <ns2:LegalTags xsi:type="ns2:String256"></ns2:LegalTags>
+      <ns2:OSDUGeoJSON xsi:type="xsd:string"></ns2:OSDUGeoJSON>
+      <ns2:WGS84Latitude xsi:type="ns2:PlaneAngleMeasure" uom="0.001 seca">0.0</ns2:WGS84Latitude>
+      <ns2:WGS84Longitude xsi:type="ns2:PlaneAngleMeasure" uom="0.001 seca">0.0</ns2:WGS84Longitude>
+      <ns2:WGS84LocationMetadata xsi:type="ns2:OSDUSpatialLocationIntegration">
+       <ns2:SpatialLocationCoordinatesDate xsi:type="ns2:TimeStamp">2023-05-06T18:16:29Z</ns2:SpatialLocationCoordinatesDate>
+       <ns2:QuantitativeAccuracyBand xsi:type="ns2:String64"></ns2:QuantitativeAccuracyBand>
+       <ns2:QualitativeSpatialAccuracyType xsi:type="ns2:String64"></ns2:QualitativeSpatialAccuracyType>
+       <ns2:CoordinateQualityCheckPerformedBy xsi:type="ns2:String64"></ns2:CoordinateQualityCheckPerformedBy>
+       <ns2:CoordinateQualityCheckDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:29Z</ns2:CoordinateQualityCheckDateTime>
+       <ns2:CoordinateQualityCheckRemark xsi:type="ns2:String256"></ns2:CoordinateQualityCheckRemark>
+       <ns2:AppliedOperation xsi:type="ns2:String256"></ns2:AppliedOperation>
+      </ns2:WGS84LocationMetadata>
+      <ns2:Field xsi:type="ns2:String64"></ns2:Field>
+      <ns2:Country xsi:type="ns2:String64"></ns2:Country>
+      <ns2:State xsi:type="ns2:String64"></ns2:State>
+      <ns2:County xsi:type="ns2:String64"></ns2:County>
+      <ns2:City xsi:type="ns2:String64"></ns2:City>
+      <ns2:Region xsi:type="ns2:String64"></ns2:Region>
+      <ns2:District xsi:type="ns2:String64"></ns2:District>
+      <ns2:Block xsi:type="ns2:String64"></ns2:Block>
+      <ns2:Prospect xsi:type="ns2:String64"></ns2:Prospect>
+      <ns2:Play xsi:type="ns2:String64"></ns2:Play>
+      <ns2:Basin xsi:type="ns2:String64"></ns2:Basin>
+     </ns2:OSDUIntegration>
+     <ns2:CustomData xsi:type="ns2:CustomData">
+      <!-- extensibility element(s) -->
+     </ns2:CustomData>
+     <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+      <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+      <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+      <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+      <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+      <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+      <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+     </ns2:ExtensionNameValue>
+     <ns2:ActiveStatus xsi:type="ns2:ActiveStatusKind">active</ns2:ActiveStatus>
+     <ns1:GeographicBottomHoleLocation xsi:type="ns1:BottomHoleLocation">
+      <ns1:Location xsi:type="ns2:AbstractPosition">
+      </ns1:Location>
+      <ns1:OSDULocationMetadata xsi:type="ns2:OSDUSpatialLocationIntegration">
+       <ns2:SpatialLocationCoordinatesDate xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:SpatialLocationCoordinatesDate>
+       <ns2:QuantitativeAccuracyBand xsi:type="ns2:String64"></ns2:QuantitativeAccuracyBand>
+       <ns2:QualitativeSpatialAccuracyType xsi:type="ns2:String64"></ns2:QualitativeSpatialAccuracyType>
+       <ns2:CoordinateQualityCheckPerformedBy xsi:type="ns2:String64"></ns2:CoordinateQualityCheckPerformedBy>
+       <ns2:CoordinateQualityCheckDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:CoordinateQualityCheckDateTime>
+       <ns2:CoordinateQualityCheckRemark xsi:type="ns2:String256"></ns2:CoordinateQualityCheckRemark>
+       <ns2:AppliedOperation xsi:type="ns2:String256"></ns2:AppliedOperation>
+      </ns1:OSDULocationMetadata>
+     </ns1:GeographicBottomHoleLocation>
+     <ns1:Number xsi:type="ns2:String64"></ns1:Number>
+     <ns1:ProjectedBottomHoleLocation xsi:type="ns1:BottomHoleLocation">
+      <ns1:Location xsi:type="ns2:AbstractPosition">
+      </ns1:Location>
+      <ns1:OSDULocationMetadata xsi:type="ns2:OSDUSpatialLocationIntegration">
+       <ns2:SpatialLocationCoordinatesDate xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:SpatialLocationCoordinatesDate>
+       <ns2:QuantitativeAccuracyBand xsi:type="ns2:String64"></ns2:QuantitativeAccuracyBand>
+       <ns2:QualitativeSpatialAccuracyType xsi:type="ns2:String64"></ns2:QualitativeSpatialAccuracyType>
+       <ns2:CoordinateQualityCheckPerformedBy xsi:type="ns2:String64"></ns2:CoordinateQualityCheckPerformedBy>
+       <ns2:CoordinateQualityCheckDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:CoordinateQualityCheckDateTime>
+       <ns2:CoordinateQualityCheckRemark xsi:type="ns2:String256"></ns2:CoordinateQualityCheckRemark>
+       <ns2:AppliedOperation xsi:type="ns2:String256"></ns2:AppliedOperation>
+      </ns1:OSDULocationMetadata>
+     </ns1:ProjectedBottomHoleLocation>
+     <ns1:SuffixAPI xsi:type="ns2:String64"></ns1:SuffixAPI>
+     <ns1:NumLicense xsi:type="ns2:String64"></ns1:NumLicense>
+     <ns1:LicenseHistory xsi:type="ns1:LicensePeriod">
+      <ns1:NumLicense xsi:type="ns2:String64"></ns1:NumLicense>
+      <ns1:TerminationDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns1:TerminationDateTime>
+      <ns1:EffectiveDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns1:EffectiveDateTime>
+     </ns1:LicenseHistory>
+     <ns1:NumGovt xsi:type="ns2:String64"></ns1:NumGovt>
+     <ns1:UniqueIdentifier xsi:type="ns2:String64"></ns1:UniqueIdentifier>
+     <ns1:SlotName xsi:type="ns2:String64"></ns1:SlotName>
+     <ns1:Operator xsi:type="ns2:DataObjectReference">
+      <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+      <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+      <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+      <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+      <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+      <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+      <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+       <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+       <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+       <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+       <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+       <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+       <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+      </ns2:ExtensionNameValue>
+     </ns1:Operator>
+     <ns1:OriginalOperator xsi:type="ns2:DataObjectReference">
+      <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+      <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+      <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+      <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+      <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+      <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+      <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+       <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+       <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+       <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+       <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+       <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+       <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+      </ns2:ExtensionNameValue>
+     </ns1:OriginalOperator>
+     <ns1:OperatorHistory xsi:type="ns2:FacilityOperator">
+      <ns2:BusinessAssociate xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:BusinessAssociate>
+      <ns2:EffectiveDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:EffectiveDateTime>
+      <ns2:TerminationDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:TerminationDateTime>
+     </ns1:OperatorHistory>
+     <ns1:DataSourceOrganization xsi:type="ns2:DataObjectReference">
+      <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+      <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+      <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+      <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+      <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+      <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+      <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+       <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+       <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+       <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+       <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+       <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+       <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+      </ns2:ExtensionNameValue>
+     </ns1:DataSourceOrganization>
+     <ns1:LifecycleState xsi:type="ns2:FacilityLifecycleStateExt"></ns1:LifecycleState>
+     <ns1:LifecycleHistory xsi:type="ns2:FacilityLifecyclePeriod">
+      <ns2:State xsi:type="ns2:FacilityLifecycleStateExt"></ns2:State>
+      <ns2:StartDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:StartDateTime>
+      <ns2:EndDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:EndDateTime>
+     </ns1:LifecycleHistory>
+     <ns1:StatusWellbore xsi:type="ns2:WellStatus">abandoned</ns1:StatusWellbore>
+     <ns1:StatusHistory xsi:type="ns2:WellStatusPeriod">
+      <ns2:Status xsi:type="ns2:WellStatus">abandoned</ns2:Status>
+      <ns2:StartDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:StartDateTime>
+      <ns2:EndDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:EndDateTime>
+     </ns1:StatusHistory>
+     <ns1:PurposeWellbore xsi:type="ns1:WellPurpose">appraisal</ns1:PurposeWellbore>
+     <ns1:PurposeHistory xsi:type="ns1:WellPurposePeriod">
+      <ns1:Purpose xsi:type="ns1:WellPurpose">appraisal</ns1:Purpose>
+      <ns1:StartDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns1:StartDateTime>
+      <ns1:EndDateTime xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns1:EndDateTime>
+     </ns1:PurposeHistory>
+     <ns1:TypeWellbore xsi:type="ns1:WellboreType">bypass</ns1:TypeWellbore>
+     <ns1:Shape xsi:type="ns1:WellboreShape">build and hold</ns1:Shape>
+     <ns1:FluidWellbore xsi:type="ns1:WellFluid">air</ns1:FluidWellbore>
+     <ns1:DTimKickoff xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns1:DTimKickoff>
+     <ns1:AchievedTD xsi:type="xsd:boolean">false</ns1:AchievedTD>
+     <ns1:Md xsi:type="ns2:MeasuredDepth">
+      <ns2:MeasuredDepth xsi:type="ns2:LengthMeasureExt" uom="">0.0</ns2:MeasuredDepth>
+      <ns2:Datum xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:Datum>
+     </ns1:Md>
+     <ns1:Tvd xsi:type="ns2:AbstractVerticalDepth">
+      <ns2:VerticalDepth xsi:type="ns2:LengthMeasureExt" uom="">0.0</ns2:VerticalDepth>
+      <ns2:Trajectory xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:Trajectory>
+     </ns1:Tvd>
+     <ns1:MdBit xsi:type="ns2:MeasuredDepth">
+      <ns2:MeasuredDepth xsi:type="ns2:LengthMeasureExt" uom="">0.0</ns2:MeasuredDepth>
+      <ns2:Datum xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:Datum>
+     </ns1:MdBit>
+     <ns1:TvdBit xsi:type="ns2:AbstractVerticalDepth">
+      <ns2:VerticalDepth xsi:type="ns2:LengthMeasureExt" uom="">0.0</ns2:VerticalDepth>
+      <ns2:Trajectory xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:Trajectory>
+     </ns1:TvdBit>
+     <ns1:MdKickoff xsi:type="ns2:MeasuredDepth">
+      <ns2:MeasuredDepth xsi:type="ns2:LengthMeasureExt" uom="">0.0</ns2:MeasuredDepth>
+      <ns2:Datum xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:Datum>
+     </ns1:MdKickoff>
+     <ns1:TvdKickoff xsi:type="ns2:AbstractVerticalDepth">
+      <ns2:VerticalDepth xsi:type="ns2:LengthMeasureExt" uom="">0.0</ns2:VerticalDepth>
+      <ns2:Trajectory xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:Trajectory>
+     </ns1:TvdKickoff>
+     <ns1:MdPlanned xsi:type="ns2:MeasuredDepth">
+      <ns2:MeasuredDepth xsi:type="ns2:LengthMeasureExt" uom="">0.0</ns2:MeasuredDepth>
+      <ns2:Datum xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:Datum>
+     </ns1:MdPlanned>
+     <ns1:TvdPlanned xsi:type="ns2:AbstractVerticalDepth">
+      <ns2:VerticalDepth xsi:type="ns2:LengthMeasureExt" uom="">0.0</ns2:VerticalDepth>
+      <ns2:Trajectory xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:Trajectory>
+     </ns1:TvdPlanned>
+     <ns1:MdSubSeaPlanned xsi:type="ns2:MeasuredDepth">
+      <ns2:MeasuredDepth xsi:type="ns2:LengthMeasureExt" uom="">0.0</ns2:MeasuredDepth>
+      <ns2:Datum xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:Datum>
+     </ns1:MdSubSeaPlanned>
+     <ns1:TvdSubSeaPlanned xsi:type="ns2:AbstractVerticalDepth">
+      <ns2:VerticalDepth xsi:type="ns2:LengthMeasureExt" uom="">0.0</ns2:VerticalDepth>
+      <ns2:Trajectory xsi:type="ns2:DataObjectReference">
+       <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+       <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+       <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+       <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+       <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+       <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+       <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+        <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+        <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+        <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+        <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+        <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+        <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+       </ns2:ExtensionNameValue>
+      </ns2:Trajectory>
+     </ns1:TvdSubSeaPlanned>
+     <ns1:DayTarget xsi:type="ns2:TimeMeasure" uom="a">0.0</ns1:DayTarget>
+     <ns1:TargetFormation xsi:type="ns2:String64"></ns1:TargetFormation>
+     <ns1:TargetGeologicUnitInterpretation xsi:type="ns2:DataObjectReference">
+      <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+      <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+      <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+      <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+      <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+      <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+      <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+       <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+       <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+       <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+       <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+       <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+       <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+      </ns2:ExtensionNameValue>
+     </ns1:TargetGeologicUnitInterpretation>
+     <ns1:DefaultMdDatum xsi:type="ns2:DataObjectReference">
+      <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+      <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+      <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+      <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+      <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+      <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+      <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+       <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+       <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+       <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+       <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+       <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+       <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+      </ns2:ExtensionNameValue>
+     </ns1:DefaultMdDatum>
+     <ns1:DefaultTvdDatum xsi:type="ns2:DataObjectReference">
+      <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+      <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+      <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+      <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+      <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+      <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+      <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+       <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+       <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+       <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+       <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+       <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+       <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+      </ns2:ExtensionNameValue>
+     </ns1:DefaultTvdDatum>
+     <ns1:Well xsi:type="ns2:DataObjectReference">
+      <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+      <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+      <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+      <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+      <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+      <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+      <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+       <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+       <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+       <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+       <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+       <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+       <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+      </ns2:ExtensionNameValue>
+     </ns1:Well>
+     <ns1:ParentWellbore xsi:type="ns2:DataObjectReference">
+      <ns2:Uuid xsi:type="ns2:UuidString"></ns2:Uuid>
+      <ns2:ObjectVersion xsi:type="ns2:String64"></ns2:ObjectVersion>
+      <ns2:QualifiedType xsi:type="ns2:QualifiedType"></ns2:QualifiedType>
+      <ns2:Title xsi:type="ns2:String2000"></ns2:Title>
+      <ns2:EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:EnergisticsUri>
+      <ns2:LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns2:LocatorUrl>
+      <ns2:ExtensionNameValue xsi:type="ns2:ExtensionNameValue">
+       <ns2:Name xsi:type="ns2:String64"></ns2:Name>
+       <ns2:Value xsi:type="ns2:StringMeasure" uom=""></ns2:Value>
+       <ns2:MeasureClass xsi:type="ns2:MeasureClass">absorbed dose</ns2:MeasureClass>
+       <ns2:DTim xsi:type="ns2:TimeStamp">2023-05-06T18:16:30Z</ns2:DTim>
+       <ns2:Index xsi:type="xsd:long">0</ns2:Index>
+       <ns2:Description xsi:type="ns2:String2000"></ns2:Description>
+      </ns2:ExtensionNameValue>
+     </ns1:ParentWellbore>
+    </Wellbore>

@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>Datum package</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="ObjectReference.xsd"/>
+	<xs:include schemaLocation="MeasureType.xsd"/>
+	<xs:include schemaLocation="OSDUIntegration.xsd"/>
+	<xs:include schemaLocation="CRS.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="Abstract.xsd"/>
+	<xs:simpleType name="ReferencePointKind">
+		<xs:annotation>
+			<xs:documentation>This enumeration holds the normal wellbore datum references plus Well head and well surface location, the two common reference points not along a wellbore.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="casing flange"/>
+			<xs:enumeration value="crown valve"/>
+			<xs:enumeration value="derrick floor"/>
+			<xs:enumeration value="ground level"/>
+			<xs:enumeration value="kelly bushing"/>
+			<xs:enumeration value="kickoff point"/>
+			<xs:enumeration value="lowest astronomical tide"/>
+			<xs:enumeration value="mean high water"/>
+			<xs:enumeration value="mean higher high water"/>
+			<xs:enumeration value="mean low water"/>
+			<xs:enumeration value="mean lower low water"/>
+			<xs:enumeration value="mean sea level"/>
+			<xs:enumeration value="mean tide level"/>
+			<xs:enumeration value="rotary bushing"/>
+			<xs:enumeration value="rotary table"/>
+			<xs:enumeration value="seafloor"/>
+			<xs:enumeration value="wellhead"/>
+			<xs:enumeration value="well surface location"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReferencePointKindExt">
+		<xs:union memberTypes="eml:ReferencePointKind eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:complexType name="Abstract2dPosition" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractPosition">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Abstract3dPosition" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractPosition">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractCartesian2dPosition" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A 2D position given relative to either a projected or local engineering CRS.
+
+The meanings of the two coordinates and their units of measure are carried in the referenced CRS definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:Abstract2dPosition">
+				<xs:sequence>
+					<xs:element name="Coordinate1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Coordinate2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractCompoundPosition" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractPosition">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractHorizontalCoordinates" abstract="true">
+		<xs:sequence>
+			<xs:element name="Coordinate1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Coordinate2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AbstractPosition" abstract="true">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="AbstractReferencePoint" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A reference point is used as a new origin for some coordinates.
+
+It is not a CRS. Indeed, it does not redefine axis, uom, etc... it just defines the origin of some axis.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="Kind" type="eml:ReferencePointKindExt" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="OSDUReferencePointIntegration" type="eml:OSDUReferencePointIntegration" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="UncertaintyVectorAtOneSigma" type="eml:Vector" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EngineeringCompoundPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractCompoundPosition">
+				<xs:sequence>
+					<xs:element name="Coordinate1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Coordinate2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="VerticalCoordinate" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="LocalEngineeringCompoundCrs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Geocentric3dPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:Abstract3dPosition">
+				<xs:sequence>
+					<xs:element name="Coordinate1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Coordinate2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Coordinate3" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Geocentric3dCrs" type="eml:Geocentric3dCrs" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Geographic2dPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:Abstract2dPosition">
+				<xs:sequence>
+					<xs:element name="Latitude" type="eml:PlaneAngleMeasureExt" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Longitude" type="eml:PlaneAngleMeasureExt" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Epoch" type="xs:double" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="GeographicCrs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Geographic3dPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:Abstract3dPosition">
+				<xs:sequence>
+					<xs:element name="Latitude" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Longitude" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="EllipsoidalHeight" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Geographic3dCrs" type="eml:Geographic3dCrs" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeographicCompoundPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractCompoundPosition">
+				<xs:sequence>
+					<xs:element name="Latitude" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Longitude" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="VerticalCoordinate" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="GeographicCompoundCrs" type="eml:GeographicCompoundCrs" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeographicCoordinates">
+		<xs:annotation>
+			<xs:documentation>Coordinates in a geodetic coordinate reference system. 
+
+Coordinate 1 is a latitude
+Coordinate 2 is a longitude</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractHorizontalCoordinates">
+				<xs:sequence>
+					<xs:element name="Crs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="HorizontalCoordinates">
+		<xs:sequence>
+			<xs:element name="Coordinate1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Coordinate2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LocalEngineering2dPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractCartesian2dPosition">
+				<xs:sequence>
+					<xs:element name="LocalEngineering2dCrs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LocalEngineering3dPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:Abstract3dPosition">
+				<xs:sequence>
+					<xs:element name="Coordinate1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Coordinate2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="VerticalCoordinate" type="xs:double" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Projected2dPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractCartesian2dPosition">
+				<xs:sequence>
+					<xs:element name="ProjectedCrs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Projected3dPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:Abstract3dPosition">
+				<xs:sequence>
+					<xs:element name="Coordinate1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Coordinate2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="EllipsoidalHeight" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ProjectedCrs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProjectedCompoundPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractCompoundPosition">
+				<xs:sequence>
+					<xs:element name="Coordinate1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Coordinate2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="VerticalCoordinate" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ProjectedCompoundCrs" type="eml:ProjectedCompoundCrs" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProjectedCoordinates">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractHorizontalCoordinates">
+				<xs:sequence>
+					<xs:element name="Crs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PublicLandSurveySystem2dPosition">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractCartesian2dPosition">
+				<xs:sequence>
+					<xs:element name="PublicLandSurveySystemLocation" type="eml:PublicLandSurveySystemLocation" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PublicLandSurveySystemCoordinates">
+		<xs:annotation>
+			<xs:documentation>Coordinates given in the US Public Land Survey System (Jeffersonian surveying). The parameters in the PublicLandSurveySystem element form a local engineering coordinate reference system with coordinate1 and coordinate2 being the distances in feet from the edge lines of the defined section fraction.
+
+The order and direction of the coordinates are given in the AxisOrder element, which is validated via the AxisOrder2d enumeration.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractHorizontalCoordinates">
+				<xs:sequence>
+					<xs:element name="PublicLandSurveySystem" type="eml:PublicLandSurveySystemLocation" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RecursiveReferencePoint" type="eml:RecursiveReferencePoint" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="RecursiveReferencePoint">
+		<xs:annotation>
+			<xs:documentation>A reference point defined in the context of another reference point.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractReferencePoint">
+				<xs:sequence>
+					<xs:element name="VerticalCoordinate" type="xs:double" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The vertical distance in elevation (positive up) between the reference point and its BaseReferencePoint.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HorizontalCoordinates" type="eml:HorizontalCoordinates" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="BaseReferencePoint" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ReferencePointInACrs" type="eml:ReferencePointInACrs" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ReferencePointInACrs">
+		<xs:annotation>
+			<xs:documentation>A reference point which is defined in the context of a compound (2d horizontal + 1D vertical) CRS.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractReferencePoint">
+				<xs:sequence>
+					<xs:element name="VerticalCrs" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="VerticalCoordinate" type="xs:double" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="HorizontalCoordinates" type="eml:AbstractHorizontalCoordinates" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ReferencePointInALocalEngineeringCompoundCrs" type="eml:ReferencePointInALocalEngineeringCompoundCrs" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ReferencePointInALocalEngineeringCompoundCrs">
+		<xs:annotation>
+			<xs:documentation>A reference point which is defined in the context of a compound (2D horizontal + 1D vertical) CRS.
+Note that a 2D compound CRS can be transferred  by omitting the vertical Coordinate3</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractReferencePoint">
+				<xs:sequence>
+					<xs:element name="HorizontalCoordinates" type="eml:HorizontalCoordinates" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="VerticalCoordinate" type="xs:double" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Crs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ReferencePointInAWellbore" type="eml:ReferencePointInAWellbore" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ReferencePointInAWellbore">
+		<xs:annotation>
+			<xs:documentation>A reference point which is defined in the context of a wellbore by means of a MD.
+
+If TVD is needed, it must be given through the inherited vertical Coordinate.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:RecursiveReferencePoint">
+				<xs:sequence>
+					<xs:element name="Md" type="eml:LengthMeasureExt" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The measured depth (depth along the wellbore) from the reference point to its BaseReferencePoint.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Trajectory" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An optional Trajectory used in calculation of the VerticalCoordinate if present, especially if the VerticalCoordinate is in TVD.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Wellbore" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The wellbore holding the reference point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VerticalPosition1d">
+		<xs:sequence>
+			<xs:element name="VerticalCoordinate" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="VerticalCrs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,1084 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/witsmlv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:witsml="http://www.energistics.org/energyml/data/witsmlv2" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.1" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>Trajectory Schema.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:import namespace="http://www.energistics.org/energyml/data/commonv2" schemaLocation="../../../common/v2.3/xsd_schemas/EmlAllObjects.xsd"/>
+	<!--														-->
+	<xs:include schemaLocation="Target.xsd"/>
+	<xs:include schemaLocation="ToolErrorModel.xsd"/>
+	<xs:include schemaLocation="SurveyProgram.xsd"/>
+	<xs:include schemaLocation="Wellbore.xsd"/>
+	<xs:simpleType name="TrajStationStatus">
+		<xs:annotation>
+			<xs:documentation>Specifies the status of a trajectory station. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="open">
+				<xs:annotation>
+					<xs:documentation>Has not been validated; does not influence position computation for stations below it.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="rejected">
+				<xs:annotation>
+					<xs:documentation>The quality is not ok; does not influence position computation for stations below it.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="position">
+				<xs:annotation>
+					<xs:documentation>Validated and in-use.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TrajStationType">
+		<xs:annotation>
+			<xs:documentation>Specifies the type of directional survey station.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="azimuth on plane">
+				<xs:annotation>
+					<xs:documentation>Section terminates at a given azimuth on a given plane target; requires target ID.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="buildrate to delta-MD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given build rate to a specified delta measured depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="buildrate to INCL">
+				<xs:annotation>
+					<xs:documentation>Section follows a given build rate to a specified inclination.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="buildrate to MD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given build rate to a specified measured depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="buildrate and turnrate to AZI">
+				<xs:annotation>
+					<xs:documentation>Section follows a given build rate and turn rate to a specified azimuth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="buildrate and turnrate to delta-MD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given build rate and turn rate to a specified delta measured depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="buildrate and turnrate to INCL">
+				<xs:annotation>
+					<xs:documentation>Section follows a given build rate and turn rate to a specified inclination.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="buildrate and turnrate to INCL and AZI">
+				<xs:annotation>
+					<xs:documentation>Section follows a given build rate and turn rate to a specified inclination and azimuth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="buildrate and turnrate to MD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given build rate and turn rate to a specified measured depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="buildrate and turnrate to TVD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given build rate and turn rate to a specified TVD.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="buildrate TVD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given build rate to a specified TVD.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="casing MD">
+				<xs:annotation>
+					<xs:documentation>Measured depth casing point; can also be inserted within actual survey stations. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="casing TVD">
+				<xs:annotation>
+					<xs:documentation>TVD casing point; can also be inserted within actual survey stations.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS">
+				<xs:annotation>
+					<xs:documentation>Section follows a given dogleg severity.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS to AZI and MD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given dogleg severity to a specified measured depth and azimuth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS to AZI-TVD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given dogleg severity until a specified TVD and azimuth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS to INCL">
+				<xs:annotation>
+					<xs:documentation>Section follows a given dogleg severity until a specified inclination.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS to INCL and AZI">
+				<xs:annotation>
+					<xs:documentation>Section follows a given dogleg severity to a specified inclination and azimuth. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS to INCL and MD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given dogleg severity to a specified measured depth and inclination.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS to INCL and TVD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given dogleg severity until a specified TVD and inclination.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS to NS">
+				<xs:annotation>
+					<xs:documentation>Section follows a given dogleg severity for a given north, south distance.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS and toolface to AZI">
+				<xs:annotation>
+					<xs:documentation>Section follows a given toolface angle and  dogleg severity to a specified azimuth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS and toolface to delta-MD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given toolface angle and dogleg severity to a specified delta measured depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS and toolface to INCL">
+				<xs:annotation>
+					<xs:documentation>Section follows a given toolface angle and dogleg severity to a specified inclination.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS and toolface to INCL-AZI">
+				<xs:annotation>
+					<xs:documentation>Section follows a given toolface angle and dogleg severity to a specified inclination and azimuth. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS and toolface to MD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given toolface angle and dogleg severity to a specified measured depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DLS and toolface to TVD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given toolface angle and dogleg severity to a specified TVD. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="extrapolated">
+				<xs:annotation>
+					<xs:documentation>Derived by extrapolating beyond the first or last station (either planned or surveyed).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="formation MD">
+				<xs:annotation>
+					<xs:documentation>Measured depth formation; can be inserted within actual survey stations also .</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="formation TVD">
+				<xs:annotation>
+					<xs:documentation>TVD formation; can be inserted within actual survey stations also.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="hold to delta-MD">
+				<xs:annotation>
+					<xs:documentation>Section holds angle and azimuth to a specified delta measured depth. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="hold to MD">
+				<xs:annotation>
+					<xs:documentation>Section holds angle and azimuth to a specified measured depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="hold to TVD">
+				<xs:annotation>
+					<xs:documentation>Section holds angle and azimuth to a specified TVD. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="INCL AZI and TVD">
+				<xs:annotation>
+					<xs:documentation>Section follows a continuous curve to a specified inclination, azimuth and true vertical depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="interpolated">
+				<xs:annotation>
+					<xs:documentation>Derived by interpolating between stations with entered values (either planned or surveyed).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="marker MD">
+				<xs:annotation>
+					<xs:documentation>Measured depth marker; can be inserted within actual survey stations also.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="marker TVD">
+				<xs:annotation>
+					<xs:documentation>TVD marker; can be inserted within actual survey stations also.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MD and INCL">
+				<xs:annotation>
+					<xs:documentation>An old style drift indicator by Totco / inclination-only survey. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MD INCL and AZI">
+				<xs:annotation>
+					<xs:documentation>A normal MWD / gyro survey. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="N E and TVD">
+				<xs:annotation>
+					<xs:documentation>A point on a computed trajectory with northing, easting and true vertical depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NS EW and TVD">
+				<xs:annotation>
+					<xs:documentation>Specified as TVD, NS, EW; could be used for point or drilling target (non-geological target).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="target center">
+				<xs:annotation>
+					<xs:documentation>Specified as TVD, NS, EW of target center; requires target ID association.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="target offset">
+				<xs:annotation>
+					<xs:documentation>Specified as TVD, NS, EW of target offset; requires target ID association.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="tie in point">
+				<xs:annotation>
+					<xs:documentation>Tie-in point for the survey.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="turnrate to AZI">
+				<xs:annotation>
+					<xs:documentation>Section follows a given turn rate to an azimuth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="turnrate to delta-MD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given turn rate to a given delta measured depth. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="turnrate to MD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given turn rate to a given measured depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="turnrate to TVD">
+				<xs:annotation>
+					<xs:documentation>Section follows a given turn rate to a given TVD.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="unknown">
+				<xs:annotation>
+					<xs:documentation>The value is not known. Avoid using this value. All reasonable attempts should be made to determine the appropriate value. Use of this value may result in rejection in some situations.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TrajStationTypeExt">
+		<xs:union memberTypes="witsml:TrajStationType eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="TrajStnCalcAlgorithm">
+		<xs:annotation>
+			<xs:documentation>Specifies the trajectory station calculation algorithm. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="average angle"/>
+			<xs:enumeration value="balanced tangential"/>
+			<xs:enumeration value="constant tool face"/>
+			<xs:enumeration value="custom"/>
+			<xs:enumeration value="inertial"/>
+			<xs:enumeration value="minimum curvature"/>
+			<xs:enumeration value="radius of curvature"/>
+			<xs:enumeration value="tangential"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TrajStnCalcAlgorithmExt">
+		<xs:union memberTypes="witsml:TrajStnCalcAlgorithm eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="TypeSurveyTool">
+		<xs:annotation>
+			<xs:documentation>Specifies values for the type of directional survey tool; a very generic classification. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="gyroscopic inertial"/>
+			<xs:enumeration value="gyroscopic MWD"/>
+			<xs:enumeration value="gyroscopic north seeking"/>
+			<xs:enumeration value="magnetic multiple-shot"/>
+			<xs:enumeration value="magnetic MWD"/>
+			<xs:enumeration value="magnetic single-shot"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TypeSurveyToolExt">
+		<xs:union memberTypes="witsml:TypeSurveyTool eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:complexType name="SourceTrajectoryStation">
+		<xs:annotation>
+			<xs:documentation>A reference to a trajectoryStation in a wellbore. The trajectoryStation may be defined within the context of another wellbore. This value represents a foreign key from one element to another.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StationReference" type="eml:ComponentReference" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A pointer to the trajectoryStation within the parent trajectory. StationReference is a special case where WITSML only uses a UID for the pointer.The natural identity of a station is its physical characteristics (e.g., md).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Trajectory" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StnTrajCorUsed">
+		<xs:annotation>
+			<xs:documentation>Captures information about corrections applied to a trajectory station.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GravAxialAccelCor" type="eml:LinearAccelerationMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Calculated gravitational field strength correction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GravTran1AccelCor" type="eml:LinearAccelerationMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The correction applied to a cross-axial (direction 1) component of the Earth's gravitational field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GravTran2AccelCor" type="eml:LinearAccelerationMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The correction applied to a cross-axial (direction 2) component of the Earth's gravitational field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagAxialDrlstrCor" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Axial magnetic drill string correction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagTran1DrlstrCor" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Cross-axial (direction 1) magnetic correction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagTran2DrlstrCor" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Cross-axial (direction 2) magnetic correction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagTran1MSACor" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Cross-axial (direction 1) magnetic correction due to a multi-station analysis process.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagTran2MSACor" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Cross-axial (direction 2) magnetic correction due to a multi-station analysis process.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagAxialMSACor" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Axial magnetic correction due to a multi-station analysis process.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SagIncCor" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Calculated sag correction to the inclination.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SagAziCor" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Calculated cosag correction to the azimuth.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StnMagDeclUsed" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Magnetic declination used to correct a Magnetic North referenced azimuth 
+to a True North azimuth.  Magnetic declination angles are measured positive clockwise 
+from True North to Magnetic North (or negative in the anti-clockwise direction). 
+To convert a Magnetic azimuth to a True North azimuth, the magnetic declination should be added.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StnGridConUsed" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The angle  used to correct a true north referenced azimuth to a grid north azimuth. WITSML follows the Gauss-Bomford convention in which convergence angles are measured positive clockwise from true north to grid north (or negative in the anti-clockwise direction). To convert a true north referenced azimuth to a grid north azimuth, the convergence angle must be subtracted from true north. If this value is not provided, then GridConUsed applies to all grid-north referenced stations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StnGridScaleFactorUsed" type="eml:LengthPerLengthMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A multiplier to change geodetic distances based on the Earth model (ellipsoid) to distances on the grid plane.
+
+This is the number which was already used to correct lateral distances. Provide it only if it is used in your trajectory stations.
+
+If StnGridScaleFactorUsed is not provided, then the value in the parent Trajectory applies to all trajectory stations. 
+
+The grid scale factor applies to the DispEw, DispNs and Closure elements on trajectory stations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DirSensorOffset" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Offset relative to the bit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StnTrajMatrixCov">
+		<xs:annotation>
+			<xs:documentation>Captures validation information for a covariance matrix.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="VarianceNN" type="eml:AreaMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Covariance north north.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VarianceNE" type="eml:AreaMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Crossvariance north east.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VarianceNVert" type="eml:AreaMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Crossvariance north vertical.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VarianceEE" type="eml:AreaMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Covariance east east.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VarianceEVert" type="eml:AreaMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Crossvariance east vertical.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VarianceVertVert" type="eml:AreaMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Covariance vertical vertical.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BiasN" type="eml:LengthMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Bias north.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BiasE" type="eml:LengthMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Bias east.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BiasVert" type="eml:LengthMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Bias vertical. The coordinate system is set up in a right-handed configuration, which makes the vertical direction increasing (i.e., positive) downwards.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Sigma" type="xs:double" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The sigma which is appropriate for all the other values in this class.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StnTrajRawData">
+		<xs:annotation>
+			<xs:documentation>Captures raw data for a trajectory station.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GravAxialRaw" type="eml:LinearAccelerationMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Uncorrected gravitational field strength measured in the axial direction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GravTran1Raw" type="eml:LinearAccelerationMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Uncorrected gravitational field strength measured in the transverse direction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GravTran2Raw" type="eml:LinearAccelerationMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Uncorrected gravitational field strength measured in the transverse direction, approximately normal to tran1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagAxialRaw" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Uncorrected magnetic field strength measured in the axial direction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagTran1Raw" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Uncorrected magnetic field strength measured in the transverse direction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagTran2Raw" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Uncorrected magnetic field strength measured in the transverse direction, approximately normal to tran1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StnTrajValid">
+		<xs:annotation>
+			<xs:documentation>Captures validation information for a survey.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MagTotalFieldCalc" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Calculated total intensity of the geomagnetic field as sum of BGGM, 
+IFR and local field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagDipAngleCalc" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Calculated magnetic dip (inclination), the angle between the horizontal 
+and the geomagnetic field (positive down, res .001).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GravTotalFieldCalc" type="eml:LinearAccelerationMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Calculated total gravitational field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Trajectory" type="witsml:Trajectory" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="Trajectory">
+		<xs:annotation>
+			<xs:documentation>The trajectory object is used to capture information about a directional survey in a wellbore. It contains many trajectory stations to capture the information about individual survey points. This object is uniquely identified within the context of one wellbore object.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractMdGrowingObject">
+				<xs:sequence>
+					<xs:element name="UniqueIdentifier" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A human-readable unique identifier assigned to the trajectory. Similar to a UWI for a well or wellbore.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ServiceCompany" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a BusinessAssociate representing the contractor who provided the service.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DTimTrajEnd" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>End date and time of trajectory station measurements.
+Note that this is NOT a server query parameter.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DTimTrajStart" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Start date and time of trajectory station measurements.
+Note that this is NOT a server query parameter.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Definitive" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>True ("true" or "1") indicates that this trajectory is definitive for 
+this wellbore. False ("false" or "0") or not given indicates otherwise.
+There can only be one trajectory per wellbore with definitive=true and it
+must define the geometry of the whole wellbore (surface to bottom).
+The definitive trajectory may represent a composite of information in many
+other trajectories. A query requesting a subset of the possible information can
+provide a simplistic view of the geometry of the wellbore.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Memory" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Is trajectory a result of a memory dump from a tool?  
+Values are "true" (or "1") and "false" (or "0").</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FinalTraj" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Is trajectory a final or intermediate/preliminary?  
+Values are "true" (or "1") and "false" (or "0").</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DefaultMdDatum" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>This also contains the default projected and geographic systems....</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DefaultTvdDatum" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="ParentTrajectory" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="TrajectoryStation" type="witsml:TrajectoryStation" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Wellbore" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="SourceTrajectory" type="eml:DataObjectReference" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="SurveyProgram" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:group ref="witsml:TrajectoryMetadata" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TrajectoryOSDUIntegration">
+		<xs:annotation>
+			<xs:documentation>Information about a Trajectory that is relevant for OSDU integration but does not have a natural place in a Trajectory object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ActiveIndicator" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Active Survey Indicator. Distinct from ActiveStatus on Trajectory.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AppliedOperation" type="eml:String256" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The audit trail of operations applied to the station coordinates from the original state to the current state. The list may contain operations applied prior to ingestion as well as the operations applied to produce the Wgs84Coordinates. The text elements refer to ESRI style CRS and Transformation names, which may have to be translated to EPSG standard names.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IntermediaryServiceCompany" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Pointer to a BusinessAssociate that represents the company who engaged the service company (ServiceCompany) to perform the surveying.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SurveyToolType" type="eml:String256" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The type of tool or equipment used to acquire this Directional Survey.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TrajectoryVersion" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The version of the wellbore survey deliverable received from the service provider - as given by this provider. Distinct from objectVersion.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TrajectoryReport">
+		<xs:annotation>
+			<xs:documentation>Captures information for a report including trajectory stations.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="witsml:TrajectoryMetadata" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="TrajectoryStation" type="witsml:TrajectoryStation" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="TrajectoryStation" type="witsml:TrajectoryStation"/>
+	<xs:complexType name="TrajectoryStation">
+		<xs:annotation>
+			<xs:documentation>WITSML - Trajectory Station Component Schema</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractMdGrowingPart">
+				<xs:sequence>
+					<xs:element name="Closure" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The horizontal straight line distance from the trajectory origin (Well surface location) to this trajectory station, calculated using the Pythagorean Theorem from this trajectory station's X and Y Offsets. Closure Distance is often reported only once for the bottom hole location; however, the value stored in this attribute is the Closure Distance at this trajectory station. The distance is subject to distortions by the projection in which the closure is computed. Often referred to as simply "Closure" or sometimes referred to as "Horizontal Displacement".</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ClosureDirection" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The direction angle, in the horizontal plane relative to the north reference, of the trajectory origin (Well surface location) to this trajectory station calculated using trigonometry from this trajectory station's X and Y Offsets. The North Reference the Trajectory's AziRef. This value should be a number between 0.00 and 360.00 degrees; 0.00 and 360.00 represent North, 90.00 is East, 180.00 is South and 270.00 is West. Sometimes referred to as "Horizontal Displacement Direction" or "Horizontal Displacement Bearing".</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DispLatitude" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The difference between the well surface hole latitude and the trajectory station latitude. A positive value indicates a northerly direction; a negative value indicates a southerly direction. ADD this value to the well Surface Latitude to define the Station Latitude.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DispLongitude" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The difference between the well surface hole longitude and the trajectory station longitude. A positive value indicates an easterly direction; a negative value indicates a westerly direction. ADD this value to the well Surface Longitude to define the Station Longitude.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OriginalLatitude" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The latitude of the trajectory station. Recommended practice is to utilize DispLatitude and DispLongitude instead of storing actual OriginalLatitude/OriginalLongitude values. NOTE - These are relative to the same geodetic datum as the well surface location.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OriginalLongitude" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The longitude of the trajectory station. Recommended practice is to utilize DispLatitude and DispLongitude instead of storing actual OriginalLatitude/OriginalLongitude values. NOTE - These are relative to the same geodetic datum as the well surface location.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TrajectoryStationOSDUIntegration" type="witsml:TrajectoryStationOSDUIntegration" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Information about a TrajectoryStation that is relevant for OSDU integration but does not have a natural place in a TrajectoryStation object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TrueClosure" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The horizontal straight line distance from the trajectory origin (Well surface location) to this trajectory station, calculated using the Pythagorean Theorem from this trajectory station's X and Y Offsets. True Closure Distance is often reported only once for the bottom hole location; however, the value stored in this attribute is the True Closure Distance at this trajectory station. The distance is computed in a local CRS with scale factor one. Often referred to as simply "True Closure" or sometimes referred to as "True Horizontal Displacement".</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TrueClosureDirection" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The direction angle, in the horizontal plane relative to the True North reference, of the trajectory origin (Well surface location) to this trajectory station, calculated using trigonometry from this trajectory station's X and Y Offsets. The direction is calculated in a True North oriented, local coordinate reference system anchored at the survey origin (Well surface location). This value should be a number between 0.00 and 360.00 degrees; 0.00 and 360.00 represent North, 90.00 is East, 180.00 is South and 270.00 is West.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="WGS84Latitude" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>World map latitude based on WGS 84 (EPSG:4326).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="WGS84Longitude" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>World map longitude based on WGS 84 (EPSG:4326).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ManuallyEntered" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Indicates whether the trajectory station information was manually entered by a human.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Target" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A pointer to the intended target of this station.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DTimStn" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Date and time the station was measured or created.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TypeTrajStation" type="witsml:TrajStationType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Type of survey station.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TypeSurveyTool" type="witsml:TypeSurveyTool" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The type of tool used for the measurements.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CalcAlgorithm" type="witsml:TrajStnCalcAlgorithm" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The type of algorithm used in the position calculation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Tvd" type="eml:AbstractVerticalDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Vertical depth of the measurements.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Incl" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Hole inclination, measured from vertical.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Azi" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Hole azimuth. Corrected to wells azimuth reference.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Mtf" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Toolface angle (magnetic).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Gtf" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Toolface angle (gravity).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DispNs" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>North-south offset, positive to the North. 
+This is relative to wellLocation with a North axis orientation of aziRef.
+If a displacement with respect to a different point is desired then
+define a localCRS and specify local coordinates in location.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DispEw" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>East-west offset, positive to the East.
+This is relative to wellLocation with a North axis orientation of aziRef. 
+If a displacement with respect to a different point is desired then
+define a localCRS and specify local coordinates in location.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="VertSect" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Distance along vertical section azimuth plane.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Dls" type="eml:AnglePerLengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Dogleg severity.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RateTurn" type="eml:AnglePerLengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Turn rate, radius of curvature computation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RateBuild" type="eml:AnglePerLengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Build Rate, radius of curvature computation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MdDelta" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Delta measured depth from previous station.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TvdDelta" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Delta true vertical depth from previous station.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GravTotalUncert" type="eml:LinearAccelerationMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Survey tool gravity uncertainty.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DipAngleUncert" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Survey tool dip uncertainty.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MagTotalUncert" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Survey tool magnetic uncertainty.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GravAccelCorUsed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Was an accelerometer alignment correction applied to survey computation?  
+Values are "true" (or "1") and "false" (or "0").</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MagXAxialCorUsed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Was a magnetometer alignment correction applied to survey computation?  
+Values are "true" (or "1") and "false" (or "0").</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SagCorUsed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Was a bottom hole assembly sag correction applied to the survey computation?  
+Values are "true" (or "1") and "false" (or "0").</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MagDrlstrCorUsed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Was a drillstring magnetism correction applied to survey computation?  
+Values are "true" (or "1") and "false" (or "0").</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InfieldRefCorUsed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Was an In Field Referencing (IFR) correction applied to the azimuth value?  
+Values are "true" (or "1") and "false" (or "0").
+An IFR survey measures the strength and direction of the Earth's magnetic field over the area of interest. 
+By taking a geomagnetic modelled values away 
+from these field survey results, we are left with a local crustal correction, 
+which since it is assumed geological in nature, only varies over geological timescales.  
+For MWD survey operations, these corrections are applied in addition to the geomagnetic model 
+to provide accurate knowledge of the local magnetic field and hence to improve the 
+accuracy of MWD magnetic azimuth measurements.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InterpolatedInfieldRefCorUsed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Was an Interpolated In Field Referencing (IIFR) correction applied to the azimuth value?  
+Values are "true" (or "1") and "false" (or "0").
+Interpolated In Field Referencing measures the diurnal Earth magnetic field variations resulting from electrical 
+currents in the ionosphere and effects of magnetic storms hitting the Earth. It increases again the accuracy 
+of the magnetic azimuth measurement.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InHoleRefCorUsed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Was an In Hole Referencing (IHR) correction applied to the inclination and/or azimuth values?  
+Values are "true" (or "1") and "false" (or "0").
+In-Hole Referencing essentially involves comparing gyro surveys to MWD surveys in a tangent 
+section of a well. Once a small part of a tangent section has been drilled and surveyed using an 
+MWD tool, then an open hole (OH) gyro is run. By comparing the Gyro surveys to the MWD 
+surveys a correction can be calculated for the MWD. This correction is then assumed as valid 
+for the rest of the tangent section allowing to have a near gyro accuracy for the whole section, 
+therefore reducing the ellipse of uncertainty (EOU) size.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AxialMagInterferenceCorUsed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Was an Axial Magnetic Interference (AMI) correction applied to the azimuth value?  
+Values are "true" (or "1") and "false" (or "0").
+Most of the BHAs used to drill wells include an MWD tool. An MWD is a magnetic survey tool and as 
+such suffer from magnetic interferences from a wide variety of sources. Magnetic interferences can be 
+categorized into axial and radial type interferences. 
+Axial interferences are mainly the result of magnetic poles from the drill string steel components 
+located below and above the MWD tool. Radial interferences are numerous. 
+Therefore, there is a risk that magXAxialCorUsed includes both Axial and radial corrections.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CosagCorUsed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>WWas a Cosag Correction applied to the azimuth values?  
+Values are "true" (or "1") and "false" (or "0").
+The BHA Sag Correction is the same as the Sag Correction except it includes the horizontal 
+misalignment (Cosag).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MSACorUsed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Was a correction applied to the survey due to a 
+Multi-Station Analysis process?  
+Values are "true" (or "1") and "false" (or "0").</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GravTotalFieldReference" type="eml:LinearAccelerationMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Gravitational field theoretical/reference value.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MagTotalFieldReference" type="eml:MagneticFluxDensityMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Geomagnetic field theoretical/reference value.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MagDipAngleReference" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Magnetic dip angle theoretical/reference value.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MagModelUsed" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Geomagnetic model used.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MagModelValid" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Current valid interval for the geomagnetic model used.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GeoModelUsed" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Gravitational model used.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="StatusTrajStation" type="witsml:TrajStationStatus" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Status of the station.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RawData" type="witsml:StnTrajRawData" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="CorUsed" type="witsml:StnTrajCorUsed" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Valid" type="witsml:StnTrajValid" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="MatrixCov" type="witsml:StnTrajMatrixCov" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Location" type="eml:AbstractPosition" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="SourceStation" type="witsml:SourceTrajectoryStation" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ToolErrorModel" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TrajectoryStationOSDUIntegration">
+		<xs:annotation>
+			<xs:documentation>Information about a TrajectoryStation that is relevant for OSDU integration but does not have a natural place in a TrajectoryStation object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Easting" type="eml:LengthMeasureExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The easting value of the point in the directional survey. Local CRS must be defined.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Northing" type="eml:LengthMeasureExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The northing value of the point in the directional survey. Local CRS must be defined.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RadiusOfUncertainty" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The radius of uncertainty distance of this trajectory station.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="TrajectoryMetadata">
+		<xs:annotation>
+			<xs:documentation>Common metadata that is required to properly interpret trajectory station data.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AcquisitionRemark" type="eml:String2000" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Remarks related to acquisition context which is not the same as Description, which is a summary of the trajectory.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagDeclUsed" type="eml:PlaneAngleMeasureExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Magnetic declination used to correct a Magnetic North referenced azimuth to a True North azimuth.  Magnetic declination angles are measured positive clockwise from True North to Magnetic North (or negative in the anti-clockwise direction). 
+To convert a Magnetic azimuth to a True North azimuth, the magnetic declination should be added. 
+Starting value if stations have individual values.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MdMaxExtrapolated" type="eml:MeasuredDepth" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The measured depth to which the survey segment was extrapolated.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MdMaxMeasured" type="eml:MeasuredDepth" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Measured depth within the wellbore of the LAST trajectory station with recorded data. If a trajectory has been extrapolated to a deeper depth than the last surveyed station then that is MdMaxExtrapolated and not MdMaxMeasured.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MdTieOn" type="eml:MeasuredDepth" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Tie-point depth measured along the wellbore from the measurement reference datum to the trajectory station - where tie point is the place on the originating trajectory where the current trajectory intersecst it.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NominalCalcAlgorithm" type="witsml:TrajStnCalcAlgorithmExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The nominal type of algorithm used in the position calculation in trajectory stations. Individual stations may use different algorithms.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NominalTypeSurveyTool" type="witsml:TypeSurveyToolExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The nominal type of tool used for the trajectory station measurements. Individual stations may have a different tool type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NominalTypeTrajStation" type="witsml:TrajStationTypeExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The nominal type of survey station for the trajectory stations. Individual stations may have a different type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TrajectoryOSDUIntegration" type="witsml:TrajectoryOSDUIntegration" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Information about a Trajectory that is relevant for OSDU integration but does not have a natural place in a Trajectory object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GridConUsed" type="eml:PlaneAngleMeasureExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The angle  used to correct a true north referenced azimuth to a grid north azimuth. WITSML follows the Gauss-Bomford convention in which convergence angles are measured positive clockwise from true north to grid north (or negative in the anti-clockwise direction). To convert a true north referenced azimuth to a grid north azimuth, the convergence angle must be subtracted from true north. If StnGridConUsed is not provided, then this value applies to all grid-north referenced stations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GridScaleFactorUsed" type="eml:LengthPerLengthMeasureExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A multiplier to change geodetic distances based on the Earth model (ellipsoid) to distances on the grid plane.
+This is the number which was already used to correct lateral distances. Provide it only if it is used in your trajectory stations.
+If StnGridScaleFactorUsed is not provided, then this value applies to all trajectory stations.
+The grid scale factor applies to the DispEw, DispNs and Closure elements on trajectory stations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AziVertSect" type="eml:PlaneAngleMeasureExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Azimuth used for vertical section plot/computations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DispNsVertSectOrig" type="eml:LengthMeasureExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Origin north-south used for vertical section plot/computations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DispEwVertSectOrig" type="eml:LengthMeasureExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Origin east-west used for vertical section plot/computations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AziRef" type="eml:NorthReferenceKind" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Specifies the definition of north. While this is optional because of legacy data, it is strongly recommended that this always be specified.	</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+</xs:schema>

@@ -1,0 +1,787 @@
+<DownholeComponent xsi:type="DownholeComponent" uuid="" schemaVersion="" objectVersion="">
+ <Aliases xsi:type="ObjectAlias" authority="">
+  <Identifier></Identifier>
+  <IdentifierKind xsi:type="AliasIdentifierKindExt"></IdentifierKind>
+  <Description></Description>
+  <EffectiveDateTime xsi:type="TimeStamp">2023-04-30T15:39:44Z</EffectiveDateTime>
+  <TerminationDateTime xsi:type="TimeStamp">2023-04-30T15:39:44Z</TerminationDateTime>
+ </Aliases>
+ <Citation xsi:type="Citation">
+  <Title xsi:type="String256"></Title>
+  <Originator></Originator>
+  <Creation xsi:type="TimeStamp">2023-04-30T15:39:44Z</Creation>
+  <Format></Format>
+  <Editor></Editor>
+  <LastUpdate xsi:type="TimeStamp">2023-04-30T15:39:44Z</LastUpdate>
+  <Description></Description>
+  <EditorHistory></EditorHistory>
+  <DescriptiveKeywords></DescriptiveKeywords>
+ </Citation>
+ <Existence xsi:type="ExistenceKindExt"></Existence>
+ <ObjectVersionReason></ObjectVersionReason>
+ <BusinessActivityHistory></BusinessActivityHistory>
+ <OSDUIntegration xsi:type="OSDUIntegration">
+  <LineageAssertions xsi:type="OSDULineageAssertion">
+   <ID xsi:type="String256"></ID>
+   <LineageRelationshipKind xsi:type="OSDULineageRelationshipKind">direct</LineageRelationshipKind>
+  </LineageAssertions>
+  <OwnerGroup xsi:type="String256"></OwnerGroup>
+  <ViewerGroup xsi:type="String256"></ViewerGroup>
+  <LegalTags xsi:type="String256"></LegalTags>
+  <OSDUGeoJSON xsi:type="xsd:string"></OSDUGeoJSON>
+  <WGS84Latitude xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</WGS84Latitude>
+  <WGS84Longitude xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</WGS84Longitude>
+  <WGS84LocationMetadata xsi:type="OSDUSpatialLocationIntegration">
+   <SpatialLocationCoordinatesDate xsi:type="TimeStamp">2023-04-30T15:39:44Z</SpatialLocationCoordinatesDate>
+   <QuantitativeAccuracyBand></QuantitativeAccuracyBand>
+   <QualitativeSpatialAccuracyType></QualitativeSpatialAccuracyType>
+   <CoordinateQualityCheckPerformedBy></CoordinateQualityCheckPerformedBy>
+   <CoordinateQualityCheckDateTime xsi:type="TimeStamp">2023-04-30T15:39:44Z</CoordinateQualityCheckDateTime>
+   <CoordinateQualityCheckRemark xsi:type="String256"></CoordinateQualityCheckRemark>
+   <AppliedOperation xsi:type="String256"></AppliedOperation>
+  </WGS84LocationMetadata>
+  <Field></Field>
+  <Country></Country>
+  <State></State>
+  <County></County>
+  <City></City>
+  <Region></Region>
+  <District></District>
+  <Block></Block>
+  <Prospect></Prospect>
+  <Play></Play>
+  <Basin></Basin>
+ </OSDUIntegration>
+ <CustomData xsi:type="CustomData">
+  <!-- extensibility element(s) -->
+ </CustomData>
+ <ExtensionNameValue xsi:type="ExtensionNameValue">
+  <Name>name64</Name>
+  <Value xsi:type="StringMeasure" uom=""></Value>
+  <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+  <DTim xsi:type="TimeStamp">2023-04-30T15:39:44Z</DTim>
+  <Index xsi:type="xsd:long">0</Index>
+  <Description></Description>
+ </ExtensionNameValue>
+ <StartDate xsi:type="TimeStamp">2023-04-30T15:39:44Z</StartDate>
+ <EndDate xsi:type="TimeStamp">2023-04-30T15:39:44Z</EndDate>
+ <WellHead xsi:type="DownholeString" uid="">
+  <StringType xsi:type="DownholeStringType">casing</StringType>
+  <SubStringType xsi:type="SubStringType">abandoned junk/fish</SubStringType>
+  <!--Name>name64name</Name-->
+  <StringInstallDate xsi:type="TimeStamp">2023-04-30T15:39:44Z</StringInstallDate>
+  <StringMdInterval xsi:type="MdInterval">
+   <Comment></Comment>
+   <MdMin xsi:type="xsd:double">0.0</MdMin>
+   <MdMax xsi:type="xsd:double">0.0</MdMax>
+   <Uom xsi:type="LengthUomExt"></Uom>
+   <Datum xsi:type="DataObjectReference">
+<Uuid xsi:type="UuidString"></Uuid>
+<ObjectVersion></ObjectVersion>
+<QualifiedType xsi:type="QualifiedType"></QualifiedType>
+<Title></Title>
+<EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+<LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+<ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name>name64</Name>
+ <Value xsi:nil="true"/>
+ <!--MeasureClass xsi:nil="true"/-->
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue>
+   </Datum>
+  </StringMdInterval>
+  <AxisOffset xsi:type="LengthMeasure" uom="m">0.0</AxisOffset>
+  <ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name>name64</Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-04-30T15:39:44Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description></Description>
+  </ExtensionNameValue>
+  <ParentString xsi:type="ComponentReference">
+   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+   <Uid></Uid>
+   <!--Name>ABCname1</Name-->
+   <Index xsi:type="xsd:long">0</Index>
+  </ParentString>
+  <StringEquipmentSet xsi:type="StringEquipmentSet">
+   <StringEquipment xsi:type="StringEquipment" uid="">
+<Equipment xsi:type="ComponentReference">
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Uid></Uid>
+ <!--Name>ABC</Name-->
+ <!--Index xsi:nil="true"/-->
+</Equipment>
+<EquipmentType xsi:type="EquipmentTypeExt"></EquipmentType>
+<!--Name>ABCname2</Name-->
+<EquipmentEventHistory xsi:type="EventInfo">
+ <!--ExtensionNameValue xsi:nil="true"/>
+ <BeginEvent xsi:nil="true"/>
+ <EndEvent xsi:nil="true"/-->
+</EquipmentEventHistory>
+<Status></Status>
+<RunNo></RunNo>
+<PreviousRunDays xsi:type="TimeMeasure" uom="a">0.0</PreviousRunDays>
+<ObjectCondition></ObjectCondition>
+<SurfaceCondition></SurfaceCondition>
+<Count xsi:type="xsd:long">0</Count>
+<Length xsi:type="LengthMeasure" uom="m">0.0</Length>
+<MdInterval xsi:type="MdInterval">
+ <Comment></Comment>
+ <MdMin xsi:type="xsd:double">0.0</MdMin>
+ <MdMax xsi:type="xsd:double">0.0</MdMax>
+ <Uom xsi:type="LengthUomExt"></Uom>
+ <!--Datum xsi:nil="true"/-->
+</MdInterval>
+<TvdInterval xsi:type="AbstractTvdInterval">
+ <Comment></Comment>
+ <TvdMin xsi:type="xsd:double">0.0</TvdMin>
+ <TvdMax xsi:type="xsd:double">0.0</TvdMax>
+ <Uom xsi:type="LengthUomExt"></Uom>
+ <!--Trajectory xsi:nil="true"/-->
+</TvdInterval>
+<OutsideString xsi:type="xsd:boolean">false</OutsideString>
+<TensileMax xsi:type="PressureMeasure" uom="">0.0</TensileMax>
+<PresRating xsi:type="PressureMeasure" uom="">0.0</PresRating>
+<PresCollapse xsi:type="PressureMeasure" uom="">0.0</PresCollapse>
+<PresBurst xsi:type="PressureMeasure" uom="">0.0</PresBurst>
+<HeatRating xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</HeatRating>
+<IsLinetoSurface xsi:type="xsd:boolean">false</IsLinetoSurface>
+<IsCentralized xsi:type="xsd:boolean">false</IsCentralized>
+<HasScratchers xsi:type="xsd:boolean">false</HasScratchers>
+<PerforationSet xsi:type="ComponentReference">
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Uid></Uid>
+ <!--Name>ABCname3</Name-->
+ <!--Index xsi:nil="true"/-->
+</PerforationSet>
+<PermanentRemarks></PermanentRemarks>
+<UsageComment></UsageComment>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name>name64</Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue-->
+<OrderOfObject xsi:type="ObjectSequence" description="">
+</OrderOfObject>
+<!--InsideComponent xsi:type="ReferenceContainer" uid="">
+WRONG
+ <String xsi:nil="true"/>
+ <Equipment xsi:nil="true"/>
+ <AccesoryEquipment xsi:nil="true"/>
+ <Comment></Comment>
+</InsideComponent-->
+<!--OutsideComponent xsi:type="ReferenceContainer" uid="">
+WRONG
+ <String xsi:nil="true"/>
+ <Equipment xsi:nil="true"/>
+ <AccesoryEquipment xsi:nil="true"/>
+ <Comment></Comment>
+</OutsideComponent-->
+<!--ConnectionNext xsi:type="EquipmentConnection" uid="">
+WRONG
+ <Id xsi:nil="true"/>
+ <Od xsi:nil="true"/>
+ <Len xsi:nil="true"/>
+ <TypeThread></TypeThread>
+ <SizeThread xsi:nil="true"/>
+ <TensYield xsi:nil="true"/>
+ <TqYield xsi:nil="true"/>
+ <Position xsi:nil="true"/>
+ <CriticalCrossSection xsi:nil="true"/>
+ <PresLeak xsi:nil="true"/>
+ <TqMakeup xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/>
+ <Equipment xsi:nil="true"/>
+ <RadialOffset xsi:nil="true"/>
+ <ConnectionForm xsi:nil="true"/>
+ <ConnectionUpset></ConnectionUpset>
+ <ConnectionType xsi:nil="true"/>
+</ConnectionNext-->
+<Assembly xsi:type="Assembly">
+ <!--Part xsi:nil="true"/-->
+</Assembly>
+   </StringEquipment>
+  </StringEquipmentSet>
+  <Accessories xsi:type="StringAccessory">
+   <Accessory xsi:type="StringEquipment" uid="">
+<Equipment xsi:type="ComponentReference">
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Uid></Uid>
+ <!--Name>ABCname4</Name-->
+ <!--Index xsi:nil="true"/-->
+</Equipment>
+<EquipmentType xsi:type="EquipmentTypeExt"></EquipmentType>
+<!--Name>ABCname5</Name-->
+<EquipmentEventHistory xsi:type="EventInfo">
+ <!--ExtensionNameValue xsi:nil="true"/>
+ <BeginEvent xsi:nil="true"/>
+ <EndEvent xsi:nil="true"/-->
+</EquipmentEventHistory>
+<Status></Status>
+<RunNo></RunNo>
+<PreviousRunDays xsi:type="TimeMeasure" uom="a">0.0</PreviousRunDays>
+<ObjectCondition></ObjectCondition>
+<SurfaceCondition></SurfaceCondition>
+<Count xsi:type="xsd:long">0</Count>
+<Length xsi:type="LengthMeasure" uom="m">0.0</Length>
+<MdInterval xsi:type="MdInterval">
+ <Comment></Comment>
+ <MdMin xsi:type="xsd:double">0.0</MdMin>
+ <MdMax xsi:type="xsd:double">0.0</MdMax>
+ <Uom xsi:type="LengthUomExt"></Uom>
+ <!--Datum xsi:nil="true"/-->
+</MdInterval>
+<TvdInterval xsi:type="AbstractTvdInterval">
+ <Comment></Comment>
+ <TvdMin xsi:type="xsd:double">0.0</TvdMin>
+ <TvdMax xsi:type="xsd:double">0.0</TvdMax>
+ <Uom xsi:type="LengthUomExt"></Uom>
+ <!--Trajectory xsi:nil="true"/-->
+</TvdInterval>
+<OutsideString xsi:type="xsd:boolean">false</OutsideString>
+<TensileMax xsi:type="PressureMeasure" uom="">0.0</TensileMax>
+<PresRating xsi:type="PressureMeasure" uom="">0.0</PresRating>
+<PresCollapse xsi:type="PressureMeasure" uom="">0.0</PresCollapse>
+<PresBurst xsi:type="PressureMeasure" uom="">0.0</PresBurst>
+<HeatRating xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</HeatRating>
+<IsLinetoSurface xsi:type="xsd:boolean">false</IsLinetoSurface>
+<IsCentralized xsi:type="xsd:boolean">false</IsCentralized>
+<HasScratchers xsi:type="xsd:boolean">false</HasScratchers>
+<PerforationSet xsi:type="ComponentReference">
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Uid></Uid>
+ <!--Name>ABCname6</Name-->
+ <!--Index xsi:nil="true"/-->
+</PerforationSet>
+<PermanentRemarks></PermanentRemarks>
+<UsageComment></UsageComment>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+WRONG
+ <Name>name64</Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue-->
+<OrderOfObject xsi:type="ObjectSequence" description="">
+</OrderOfObject>
+<!--InsideComponent xsi:type="ReferenceContainer" uid="">
+WRONG
+ <String xsi:nil="true"/>
+ <Equipment xsi:nil="true"/>
+ <AccesoryEquipment xsi:nil="true"/>
+ <Comment></Comment>
+</InsideComponent-->
+<!--OutsideComponent xsi:type="ReferenceContainer" uid="">
+WRONG
+ <String xsi:nil="true"/>
+ <Equipment xsi:nil="true"/>
+ <AccesoryEquipment xsi:nil="true"/>
+ <Comment></Comment>
+</OutsideComponent-->
+<!--ConnectionNext xsi:type="EquipmentConnection" uid="">
+WRONG
+ <Id xsi:nil="true"/>
+ <Od xsi:nil="true"/>
+ <Len xsi:nil="true"/>
+ <TypeThread></TypeThread>
+ <SizeThread xsi:nil="true"/>
+ <TensYield xsi:nil="true"/>
+ <TqYield xsi:nil="true"/>
+ <Position xsi:nil="true"/>
+ <CriticalCrossSection xsi:nil="true"/>
+ <PresLeak xsi:nil="true"/>
+ <TqMakeup xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/>
+ <Equipment xsi:nil="true"/>
+ <RadialOffset xsi:nil="true"/>
+ <ConnectionForm xsi:nil="true"/>
+ <ConnectionUpset></ConnectionUpset>
+ <ConnectionType xsi:nil="true"/>
+</ConnectionNext-->
+<Assembly xsi:type="Assembly">
+ <!--Part xsi:nil="true"/-->
+</Assembly>
+   </Accessory>
+  </Accessories>
+  <ReferenceWellbore xsi:type="DataObjectReference">
+   <Uuid xsi:type="UuidString"></Uuid>
+   <ObjectVersion></ObjectVersion>
+   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+   <Title></Title>
+   <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+   <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+   <!--ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name>name64</Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-04-30T15:39:44Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description></Description>
+   </ExtensionNameValue-->
+  </ReferenceWellbore>
+ </WellHead>
+ <BoreholeStringSet xsi:type="BoreholeStringSet">
+  <BoreholeString xsi:type="BoreholeString" uid="">
+   <!--Name>name64name7</Name-->
+   <Borehole xsi:type="Borehole" uid="">
+<!--Name>name64name8</Name-->
+<TypeBorehole xsi:type="BoreholeType">cavern</TypeBorehole>
+<MdInterval xsi:type="MdInterval">
+ <Comment></Comment>
+ <MdMin xsi:type="xsd:double">0.0</MdMin>
+ <MdMax xsi:type="xsd:double">0.0</MdMax>
+ <Uom xsi:type="LengthUomExt"></Uom>
+ <!--Datum xsi:nil="true"/-->
+</MdInterval>
+<TvdInterval xsi:type="AbstractTvdInterval">
+ <Comment></Comment>
+ <TvdMin xsi:type="xsd:double">0.0</TvdMin>
+ <TvdMax xsi:type="xsd:double">0.0</TvdMax>
+ <Uom xsi:type="LengthUomExt"></Uom>
+ <!--Trajectory xsi:nil="true"/-->
+</TvdInterval>
+<BoreholeDiameter xsi:type="LengthMeasure" uom="m">0.0</BoreholeDiameter>
+<DescriptionPermanent></DescriptionPermanent>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name>name64</Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue-->
+<EquipmentEventHistory xsi:type="EventInfo">
+ <!--ExtensionNameValue xsi:nil="true"/>
+ <BeginEvent xsi:nil="true"/>
+ <EndEvent xsi:nil="true"/-->
+</EquipmentEventHistory>
+   </Borehole>
+   <GeologyFeature xsi:type="GeologyFeature" uid="">
+<!--Name>name64name9</Name-->
+<GeologyType xsi:type="GeologyType">aquifer</GeologyType>
+<FeatureMdInterval xsi:type="MdInterval">
+ <Comment></Comment>
+ <MdMin xsi:type="xsd:double">0.0</MdMin>
+ <MdMax xsi:type="xsd:double">0.0</MdMax>
+ <Uom xsi:type="LengthUomExt"></Uom>
+ <!--Datum xsi:nil="true"/-->
+</FeatureMdInterval>
+<FeatureTvdInterval xsi:type="AbstractTvdInterval">
+ <Comment></Comment>
+ <TvdMin xsi:type="xsd:double">0.0</TvdMin>
+ <TvdMax xsi:type="xsd:double">0.0</TvdMax>
+ <Uom xsi:type="LengthUomExt"></Uom>
+ <!--Trajectory xsi:nil="true"/-->
+</FeatureTvdInterval>
+<GeologicUnitInterpretation xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</GeologicUnitInterpretation>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+WRONG
+ <Name>name64</Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue-->
+   </GeologyFeature>
+   <Accessories xsi:type="StringAccessory">
+<Accessory xsi:type="StringEquipment" uid="">
+ <Equipment xsi:nil="true"/>
+ <EquipmentType xsi:type="EquipmentTypeExt"></EquipmentType>
+ <!--Name>ABCname10</Name-->
+ <!--EquipmentEventHistory xsi:nil="true"/-->
+ <Status></Status>
+ <RunNo></RunNo>
+ <PreviousRunDays xsi:nil="true"/>
+ <ObjectCondition></ObjectCondition>
+ <SurfaceCondition></SurfaceCondition>
+ <Count xsi:nil="true"/>
+ <Length xsi:nil="true"/>
+ <MdInterval xsi:nil="true"/>
+ <TvdInterval xsi:nil="true"/>
+ <OutsideString xsi:nil="true"/>
+ <TensileMax xsi:nil="true"/>
+ <PresRating xsi:nil="true"/>
+ <PresCollapse xsi:nil="true"/>
+ <PresBurst xsi:nil="true"/>
+ <HeatRating xsi:nil="true"/>
+ <IsLinetoSurface xsi:nil="true"/>
+ <IsCentralized xsi:nil="true"/>
+ <HasScratchers xsi:nil="true"/>
+ <!--PerforationSet xsi:nil="true"/-->
+ <PermanentRemarks></PermanentRemarks>
+ <UsageComment></UsageComment>
+ <!--ExtensionNameValue xsi:nil="true"/-->
+ <OrderOfObject xsi:nil="true"/>
+ <!--InsideComponent xsi:nil="true"/-->
+ <!--OutsideComponent xsi:nil="true"/-->
+ <!--ConnectionNext xsi:nil="true"/-->
+ <Assembly xsi:nil="true"/>
+</Accessory>
+   </Accessories>
+   <ReferenceWellbore xsi:type="DataObjectReference">
+<Uuid xsi:type="UuidString"></Uuid>
+<ObjectVersion></ObjectVersion>
+<QualifiedType xsi:type="QualifiedType"></QualifiedType>
+<Title></Title>
+<EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+<LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name>name64</Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue-->
+   </ReferenceWellbore>
+  </BoreholeString>
+ </BoreholeStringSet>
+ <DownholeStringSet xsi:type="DownholeStringSet">
+  <DownholeString xsi:type="DownholeString" uid="">
+   <StringType xsi:type="DownholeStringType">casing</StringType>
+   <SubStringType xsi:type="SubStringType">abandoned junk/fish</SubStringType>
+   <!--Name>name64name11</Name WRONG -->
+   <StringInstallDate xsi:type="TimeStamp">2023-04-30T15:39:44Z</StringInstallDate>
+   <StringMdInterval xsi:type="MdInterval">
+<Comment></Comment>
+<MdMin xsi:type="xsd:double">0.0</MdMin>
+<MdMax xsi:type="xsd:double">0.0</MdMax>
+<Uom xsi:type="LengthUomExt"></Uom>
+<Datum xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</Datum>
+   </StringMdInterval>
+   <AxisOffset xsi:type="LengthMeasure" uom="m">0.0</AxisOffset>
+   <ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name>name64name12</Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-04-30T15:39:44Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description>aaa</Description>
+   </ExtensionNameValue>
+   <ParentString xsi:type="ComponentReference">
+<QualifiedType xsi:type="QualifiedType"></QualifiedType>
+<Uid></Uid>
+<Name>ABCname13</Name>
+<Index xsi:type="xsd:long">0</Index>
+   </ParentString>
+   <!--StringEquipmentSet xsi:type="StringEquipmentSet">
+<StringEquipment xsi:type="StringEquipment" uid="">
+ <Equipment xsi:nil="true"/>
+ <EquipmentType xsi:type="EquipmentTypeExt"></EquipmentType>
+ <Name>ABCname14</Name>
+ <EquipmentEventHistory xsi:nil="true"/>
+ <Status></Status>
+ <RunNo></RunNo>
+ <PreviousRunDays xsi:nil="true"/>
+ <ObjectCondition></ObjectCondition>
+ <SurfaceCondition></SurfaceCondition>
+ <Count xsi:nil="true"/>
+ <Length xsi:nil="true"/>
+ <MdInterval xsi:nil="true"/>
+ <TvdInterval xsi:nil="true"/>
+ <OutsideString xsi:nil="true"/>
+ <TensileMax xsi:nil="true"/>
+ <PresRating xsi:nil="true"/>
+ <PresCollapse xsi:nil="true"/>
+ <PresBurst xsi:nil="true"/>
+ <HeatRating xsi:nil="true"/>
+ <IsLinetoSurface xsi:nil="true"/>
+ <IsCentralized xsi:nil="true"/>
+ <HasScratchers xsi:nil="true"/>
+ <PerforationSet xsi:nil="true"/>
+ <PermanentRemarks></PermanentRemarks>
+ <UsageComment></UsageComment>
+ <ExtensionNameValue xsi:nil="true"/>
+ <OrderOfObject xsi:nil="true"/>
+ <InsideComponent xsi:nil="true"/>
+ <OutsideComponent xsi:nil="true"/>
+ <ConnectionNext xsi:nil="true"/>
+ <Assembly xsi:nil="true"/>
+</StringEquipment>
+   </StringEquipmentSet-->
+   <!--Accessories xsi:type="StringAccessory">
+<Accessory xsi:type="StringEquipment" uid="">
+ <Equipment xsi:nil="true"/>
+ <EquipmentType xsi:type="EquipmentTypeExt"></EquipmentType>
+ <Name>ABCname15</Name>
+ <EquipmentEventHistory xsi:nil="true"/>
+ <Status></Status>
+ <RunNo></RunNo>
+ <PreviousRunDays xsi:nil="true"/>
+ <ObjectCondition></ObjectCondition>
+ <SurfaceCondition></SurfaceCondition>
+ <Count xsi:nil="true"/>
+ <Length xsi:nil="true"/>
+ <MdInterval xsi:nil="true"/>
+ <TvdInterval xsi:nil="true"/>
+ <OutsideString xsi:nil="true"/>
+ <TensileMax xsi:nil="true"/>
+ <PresRating xsi:nil="true"/>
+ <PresCollapse xsi:nil="true"/>
+ <PresBurst xsi:nil="true"/>
+ <HeatRating xsi:nil="true"/>
+ <IsLinetoSurface xsi:nil="true"/>
+ <IsCentralized xsi:nil="true"/>
+ <HasScratchers xsi:nil="true"/>
+ <PerforationSet xsi:nil="true"/>
+ <PermanentRemarks></PermanentRemarks>
+ <UsageComment></UsageComment>
+ <ExtensionNameValue xsi:nil="true"/>
+ <OrderOfObject xsi:nil="true"/>
+ <InsideComponent xsi:nil="true"/>
+ <OutsideComponent xsi:nil="true"/>
+ <ConnectionNext xsi:nil="true"/>
+ <Assembly xsi:nil="true"/>
+</Accessory>
+   </Accessories-->
+   <ReferenceWellbore xsi:type="DataObjectReference">
+<Uuid xsi:type="UuidString"></Uuid>
+<ObjectVersion></ObjectVersion>
+<QualifiedType xsi:type="QualifiedType"></QualifiedType>
+<Title></Title>
+<EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+<LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name>name64</Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue-->
+   </ReferenceWellbore>
+  </DownholeString>
+ </DownholeStringSet>
+ <EquipmentSet xsi:type="EquipmentSet">
+  <Equipment xsi:type="Equipment" uid="">
+   <EquipmentName></EquipmentName>
+   <EquipmentType xsi:type="EquipmentTypeExt"></EquipmentType>
+   <Manufacturer xsi:type="DataObjectReference">
+<Uuid xsi:type="UuidString"></Uuid>
+<ObjectVersion></ObjectVersion>
+<QualifiedType xsi:type="QualifiedType"></QualifiedType>
+<Title></Title>
+<EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+<LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name>name64</Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue-->
+   </Manufacturer>
+   <Model></Model>
+   <CatalogId></CatalogId>
+   <CatalogName></CatalogName>
+   <BrandName></BrandName>
+   <ModelType></ModelType>
+   <Series></Series>
+   <IsSerialized xsi:type="xsd:boolean">false</IsSerialized>
+   <SerialNumber></SerialNumber>
+   <PartNo></PartNo>
+   <SurfaceCondition></SurfaceCondition>
+   <Material></Material>
+   <Grade xsi:type="GradeType">35</Grade>
+   <UnitWeight xsi:type="MassPerLengthMeasure" uom="kg.m/cm2">0.0</UnitWeight>
+   <CoatingLinerApplied xsi:type="xsd:boolean">false</CoatingLinerApplied>
+   <OutsideCoating xsi:type="Coating">bare</OutsideCoating>
+   <InsideCoating xsi:type="Coating">bare</InsideCoating>
+   <UnitLength xsi:type="LengthMeasure" uom="m">0.0</UnitLength>
+   <MajorOd xsi:type="LengthMeasure" uom="m">0.0</MajorOd>
+   <MinorOd xsi:type="LengthMeasure" uom="m">0.0</MinorOd>
+   <Od xsi:type="LengthMeasure" uom="m">0.0</Od>
+   <MaxOd xsi:type="LengthMeasure" uom="m">0.0</MaxOd>
+   <MinOd xsi:type="LengthMeasure" uom="m">0.0</MinOd>
+   <MajorId xsi:type="LengthMeasure" uom="m">0.0</MajorId>
+   <MinorId xsi:type="LengthMeasure" uom="m">0.0</MinorId>
+   <Id xsi:type="LengthMeasure" uom="m">0.0</Id>
+   <MaxId xsi:type="LengthMeasure" uom="m">0.0</MaxId>
+   <MinId xsi:type="LengthMeasure" uom="m">0.0</MinId>
+   <Drift xsi:type="LengthMeasure" uom="m">0.0</Drift>
+   <NominalSize xsi:type="LengthMeasure" uom="m">0.0</NominalSize>
+   <NameService></NameService>
+   <Description></Description>
+   <DescriptionPermanent></DescriptionPermanent>
+   <Remark></Remark>
+   <!--ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name>name64</Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-04-30T15:39:44Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description></Description>
+   </ExtensionNameValue-->
+   <Property xsi:type="ExtPropNameValue" uid="">
+<Name>name64name16</Name>
+<Value></Value>
+   </Property>
+   <SlotAsManufactured xsi:type="PerfSlot" uid="">
+<SlotHeight xsi:type="LengthMeasure" uom="m">0.0</SlotHeight>
+<SlotWidth xsi:type="LengthMeasure" uom="m">0.0</SlotWidth>
+<SlotCenterDistance xsi:type="LengthMeasure" uom="m">0.0</SlotCenterDistance>
+<SlotCount xsi:type="xsd:long">0</SlotCount>
+<Remarks></Remarks>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name>name64name17</Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue-->
+   </SlotAsManufactured>
+   <HoleAsManufactured xsi:type="PerfHole" uid="">
+<MdInterval xsi:type="MdInterval">
+ <Comment></Comment>
+ <MdMin xsi:type="xsd:double">0.0</MdMin>
+ <MdMax xsi:type="xsd:double">0.0</MdMax>
+ <Uom xsi:type="LengthUomExt"></Uom>
+ <!--Datum xsi:nil="true"/-->
+</MdInterval>
+<TvdInterval xsi:type="AbstractTvdInterval">
+ <Comment></Comment>
+ <TvdMin xsi:type="xsd:double">0.0</TvdMin>
+ <TvdMax xsi:type="xsd:double">0.0</TvdMax>
+ <Uom xsi:type="LengthUomExt"></Uom>
+ <!--Trajectory xsi:nil="true"/-->
+</TvdInterval>
+<HoleDiameter xsi:type="LengthMeasure" uom="m">0.0</HoleDiameter>
+<HoleAngle xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</HoleAngle>
+<HolePattern></HolePattern>
+<Remarks></Remarks>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name>name64</Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue-->
+<HoleDensity xsi:type="ReciprocalLengthMeasure" uom="1/angstrom">0.0</HoleDensity>
+<HoleCount xsi:type="xsd:long">0</HoleCount>
+   </HoleAsManufactured>
+  </Equipment>
+ </EquipmentSet>
+ <PerforationSets xsi:type="PerforationSets">
+  <PerforationSet xsi:type="PerforationSet" uid="">
+   <BoreholeString xsi:type="ComponentReference">
+<QualifiedType xsi:type="QualifiedType"></QualifiedType>
+<Uid></Uid>
+<Name>ABCname18</Name>
+<Index xsi:type="xsd:long">0</Index>
+   </BoreholeString>
+   <DownholeString xsi:type="ComponentReference">
+<QualifiedType xsi:type="QualifiedType"></QualifiedType>
+<Uid></Uid>
+<Name>ABCname19</Name>
+<Index xsi:type="xsd:long">0</Index>
+   </DownholeString>
+   <MdInterval xsi:type="MdInterval">
+<Comment></Comment>
+<MdMin xsi:type="xsd:double">0.0</MdMin>
+<MdMax xsi:type="xsd:double">0.0</MdMax>
+<Uom xsi:type="LengthUomExt"></Uom>
+<Datum xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</Datum>
+   </MdInterval>
+   <TvdInterval xsi:type="AbstractTvdInterval">
+<Comment></Comment>
+<TvdMin xsi:type="xsd:double">0.0</TvdMin>
+<TvdMax xsi:type="xsd:double">0.0</TvdMax>
+<Uom xsi:type="LengthUomExt"></Uom>
+<Trajectory xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</Trajectory>
+   </TvdInterval>
+   <HoleDiameter xsi:type="LengthMeasure" uom="m">0.0</HoleDiameter>
+   <HoleAngle xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</HoleAngle>
+   <HolePattern></HolePattern>
+   <HoleDensity xsi:type="ReciprocalLengthMeasure" uom="1/angstrom">0.0</HoleDensity>
+   <HoleCount xsi:type="xsd:long">0</HoleCount>
+   <FrictionFactor xsi:type="xsd:double">0.0</FrictionFactor>
+   <FrictionPres xsi:type="PressureMeasure" uom="">0.0</FrictionPres>
+   <DischargeCoefficient xsi:type="xsd:double">0.0</DischargeCoefficient>
+   <PerforationTool xsi:type="PerforationToolType">casing gun</PerforationTool>
+   <PerforationPenetration xsi:type="LengthMeasure" uom="m">0.0</PerforationPenetration>
+   <CrushZoneDiameter xsi:type="LengthMeasure" uom="m">0.0</CrushZoneDiameter>
+   <CrushDamageRatio></CrushDamageRatio>
+   <PerforationDate xsi:type="TimeStamp">2023-04-30T15:39:44Z</PerforationDate>
+   <PermanentRemarks></PermanentRemarks>
+   <EventHistory xsi:type="EventInfo">
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name>name64</Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description></Description>
+</ExtensionNameValue-->
+<BeginEvent xsi:type="EventRefInfo">
+ <!--Event xsi:nil="true"/>
+ <EventDate xsi:nil="true"/-->
+</BeginEvent>
+<EndEvent xsi:type="EventRefInfo">
+ <!--Event xsi:nil="true"/>
+ <EventDate xsi:nil="true"/-->
+</EndEvent>
+   </EventHistory>
+  </PerforationSet>
+ </PerforationSets>
+ <Well xsi:type="DataObjectReference">
+  <Uuid xsi:type="UuidString"></Uuid>
+  <ObjectVersion></ObjectVersion>
+  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+  <Title></Title>
+  <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+  <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name>name64</Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-04-30T15:39:44Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description></Description>
+  </ExtensionNameValue-->
+ </Well>
+</DownholeComponent>

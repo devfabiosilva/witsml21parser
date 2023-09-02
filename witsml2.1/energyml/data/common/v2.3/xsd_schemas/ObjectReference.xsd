@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>This package contains the types and elements to allow an EnergyML data object to refer to:
+	- another EnergyML data object (i.e., DataObjectReference) 
+	- a component within another EnergyML data object (i.e., DataObjectComponentReference) 
+	- array data in an external file (i.e., ExternalDataArray or ExternalDataArrayPart)</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="Abstract.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:complexType name="ComponentReference">
+		<xs:annotation>
+			<xs:documentation>A pointer to a component within the same Energistics data object or within a data object pointed to by a separate data object reference.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="QualifiedType" type="eml:QualifiedType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The qualified type of the referenced component.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Uid" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The UID of the referenced component.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="eml:String2000" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The optional name of the referenced component.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Index" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The optional numerical (i.e., NOT time or depth) index of the referenced component.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataObjectComponentReference">
+		<xs:annotation>
+			<xs:documentation>A pointer to a component within another Energistics data object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DataObject" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The data object containing the component.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Component" type="eml:ComponentReference" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A component within the data object that is being referenced by its UID. If more than one Component is included, it is a reference to a component that is nested within the previous component.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataObjectReference">
+		<xs:annotation>
+			<xs:documentation>A pointer to another Energistics data object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uuid" type="eml:UuidString" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Universally unique identifier (UUID) of the referenced data object. For rules and guidelines about the format of UUIDs with the current version of Energistics standards, see the Energistics Identifier Specification v5.0.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObjectVersion" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Indicates the version of the data object that is referenced. This must be identical to the objectVersion attribute that is inherited from AbstractObject.
+ If this element is empty, then the latest version of the data object is assumed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QualifiedType" type="eml:QualifiedType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The qualified type of the referenced data object.
+It is the semantic equivalent of a qualifiedEntityType in OData (which is the DataObjectType used in the Energistics Transfer Protocol (ETP)). For more information, see the Energistics Identifier Specification v5.0. 
+The QualifiedType is composed of:
+	- The Energistics domain standard or Energistics common (designated by eml) and version where the data object type is defined.
+	- The data object type name as defined by its schema.
+Examples:
+	- witsml20.Well
+	- resqml20.UnstructuredGridRepresentation
+	- prodml20.ProductVolume
+	- eml21.DataAssuranceRecord</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Title" type="eml:String2000" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The title of the referenced data object. It should be the value in the Title attribute of the Citation element in AbstractObject. 
+It is used as a hint for human readers; it is not enforced to match the Title of the referenced data object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EnergisticsUri" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The canonical URI of a referenced data object. This element is intended for use with the Energistics Transfer Protocol (ETP) . 
+Do not use this element to store the path and file names of an external data object object. Optionally use one or more LocatorUrl elements to provide hints on how to resolve the URI into a data object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LocatorUrl" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>An optional location to help in finding the correct referenced data object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExtensionNameValue" type="eml:ExtensionNameValue" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A standard Energistics extension mechanism used to add custom data in the format of name:value pairs. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExternalDataArray">
+		<xs:annotation>
+			<xs:documentation>A concatenation of ExternalDataArrayParts, which are pointers to a whole or to a sub-selection of an existing array that is in a different file (than the Energistics data object). It generally and historically points to an HDF5 dataset in an Energistics Packaging Conventions (EPC) context. 
+It is common to have only 1 ExternalDataArrayPart in an ExternalDataArray. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ExternalDataArrayPart" type="eml:ExternalDataArrayPart" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExternalDataArrayPart">
+		<xs:annotation>
+			<xs:documentation>Pointers to a whole or to a sub-selection of an existing array that is in a different file than the Energistics data object. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Count" type="eml:PositiveLong" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>For each dimension, the count of elements to select, starting from the corresponding StartIndex in the data set identified by the attribute PathInExternalFile.
+If you want to select the whole data set identified by PathInExternalFile, then put the whole data set dimension count in each dimension.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PathInExternalFile" type="eml:String2000" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A string that is meaningful to the API that will store and retrieve data from the external file.
+	- For an HDF file, it is the path of the referenced data set in the external file. The separator between groups and final data set is a slash '/'
+	- For a LAS file, it could be the list of mnemonics in the ~A block.
+	- For a SEG-Y file, it could be a list of trace headers.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartIndex" type="eml:NonNegativeLong" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>For each dimension, the start index of the selection of the data set identified by the attribute PathInExternalFile.
+If you want to select the whole data set identified by PathInExternalFile, then put 0 in each dimension.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URI" type="eml:String2000" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The URI where the DataArrayPart is stored. 
+In an EPC context, it should follow the corresponding rel entry URI syntax.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MimeType" type="eml:String2000" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>If the resource being pointed to is a file, then this is the MIME type of the file. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/witsmlv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:witsml="http://www.energistics.org/energyml/data/witsmlv2" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.1" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>Wellbore Schema. To maximize operational efficiency and increase subsurface access, a well may contain multiple wellbores, which are the actual boreholes that comprise the well. A wellbore represents the path from surface to a unique bottomhole.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:import namespace="http://www.energistics.org/energyml/data/commonv2" schemaLocation="../../../common/v2.3/xsd_schemas/EmlAllObjects.xsd"/>
+	<!--														-->
+	<xs:include schemaLocation="Well.xsd"/>
+	<xs:simpleType name="WellboreShape">
+		<xs:annotation>
+			<xs:documentation>Specifies values to represent the classification of a wellbore based on its shape. The source of the values and the descriptions is the POSC V2.2 "facility class" standard instance values in classification system "POSC wellbore trajectory shape".</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="build and hold">
+				<xs:annotation>
+					<xs:documentation>A wellbore configuration where the inclination 
+is increased to some terminal angle of inclination and maintained 
+at that angle to the specified target.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="deviated">
+				<xs:annotation>
+					<xs:documentation>A wellbore that significantly departs from vertical 
+with respect to the surface location.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="double kickoff">
+				<xs:annotation>
+					<xs:documentation>Incorporates two tangential (constant, non-zero inclination) sections, the second of which must be at a higher inclination than the first.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="horizontal">
+				<xs:annotation>
+					<xs:documentation>A wellbore whose path deviates from the 
+vertical by at least 75 degrees.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="S-shaped">
+				<xs:annotation>
+					<xs:documentation>A wellbore drilled with a vertical segment, a 
+deviated segment, and a return toward a vertical segment.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="vertical">
+				<xs:annotation>
+					<xs:documentation>A wellbore that is nearly vertical with 
+respect to the surface location.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WellboreType">
+		<xs:annotation>
+			<xs:documentation>Specifies the values for the classification of a wellbore with respect to its parent well/wellbore.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="bypass">
+				<xs:annotation>
+					<xs:documentation>The original wellbore had to be abandoned before 
+its final usage. This wellbore is being drilled as a different 
+wellbore, but one which has the same target as the one that was 
+abandoned.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="initial">
+				<xs:annotation>
+					<xs:documentation>This is the first wellbore that has been 
+drilled, or attempted, in a given well.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="redrill">
+				<xs:annotation>
+					<xs:documentation>The wellbore is being redrilled.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="reentry">
+				<xs:annotation>
+					<xs:documentation>The wellbore is being reentered after a period 
+of abandonment.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="respud">
+				<xs:annotation>
+					<xs:documentation>The wellbore is part of an existing regulatory well. 
+The original borehole did not reach the target depth. This borehole 
+required the well to be respudded (drilled from a different surface 
+position).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sidetrack">
+				<xs:annotation>
+					<xs:documentation>The wellbore is a deviation from a given wellbore that produces a different borehole from the others, and whose bottomhole differs from any previously existing wellbore bottomholes.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="BottomHoleLocation">
+		<xs:annotation>
+			<xs:documentation>This class is used to represent the bottomhole location of a wellbore.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Location" type="eml:AbstractPosition" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The bottomhole's position.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OSDULocationMetadata" type="eml:OSDUSpatialLocationIntegration" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Additional OSDU-specific metadata about the location.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Wellbore" type="witsml:Wellbore" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="Wellbore">
+		<xs:annotation>
+			<xs:documentation>Used to capture the general information about a wellbore. A wellbore represents the path from the parent Well’s surface location to a unique bottomhole location. The wellbore object is uniquely identified within the context of one well object.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractActiveObject">
+				<xs:sequence>
+					<xs:element name="GeographicBottomHoleLocation" type="witsml:BottomHoleLocation" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The bottom hole location in geographic coordinates. Location MUST be a geographic position.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Number" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Operator borehole number.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ProjectedBottomHoleLocation" type="witsml:BottomHoleLocation" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The bottom hole location in projected coordinates. Location MUST be a projected position.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SuffixAPI" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>API suffix.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NumLicense" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>License number of the wellbore.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LicenseHistory" type="witsml:LicensePeriod" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The history of license numbers for the wellbore.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NumGovt" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Government assigned number.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UniqueIdentifier" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A human-readable unique identifier assigned to the wellbore. Commonly referred to as a UWI.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SlotName" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The well's slot name.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Operator" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a BusinessAssociate representing the operating company.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OriginalOperator" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a BusinessAssociate representing the original operator of the wellbore. This may be different than the current operator.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OperatorHistory" type="eml:FacilityOperator" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The history of operators for the wellbore optionally including the dates and times that they were operators. If provided, the first operator should be the same as OriginalOperator and the last operator should be the same as Operator.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DataSourceOrganization" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a BusinessAssociate representing the company providing the data in this wellbore object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LifecycleState" type="eml:FacilityLifecycleStateExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The wellbore's lifecycle state (e.g., planning, constructing, operating, closing, closed).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LifecycleHistory" type="eml:FacilityLifecyclePeriod" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The wellbore's life cycle state history.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="StatusWellbore" type="eml:WellStatus" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>POSC wellbore status.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="StatusHistory" type="eml:WellStatusPeriod" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>History of the wellbore's POSC well status.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PurposeWellbore" type="witsml:WellPurpose" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>POSC wellbore purpose.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PurposeHistory" type="witsml:WellPurposePeriod" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>History of the wellbore's POSC well purpose.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TypeWellbore" type="witsml:WellboreType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Type of wellbore.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Shape" type="witsml:WellboreShape" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>POSC wellbore trajectory shape.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FluidWellbore" type="witsml:WellFluid" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>POSC well fluid. The type of fluid being produced from or injected into a wellbore facility.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DTimKickoff" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Date and time of wellbore kickoff.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AchievedTD" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>True ("true" of "1") indicates that the wellbore has 
+acheieved total depth. That is, drilling has completed. False ("false" or "0") indicates otherwise. 
+Not given indicates that it is not known whether total depth has been reached.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Md" type="eml:MeasuredDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The measured depth of the borehole. 
+If status is plugged, indicates the maximum depth reached before plugging.
+It is recommended that this value be updated about every 10 minutes by an assigned 
+raw data provider at a site.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Tvd" type="eml:AbstractVerticalDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The  true vertical depth of the borehole.  
+If status is plugged, indicates the maximum depth reached before plugging. 
+It is recommended that this value be updated about every 10 minutes by an assigned 
+raw data provider at a site.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MdBit" type="eml:MeasuredDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The measured depth of the bit. 
+If isActive=false then this value is not relevant.
+It is recommended that this value be updated about every 10 minutes by an assigned 
+raw data provider at a site.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TvdBit" type="eml:AbstractVerticalDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The true vertical depth of the bit.
+If isActive=false then this value is not relevant.
+It is recommended that this value be updated about every 10 minutes by an assigned 
+raw data provider at a site.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MdKickoff" type="eml:MeasuredDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Kickoff measured depth of the wellbore.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TvdKickoff" type="eml:AbstractVerticalDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Kickoff true vertical depth of the wellbore.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MdPlanned" type="eml:MeasuredDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Planned measured depth for the wellbore total depth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TvdPlanned" type="eml:AbstractVerticalDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Planned true vertical depth for the wellbore total depth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MdSubSeaPlanned" type="eml:MeasuredDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Planned measured for the wellbore total depth - with respect to seabed.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TvdSubSeaPlanned" type="eml:AbstractVerticalDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Planned true vertical depth for the wellbore total depth - with respect to seabed.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DayTarget" type="eml:TimeMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Target days for drilling wellbore.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TargetFormation" type="eml:String64" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>A formation of interest for which the Wellbore is drilled to interact with.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TargetGeologicUnitInterpretation" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a RESQML GeologicUnitInterpretation that represents a geologic unit of interest for which the Wellbore is drilled to interact with.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DefaultMdDatum" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="DefaultTvdDatum" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Well" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ParentWellbore" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

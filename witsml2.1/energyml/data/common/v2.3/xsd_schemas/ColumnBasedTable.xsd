@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>This package contains the schemas to define a column-based table. A column-based table allows the exchange of tables, where the values are arranged against columns that are defined by PropertyKind, UOM and Facet.
+EXAMPLES: KrPc table and facies tables.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="CommonEnumerations.xsd"/>
+	<xs:include schemaLocation="CommonTypes.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="Abstract.xsd"/>
+	<xs:complexType name="Column">
+		<xs:annotation>
+			<xs:documentation>Defines one column in a column-based table. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Description" type="eml:String2000" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A free text description for this column.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Title" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The title of the column. It is optional because the property kind already provides information about the content in a column.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Uom" type="eml:UnitOfMeasureExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>If present, this value overrides the default UOM of the associated property kind.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ValueCountPerRow" type="eml:PositiveLong" minOccurs="1" maxOccurs="1" default="1">
+				<xs:annotation>
+					<xs:documentation>The count of values in each row of this column.
+If this value is greater than 1, then the fastest dimension of the column Values array must be this value.
+EXAMPLE: If this value is 3 for a column of 10 rows, then the corresponding array would be [10, 3] (C array notation where 3 is fastest and 10 slowest).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PropertyKind" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Values" type="eml:AbstractValueArray" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Aliases" type="eml:ObjectAlias" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Facet" type="eml:PropertyKindFacet" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ColumnBasedTable" type="eml:ColumnBasedTable" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ColumnBasedTable">
+		<xs:annotation>
+			<xs:documentation>A column-based table allows the exchange of tables, where the values are arranged against columns that are defined by PropertyKind, UOM and Facet.
+EXAMPLES: KrPc table and facies tables.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="Column" type="eml:Column" minOccurs="1" maxOccurs="unbounded"/>
+					<xs:element name="KeyColumn" type="eml:Column" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NestedColumnBasedTable">
+		<xs:annotation>
+			<xs:documentation>Allows a table to be contained in an abstract object (AbstractObject) without carrying all of the information of an abstract object (such as UUID, schema version, object version, aliases, extensions, etc.)
+Also, it is not a data object, meaning it is not discoverable by itself in an ETP context.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Title" type="eml:String256" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Description" type="eml:String2000" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="KeyColumn" type="eml:Column" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Column" type="eml:Column" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/witsmlv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:witsml="http://www.energistics.org/energyml/data/witsmlv2" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.1" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>Well Schema. Used to capture the general information about a well. This might sometimes be called a “well header”. All information that is the same for all wellbores (sidetracks) is contained in the well object.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:import namespace="http://www.energistics.org/energyml/data/commonv2" schemaLocation="../../../common/v2.3/xsd_schemas/EmlAllObjects.xsd"/>
+	<xs:simpleType name="OperatingEnvironment">
+		<xs:annotation>
+			<xs:documentation>The general location of a well or wellbore.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="onshore">
+				<xs:annotation>
+					<xs:documentation>On land.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="midshore">
+				<xs:annotation>
+					<xs:documentation>Transitional marine environment.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="offshore">
+				<xs:annotation>
+					<xs:documentation>At sea with some distance from the shore.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OperatingEnvironmentExt">
+		<xs:union memberTypes="witsml:OperatingEnvironment eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="WellDirection">
+		<xs:annotation>
+			<xs:documentation>Specifies values for the direction of flow of the fluids in a well facility (generally, injected or produced, or some combination).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="huff-n-puff">
+				<xs:annotation>
+					<xs:documentation>The well facility alternately injects (usually 
+a steam or hot fluid) and produces.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="injector">
+				<xs:annotation>
+					<xs:documentation>The well facility is injecting fluids into the 
+subsurface.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="producer">
+				<xs:annotation>
+					<xs:documentation>The well facility is producing fluids from the 
+subsurface.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="uncertain">
+				<xs:annotation>
+					<xs:documentation>The flow direction of the fluids is variable, 
+but not on a regular basis as is the case with the huff-n-puff 
+flow.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WellFluid">
+		<xs:annotation>
+			<xs:documentation>Specifies values for the type of fluid being produced from or injected into a well facility.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="air">
+				<xs:annotation>
+					<xs:documentation>This is generally an injected fluid.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="condensate">
+				<xs:annotation>
+					<xs:documentation>Liquid hydrocarbons produced with natural gas that are separated from the gas by cooling and various other means. Condensate generally has an API gravity of 50 degrees to 120 degrees and is water white, straw, or bluish in color. It is the liquid recovery from a well classified as a gas well. It is generally dissolved in the gaseous state under reservoir conditions but separates as a liquid either in passing up the hole or at the surface. These hydrocarbons, from associated and non-associated gas well gas, normally are recovered from lease separators or field facilities by mechanical separation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="dry">
+				<xs:annotation>
+					<xs:documentation>The well facility is classified as a dry well. 
+It has not been, nor will it be used to produce or inject any fluids.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="gas">
+				<xs:annotation>
+					<xs:documentation>The well is classified as a gas well, producing or injecting a hydrocarbon gas. The gas is generally methane but may have a mixture of other gases also.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="gas-water">
+				<xs:annotation>
+					<xs:documentation>The well facility is classified as producing both gas and water. USe this classification when the produced stream flow is a mixture of gas and water. When a facility produces gas and water in separate streams, classify it twice, as gas and as water.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="non HC gas">
+				<xs:annotation>
+					<xs:documentation>The well produces or injects non-hydrocarbon gases. Typical other gases would be helium and carbon dioxide.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="non HC gas -- CO2">
+				<xs:annotation>
+					<xs:documentation>Carbon dioxide gas.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="oil">
+				<xs:annotation>
+					<xs:documentation>The liquid hydrocarbon generally referred to as crude oil.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="oil-gas">
+				<xs:annotation>
+					<xs:documentation>The well facility is classified as producing both gas and oil. Use this classification when the produced stream flow is a mixture of oil and gas. When a facility produces oil and gas in separate streams, classify it twice, as oil and as gas.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="oil-water">
+				<xs:annotation>
+					<xs:documentation>The well facility is classified as producing both oil and water. Use this classification when the produced stream flow is a mixture of oil and water. When a facility produces oil and water in separate streams, classify it twice, as oil and as water.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="steam">
+				<xs:annotation>
+					<xs:documentation>The gaseous state of water. This is generally an 
+injected fluid, but it is possible that some hydrothermal wells 
+produce steam.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="water">
+				<xs:annotation>
+					<xs:documentation>The well is classified as a water well without 
+distinguishing between brine or fresh water.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="water -- brine">
+				<xs:annotation>
+					<xs:documentation>The well facility is classified as producing 
+or injecting salt water.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="water -- fresh water">
+				<xs:annotation>
+					<xs:documentation>The well facility is classified as producing 
+fresh water that is capable of use for drinking or crop irrigation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WellInterest">
+		<xs:annotation>
+			<xs:documentation>Reasons for interest in the well or information about the well.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="operated"/>
+			<xs:enumeration value="non-operated joint venture"/>
+			<xs:enumeration value="competitor"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WellInterestExt">
+		<xs:union memberTypes="witsml:WellInterest eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="WellPurpose">
+		<xs:annotation>
+			<xs:documentation>Specifies values that represent the classification of a well or wellbore by the purpose for which it was initially drilled.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="appraisal">
+				<xs:annotation>
+					<xs:documentation>A well drilled into a formation shown to be potentially productive of oil or gas by an earlier well for the purpose of obtaining more information about the reservoir. Also known as a delineation well.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="appraisal -- confirmation appraisal">
+				<xs:annotation>
+					<xs:documentation>An appraisal well, generally drilled in a location interpreted to be in the reservoir, whose purpose is to confirm the interpretation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="appraisal -- exploratory appraisal">
+				<xs:annotation>
+					<xs:documentation>An appraisal well, generally drilled in an area unknown to be part of the reservoir, whose purpose is to determine the extent of the reservoir.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="exploration">
+				<xs:annotation>
+					<xs:documentation>An exploratory well drilled in an unproved area to test for a new field, a new pay, a deeper reservoir, or a shallower reservoir. Also known as a wildcat.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="exploration -- deeper-pool wildcat">
+				<xs:annotation>
+					<xs:documentation>An exploratory well drilled to search for additional pools of hydrocarbon near known pools of hydrocarbon but at deeper stratigraphic levels than known pools.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="exploration -- new-field wildcat">
+				<xs:annotation>
+					<xs:documentation>An exploratory well drilled to search for an occurrence of hydrocarbon at a relatively considerable distance outside the limits of known pools of hydrocarbon, as those limits were understood at the time.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="exploration -- new-pool wildcat">
+				<xs:annotation>
+					<xs:documentation>An exploratory well drilled to search for additional pools of hydrocarbon near and at the same stratigraphic level as known pools.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="exploration -- outpost wildcat">
+				<xs:annotation>
+					<xs:documentation>An exploratory well drilled to search for additional pools of hydrocarbon or to extend the limits of a known pool by searching in the same interval at some distance from a known pool.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="exploration -- shallower-pool wildcat">
+				<xs:annotation>
+					<xs:documentation>An exploratory well drilled to search for additional pools of hydrocarbon near but at a shallower stratigraphic levels than known pools.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="development">
+				<xs:annotation>
+					<xs:documentation>A well drilled in a zone in an area already proved productive.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="development -- infill development">
+				<xs:annotation>
+					<xs:documentation>A development well drilled to fill in between established wells, usually as part of a drilling program to reduce the spacing between wells to increase production.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="development -- injector">
+				<xs:annotation>
+					<xs:documentation>A development well drilled with the intent of injecting fluids into the reservoir for the purpose of improving reservoir production.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="development -- producer">
+				<xs:annotation>
+					<xs:documentation>A development well drilled with the intent of producing fluids.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fluid storage">
+				<xs:annotation>
+					<xs:documentation>A well drilled for storing fluids - generally either hydrocarbons or waste disposal.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fluid storage -- gas storage">
+				<xs:annotation>
+					<xs:documentation>A well drilled with the intent of injecting gas into the reservoir rock as a storage facility.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="general srvc">
+				<xs:annotation>
+					<xs:documentation>A well drilled with the intent of providing a general service as opposed to producing or injecting fluids. Examples of such services are geologic tests, pressure relief (for blowouts), and monitoring and observation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="general srvc -- borehole re-acquisition">
+				<xs:annotation>
+					<xs:documentation>A service well drilled to intersect another well below the surface for the purpose of extending the life of a well whose surface borehole has been lost or damaged.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="general srvc -- observation">
+				<xs:annotation>
+					<xs:documentation>A service well drilled for the purpose of monitoring fluids in a reservoir, or observing some other subsurface phenomena. Also called a monitor well.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="general srvc -- relief">
+				<xs:annotation>
+					<xs:documentation>A service well drilled with the specific purpose to provide communication at some point below the surface to another well that is out of control.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="general srvc -- research">
+				<xs:annotation>
+					<xs:documentation>A well drilled with the purpose of obtaining information on the stratigraphy, on drilling practices, for logging tests, or other such purpose. It is not expected to find economic reserves of hydrocarbons.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="general srvc -- research -- drill test">
+				<xs:annotation>
+					<xs:documentation>A research well drilled to test the suitablity of a particular type of equipment or drilling practice.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="general srvc -- research -- strat test">
+				<xs:annotation>
+					<xs:documentation>A research well drilled for the purpose of gathering geologic information on the stratigraphy of an area. A C.O.S.T. well would be included in this category.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="general srvc -- waste disposal">
+				<xs:annotation>
+					<xs:documentation>A service well drilled for the purpose of injection of sewage, industrial waste, or other waste fluids into the subsurface for disposal.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="mineral">
+				<xs:annotation>
+					<xs:documentation>A non-oil and gas well drilled for the purpose of locating and/or extracting a mineral from the subsurface, usually through the injection and/or extraction of mineral-bearing fluids.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="LicensePeriod">
+		<xs:annotation>
+			<xs:documentation>This class is used to represent a period of time when a particular license was valid.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NumLicense" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>License number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TerminationDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the license ceased to be effective.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EffectiveDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the license became effective.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Well" type="witsml:Well" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="Well">
+		<xs:annotation>
+			<xs:documentation>Used to capture the general information about a well. Sometimes  called a "well header". Contains all information that is the same for all wellbores (sidetracks). </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractActiveObject">
+				<xs:sequence>
+					<xs:element name="UniqueIdentifier" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A human-readable unique identifier assigned to the well. Commonly referred to as a UWI.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NameLegal" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Legal name of the well.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NumGovt" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Government assigned well number.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NumAPI" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>American Petroleum Institute well number.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OperatingEnvironment" type="witsml:OperatingEnvironmentExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Environment in which the well operates (e.eg, onshore, offshore, etc.).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TimeZone" type="eml:TimeZone" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The time zone in which the well is located. It is the deviation in hours and minutes from UTC. This should be the normal time zone at the well and not a seasonally-adjusted value, such as daylight savings time.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Basin" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Basin in which the well is located.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Play" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Play in which the well is located.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Prospect" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Prospect in which the well is located.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Field" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Name of the field in which the well is located.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Country" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Country in which the well is located.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="State" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>State or province in which the well is located.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="County" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>County in which the well is located.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Region" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Geo-political region in which the well is located. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="District" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Geo-political district name.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NumLicense" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>License number of the well.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DTimLicense" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Date and time the license  was issued.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LicenseHistory" type="witsml:LicensePeriod" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The history of license numbers for the well.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Block" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Block name in which the well is located.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InterestType" type="witsml:WellInterestExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Reasons for interest in the well or information about the well.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PcInterest" type="eml:DimensionlessMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Interest for operator. Commonly in percent.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SlotName" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The well's slot name.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LifeCycleState" type="eml:FacilityLifecycleStateExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The well's life cycle state (e.g., planning, constructing, operating, closing, closed).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LifeCycleHistory" type="eml:FacilityLifecyclePeriod" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The well's life cycle state history.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Operator" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a BusinessAssociate representing the operating company.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OperatorDiv" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Division of the operator company.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OriginalOperator" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a BusinessAssociate representing the original operator of the well. This may be different than the current operator.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OperatorHistory" type="eml:FacilityOperator" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The history of operators for the well optionally including the dates and times that they were operators. If provided, the first operator should be the same as OriginalOperator and the last operator should be the same as Operator.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="StatusWell" type="eml:WellStatus" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>POSC well status.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="StatusHistory" type="eml:WellStatusPeriod" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>History of the well's POSC well status.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PurposeWell" type="witsml:WellPurpose" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>POSC well purpose.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PurposeHistory" type="witsml:WellPurposePeriod" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>History of the well's POSC well purpose.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FluidWell" type="witsml:WellFluid" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>POSC well fluid. The type of fluid being produced from or injected 
+into a well facility.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DirectionWell" type="witsml:WellDirection" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>POSC well direction. The direction of the flow of the fluids in a well facility (generally, injected or produced, or some combination).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DTimSpud" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Date and time at which the well was spudded.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DTimPa" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Date and time at which the well was plugged and abandoned.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="WaterDepth" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Depth of water (not land rigs).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InformationalGeographicLocationWGS84" type="eml:Geographic2dPosition" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The approximate 2D well location. Intended for use cases where a low-fidelity, approximate location are acceptable such as displaying the well on a map in a dashboard.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InformationalProjectedLocation" type="eml:Projected2dPosition" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="DataSourceOrganization" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a BusinessAssociate representing the company providing the data in this well object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="WellheadElevation" type="eml:AbstractElevation" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="GroundElevation" type="eml:AbstractElevation" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="WellSurfaceLocation" type="eml:AbstractPosition" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The surface location of the well. This is shared by all wellbores within the well.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="WellPurposePeriod">
+		<xs:annotation>
+			<xs:documentation>This class is used to represent a period of time when a facility had a consistent WellPurpose.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Purpose" type="witsml:WellPurpose" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The facility's purpose.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the purpose started.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the purpose ended.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--														-->
+	</xs:schema>

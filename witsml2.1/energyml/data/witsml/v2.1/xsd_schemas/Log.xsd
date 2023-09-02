@@ -1,0 +1,1013 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/witsmlv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:witsml="http://www.energistics.org/energyml/data/witsmlv2" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.1" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>Log Schema.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:import namespace="http://www.energistics.org/energyml/data/commonv2" schemaLocation="../../../common/v2.3/xsd_schemas/EmlAllObjects.xsd"/>
+	<!--														-->
+	<xs:include schemaLocation="BhaRun.xsd"/>
+	<xs:include schemaLocation="FluidsReport.xsd"/>
+	<xs:include schemaLocation="PWLS.xsd"/>
+	<xs:include schemaLocation="Wellbore.xsd"/>
+	<xs:simpleType name="ChannelDataKind">
+		<xs:annotation>
+			<xs:documentation>Specifies the kind of data contained in a channel.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="boolean">
+				<xs:annotation>
+					<xs:documentation>True or false values.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bytes">
+				<xs:annotation>
+					<xs:documentation>Integer data value (nominally a one-byte value). The value must conform to the format of the xsd:dateTime data type (minInclusive=-128 and maxInclusive=127).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="double">
+				<xs:annotation>
+					<xs:documentation>Double-precision floating-point value (nominally an 8-byte value). The value must conform to the format of the xsd:double data type.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="float">
+				<xs:annotation>
+					<xs:documentation>Single-precision floating-point value (nominally a 4-byte value). The value must conform to the format of the xsd:float data type</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="int">
+				<xs:annotation>
+					<xs:documentation>Integer data value (nominally a 4-byte value). The value must conform to the format of the xsd:int data type.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="long">
+				<xs:annotation>
+					<xs:documentation>Long integer data value (nominally an 8-byte value). The value must conform to the format of the xsd:long data type.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="string">
+				<xs:annotation>
+					<xs:documentation>Character string data. The value must conform to the format of the xsd:string data type. The maximum length of a value is determined by individual servers. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="measured depth">
+				<xs:annotation>
+					<xs:documentation>Measured depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="true vertical depth">
+				<xs:annotation>
+					<xs:documentation>True vertical depth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="pass indexed depth">
+				<xs:annotation>
+					<xs:documentation>An index value that includes pass, direction, and depth values This can only refer to measured depths.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="date time">
+				<xs:annotation>
+					<xs:documentation>Date with time.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="elapsed time">
+				<xs:annotation>
+					<xs:documentation>Time that has elapsed.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ChannelDerivation">
+		<xs:annotation>
+			<xs:documentation>Specifies the source of data in a channel.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="raw">
+				<xs:annotation>
+					<xs:documentation>Raw measured data, directly from sensors.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="simulated">
+				<xs:annotation>
+					<xs:documentation>Simulated.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="spliced">
+				<xs:annotation>
+					<xs:documentation>Derived by splicing values from two or more other channels.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sampled">
+				<xs:annotation>
+					<xs:documentation>Derived by sampling values from one or more other channels.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="model">
+				<xs:annotation>
+					<xs:documentation>Based on some modeled results of values in another one or more channels.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="interpreted">
+				<xs:annotation>
+					<xs:documentation>Interpreted results of values in another one or more channels.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="corrected">
+				<xs:annotation>
+					<xs:documentation>Values that have been environmentally corrected.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="edited">
+				<xs:annotation>
+					<xs:documentation>Values that have undergone depth shift, merge or other operations.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ChannelState">
+		<xs:annotation>
+			<xs:documentation>Specifies the source of the data values in the channel, e.g., calculated from another source, or from archive, or raw real-time, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="calculated">
+				<xs:annotation>
+					<xs:documentation>Calculated from measurements</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="final">
+				<xs:annotation>
+					<xs:documentation>Considered final and not subject to change</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="memory">
+				<xs:annotation>
+					<xs:documentation>Sensor data is recorded into downhole memory of a tool, rather than transmitting in "real time" to surface. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="processed">
+				<xs:annotation>
+					<xs:documentation>Results of calculations based on measurements</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="real time">
+				<xs:annotation>
+					<xs:documentation>Measurements at the actual time.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HoleLoggingStatus">
+		<xs:annotation>
+			<xs:documentation>The status of the hole during logging.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="open hole">
+				<xs:annotation>
+					<xs:documentation>The hole has not been cased or cemented.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="cased hole">
+				<xs:annotation>
+					<xs:documentation>The hole has been cased but not cemented.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="cemented hole">
+				<xs:annotation>
+					<xs:documentation>The hole has been cased and cemented.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PassDirection">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="up">
+				<xs:annotation>
+					<xs:documentation>The tool is moving up (decreasing depth).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="holding steady">
+				<xs:annotation>
+					<xs:documentation>The tools is not moving up or down (depth is not changing).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="down">
+				<xs:annotation>
+					<xs:documentation>The tool is moving down (increasing depth).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Channel" type="witsml:Channel" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="Channel">
+		<xs:annotation>
+			<xs:documentation>A channel object. It corresponds roughly to the LogCurveInfo structure in WITSML1411, and directly corresponds to the ChannelMetadataRecord structure in ETP. In historian terminology, a channel corresponds directly to a tag.
+Channels are the fundamental unit of organization for WITSML logs.
+BUSINESS RULE: The Uom MUST be compatible with the QuantityClass of the PropertyKind specified in ChannelClass.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractActiveObject">
+				<xs:sequence>
+					<xs:element name="Mnemonic" type="eml:String64" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The mnemonic name for this channel. Mnemonics are not unique within a store.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GlobalMnemonic" type="eml:String64" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A standardized mnemonic name for this channel.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DataKind" type="witsml:ChannelDataKind" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The kind of channel data value for this channel.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Uom" type="eml:UnitOfMeasureExt" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The underlying unit of measure of the value.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Source" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Source of the data in the channel. Enter the contractor name who conducted the log.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ChannelState" type="witsml:ChannelState" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Defines where the channel gets its data from, e.g., calculated from another source, or from archive, or raw real-time, etc. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ChannelPropertyKind" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A mandatory value pointing to a PropertyKind.  
+Energistics provides a list of standard property kinds that represent the basis for the commonly used properties in the E&amp;P subsurface workflow.
+This PropertyKind enumeration is in the external PropertyKindDictionary XML file in the Common ancillary folder.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RunNumber" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal run number for the channel. No precise meaning is declared for this attribute but it is so commonly used that it must be included. 
+
+The value here should match a bit run number for LWD data and a wireline run number for logging data.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PassNumber" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal pass number for the channel. No precise meaning is declared for this attribute but it is so commonly used that it must be included. 
+
+The value here should match a wireline pass number for logging data. Use PassDetail instead if the channel contains information about several passes using PassIndexedDepth..</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PassDescription" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal pass description for the pass such as Calibration Pass, Main Pass, Repeated Pass. Use PassDetail instead if the channel contains information about several passes using PassIndexedDepth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PassDetail" type="witsml:PassDetail" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Details about one or more passes when using PassIndexedDepth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrimaryIndexInterval" type="eml:AbstractInterval" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The primary index value range for the channel. This MUST reflect the minimum and maximum primary index values for data points in the channel. This is independent of the direction for the primary index. This MUST be specified when there are data points in the channel, and it MUST NOT be specified when there are no data points in the channel.
+
+STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingCompany" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a BusinessAssociate representing the logging company.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingCompanyCode" type="xs:long" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The RP66 organization code assigned to a logging company. The list is available at http://www.energistics.org/geosciences/geology-standards/rp66-organization-codes </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ChannelKind" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An optional value pointing to a ChannelKind.  
+Energistics provides a list of standard channel kinds from the Practical Well Logging Standard (PWLS).
+This ChannelKind enumeration is in the external ChannelKindDictionary XML file in the WITSML ancillary folder. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingToolKind" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An optional value pointing to a LoggingToolKind.  
+Energistics provides a list of standard logging tool kinds from the Practical Well Logging Standard (PWLS).
+This LoggingToolKind enumeration is in the external LoggingToolKindDictionary XML file in the WITSML ancillary folder. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingToolClass" type="witsml:LoggingToolClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A value categorizing a logging tool. The classification system used in WITSML is the one from the PWLS group.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Derivation" type="witsml:ChannelDerivation" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Indicates how data in the channel is derived.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingMethod" type="witsml:LoggingMethod" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Defines where the log channel gets its data from: LWD, MWD, wireline; or whether it is computed, etc.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NominalHoleSize" type="eml:LengthMeasureExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal hole size at the time the measurement tool was in the hole. The size is "nominal" to indicate that this is not the result of a caliper reading or other direct measurement of the hole size, but is just a name used to refer to the diameter. This is normally the bit size.
+In a case where there are more than one diameter hole being drilled at the same time (like where a reamer is behind the bit) this diameter is the one which was seen by the sensor which produced a particular log channel.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SensorOffset" type="eml:LengthMeasureExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The consistent distance from the downhole equipment vertical reference (the drill bit, for MWD logs; the tool zero reference for wireline logs) at which the channel values are measured or calculated. This is typically, but not always, the distance from the bit to the sensor. This element is only informative (channel values are presented at actual depth, not requiring subtraction of an offset).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MudClass" type="witsml:MudClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The class of the drilling fluid at the time of logging.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MudSubClass" type="witsml:MudSubClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The subclass of drilling fluid at the time of logging.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HoleLoggingStatus" type="witsml:HoleLoggingStatus" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The status of the hole at the time of logging.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IsContinuous" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>If true, the channel data values are continues values, such as sampled measurement values. If false, the channel data values are discrete, such as rig activity codes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NominalSamplingInterval" type="eml:GenericMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>For regularly sampled channel data, this represents the nominal sampling interval. This should not be set when data is not regularly sampled.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ChannelOSDUIntegration" type="witsml:ChannelOSDUIntegration" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Information about a Channel that is relevant for OSDU integration but does not have a natural place in a Channel object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Datum" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a reference point that defines a vertical datum that channel data values that are measured depth or vertical depth values are referenced to. This is NOT an datum for index values. See Datum in ChannelIndex for the datum for index values.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SeismicReferenceElevation" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a reference point that defines the seismic reference elevation. This should only be populated if the channel represents time-depth relationships or checkshots.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Data" type="witsml:ChannelData" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DataSource" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Index" type="witsml:ChannelIndex" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Defines metadata about the channel's primary and secondary indexes. The first index is the primary index. Any additional indexes are secondary indexes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DerivedFrom" type="eml:DataObjectReference" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>This element is to be used in conjunction with the Derivation element. When Derivation indicates that a process was used to generate this channel, DerivedFrom may point to the channel or channels used in the process of generating this channel.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Wellbore" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="AxisDefinition" type="witsml:LogChannelAxis" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="PointMetadata" type="witsml:PointMetadata" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ChannelData">
+		<xs:annotation>
+			<xs:documentation>Contains the bulk data for the log, either as a base64-encoded string or as a reference to an external file.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Data" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The data blob in JSON form. This attribute lets you embed the bulk data in a single file with the xml, to avoid the issues that arise when splitting data across multiple files.
+
+BUSINESS RULE: Either this element or the FileUri element must be present.
+
+STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FileUri" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The URI of a file containing the bulk data. If this field is non-null, then the data field is ignored. For files written to disk, this should normally contain a simple file name in relative URI form. For example, if an application writes a log file to disk, it might write the xml as abc.xml, and the bulk data as abc.avro. In this case, the value of this element would be './abc.avro'.
+
+BUSINESS RULE: Either this element or the Data element must be present. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ChannelIndex">
+		<xs:annotation>
+			<xs:documentation>Common information about a primary or secondary index for a channel or channel set.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IndexKind" type="eml:DataIndexKind" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The kind of index (date time, measured depth, etc.).
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndexPropertyKind" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An optional value pointing to a PropertyKind.  
+Energistics provides a list of standard property kinds that represent the basis for the commonly used properties in the E&amp;P subsurface workflow.
+This PropertyKind enumeration is in the external PropertyKindDictionary XML file in the Common ancillary folder. 
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Uom" type="eml:UnitOfMeasureExt" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The unit of measure of the index. Must be one of the units allowed for the specified IndexKind (e.g., time or depth).
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Direction" type="eml:IndexDirection" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The direction of the index, either increasing or decreasing. Index direction may not change within the life of a channel or channel set. This only affects the order in which data is streamed or serialized.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mnemonic" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The mnemonic for the index.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Datum" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>For depth indexes, this is a pointer to the reference point defining the vertical datum, in a channel's Well object, to which all of the index values are referenced.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndexInterval" type="eml:AbstractInterval" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The index value range for this index for the channel or channel set. This MUST reflect the minimum and maximum index values for this index for data points in the channel or channel set. This is independent of the direction for the primary index. This MUST be specified when there are data points in the channel or channel set, and it MUST NOT be specified when there are no data points in the channel or channel set.
+
+STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ChannelOSDUIntegration">
+		<xs:annotation>
+			<xs:documentation>Information about a Channel that is relevant for OSDU integration but does not have a natural place in a Channel object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ChannelQuality" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The quality of the channel.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IntermediaryServiceCompany" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Pointer to a BusinessAssociate that represents the company who engaged the service company (ServiceCompany) to perform the logging.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsRegular" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Boolean property indicating the sampling mode of the primary index. True means all channel data values are regularly spaced (see NominalSamplingInterval); false means irregular or discrete sample spacing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZeroTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Optional time reference for time-based primary indexes. The ISO date time string representing zero time. Not to be confused with seismic travel time zero.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelBusinessValue" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The business value of the channel.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelMainFamily" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Geological Physical Quantity measured by the channel such as porosity.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelFamily" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The detailed Geological Physical Quantity measured by the channel such as neutron porosity.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ChannelSet" type="witsml:ChannelSet" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ChannelSet">
+		<xs:annotation>
+			<xs:documentation>A grouping of channels with a compatible index, for some purpose. Each channel has its own index. A ‘compatible’ index simply means that all of the channels are either in time or in depth using a common datum.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractActiveObject">
+				<xs:sequence>
+					<xs:element name="ChannelState" type="witsml:ChannelState" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Defines where the channel gets its data from, e.g., calculated from another source, or from archive, or raw real-time, etc. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RunNumber" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal run number for the channel. No precise meaning is declared for this attribute but it is so commonly used that it must be included. 
+
+The value here should match a bit run number for LWD data and a wireline run number for logging data.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PassNumber" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal pass number for the channel set. No precise meaning is declared for this attribute but it is so commonly used that it must be included. 
+ 
+The value here should match a wireline pass number for logging data.
+Use PassDetail instead if the channel set contains information about several passes using PassIndexedDepth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PassDescription" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal pass description for the pass such as Calibration Pass, Main Pass, Repeated Pass. Use PassDetail instead if the channel set contains information about several passes using PassIndexedDepth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PassDetail" type="witsml:PassDetail" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Details about one or more passes when using PassIndexedDepth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrimaryIndexInterval" type="eml:AbstractInterval" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The primary index value range for the channel set. This MUST reflect the minimum and maximum primary index values for any channels in the channel set. This is independent of the direction for the primary index. This MUST be specified when there is at least one channel in the channel set with data points, and it MUST NOT be specified when there are no channels with data points in the channel set.
+
+STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingCompany" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a BusinessAssociate representing the logging company.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingCompanyCode" type="xs:long" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The RP66 organization code assigned to a logging company. The list is available at http://www.energistics.org/geosciences/geology-standards/rp66-organization-codes </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingToolKind" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An optional value pointing to a LoggingToolKind.  
+Energistics provides a list of standard logging tool kinds from the Practical Well Logging Standard (PWLS).
+This LoggingToolKind enumeration is in the external LoggingToolKindDictionary XML file in the WITSML ancillary folder. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingToolClass" type="witsml:LoggingToolClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A value categorizing a logging tool. The classification system used in WITSML is the one from the PWLS group.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingToolClassLongName" type="eml:String256" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A long concatenation of the tools used for the logging service such as GammaRay+NeutronPorosity.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Derivation" type="witsml:ChannelDerivation" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal derivation for channels in the channel set. Individual channels may have a different derivation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingMethod" type="witsml:LoggingMethod" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Defines where the log channel gets its data from: LWD, MWD, wireline; or whether it is computed, etc</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NominalHoleSize" type="eml:LengthMeasureExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal hole size at the time the measurement tool was in the hole. The size is "nominal" to indicate that this is not the result of a caliper reading or other direct measurement of the hole size, but is just a name used to refer to the diameter. This is normally the bit size.
+
+In a case where there are more than one diameter hole being drilled at the same time (like where a reamer is behind the bit) this diameter is the one which was seen by the sensor which produced a particular log channel.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MudClass" type="witsml:MudClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal class of the drilling fluid at the time of logging. Individual channels may have been logged while a different drilling fluid was in use.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MudSubClass" type="witsml:MudSubClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal subclass of drilling fluid at the time of logging. Individual channels may have been logged while a different drilling fluid was in use.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HoleLoggingStatus" type="witsml:HoleLoggingStatus" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal status of the hole at the time of logging. Individual channels may have been logged while the hole was in a different state.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NominalSamplingInterval" type="eml:GenericMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>For regularly sampled channel data, this represents the nominal sampling interval. This should only be set when it is representative for channels in the channel set. Individual channels may have a different nominal sampling interval.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ChannelSetOSDUIntegration" type="witsml:ChannelSetOSDUIntegration" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Information about a ChannelSet that is relevant for OSDU integration but does not have a natural place in a ChannelSet object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Index" type="witsml:ChannelIndex" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Defines metadata about the channel set's primary and secondary indexes. The first index is the primary index. Any additional indexes are secondary indexes. A channel set MUST specify this for at least a primary index if it has any channels in it. A channel set MAY specify these indexes even if it has no channels. All channels within the channel set MUST have indexes that are compatible with these indexes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Channel" type="witsml:Channel" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Data" type="witsml:ChannelData" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Wellbore" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="DataSource" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ChannelSetOSDUIntegration">
+		<xs:annotation>
+			<xs:documentation>Information about a ChannelSet that is relevant for OSDU integration but does not have a natural place in a ChannelSet object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ChannelSetVersion" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The channel set version. Distinct from objectVersion.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FrameIdentifier" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>For multi-frame or multi-section files, this identifier defines the source frame in the file. If the identifier is an index number the index starts with zero and is converted to a string for this property.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IntermediaryServiceCompany" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Pointer to a BusinessAssociate that represents the company who engaged the service company (ServiceCompany) to perform the logging.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsRegular" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Boolean property indicating the sampling mode of the primary index. True means all channel data values are regularly spaced (see NominalSamplingInterval); false means irregular or discrete sample spacing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZeroTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Optional time reference for time-based primary indexes. The ISO date time string representing zero time. Not to be confused with seismic travel time zero.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Log" type="witsml:Log" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="Log">
+		<xs:annotation>
+			<xs:documentation>Primarily a container for one or more channel sets (ChannelSet). In WITSML v2.+, most of the log information is now at the channel set level. The concept of multiple channel sets in a single log is significant change from WITSML v1.4.1.1, where each log represented exactly one group of curves and their data. For more information about log organization and how it works, see the WITSML Technical Usage Guide. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractActiveObject">
+				<xs:sequence>
+					<xs:element name="ChannelState" type="witsml:ChannelState" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Defines where the channel gets its data from, e.g., calculated from another source, or from archive, or raw real-time, etc. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RunNumber" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Should be a nominal value intended as a guide that applies to all or most ChannelSets and Channels in the Log. Should NOT be populated if the value does not apply for the majority of the ChannelSets and Channels. 
+
+The value here should match a bit run number for LWD data and a wireline run number for logging data.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PassNumber" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Should be a nominal value intended as a guide that applies to all or most ChannelSets and Channels in the Log. Should NOT be populated if the value does not apply for the majority of the ChannelSets and Channels.
+
+Use PassDetail instead if the log contains information about several passes using PassIndexedDepth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PassDescription" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal pass description for the pass such as Calibration Pass, Main Pass, Repeated Pass. Use PassDetail instead if the log contains information about several passes using PassIndexedDepth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PassDetail" type="witsml:PassDetail" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Details about one or more passes when using PassIndexedDepth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrimaryIndexInterval" type="eml:AbstractInterval" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>If all channel sets within the log have a compatible primary index, this is the primary index value range for the channel sets in the log. When specified, this MUST reflect the minimum and maximum primary index values for any channel sets in the log. This is independent of the direction for the primary index. This MAY be specified if all channel sets in the log have a compatible primary index AND at least one channel set has at least one channel with data points. This MUST NOT be specified if any channel sets in the log have incompatible primary indexes OR no channel sets in the log have channels with any data points.
+
+STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingCompany" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Pointer to a BusinessAssociate representing the logging company.
+
+Should be a nominal value intended as a guide that applies to all or most ChannelSets and Channels in the Log. Should NOT be populated if the value does not apply for the majority of the ChannelSets and Channels.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingCompanyCode" type="xs:long" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The RP66 organization code assigned to a logging company. The list is available at http://www.energistics.org/geosciences/geology-standards/rp66-organization-codes 
+
+Should be a nominal value intended as a guide that applies to all or most ChannelSets and Channels in the Log. Should NOT be populated if the value does not apply for the majority of the ChannelSets and Channels.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingToolKind" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An optional value pointing to a LoggingToolKind.  
+Energistics provides a list of standard logging tool kinds from the Practical Well Logging Standard (PWLS).
+This LoggingToolKind enumeration is in the external LoggingToolKindDictionary XML file in the WITSML ancillary folder. 
+
+Should be a nominal value intended as a guide that applies to all or most ChannelSets and Channels in the Log. Should NOT be populated if the value does not apply for the majority of the ChannelSets and Channels.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingToolClass" type="witsml:LoggingToolClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A value categorizing a logging tool. The classification system used in WITSML is the one from the PWLS group.
+
+Should be a nominal value intended as a guide that applies to all or most ChannelSets and Channels in the Log. Should NOT be populated if the value does not apply for the majority of the ChannelSets and Channels.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingToolClassLongName" type="eml:String256" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A long concatenation of the tools used for the logging service such as GammaRay+NeutronPorosity.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingServicePeriod" type="eml:DateTimeInterval" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The time interval during which the logging service was performed that acquired the data in the channel set.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Derivation" type="witsml:ChannelDerivation" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal derivation for channels in the log. Individual channels and channel sets may have different derivations.
+
+Should be a nominal value intended as a guide that applies to all or most ChannelSets and Channels in the Log. Should NOT be populated if the value does not apply for the majority of the ChannelSets and Channels.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LoggingMethod" type="witsml:LoggingMethod" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Defines where the log channel gets its data from: LWD, MWD, wireline; or whether it is computed, etc.
+
+Should be a nominal value intended as a guide that applies to all or most ChannelSets and Channels in the Log. Should NOT be populated if the value does not apply for the majority of the ChannelSets and Channels.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NominalHoleSize" type="eml:LengthMeasureExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal hole size at the time the measurement tool was in the hole. The size is "nominal" to indicate that this is not the result of a caliper reading or other direct measurement of the hole size, but is just a name used to refer to the diameter. This is normally the bit size.
+
+In a case where there are more than one diameter hole being drilled at the same time (like where a reamer is behind the bit) this diameter is the one which was seen by the sensor which produced a particular log channel.
+
+Should be a nominal value intended as a guide that applies to all or most ChannelSets and Channels in the Log. Should NOT be populated if the value does not apply for the majority of the ChannelSets and Channels.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MudClass" type="witsml:MudClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal class of the drilling fluid at the time of logging. Individual channels may have been logged while a different drilling fluid was in use.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MudSubClass" type="witsml:MudSubClassExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal subclass of drilling fluid at the time of logging. Individual channels may have been logged while a different drilling fluid was in use.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HoleLoggingStatus" type="witsml:HoleLoggingStatus" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The nominal status of the hole at the time of logging. Individual channels may have been logged while the hole was in a different state.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NominalSamplingInterval" type="eml:GenericMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>For regularly sampled channel data, this represents the nominal sampling interval. This should only be set when it is representative for channels in the log. Individual channels may have a different nominal sampling interval.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LogOSDUIntegration" type="witsml:LogOSDUIntegration" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Information about a Log that is relevant for OSDU integration but does not have a natural place in a Log object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ChannelSet" type="witsml:ChannelSet" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Wellbore" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The wellbore the log is associated with. This element MUST be populated if ALL channel sets and channels in the log refer to the same wellbore. It MAY be omitted if they do not.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LogChannelAxis">
+		<xs:annotation>
+			<xs:documentation>Metadata by which the array structure of a compound value is defined. It defines one axis of an array type used in a log channel.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AxisStart" type="xs:double" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Value of the initial entry in the list of axis index values.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AxisSpacing" type="xs:double" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The increment to be used to fill out the list of the log channel axis index values.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AxisCount" type="eml:PositiveLong" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The count of elements along this axis of the array.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AxisName" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The name of the array axis.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AxisPropertyKind" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The property type by which the array axis is classified. Like "measured depth" or "elapsed time".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AxisUom" type="eml:UnitOfMeasureExt" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A string representing the units of measure of the axis values.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="uid" use="required" type="eml:String64">
+			<xs:annotation>
+				<xs:documentation>A unique identifier for an instance of a log channel axis</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="LogOSDUIntegration">
+		<xs:annotation>
+			<xs:documentation>Information about a Log that is relevant for OSDU integration but does not have a natural place in a Log object.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LogVersion" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The log version. Distinct from objectVersion.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZeroTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Optional time reference for time-based primary indexes. The ISO date time string representing zero time. Not to be confused with seismic travel time zero.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FrameIdentifier" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>For multi-frame or multi-section files, this identifier defines the source frame in the file. If the identifier is an index number the index starts with zero and is converted to a string for this property.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsRegular" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Boolean property indicating the sampling mode of the primary index. True means all channel data values are regularly spaced (see NominalSamplingInterval); false means irregular or discrete sample spacing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IntermediaryServiceCompany" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Pointer to a BusinessAssociate that represents the company who engaged the service company (ServiceCompany) to perform the logging.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PassDetail">
+		<xs:annotation>
+			<xs:documentation>Details about an individual pass when using PassIndexedDepth.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Pass" type="xs:long" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The pass number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Description of pass such as Calibration Pass, Main Pass, Repeated Pass.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PassIndexedDepth">
+		<xs:annotation>
+			<xs:documentation>Qualifies measured depth based on pass, direction and depth</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Pass" type="xs:long" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The pass number. When pass indexed depth values are used as primary index values, the pass number MUST change any time direction changes. When used as secondary index values, this is not required.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Direction" type="witsml:PassDirection" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The direction of the tool in a pass. For primary index values, index values within a pass MUST be strictly ordered according to the direction. Holding steady MUST NOT be used for primary index values; it is only allowed for secondary index values.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasuredDepth" type="eml:LengthMeasureExt" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The measured depth of the point.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PassIndexedDepthInterval">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractInterval">
+				<xs:sequence>
+					<xs:element name="Datum" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Start" type="witsml:PassIndexedDepth" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="End" type="witsml:PassIndexedDepth" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PointMetadata">
+		<xs:annotation>
+			<xs:documentation>Used to declare that data points in a specific WITSML log channel may contain value attributes (e.g., quality identifiers). This declaration is independent from the possibility that ETP may have sent ValueAttributes in real time.
+If an instance of PointMetadata is present for a Channel, then the value for that point is represented as an array in the bulk data string.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The name of the point metadata.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataKind" type="witsml:ChannelDataKind" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The kind of point metadata.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="eml:String2000" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free format description of the point metadata.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Uom" type="eml:UnitOfMeasureExt" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The underlying unit of measure of the value.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MetadataPropertyKind" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An optional value pointing to a PropertyKind.  
+Energistics provides a list of standard property kinds that represent the basis for the commonly used properties in the E&amp;P subsurface workflow.
+This PropertyKind enumeration is in the external PropertyKindDictionary XML file in the Common ancillary folder. 
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AxisDefinition" type="witsml:LogChannelAxis" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Datum" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines a vertical datum that point metadata values that are measured depth or vertical depth values are referenced to.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

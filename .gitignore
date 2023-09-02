@@ -50,3 +50,13 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Java libraries
+
+*.class
+Java/target/
+
+# C third-party libraries
+third-party/mongo-c-driver/
+include/bson/
+

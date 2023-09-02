@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.energistics.org/energyml/data/witsmlv2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1">
+	<!--                                                         -->
+	<!-- Energistics License Agreement
+		This file is distributed under the Energistics Product License Agreement at
+		http://www.energistics.org/product-license-agreement
+		Use of this file constitutes agreement with the Energistics Product License Agreement.
+		Copyright (c) 2021 Energistics. All rights reserved.
+		Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+	-->
+	<!--                                                         -->
+	<xs:include schemaLocation="BhaRun.xsd"/>
+	<xs:include schemaLocation="CementJob.xsd"/>
+	<xs:include schemaLocation="DrillReport.xsd"/>
+	<xs:include schemaLocation="FluidsReport.xsd"/>
+	<xs:include schemaLocation="OpsReport.xsd"/>
+	<xs:include schemaLocation="Log.xsd"/>
+	<xs:include schemaLocation="PWLS.xsd"/>
+	<xs:include schemaLocation="DepthRegImage.xsd"/>
+	<xs:include schemaLocation="PPFG.xsd"/>
+	<xs:include schemaLocation="Rig.xsd"/>
+	<xs:include schemaLocation="Risk.xsd"/>
+	<xs:include schemaLocation="StimJob.xsd"/>
+	<xs:include schemaLocation="Target.xsd"/>
+	<xs:include schemaLocation="SurveyProgram.xsd"/>
+	<xs:include schemaLocation="Trajectory.xsd"/>
+	<xs:include schemaLocation="ToolErrorModel.xsd"/>
+	<xs:include schemaLocation="Tubular.xsd"/>
+	<xs:include schemaLocation="Well.xsd"/>
+	<xs:include schemaLocation="Wellbore.xsd"/>
+	<xs:include schemaLocation="WellboreGeology.xsd"/>
+	<xs:include schemaLocation="MudLogReport.xsd"/>
+	<xs:include schemaLocation="WellboreGeometry.xsd"/>
+	<xs:include schemaLocation="WellboreMarkers.xsd"/>
+	<xs:include schemaLocation="WellCompletion.xsd"/>
+	<xs:include schemaLocation="WellboreCompletion.xsd"/>
+	<xs:include schemaLocation="DownholeComponent.xsd"/>
+	<xs:include schemaLocation="WellCMLedger.xsd"/>
+	<xs:include schemaLocation="WitsmlCommon.xsd"/></xs:schema>

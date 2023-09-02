@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/witsmlv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:witsml="http://www.energistics.org/energyml/data/witsmlv2" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.1" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>Target Schema</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:import namespace="http://www.energistics.org/energyml/data/commonv2" schemaLocation="../../../common/v2.3/xsd_schemas/EmlAllObjects.xsd"/>
+	<!--														-->
+	<xs:include schemaLocation="Wellbore.xsd"/>
+	<xs:simpleType name="TargetCategory">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="geological"/>
+			<xs:enumeration value="well control">
+				<xs:annotation>
+					<xs:documentation>A target being used for well control in another wellbore. This is drilled in the first step of a dynamic kill operation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TargetCategoryExt">
+		<xs:union memberTypes="witsml:TargetCategory eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="TargetScope">
+		<xs:annotation>
+			<xs:documentation>These values represent the type of scope of the drilling target.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="3D volume">
+				<xs:annotation>
+					<xs:documentation>Generic 3 dimensional target. Defined by the target.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ellipsoid"/>
+			<xs:enumeration value="elliptical">
+				<xs:annotation>
+					<xs:documentation>Elliptical targets. Includes circle (semi-major = semi-minor axis).
+Any sections present are ignored.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="hardLine">
+				<xs:annotation>
+					<xs:documentation>Boundary Conditions. Use sections to describe, length and width ignore.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="irregular">
+				<xs:annotation>
+					<xs:documentation>Includes half circle and polygon. Use sections to describe, length and width ignored.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lease line">
+				<xs:annotation>
+					<xs:documentation>Boundary Conditions. Use sections to describe, length and width ignore.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="line">
+				<xs:annotation>
+					<xs:documentation>Line target</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="plane">
+				<xs:annotation>
+					<xs:documentation>Plane target. Used for horizontal wells. Any sections present are ignored.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="point">
+				<xs:annotation>
+					<xs:documentation>Point Target. Any sections present are ignored.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="rectangular">
+				<xs:annotation>
+					<xs:documentation>Rectangular Targets. Includes square (length = width). Any sections present are ignored.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TargetScopeExt">
+		<xs:union memberTypes="witsml:TargetScope eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="TargetSectionScope">
+		<xs:annotation>
+			<xs:documentation>These values represent the type of scope of a section that describes a target.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="arc">
+				<xs:annotation>
+					<xs:documentation>continuous curve</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="line">
+				<xs:annotation>
+					<xs:documentation>straight line</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Target" type="witsml:Target" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="Target">
+		<xs:annotation>
+			<xs:documentation>The target object is used to capture information about intended targets of a trajectory survey. This object is uniquely identified within the context of one wellbore object.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="DispNsCenter" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Northing of target center point in map coordinates.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DispEwCenter" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Easting of target center point in map coordinates.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Tvd" type="eml:AbstractVerticalDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Vertical depth of the measurements.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DispNsOffset" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>North-south offset of target intercept point from shape center.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DispEwOffset" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>East-west offset of target intercept point from shape center.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ThickAbove" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Height of target above center point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ThickBelow" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Depth of target below center point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Dip" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Angle of dip with respect to horizontal.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Strike" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Direction of dip with respect to north azimuth reference.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Rotation" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Direction of target geometry with respect to north azimuth reference.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LenMajorAxis" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Distance from center to perimeter in rotation direction.  
+This may be ignored depending on the value of typeTargetScope.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="WidMinorAxis" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Distance from center to perimeter at 90 deg to rotation direction.  
+This may be ignored depending on the value of typeTargetScope.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TargetScope" type="witsml:TargetScopeExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The type of scope of the drilling target.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DispNsSectOrig" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Origin north-south used as starting point for sections, mandatory parameter when sections are used..</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DispEwSectOrig" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Origin east-west used as starting point for sections, mandatory parameter when sections are used.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AziRef" type="eml:NorthReferenceKind" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Specifies the definition of north.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CatTarg" type="witsml:TargetCategoryExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Geological or drillers target.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Location" type="eml:Abstract3dPosition" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="TargetSection" type="witsml:TargetSection" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Wellbore" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ParentTarget" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TargetSection">
+		<xs:annotation>
+			<xs:documentation>WITSML Element Types</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SectNumber" type="xs:long" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Sequence number of section, 1,2,3.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TypeTargetSectionScope" type="witsml:TargetSectionScope" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Section scope: Line or Arc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LenRadius" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Length of straight line section or radius of arc for continuous curve section.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AngleArc" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Direction of straight line section or radius of arc for continuous curve section.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ThickAbove" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Height of target above center point at the start of the section.  
+In the case of an arc, the thickness above should vary linearly with the arc length.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ThickBelow" type="eml:LengthMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Depth of target below center point at the start of the section.  
+In the case of an arc, the thickness below should vary linearly with the arc length.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExtensionNameValue" type="eml:ExtensionNameValue" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Extensions to the schema based on a name-value construct.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Location" type="eml:Abstract3dPosition" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="uid" use="required" type="eml:String64"/>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>The CommonTypes package contains classes promoted from one of the MLs into common which don't merit their own packages. Currently this includes properties with facets and time series/time index related classes.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="CommonEnumerations.xsd"/>
+	<xs:include schemaLocation="BusinessAssociate.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="Abstract.xsd"/>
+	<xs:simpleType name="Facet">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="I">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the first local grid (lateral) direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="J">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the second local grid (lateral) direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="K">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the third local grid (vertical) direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="X">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the first coordinate system (laterall) direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Y">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the second coordinate system (lateral) direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Z">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the third coordinate system (vertical) direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="I+">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the first local grid (lateral) increasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="J+">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the second local grid (lateral) increasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="K+">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the third local grid (vertical) increasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="X+">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the first coordinate system (laterall) increasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Y+">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the second coordinate system (lateral) increasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Z+">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the third coordinate system (vertical) increasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="I-">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the first local grid (lateral) decreasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="J-">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the second local grid (lateral) decreasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="K-">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the third local grid (vertical) decreasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="X-">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the first coordinate system (laterall) decreasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Y-">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the second coordinate system (lateral) decreasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Z-">
+				<xs:annotation>
+					<xs:documentation>Applies to direction facet kind. With respect to the third coordinate system (vertical) decreasing direction. Used for full tensor permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="net">
+				<xs:annotation>
+					<xs:documentation>Applies to netgross facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="gross">
+				<xs:annotation>
+					<xs:documentation>Applies to netgross facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="plus"/>
+			<xs:enumeration value="minus"/>
+			<xs:enumeration value="average">
+				<xs:annotation>
+					<xs:documentation>Applies to statistics facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="maximum">
+				<xs:annotation>
+					<xs:documentation>Applies to statistics facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="minimum">
+				<xs:annotation>
+					<xs:documentation>Applies to statistics facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="maximum threshold">
+				<xs:annotation>
+					<xs:documentation>Applies to qualifier facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="minimum threshold">
+				<xs:annotation>
+					<xs:documentation>Applies to qualifier facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="surface condition">
+				<xs:annotation>
+					<xs:documentation>Applies to conditions facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="reservoir condition">
+				<xs:annotation>
+					<xs:documentation>Applies to conditions facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="oil">
+				<xs:annotation>
+					<xs:documentation>Applies to what facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="water">
+				<xs:annotation>
+					<xs:documentation>Applies to what facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="gas">
+				<xs:annotation>
+					<xs:documentation>Applies to what facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="condensate">
+				<xs:annotation>
+					<xs:documentation>Applies to what facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="cumulative">
+				<xs:annotation>
+					<xs:documentation>Applies to statistics facet kind.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fracture"/>
+			<xs:enumeration value="matrix"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FacetExt">
+		<xs:annotation>
+			<xs:documentation>The extensible enumeration of facets.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="eml:Facet eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="FacetKind">
+		<xs:annotation>
+			<xs:documentation>Enumerations of the type of qualifier that applies to a property type to provide additional context about the nature of the property. For example, may include conditions, direction, qualifiers, or statistics. Facets are used in RESQML to provide qualifiers to existing property types, which minimizes the need to create specialized property types.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="conditions">
+				<xs:annotation>
+					<xs:documentation>Indicates condition of how the property was acquired, e.g., distinguishing surface condition of a fluid compared to reservoir conditions. </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="side">
+				<xs:annotation>
+					<xs:documentation>Indicates on which side of a surface the property applies, for example, it can indicate plus or minus.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="direction">
+				<xs:annotation>
+					<xs:documentation>Indicates that the property is directional. Common values are X, Y, or Z for vectors; I, J, or K for properties on a grid; or tensorial coordinates, e.g., XX or IJ. For example, vertical permeability vs. horizontal permeability.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="netgross">
+				<xs:annotation>
+					<xs:documentation>Indicates that the property is of kind net or gross, i.e., indicates that the spatial support of a property is averaged only over the net rock or all of the rock. rock or all of the rock.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="qualifier">
+				<xs:annotation>
+					<xs:documentation>Used to capture any other context not covered by the other facet types listed here.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="statistics">
+				<xs:annotation>
+					<xs:documentation>Indicates values such as minimum, maximum, average, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="what">
+				<xs:annotation>
+					<xs:documentation>Indicates the element that is measured, for example, the concentration of a mineral.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FacilityLifecycleState">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="planning">
+				<xs:annotation>
+					<xs:documentation>All the activities of the Life Cycle before construction has commenced. It includes designing a well [or other facility] and obtaining management and regulatory approvals.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="constructing">
+				<xs:annotation>
+					<xs:documentation>The approved activities of the Life Cycle prior to operation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="operating">
+				<xs:annotation>
+					<xs:documentation>The activities of the Life Cycle while the well [or facility] is capable of performing its intended Role. It includes periods where it is temporarily shut in [not active.]	</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="closing">
+				<xs:annotation>
+					<xs:documentation>The set of activities of the Life Cycle to make the well or [other facility] permanently incapable of any Role.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="closed">
+				<xs:annotation>
+					<xs:documentation>The phase of the Life Cycle when the well [or facility] is permanently incapable of performing any Role.	</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FacilityLifecycleStateExt">
+		<xs:annotation>
+			<xs:documentation>The extensible enumeration of facility life cycle states.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="eml:FacilityLifecycleState eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:complexType name="FacilityLifecyclePeriod">
+		<xs:annotation>
+			<xs:documentation>This class is used to represent a period of time when a facility was in a lifecycle state.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="State" type="eml:FacilityLifecycleStateExt" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The facility's lifecycle state.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the lifecycle state started.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The data and time when the lifecycle state ended.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FacilityOperator">
+		<xs:annotation>
+			<xs:documentation>This class is used to represent the BusinessAssociate that operates or operated a facility and, optionally, the time interval during which the business associated is or was the operator.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BusinessAssociate" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A pointer to the business associate that operates or operated the facility.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EffectiveDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the business associate became the facility operator.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TerminationDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the business associate ceased to be the facility operator.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GeologicTime">
+		<xs:annotation>
+			<xs:documentation>This class is used to represent a time at several scales: 
+	- A mandatory and precise DateTime used to characterize a TimeStep in a TimeSeries
+	- An optional Age Offset (corresponding to a geological event occurrence) in  years. This age offset must be positive when it represents a GeologicalEvent occurrence in the past. This Age Offset is not required to be positive, to allow for the case of simulating future geological events.  
+
+When geological time is used to represent a geological event occurrence, the DateTime must be set by the software writer at a date no earlier than 01/01/1950. Any DateTime (even the creation DateTime of the instance) can be set in this attribute field.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AgeOffsetAttribute" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A value in years of the offset between the DateTime value and the DateTime of a geologic event occurrence. This value must be POSITIVE when it represents a geological event in the past.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTime" type="eml:TimeStamp" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A date, which can be represented according to the W3CDTF format.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PropertyKind" type="eml:PropertyKind" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="PropertyKind">
+		<xs:annotation>
+			<xs:documentation>Property kinds carry the semantics of property values. They are used to identify if the values are, for example, representing porosity, length, stress tensor, etc. Energistics provides a list of standard property kind that represent the basis for the commonly used properties in the E&amp;P subsurface workflow.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="IsAbstract" type="xs:boolean" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>This boolean indicates whether the PropertyKind should be used as a real property or not.
+
+If the Is Abstract flag is set, then this entry should be used only as the parent of a real property. For example, the PropertyKind of "force per length" shouldn't be used directly, as it is really just a description of some units of measure. This entry should only be used as the parent of the real physical property "surface tension".</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DeprecationDate" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Date at which this property dictionary entry must no longer be used. Files generated before this date would have used this entry so it is left here for reference. 
+
+A null value means the property kind is still valid.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="QuantityClass" type="eml:QuantityClassKindExt" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A reference to the name of a quantity class in the Energistics Unit of Measure Dictionary.
+If there is no match in the Energistics Unit of Measure Dictionary, then this attribute is purely for human information.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Parent" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Indicates the parent of this property kind.
+BUSINESS RULE : Only the top root abstract property kind has not to define a parent property kind.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="PropertyKindDictionary" type="eml:PropertyKindDictionary" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="PropertyKindDictionary">
+		<xs:annotation>
+			<xs:documentation>This dictionary defines property kind which is intended to handle the requirements of the upstream oil and gas industry. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="PropertyKind" type="eml:PropertyKind" minOccurs="2" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Defines which property kind are contained into a property kind dictionary.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PropertyKindFacet">
+		<xs:annotation>
+			<xs:documentation>Qualifiers for property values, which allow users to semantically specialize a property without creating a new property kind.
+For the list of enumerations, see FacetKind. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Facet" type="eml:FacetExt" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A facet allows you to better define a property in the context of its property kind.
+The technical advantage of using a facet vs. a specialized property kind is to limit the number of property kinds.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Kind" type="eml:FacetKind" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Facet kind of the property kind (see the enumeration)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TimeIndex">
+		<xs:annotation>
+			<xs:documentation>Index into a time series. Used to specify time. (Not to be confused with time step.)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Index" type="eml:NonNegativeLong" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The index of the time in the time series.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeSeries" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TimeOrIntervalSeries">
+		<xs:sequence>
+			<xs:element name="UseInterval" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="TimeSeries" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="TimeSeries" type="eml:TimeSeries" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="TimeSeries">
+		<xs:annotation>
+			<xs:documentation>Stores an ordered list of times, for example, for time-dependent properties, geometries, or representations. It is used in conjunction with the time index to specify times for RESQML.
+
+Business Rule: If present TimeStep count must match Time count</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="Time" type="eml:GeologicTime" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Individual times composing the series. The list ordering is used by the time index.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TimeStep" type="eml:AbstractIntegerArray" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="TimeSeriesParentage" type="eml:TimeSeriesParentage" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TimeSeriesParentage">
+		<xs:annotation>
+			<xs:documentation>Indicates that a time series has the associated time series as a parent, i.e., that the series continues from the parent time series.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="HasOverlap" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Used to indicate that a time series overlaps with its parent time series, e.g., as may be done for simulation studies, where the end state of one calculation is the initial state of the next.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ParentTimeIndex" type="eml:TimeIndex" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WellStatusPeriod">
+		<xs:annotation>
+			<xs:documentation>This class is used to represent a period of time when a facility had a consistent WellStatus.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Status" type="eml:WellStatus" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The facility's status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the status started.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the status ended.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

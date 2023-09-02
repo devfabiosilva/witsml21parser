@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>The Aggregate package contains the class that supports aggregation of arbitrary objects in a single XML document.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="Abstract.xsd"/>
+	<xs:element name="Aggregate" type="eml:Aggregate" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="Aggregate">
+		<xs:annotation>
+			<xs:documentation>An Energistics data object that is an aggregate of other data objects. Use Case: You want to email someone several different Energistics data objects (which are each separate XML files) from one or more of the Energistics domain standards. You can group those data objects together using Aggregate. 
+This object is NOT INTENDED for use within an ML (e.g. a WITSML) data store, even though it is  constructed similarly to the standard data object pattern. The anticipated normal usage is for collecting an aggregate of object messages for transport outside the context of an ML store.
+This data object was first developed by WITSML but has been "promoted" to Energistics  common for use by any of the Energistics domain standards. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="AggregateMember" type="eml:AbstractObject" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

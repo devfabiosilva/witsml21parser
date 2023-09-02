@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/witsmlv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:witsml="http://www.energistics.org/energyml/data/witsmlv2" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.1" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>Tool Error Model schema.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:import namespace="http://www.energistics.org/energyml/data/commonv2" schemaLocation="../../../common/v2.3/xsd_schemas/EmlAllObjects.xsd"/>
+	<xs:simpleType name="AccelerometerAxisCombination">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="xy"/>
+			<xs:enumeration value="xyz"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AuthorizationStatus">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="agreed"/>
+			<xs:enumeration value="provisional"/>
+			<xs:enumeration value="obsolete"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CorrectionConsidered">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="depth"/>
+			<xs:enumeration value="dual inclinometer"/>
+			<xs:enumeration value="sag"/>
+			<xs:enumeration value="cosag"/>
+			<xs:enumeration value="axial magnetic interference"/>
+			<xs:enumeration value="drill string magnetic interference"/>
+			<xs:enumeration value="international geomagnetic reference field"/>
+			<xs:enumeration value="high resolution geomagnetic model"/>
+			<xs:enumeration value="in field referencing 1"/>
+			<xs:enumeration value="in field referencing 2"/>
+			<xs:enumeration value="in hole referencing"/>
+			<xs:enumeration value="single station analysis"/>
+			<xs:enumeration value="multi station analysis"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CorrectionConsideredExt">
+		<xs:union memberTypes="witsml:CorrectionConsidered eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="ErrorKind">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="alignment"/>
+			<xs:enumeration value="azimuth reference"/>
+			<xs:enumeration value="depth"/>
+			<xs:enumeration value="magnetic"/>
+			<xs:enumeration value="reading"/>
+			<xs:enumeration value="sensor"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ErrorPropagationMode">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="B"/>
+			<xs:enumeration value="G"/>
+			<xs:enumeration value="R"/>
+			<xs:enumeration value="S"/>
+			<xs:enumeration value="W"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GyroAxisCombination">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="z"/>
+			<xs:enumeration value="xy"/>
+			<xs:enumeration value="xyz"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GyroMode">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="continuous"/>
+			<xs:enumeration value="stationary"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MisalignmentMode">
+		<xs:annotation>
+			<xs:documentation>Specifies the various misalignment maths as described in SPE-90408-MS.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OperatingCondition">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="bent sub"/>
+			<xs:enumeration value="cable conveyed"/>
+			<xs:enumeration value="casing"/>
+			<xs:enumeration value="casing collar locator"/>
+			<xs:enumeration value="centrollers"/>
+			<xs:enumeration value="drill pipe"/>
+			<xs:enumeration value="dropped"/>
+			<xs:enumeration value="fast logging speed"/>
+			<xs:enumeration value="floating"/>
+			<xs:enumeration value="large inside diameter"/>
+			<xs:enumeration value="single shot"/>
+			<xs:enumeration value="slow logging speed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OperatingConditionExt">
+		<xs:union memberTypes="witsml:OperatingCondition eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="ToolKind">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="gyroscopic"/>
+			<xs:enumeration value="magnetic"/>
+			<xs:enumeration value="utility"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ToolSubKind">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="blind"/>
+			<xs:enumeration value="blind plus trend"/>
+			<xs:enumeration value="camera based film gyro multi shot"/>
+			<xs:enumeration value="camera based film gyro single shot"/>
+			<xs:enumeration value="camera based film magnetic multi shot"/>
+			<xs:enumeration value="camera based film magnetic single shot"/>
+			<xs:enumeration value="dipmeter"/>
+			<xs:enumeration value="electro magnetic survey"/>
+			<xs:enumeration value="ferranti inertial navigation system"/>
+			<xs:enumeration value="gyro suspicious"/>
+			<xs:enumeration value="gyro while drilling"/>
+			<xs:enumeration value="inclinometer actual"/>
+			<xs:enumeration value="inclinometer planned"/>
+			<xs:enumeration value="inclinometer plus trend"/>
+			<xs:enumeration value="magnetic while drilling"/>
+			<xs:enumeration value="north seeking gyro"/>
+			<xs:enumeration value="ring laser inertial guidance surveyor"/>
+			<xs:enumeration value="surface readout gyro multi shot"/>
+			<xs:enumeration value="surface readout gyro single shot"/>
+			<xs:enumeration value="zero error"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ToolSubKindExt">
+		<xs:union memberTypes="witsml:ToolSubKind eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:complexType name="AbstractOperatingRange" abstract="true">
+		<xs:sequence>
+			<xs:element name="Comment" type="eml:String2000" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="EndInclusive" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Is the end inclusive or exclusive in the range.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartInclusive" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Is the start inclusive or exclusive in the range.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Start" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="End" type="xs:double" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Authorization">
+		<xs:sequence>
+			<xs:element name="ApprovalAuthority" type="eml:String64" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ApprovedBy" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ApprovedOn" type="eml:TimeStamp" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="CheckedBy" type="eml:String64" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="CheckedOn" type="eml:TimeStamp" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="RevisionComment" type="eml:String2000" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="RevisionDate" type="eml:TimeStamp" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Status" type="witsml:AuthorizationStatus" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AzimuthFormula">
+		<xs:sequence>
+			<xs:element name="Formula" type="eml:String2000" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Parameter" type="witsml:Parameter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AzimuthRange">
+		<xs:complexContent>
+			<xs:extension base="witsml:PlaneAngleOperatingRange">
+				<xs:sequence>
+					<xs:element name="IsMagneticNorth" type="xs:boolean" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>True = magnetic north,
+False = True North</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ContinuousAzimuthFormula">
+		<xs:complexContent>
+			<xs:extension base="witsml:AzimuthFormula">
+				<xs:sequence>
+					<xs:element name="GyroAxis" type="witsml:GyroAxisCombination" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ContinuousGyro">
+		<xs:sequence>
+			<xs:element name="AxisCombination" type="witsml:GyroAxisCombination" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ExtensionNameValue" type="eml:ExtensionNameValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GyroReinitializationDistance" type="eml:LengthMeasureExt" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="NoiseReductionFactor" type="xs:double" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Range" type="witsml:PlaneAngleOperatingRange" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Speed" type="eml:LengthPerTimeMeasureExt" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Initialization" type="eml:PlaneAngleMeasureExt" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomOperatingRange">
+		<xs:complexContent>
+			<xs:extension base="witsml:AbstractOperatingRange">
+				<xs:sequence>
+					<xs:element name="Title" type="eml:String64" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Uom" type="eml:UomEnum" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ErrorTerm" type="witsml:ErrorTerm" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ErrorTerm">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="GyroMode" type="witsml:GyroMode" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="MeasureClass" type="eml:MeasureClass" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="PropagationMode" type="witsml:ErrorPropagationMode" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="WeightingFunction" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ErrorTermDictionary" type="witsml:ErrorTermDictionary" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ErrorTermDictionary">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="ErrorTerm" type="witsml:ErrorTerm" minOccurs="2" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ErrorTermValue">
+		<xs:sequence>
+			<xs:element name="Magnitude" type="eml:GenericMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Business Rule : The unconstrained uom of the magnitude is actually constrained by the MeasureClass set to the associated ErrorTerm.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeanValue" type="eml:GenericMeasure" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Business Rules :
+- The unconstrained uom of the mean value is actually constrained by the MeasureClass set to the associated ErrorTerm.
+- If propagation mode is set to 'B' then MeanValue must exist</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorTerm" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GyroToolConfiguration">
+		<xs:annotation>
+			<xs:documentation>SPE90408 Table 11 &amp; Appendix D</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AccelerometerAxisCombination" type="witsml:AccelerometerAxisCombination" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>BR VS GyroMode</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExternalReference" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ContinuousGyro" type="witsml:ContinuousGyro" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="XyAccelerometer" type="witsml:XyAccelerometer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="StationaryGyro" type="witsml:StationaryGyro" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OperatingConstraints">
+		<xs:sequence>
+			<xs:element name="CustomLimits" type="eml:GenericMeasure" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="HorizontalEastWestMaxValue" type="eml:PlaneAngleMeasureExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Absolute value of the maximum value allowed for the product sin(Inclination) * sin(Azimuth).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MdRange" type="eml:MdInterval" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TvdRange" type="eml:AbstractTvdInterval" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PressureLimit" type="eml:PressureMeasureExt" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ThermodynamicTemperatureLimit" type="eml:ThermodynamicTemperatureMeasureExt" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="CustomRange" type="witsml:CustomOperatingRange" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Can be segmented</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LatitudeRange" type="witsml:PlaneAngleOperatingRange" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Can be segmented</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InclinationRange" type="witsml:PlaneAngleOperatingRange" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Can be segmented</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AzimuthRange" type="witsml:AzimuthRange" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Can be segmented</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Parameter">
+		<xs:sequence>
+			<xs:element name="Formula" type="eml:String2000" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Title" type="eml:String64" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PlaneAngleOperatingRange">
+		<xs:complexContent>
+			<xs:extension base="witsml:AbstractOperatingRange">
+				<xs:sequence>
+					<xs:element name="Uom" type="eml:PlaneAngleUomExt" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="StationaryGyro">
+		<xs:sequence>
+			<xs:element name="AxisCombination" type="witsml:GyroAxisCombination" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ExtensionNameValue" type="eml:ExtensionNameValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Range" type="witsml:PlaneAngleOperatingRange" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ToolErrorModel" type="witsml:ToolErrorModel" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ToolErrorModel">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="Application" type="eml:String2000" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Source" type="eml:String2000" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="ToolKind" type="witsml:ToolKind" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="ToolSubKind" type="witsml:ToolSubKindExt" minOccurs="1" maxOccurs="unbounded"/>
+					<xs:element name="OperatingCondition" type="witsml:OperatingConditionExt" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="SurveyRunDateEnd" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>QC with Trajectory date end</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CorrectionConsidered" type="witsml:CorrectionConsideredExt" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="SurveyRunDateStart" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>QC with Trajectory date end</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MisalignmentMode" type="witsml:MisalignmentMode" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Because software handles it (possibility</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OperatingConstraints" type="witsml:OperatingConstraints" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Authorization" type="witsml:Authorization" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ErrorTermValue" type="witsml:ErrorTermValue" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="GyroToolConfiguration" type="witsml:GyroToolConfiguration" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Replaces" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ToolErrorModelDictionary" type="witsml:ToolErrorModelDictionary" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ToolErrorModelDictionary">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="ToolErrorModel" type="witsml:ToolErrorModel" minOccurs="2" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="WeightingFunction" type="witsml:WeightingFunction" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="WeightingFunction">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="Comment" type="eml:String2000" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Kind" type="witsml:ErrorKind" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Source" type="eml:String64" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="DepthFormula" type="eml:String2000" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="InclinationFormula" type="eml:String2000" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="SingularityNorthFormula" type="eml:String2000" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="SingularityEastFormula" type="eml:String2000" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="SingularityVerticalFormula" type="eml:String2000" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="AzimuthFormula" type="witsml:AzimuthFormula" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ContinuousAzimuthFormula" type="witsml:ContinuousAzimuthFormula" minOccurs="0" maxOccurs="3"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="WeightingFunctionDictionary" type="witsml:WeightingFunctionDictionary" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="WeightingFunctionDictionary">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="WeightingFunction" type="witsml:WeightingFunction" minOccurs="2" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="XyAccelerometer">
+		<xs:sequence>
+			<xs:element name="CantAngle" type="eml:PlaneAngleMeasureExt" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Switching" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--														-->
+	</xs:schema>

@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>The Abstract package contains the base XSD types from which all EnergyML data objects are derived.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="Datum.xsd"/>
+	<xs:include schemaLocation="CommonTypes.xsd"/>
+	<xs:include schemaLocation="CommonEnumerations.xsd"/>
+	<xs:include schemaLocation="OSDUIntegration.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:element name="AbstractContextualObject" type="eml:AbstractObject" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Substitution group for contextual data objects.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AbstractDataObject" type="eml:AbstractObject" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Substitution group for normative data objects.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="ActiveStatusKind">
+		<xs:annotation>
+			<xs:documentation>Specifies the active status of the object: active or inactive.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="active">
+				<xs:annotation>
+					<xs:documentation>Currently active. For channels and growing objects, data or parts are being added, updated or deleted. For other objects, channels or growing objects associated with them are active.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="inactive">
+				<xs:annotation>
+					<xs:documentation>Currently inactive. For channels and growing objects, no data or parts have been recently added, updated or deleted. For other objects, no channels or growing objects associated with them are currently active.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AliasIdentifierKind">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="abbreviation">
+				<xs:annotation>
+					<xs:documentation>A shortened form of a word or phrase.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="acronym">
+				<xs:annotation>
+					<xs:documentation>An abbreviation formed from the initial letters of the full name and often pronounced as a word.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="common name">
+				<xs:annotation>
+					<xs:documentation>A common name by which a person, company, or other entity is known.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="industry code">
+				<xs:annotation>
+					<xs:documentation>Short identifier from industry standard register.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="industry name">
+				<xs:annotation>
+					<xs:documentation>Name from industry standard register.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lease identifier">
+				<xs:annotation>
+					<xs:documentation>A name usually associated with the lease or block, the leaseholder, or other entity associated with the lease.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="local language name">
+				<xs:annotation>
+					<xs:documentation>An alias name in local language.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="preferred name">
+				<xs:annotation>
+					<xs:documentation>Preferred name assigned by the firm.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="project number">
+				<xs:annotation>
+					<xs:documentation>This is the number by which a project is known.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="regulatory identifier">
+				<xs:annotation>
+					<xs:documentation>The identifier assigned and used by the regulatory agency that permitted the facility (e.g. well, wellbore, completion).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="regulatory name">
+				<xs:annotation>
+					<xs:documentation>The name assigned and used by the regulatory agency that permitted the facility (e.g. well).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="short name">
+				<xs:annotation>
+					<xs:documentation>A short name or abbreviated name.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="subscription well name">
+				<xs:annotation>
+					<xs:documentation>Well name supplied by subscription organisation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="unique identifier">
+				<xs:annotation>
+					<xs:documentation>Unique company identifier tagged to an object throughout its lifecycle (e.g. well, wellbore).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="wellbore number">
+				<xs:annotation>
+					<xs:documentation>A wellbore identifier in context of a regulatory agency, e.g. NPD, OGA.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AliasIdentifierKindExt">
+		<xs:union memberTypes="eml:AliasIdentifierKind eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="ExistenceKind">
+		<xs:annotation>
+			<xs:documentation>A list of lifecycle states like actual, required, planned, predicted, etc. These are used to qualify any top-level element (from Epicentre 2.1).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="actual">
+				<xs:annotation>
+					<xs:documentation>The data describes a concrete, real implementation currently setup in the field.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="planned">
+				<xs:annotation>
+					<xs:documentation>The data describes a planned implementation of an object under study and/or analysis, subject to evolve, prior to being concretely deployed.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="simulated">
+				<xs:annotation>
+					<xs:documentation>The data is generated as a result of a simulation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="test">
+				<xs:annotation>
+					<xs:documentation>The data describes a concrete implementation currently setup in the  field for test purpose.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ExistenceKindExt">
+		<xs:annotation>
+			<xs:documentation>An Energistics modeling pattern  that allows an implementation to extend the ExistenceKind enumeration. 
+A writer can use this field to write a string (enumeration) that is not part of the official enumeration. 
+A reader must accept this text but is not required to understand or process it. </xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="eml:ExistenceKind eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:complexType name="AbstractActiveObject" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="ActiveStatus" type="eml:ActiveStatusKind" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Describes the active status of the object, whether active or inactive.
+
+STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractGrowingObject" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractActiveObject">
+				<xs:sequence>
+					<xs:element name="Index" type="eml:GrowingObjectIndex" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Information about the growing object's index.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractGrowingObjectPart" abstract="true">
+		<xs:sequence>
+			<xs:element name="Creation" type="eml:TimeStamp" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date and time the document was created in the source application or, if that information is not available, when it was saved to the file.
+
+This is the equivalent of the ISO 19115 CI_Date where the CI_DateTypeCode = ”creation"
+
+Format:
+YYYY-MM-DDThh:mm:ssZ[+/-]hh:mm
+
+Legacy DCGroup - created</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastUpdate" type="eml:TimeStamp" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An ISO 19115 EIP-derived set of metadata attached to all specializations of AbstractObject to ensure the traceability of each individual independent (top level) element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExtensionNameValue" type="eml:ExtensionNameValue" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="uid" use="required" type="eml:String64">
+			<xs:annotation>
+				<xs:documentation>Unique identifier for this instance of a growing part.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="objectVersion" use="optional" type="eml:String64"/>
+	</xs:complexType>
+	<xs:complexType name="AbstractMdGrowingObject" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A growing object where the parts are of type eml:AbstractMdGrowingPart or eml:AbstractMdIntervalGrowingPart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractGrowingObject">
+				<xs:sequence>
+					<xs:element name="MdInterval" type="eml:MdInterval" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The measured depth interval for the parts in this growing object. MdTop MUST equal the minimum measured depth of any part (interval). MdBase MUST equal the maximum measured depth of any part (interval). In an ETP store, the interval values are managed by the store. This MUST be specified when there are parts in the object, and it MUST NOT be specified when there are no parts in the object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractMdGrowingPart" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractGrowingObjectPart">
+				<xs:sequence>
+					<xs:element name="Md" type="eml:MeasuredDepth" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The measured depth of this object growing part.
+
+STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractMdIntervalGrowingPart" abstract="true">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractGrowingObjectPart">
+				<xs:sequence>
+					<xs:element name="MdInterval" type="eml:MdInterval" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The measured depth interval which contains this object growing part.
+
+STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractObject" abstract="true">
+		<xs:annotation>
+			<xs:documentation>The parent class for all top-level elements across the Energistics MLs. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Aliases" type="eml:ObjectAlias" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Citation" type="eml:Citation" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Use the citation data element to optionally add simple authorship metadata to any Energistics object. The citation data object uses attributes like title, originator, editor, last update, etc. from the Energy Industry Profile of ISO 19115-1 (EIP).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Existence" type="eml:ExistenceKindExt" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A lifecycle state like actual, required, planned, predicted, etc. This is used to qualify any top-level element (from Epicentre 2.1).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObjectVersionReason" type="eml:String2000" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An optiona, human-readable reason why this version of the object was created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BusinessActivityHistory" type="eml:String64" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Business processes/workflows that the data object has been through (ex. well planning, exploration).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OSDUIntegration" type="eml:OSDUIntegration" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="CustomData" type="eml:CustomData" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ExtensionNameValue" type="eml:ExtensionNameValue" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="uuid" use="required" type="eml:UuidString">
+			<xs:annotation>
+				<xs:documentation>A universally unique identifier (UUID) as defined by RFC 4122. For rules and guidelines about the format of UUIDs with the current version of Energistics standards, see the Energistics Identifier Specification v5.0.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="schemaVersion" use="required" type="eml:String64">
+			<xs:annotation>
+				<xs:documentation>The version of the Energistics schema used for a data object. The schema version is the first 2 digits of an ML version. EXAMPLES: 
+	- For WITSML v2.0 the schema version is 20
+	- For RESQML v2.0.1 the schema version is 20</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="objectVersion" use="optional" type="eml:String64"/>
+	</xs:complexType>
+	<xs:complexType name="AbstractTimeGrowingObject" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A growing object where the parts are of type eml:AbstractTimeGrowingPart or eml:AbstractTimeIntervalGrowingPart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractGrowingObject">
+				<xs:sequence>
+					<xs:element name="TimeInterval" type="eml:DateTimeInterval" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The time interval for the parts in this growing object. StartTime MUST equal the minimum time of any part (interval). EndTime MUST equal the maximum time of any part (interval). In an ETP store, the interval values are managed by the store. This MUST be specified when there are parts in the object, and it MUST NOT be specified when there are no parts in the object.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractTimeGrowingPart" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractGrowingObjectPart">
+				<xs:sequence>
+					<xs:element name="Time" type="eml:TimeStamp" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractTimeIntervalGrowingPart" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractGrowingObjectPart">
+				<xs:sequence>
+					<xs:element name="TimeInterval" type="eml:DateTimeInterval" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Citation">
+		<xs:annotation>
+			<xs:documentation>An ISO 19115 EIP-derived set of metadata attached to all specializations of AbstractObject to ensure the traceability of each individual independent (top level) element.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Title" type="eml:String256" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One line description/name of the object.
+
+This is the equivalent in ISO 19115 of CI_Citation.title
+
+Legacy DCGroup - title</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Originator" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name (or other human-readable identifier) of the person who initially originated the object or document in the source application. If that information is not available, then this is the user who created the format file. The originator remains the same as the object is subsequently edited. 
+
+This is the equivalent in ISO 19115 to the CI_Individual.name or the CI_Organization.name of the citedResponsibleParty whose role is "originator".
+
+Legacy DCGroup - author</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Creation" type="eml:TimeStamp" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date and time the document was created in the source application or, if that information is not available, when it was saved to the file.
+
+This is the equivalent of the ISO 19115 CI_Date where the CI_DateTypeCode = ”creation"
+
+Format:
+YYYY-MM-DDThh:mm:ssZ[+/-]hh:mm
+
+Legacy DCGroup - created</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Format" type="eml:String2000" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Software or service that was used to originate the object and the file format created. Must be human and machine readable and unambiguously identify the software by including the organization name, software application name and software version. The intent is that these values should be provided by the application that creates or edits the data object and NOT a store that receives the data object. The format is as follows:
+
+organizationName:applicationName:applicationVersion/format
+
+When appropriate, these values should match those provided in ETP via the ServerCapabilities record and the RequestSession and OpenSession messages.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Editor" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name (or other human-readable identifier) of the last person who updated the object. 
+
+This is the equivalent in ISO 19115 to the CI_Individual.name or the CI_Organization.name of the citedResponsibleParty whose role is "editor".
+
+Legacy DCGroup - contributor </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastUpdate" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date and time the document was last modified in the source application or, if that information is not available, when it was last saved to the RESQML format file.
+
+This is the equivalent of the ISO 19115 CI_Date where the CI_DateTypeCode = ”lastUpdate"
+
+
+Format:
+YYYY-MM-DDThh:mm:ssZ[+/-]hh:mm
+
+Legacy DCGroup - modified </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="eml:String2000" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>User descriptive comments about the object. Intended for end-user use (human readable); not necessarily meant to be used by software.
+
+This is the equivalent of the ISO 19115 abstract.CharacterString
+
+Legacy DCGroup - description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EditorHistory" type="eml:String64" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The history of editors for this object. If provided, the first editor should be equivalent to Originator and the last editor should be equivalent to Editor.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DescriptiveKeywords" type="eml:String2000" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Key words to describe the activity, for example, history match or volumetric calculations, relevant to this object. Intended to be used in a search function by software.
+
+This is the equivalent in ISO 19115 of descriptiveKeywords.MD_Keywords
+
+Legacy DCGroup - subject</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomData">
+		<xs:annotation>
+			<xs:documentation>WITSML - Custom or User Defined Element and Attributes Component Schema.
+                                                Specify custom element, attributes, and types in the custom data area.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Any element or attribute in any namespace.  
+					It is strongly recommended that all custom data definitions be added to a unique namespace.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExtensionNameValue">
+		<xs:annotation>
+			<xs:documentation>Extension values Schema. The intent is to allow standard ML domain "named" extensions without having to modify the schema. A client or server can ignore any name that it does not recognize but certain metadata is required to allow generic clients or servers to process the value.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The name of the extension.
+Each standard name should document the expected measure class.
+Each standard name should document the expected maximum size. 
+For numeric values the size should be in terms of xsd types
+such as int, long, short, byte, float or double.
+For strings, the maximum length should be defined in number of characters.
+Local extensions to the list of standard names are allowed but it is strongly
+recommended that the names and definitions be approved by the 
+respective SIG Technical Team before use.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Value" type="eml:StringMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The value of the extension. This may also include a uom attribute. The content should conform to constraints defined by the data type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasureClass" type="eml:MeasureClass" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The kind of the measure. For example, "length".
+This should be specified if the value requires a unit of measure.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DTim" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date-time associated with the value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Index" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Indexes things with the same name. 
+That is, 1 indicates the first one, 2 indicates the second one, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="eml:String2000" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A textual description of the extension.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GrowingObjectIndex">
+		<xs:annotation>
+			<xs:documentation>Common information about the index for a growing object.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error. None of the sub-elements can be changed.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IndexKind" type="eml:DataIndexKind" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The kind of index (date time, measured depth, etc.).
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndexPropertyKind" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An optional value pointing to a PropertyKind.
+Energistics provides a list of standard property kinds that represent the basis for the commonly used properties in the E&amp;P subsurface workflow.
+This PropertyKind enumeration is in the external PropertyKindDictionary XML file in the Common ancillary folder.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Uom" type="eml:UnitOfMeasureExt" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The unit of measure of the index. Must be one of the units allowed for the specified IndexKind (e.g., time or depth).
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Direction" type="eml:IndexDirection" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The direction of the index, either increasing or decreasing. Index direction may not change within the life of a growing object.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Datum" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>For depth indexes, this is a pointer to a reference point defining the datum to which all of the index values are referenced.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ObjectAlias">
+		<xs:annotation>
+			<xs:documentation>Use this to create multiple aliases for any object instance. Note that an Authority is required for each alias.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Identifier" type="eml:String64" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="IdentifierKind" type="eml:AliasIdentifierKindExt" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Description" type="eml:String2000" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="EffectiveDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when an alias name became effective.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TerminationDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The data and time when an alias name ceased to be effective.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="authority" use="required" type="eml:String64"/>
+	</xs:complexType>
+</xs:schema>

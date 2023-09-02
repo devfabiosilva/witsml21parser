@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>Collection contains the schemas to create a data object collection (DataobjectCollection), which is a grouping of other EnergyML data objects, which (because it's a data object) can be persisted. </xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="Abstract.xsd"/>
+	<xs:simpleType name="CollectionKind">
+		<xs:annotation>
+			<xs:documentation>The list of enumerated values for a collection. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="folder"/>
+			<xs:enumeration value="project"/>
+			<xs:enumeration value="realization"/>
+			<xs:enumeration value="scenario"/>
+			<xs:enumeration value="study"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CollectionKindExt">
+		<xs:annotation>
+			<xs:documentation>An Energistics modeling pattern that allows an implementation to extend the defined list of enumerations.
+A writer can use this field to write a string (enumeration) that is not part of the official enumeration.
+A reader must accept this text but is not required to understand or process it. </xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="eml:CollectionKind eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:element name="CollectionsToDataobjectsAssociationSet" type="eml:CollectionsToDataobjectsAssociationSet" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="CollectionsToDataobjectsAssociationSet">
+		<xs:annotation>
+			<xs:documentation>Allows data objects to be associated in one or more collections.
+BUSINESS RULE : If two or more of the same data object collections are used in one CollectionsToDataobjectsAssociationSet, only one of those data object collections should be taken into account and the other ones must be ignored.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="SingleCollectionAssociation" type="eml:SingleCollectionAssociation" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DataobjectCollection" type="eml:DataobjectCollection" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="DataobjectCollection">
+		<xs:annotation>
+			<xs:documentation>Allows multiple data objects to be grouped together into a collection.
+The relationships (between the data objects and the collection) are specified and managed using the SingleCollectionAssociation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="Kind" type="eml:CollectionKindExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Indicates the semantic of the collection. It is an extensible enumeration. So it may be one of the enumerations listed in CollectionKind or an implemenation may specify its own kind using CollectionKindExt.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HomogeneousDatatype" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Boolean flag. If true all data objects in the collection are of the same Energistics data type (EXAMPLE: All wellbores or all horizons). </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SingleCollectionAssociation">
+		<xs:annotation>
+			<xs:documentation>Indicates the data objects that are associated to a single collection.
+BUSINESS RULE: The same collection CANNOT be used in multiple SingleCollectionAssociations of the same CollectionsToDataobjectsAssociations. 
+BUSINESS RULE : If two or more of the same data objects are used in one SingleCollectionAssociation, only one data object should be taken into account and the other ones must be ignored.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="HomogeneousDatatype" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Boolean flag. If true all data objects in the collection are of the same Energistics data type (EXAMPLE: All wellbores or all horizons). </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dataobject" type="eml:DataObjectReference" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="Collection" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

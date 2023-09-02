@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>The BusinessAssociate package is the schema for capturing the name, kind and related contact information for any organization required. As an EnergyML data object, any other data object can reference it using a data object reference. 
+This data object was added for compatibility with OSDU. As an Energistics data object, it can be referenced (using a data object reference (DataObjectReference ) by any other Energistics data object. </xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="Abstract.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:simpleType name="AddressKindEnum">
+		<xs:annotation>
+			<xs:documentation>Specifies the kinds of company addresses. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="both"/>
+			<xs:enumeration value="mailing"/>
+			<xs:enumeration value="physical">
+				<xs:annotation>
+					<xs:documentation>physical</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AddressQualifier">
+		<xs:annotation>
+			<xs:documentation>Specifies qualifiers that can be used for addresses or phone numbers. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="permanent">
+				<xs:annotation>
+					<xs:documentation>permanent</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="personal">
+				<xs:annotation>
+					<xs:documentation>personal</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="work"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrganizationKind">
+		<xs:annotation>
+			<xs:documentation>Kind of organization.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="academic institution"/>
+			<xs:enumeration value="government agency"/>
+			<xs:enumeration value="industry organization"/>
+			<xs:enumeration value="non-governmental organization"/>
+			<xs:enumeration value="organization unit"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrganizationKindExt">
+		<xs:union memberTypes="eml:OrganizationKind eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="PhoneType">
+		<xs:annotation>
+			<xs:documentation>Specifies the types phone number (e.g., fax, mobile, etc.)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="fax"/>
+			<xs:enumeration value="mobile"/>
+			<xs:enumeration value="pager"/>
+			<xs:enumeration value="unknown"/>
+			<xs:enumeration value="voice"/>
+			<xs:enumeration value="voice/fax"/>
+			<xs:enumeration value="voicemail"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="BusinessAssociate" type="eml:BusinessAssociate" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="BusinessAssociate">
+		<xs:annotation>
+			<xs:documentation>Describes any company, person, group, consultant, etc., which is associated within a context (e.g., a well). The information contained in this module is: (1) contact information, such as address, phone numbers, email, (2) alternate name, or aliases, and (3) associations, such as the business associate that this one is associated with, or a contact who is associated with this business associate.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="Name" type="eml:String256" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Name of the business associate. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AuthorityCode" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The code used when this business associate is used as an authority attribute or extensible enumeration authority within Energistics standards.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OrganizationKind" type="eml:OrganizationKindExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The kind of organizational structure the business associate fits into. Typical values include: Operating Unit, Operating sub Unit, A Business, A Department, Government Agency, etc.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Role" type="eml:NameStruct" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The role of the business associate within the context. For example, "driller" or "operator", "lead agency - CEQA compliance" "regulatory contact", "safety contact". A business associate generally has one role but the role may be called different things in different naming systems.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Address" type="eml:GeneralAddress" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The business address.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Contact" type="eml:String64" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>A pointer to a business associate (generally a person) who serves as a contact for this business associate.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PhoneNumber" type="eml:PhoneNumberStruct" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Various types of phone numbers may be given. They may be office or home, they may be a number for a cell phone, or for a fax, etc. Attributes of PhoneNumber declare the type of phone number that is being given.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Email" type="eml:EmailQualifierStruct" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The email address may be home, office, or permanent. More than one may be given.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="EffectiveDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The date and time when the business associate became effective (e.g., the date it was founded).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TerminationDateTime" type="eml:TimeStamp" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The data and time when the business associate ceased to be effective (e.g., the date when it was acquired by another company).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Purpose" type="eml:String2000" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The reason the business associate was formed.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IsInternal" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Indicates if the business associate is internal to the enterprise.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AssociatedWith" type="eml:String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A pointer to another business associate that this business associate is associated with. The most common situation is that of an employee being associated with a company. But it may also be, for example, a work group associated with a university.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonnelCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The count of personnel in a group.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonName" type="eml:PersonName" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The components of a person's name.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EmailQualifierStruct">
+		<xs:annotation>
+			<xs:documentation>An email address with an attribute, used to "qualify" an email as personal, work, or permanent.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="eml:String64">
+				<xs:attribute name="qualifier" use="optional" type="eml:AddressQualifier">
+					<xs:annotation>
+						<xs:documentation>Enum attribute, used to "qualify" an email as personal, work, or permanent.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="GeneralAddress">
+		<xs:annotation>
+			<xs:documentation>An general address structure. This form is appropriate for most countries.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The name line of an address. If missing, use the name of the business associate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Street" type="eml:String64" minOccurs="1" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>A generic term for the middle lines of an address. They may be a street address, PO box, suite number, or any lines that come between the "name" and "city" lines. This may be repeated for up to four, ordered lines.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="City" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The city for the business associate's address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Country" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The country may be included. Although this is optional, it is probably required for most uses.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="County" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The county, if applicable or necessary. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PostalCode" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A postal code, if appropriate for the country. In the USA, this would be the five or nine digit zip code.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="State" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>State.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Province" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Province.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="uid" use="required" type="eml:String64">
+			<xs:annotation>
+				<xs:documentation>A unique identifier for this data element. It is not globally unique (not a uuid) and only need be unique within the context of the parent top-level object.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="kind" use="optional" type="eml:AddressKindEnum">
+			<xs:annotation>
+				<xs:documentation>The type of address: mailing, physical, or both. See AddressKindEnum. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="NameStruct">
+		<xs:annotation>
+			<xs:documentation>The name of something within a naming system.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="eml:String64">
+				<xs:attribute name="authority" use="optional" type="eml:String64">
+					<xs:annotation>
+						<xs:documentation>The authority for the naming system, e.g., a company. </xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PersonName">
+		<xs:annotation>
+			<xs:documentation>The components of a person's name.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Prefix" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A name prefix. Such as, Dr, Ms, Miss, Mr, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="First" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The person's first name, sometimes called their "given name".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Middle" type="eml:String64" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The person's middle name or initial.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Last" type="eml:String64" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The person's last or family name.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Suffix" type="eml:String64" minOccurs="0" maxOccurs="9">
+				<xs:annotation>
+					<xs:documentation>A name suffix such as Esq, Phd, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PhoneNumberStruct" mixed="true">
+		<xs:annotation>
+			<xs:documentation>A phone number with two attributes, used to "type" and "qualify" a phone number. The type would carry information such as fax, modem, voice, and the qualifier would carry information such as home or office.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attribute name="type" use="required" type="eml:PhoneType">
+			<xs:annotation>
+				<xs:documentation>The kind of phone such as voice or fax.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="qualifier" use="optional" type="eml:AddressQualifier">
+			<xs:annotation>
+				<xs:documentation>Indicates whether the number is personal, business or both.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="extension" use="optional" type="eml:String64">
+			<xs:annotation>
+				<xs:documentation>The phone number extension.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/commonv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.3" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>The is the package containing the Coordinate Reference System types.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:include schemaLocation="CommonEnumerations.xsd"/>
+	<xs:include schemaLocation="MeasureType.xsd"/>
+	<xs:include schemaLocation="QuantityClass.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="Abstract.xsd"/>
+	<xs:simpleType name="AxisDirectionKind">
+		<xs:annotation>
+			<xs:documentation>Direction of positive increase in the coordinate value for a coordinate system axis (from ISO 19111)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="aft"/>
+			<xs:enumeration value="away-from"/>
+			<xs:enumeration value="clockwise"/>
+			<xs:enumeration value="column-negative"/>
+			<xs:enumeration value="column-positive"/>
+			<xs:enumeration value="counter-clockwise"/>
+			<xs:enumeration value="display-down"/>
+			<xs:enumeration value="display-left"/>
+			<xs:enumeration value="display-right"/>
+			<xs:enumeration value="display-up"/>
+			<xs:enumeration value="down"/>
+			<xs:enumeration value="east"/>
+			<xs:enumeration value="east-north-east"/>
+			<xs:enumeration value="east-south-east"/>
+			<xs:enumeration value="forward"/>
+			<xs:enumeration value="future"/>
+			<xs:enumeration value="geocentric x"/>
+			<xs:enumeration value="geocentric y"/>
+			<xs:enumeration value="geocentric z"/>
+			<xs:enumeration value="north"/>
+			<xs:enumeration value="north-east"/>
+			<xs:enumeration value="north-north-east"/>
+			<xs:enumeration value="north-north-west"/>
+			<xs:enumeration value="north-west"/>
+			<xs:enumeration value="past"/>
+			<xs:enumeration value="port"/>
+			<xs:enumeration value="row-negative"/>
+			<xs:enumeration value="row-positive"/>
+			<xs:enumeration value="south"/>
+			<xs:enumeration value="south-east"/>
+			<xs:enumeration value="south-south-east"/>
+			<xs:enumeration value="south-south-west"/>
+			<xs:enumeration value="south-west"/>
+			<xs:enumeration value="starboard"/>
+			<xs:enumeration value="towards"/>
+			<xs:enumeration value="up"/>
+			<xs:enumeration value="west"/>
+			<xs:enumeration value="west-north-west"/>
+			<xs:enumeration value="west-south-west"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AxisOrder2d">
+		<xs:annotation>
+			<xs:documentation>Defines the coordinate system axis order of the global CRS using the axis names (from EPSG database).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="easting northing">
+				<xs:annotation>
+					<xs:documentation>The first axis is easting and the second axis is northing.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="easting southing"/>
+			<xs:enumeration value="southing easting"/>
+			<xs:enumeration value="northing easting">
+				<xs:annotation>
+					<xs:documentation>The first axis is northing and the second asis is easting.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="westing southing">
+				<xs:annotation>
+					<xs:documentation>The first axis is westing and the second axis is southing.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="southing westing">
+				<xs:annotation>
+					<xs:documentation>The first axis is southing and the second axis is westing.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="northing westing">
+				<xs:annotation>
+					<xs:documentation>the first axis is northing and the second axis is westing.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="westing northing">
+				<xs:annotation>
+					<xs:documentation>the first axis is westing and the second axis is northing.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EastOrWest">
+		<xs:annotation>
+			<xs:documentation>Specifies east or west direction.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="east">
+				<xs:annotation>
+					<xs:documentation>East of something.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="west">
+				<xs:annotation>
+					<xs:documentation>West of something.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NorthOrSouth">
+		<xs:annotation>
+			<xs:documentation>Specifies the north or south direction.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="north">
+				<xs:annotation>
+					<xs:documentation>North of something.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="south">
+				<xs:annotation>
+					<xs:documentation>South of something.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrincipalMeridian">
+		<xs:annotation>
+			<xs:documentation>Specifies values for the principal meridians for the United States Public Land Surveys.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="1st Principal Meridian">
+				<xs:annotation>
+					<xs:documentation>Indiana, Ohio</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2nd Principal Meridian">
+				<xs:annotation>
+					<xs:documentation>Indiana</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3rd Principal Meridian">
+				<xs:annotation>
+					<xs:documentation>Illinois</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4th Principal Meridian">
+				<xs:annotation>
+					<xs:documentation>Illinois, Wisconsin</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5th Principal Meridian">
+				<xs:annotation>
+					<xs:documentation>Iowa, Missouri, Arkansas</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6th Principal Meridian">
+				<xs:annotation>
+					<xs:documentation>Kansas, Nebraska</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Black Hills Meridian">
+				<xs:annotation>
+					<xs:documentation>South Dakota</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Boise Meridian">
+				<xs:annotation>
+					<xs:documentation>Idaho</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Chickasaw Meridian">
+				<xs:annotation>
+					<xs:documentation>Mississippi</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Choctaw Meridian">
+				<xs:annotation>
+					<xs:documentation>Mississippi</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Cimarron Meridian">
+				<xs:annotation>
+					<xs:documentation>Texas</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Copper River Meridian">
+				<xs:annotation>
+					<xs:documentation>Alaska</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Fairbanks Meridian">
+				<xs:annotation>
+					<xs:documentation>Alaska</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Gila and Salt River Meridian">
+				<xs:annotation>
+					<xs:documentation>Arizona</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Humboldt Meridian">
+				<xs:annotation>
+					<xs:documentation>California</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Huntsville Meridian">
+				<xs:annotation>
+					<xs:documentation>Alabama</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Indian Meridian">
+				<xs:annotation>
+					<xs:documentation>Oklahome</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Kateel River Meridian">
+				<xs:annotation>
+					<xs:documentation>Alaska</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Lousiana Meridian">
+				<xs:annotation>
+					<xs:documentation>Lousiana</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Michigan Meridian">
+				<xs:annotation>
+					<xs:documentation>Michigan</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Montana Meridian">
+				<xs:annotation>
+					<xs:documentation>Montana</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Mount Diablo Meridian">
+				<xs:annotation>
+					<xs:documentation>California</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Navajo Meridian">
+				<xs:annotation>
+					<xs:documentation>Arizona portion of Navajo nation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="New Mexico Meridian">
+				<xs:annotation>
+					<xs:documentation>New Mexico</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Saint Helena Meridian">
+				<xs:annotation>
+					<xs:documentation>Louisiana</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Saint Stephens Meridian">
+				<xs:annotation>
+					<xs:documentation>Alabama</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Salt Lake Meridian">
+				<xs:annotation>
+					<xs:documentation>Utah</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="San Bernardo Meridian">
+				<xs:annotation>
+					<xs:documentation>California</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Seward Meridian">
+				<xs:annotation>
+					<xs:documentation>Alaska</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Tallahassee Meridian">
+				<xs:annotation>
+					<xs:documentation>Floridia</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Uintah Meridian">
+				<xs:annotation>
+					<xs:documentation>Utah</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Umiat Meridian">
+				<xs:annotation>
+					<xs:documentation>Alaska</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Ute Meridian">
+				<xs:annotation>
+					<xs:documentation>Colorado</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Washington Meridian">
+				<xs:annotation>
+					<xs:documentation>Mississippi</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Williamette Meridian">
+				<xs:annotation>
+					<xs:documentation>Washington</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Wind River Meridian">
+				<xs:annotation>
+					<xs:documentation>Wyoming</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PublicLandSurveySystemQuarterSection">
+		<xs:annotation>
+			<xs:documentation>Some combination of NE, NW, SW, SE, N2, S2, E2, W2, C, TRxx, LTnn. USA Public Land Survey System.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:String64">
+			<xs:pattern value="(NE|NW|SW|SE|N2|S2|E2|W2|C|LT[0-9]{2,2}|TR[a-zA-Z0-9]{1,2}){1,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PublicLandSurveySystemQuarterTownship">
+		<xs:annotation>
+			<xs:documentation>Designates a particular quarter of a township (Ohio only). USA Public Land Survey System.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:String64">
+			<xs:pattern value="NE|NW|SW|SE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SectionNumber">
+		<xs:annotation>
+			<xs:documentation>Sections are numbered "1" through "36." Irregular sections may be designated with a single value after a decimal point. USA Public Land Survey System.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="eml:String64">
+			<xs:pattern value="[+]?([1-9]|[1-2][0-9]|3[0-6])\.?[0-9]?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VerticalDirection">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="up">
+				<xs:annotation>
+					<xs:documentation>Values are positive when moving away from the center of the Earth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="down">
+				<xs:annotation>
+					<xs:documentation>Values are positive when moving toward the center of the Earth.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Abstract2dCrs" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractCompoundCrs" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="VerticalCrs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractGeographic2dCrs" abstract="true">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="AbstractProjectedCrs" abstract="true">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="AbstractVerticalCrs" abstract="true">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="Cartesian2dCrs" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="eml:Abstract2dCrs">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Geocentric3dCrs">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeodeticEpsgCrs">
+		<xs:annotation>
+			<xs:documentation>This class contains the EPSG code for a geodetic CRS. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractGeographic2dCrs">
+				<xs:sequence>
+					<xs:element name="EpsgCode" type="eml:PositiveLong" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeodeticLocalAuthorityCrs">
+		<xs:annotation>
+			<xs:documentation>This class contains a code for a geodetic CRS according to a local authority. This would be used in a case where a company or regulatory regime has chosen not to use EPSG codes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractGeographic2dCrs">
+				<xs:sequence>
+					<xs:element name="LocalAuthorityCrsName" type="eml:AuthorityQualifiedName" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeodeticUnknownCrs">
+		<xs:annotation>
+			<xs:documentation>This class is used in a case where the coordinate reference system is either unknown or is intentionally not being transferred.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractGeographic2dCrs">
+				<xs:sequence>
+					<xs:element name="Unknown" type="eml:String2000" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeodeticWktCrs">
+		<xs:annotation>
+			<xs:documentation>ISO 19162-compliant well-known text for the Geodetic CRS.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractGeographic2dCrs">
+				<xs:sequence>
+					<xs:element name="WellKnownText" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>ISO 19162 compliant well known text of the CRS</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Geographic2dCrs" type="eml:Geographic2dCrs" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="Geographic2dCrs">
+		<xs:complexContent>
+			<xs:extension base="eml:Abstract2dCrs">
+				<xs:sequence>
+					<xs:element name="AbstractGeographic2dCrs" type="eml:AbstractGeographic2dCrs" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Geographic3dCrs">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeographicCompoundCrs">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractCompoundCrs">
+				<xs:sequence>
+					<xs:element name="Geographic2dCrs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="HorizontalAxes">
+		<xs:sequence>
+			<xs:element name="Direction1" type="eml:AxisDirectionKind" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Direction of the axis. Commonly used for values such as "easting, northing, depth, etc.."</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Direction2" type="eml:AxisDirectionKind" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Uom" type="eml:LengthAndTimeUomExt" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="IsTime" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LocalEngineering2dCrs" type="eml:LocalEngineering2dCrs" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="LocalEngineering2dCrs">
+		<xs:complexContent>
+			<xs:extension base="eml:Cartesian2dCrs">
+				<xs:sequence>
+					<xs:element name="Azimuth" type="eml:PlaneAngleMeasureExt" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="AzimuthReference" type="eml:NorthReferenceKind" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="OriginProjectedCoordinate1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="OriginProjectedCoordinate2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="HorizontalAxes" type="eml:HorizontalAxes" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="OriginProjectedCrs" type="eml:ProjectedCrs" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LocalEngineeringCompoundCrs" type="eml:LocalEngineeringCompoundCrs" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="LocalEngineeringCompoundCrs">
+		<xs:annotation>
+			<xs:documentation>A local Engineering compound CRS is based on a LocalEngineering2dCRS + a vertical CRS. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractCompoundCrs">
+				<xs:sequence>
+					<xs:element name="OriginVerticalCoordinate" type="xs:double" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Vertical coordinate of the origin of the local engineering CRS in the base vertical CRS (consequently in the uom of the base vertical CRS)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="VerticalAxis" type="eml:VerticalAxis" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="OriginUncertaintyVectorAtOneSigma" type="eml:Vector" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="LocalEngineering2dCrs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProjectedCompoundCrs">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractCompoundCrs">
+				<xs:sequence>
+					<xs:element name="ProjectedCrs" type="eml:DataObjectReference" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ProjectedCrs" type="eml:ProjectedCrs" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="ProjectedCrs">
+		<xs:complexContent>
+			<xs:extension base="eml:Cartesian2dCrs">
+				<xs:sequence>
+					<xs:element name="AxisOrder" type="eml:AxisOrder2d" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="AbstractProjectedCrs" type="eml:AbstractProjectedCrs" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="uom" use="optional" type="eml:LengthUomExt"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProjectedEpsgCrs">
+		<xs:annotation>
+			<xs:documentation>This class contains the EPSG code for a projected CRS.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractProjectedCrs">
+				<xs:sequence>
+					<xs:element name="EpsgCode" type="eml:PositiveLong" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProjectedLocalAuthorityCrs">
+		<xs:annotation>
+			<xs:documentation>This class contains a code for a projected CRS according to a local authority. This would be used in a case where a company or regulatory regime has chosen not to use EPSG codes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractProjectedCrs">
+				<xs:sequence>
+					<xs:element name="LocalAuthorityCrsName" type="eml:AuthorityQualifiedName" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProjectedUnknownCrs">
+		<xs:annotation>
+			<xs:documentation>This class is used in a case where the coordinate reference system is either unknown or is intentionally not being transferred. In this case, the uom and AxisOrder need to be provided on the ProjectedCrs class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractProjectedCrs">
+				<xs:sequence>
+					<xs:element name="Unknown" type="eml:String2000" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProjectedWktCrs">
+		<xs:annotation>
+			<xs:documentation>ISO 19162-compliant well-known text for the projected CRS</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractProjectedCrs">
+				<xs:sequence>
+					<xs:element name="WellKnownText" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>ISO 19162 compliant well known text of the CRS</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PublicLandSurveySystemLocation">
+		<xs:annotation>
+			<xs:documentation>Land survey system that describes the well by range, township, section, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PrincipalMeridian" type="eml:PrincipalMeridian" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Principal meridian for this location.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Range" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Range number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RangeDir" type="eml:EastOrWest" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Range direction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Township" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Township number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TownshipDir" type="eml:NorthOrSouth" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Township direction.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Section" type="eml:SectionNumber" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Section number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QuarterSection" type="eml:PublicLandSurveySystemQuarterSection" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The location of the well within the section, with the primary component listed first. Spot location will be made from a combinationof the following codes: NE, NW, SW, SE, N2, S2, E2, W2, C (center quarter), LTxx (where xx represents a two digit lot designation), TRzz (where zz represents a one or two character trac designation). 
+Free format allows for entries such as NESW (southwest quarter of northeast quarter), E2NESE (southeast quarter of northeast quarter of east half), CNE (northeast quarter of center quarter), etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QuarterTownship" type="eml:PublicLandSurveySystemQuarterTownship" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Quarter township.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AxisOrder" type="eml:AxisOrder2d" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Vector">
+		<xs:sequence>
+			<xs:element name="Component1" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Component2" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Component3" type="xs:double" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VerticalAxis">
+		<xs:sequence>
+			<xs:element name="Direction" type="eml:VerticalDirection" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Direction of the axis. Commonly used for values such as "easting, northing, depth, etc.."</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Uom" type="eml:LengthAndTimeUomExt" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="IsTime" type="xs:boolean" minOccurs="1" maxOccurs="1" default="false"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="VerticalCrs" type="eml:VerticalCrs" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="VerticalCrs">
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="Direction" type="eml:VerticalDirection" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="AbstractVerticalCrs" type="eml:AbstractVerticalCrs" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="uom" use="required" type="eml:LengthUomExt"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VerticalEpsgCrs">
+		<xs:annotation>
+			<xs:documentation>This class contains the EPSG code for a vertical CRS.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractVerticalCrs">
+				<xs:sequence>
+					<xs:element name="EpsgCode" type="eml:PositiveLong" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VerticalLocalAuthorityCrs">
+		<xs:annotation>
+			<xs:documentation>This class contains a code for a vertical CRS according to a local authority. This would be used in a case where a company or regulatory regime has chosen not to use EPSG codes. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractVerticalCrs">
+				<xs:sequence>
+					<xs:element name="LocalAuthorityCrsName" type="eml:AuthorityQualifiedName" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VerticalUnknownCrs">
+		<xs:annotation>
+			<xs:documentation>This class is used in a case where the coordinate reference system is either unknown or is intentionally not being transferred. In this case, the uom and Direction need to be provided on the VerticalCrs class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractVerticalCrs">
+				<xs:sequence>
+					<xs:element name="Unknown" type="eml:String2000" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VerticalWktCrs">
+		<xs:annotation>
+			<xs:documentation>ISO 19162-compliant well-known text for the vertical CRS</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractVerticalCrs">
+				<xs:sequence>
+					<xs:element name="WellKnownText" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>ISO 19162 compliant well known text of the CRS</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

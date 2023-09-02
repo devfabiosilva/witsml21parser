@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.energistics.org/energyml/data/witsmlv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:witsml="http://www.energistics.org/energyml/data/witsmlv2" xmlns:eml="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" version="2.1" attributeFormDefault="unqualified">
+	<!--														-->
+	<!-- Energistics License Agreement
+			This file is distributed under the Energistics Product License Agreement at
+			http://www.energistics.org/product-license-agreement
+			Use of this file constitutes agreement with the Energistics Product License Agreement.
+			Copyright (c) 2021 Energistics. All rights reserved.
+			Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+			-->
+	<!--														-->
+	<xs:annotation>
+		<xs:documentation>WellboreMarkers Schema. The WellboreMarkers object (which was Formation Marker in WITSML v1.4.1) is used to capture information about geologic formations that were encountered in a wellbore. This data is typically captured during drilling using logging while drilling (LWD) tools.</xs:documentation>
+	</xs:annotation>
+	<!--														-->
+	<xs:import namespace="http://www.energistics.org/energyml/data/commonv2" schemaLocation="../../../common/v2.3/xsd_schemas/EmlAllObjects.xsd"/>
+	<!--														-->
+	<xs:include schemaLocation="WellboreGeology.xsd"/>
+	<xs:include schemaLocation="Trajectory.xsd"/>
+	<xs:include schemaLocation="Wellbore.xsd"/>
+	<xs:simpleType name="MarkerQualifierExt">
+		<xs:union memberTypes="eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="StratigraphyKind">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="biostratigraphic"/>
+			<xs:enumeration value="chemostratigraphic"/>
+			<xs:enumeration value="chronostratigraphic"/>
+			<xs:enumeration value="fluid stratigraphic"/>
+			<xs:enumeration value="lithostratigraphic"/>
+			<xs:enumeration value="magnetostratigraphic"/>
+			<xs:enumeration value="seismic stratigraphic"/>
+			<xs:enumeration value="sequence stratigraphic"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StratigraphyKindExt">
+		<xs:union memberTypes="witsml:StratigraphyKind eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="StratigraphyKindQualifier">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="base"/>
+			<xs:enumeration value="fault"/>
+			<xs:enumeration value="gas-oil contact"/>
+			<xs:enumeration value="gas-water contact"/>
+			<xs:enumeration value="oil-water contact"/>
+			<xs:enumeration value="seafloor"/>
+			<xs:enumeration value="top"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StratigraphyKindQualifierExt">
+		<xs:union memberTypes="witsml:StratigraphyKindQualifier eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="WellboreMarkerKind">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="point of interest"/>
+			<xs:enumeration value="stratigraphic"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WellboreMarkerKindExt">
+		<xs:union memberTypes="witsml:WellboreMarkerKind eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:simpleType name="WellborePointOfInterest">
+		<xs:restriction base="eml:TypeEnum">
+			<xs:enumeration value="bottomhole location"/>
+			<xs:enumeration value="first perforation"/>
+			<xs:enumeration value="kickoff point"/>
+			<xs:enumeration value="landing point"/>
+			<xs:enumeration value="last perforation"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WellborePointOfInterestExt">
+		<xs:union memberTypes="witsml:WellborePointOfInterest eml:EnumExtensionPattern"/>
+	</xs:simpleType>
+	<xs:element name="WellboreMarker" type="witsml:WellboreMarker" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="WellboreMarker">
+		<xs:annotation>
+			<xs:documentation>Used to capture information about a geologic formation that was encountered in a wellbore. This object is uniquely identified within the context of one wellbore object.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="ChronostratigraphicTop" type="witsml:GeochronologicalUnit" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The name of a geochronology for this marker, with the "kind" attribute specifying the geochronological time span.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LithostratigraphicTop" type="witsml:LithostratigraphicUnit" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Specifies the unit of lithostratigraphy.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Md" type="eml:MeasuredDepth" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Logged measured depth at the top of marker.
+
+IMMUTABLE. Set on object creation and MUST NOT change thereafter. Customer provided changes after creation are an error. None of the sub-elements on the MarkerSetInterval can be changed,</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Tvd" type="eml:AbstractVerticalDepth" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Logged true vertical depth at top of marker.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DipAngle" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Angle of dip with respect to horizontal. This is the true dip of the geologic surface, not the apparent dip measured locally by a tool.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DipDirection" type="eml:PlaneAngleMeasure" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Interpreted downdip direction.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DipDirectionRef" type="eml:NorthReferenceKind" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Specifies the definition of north. While this is optional because of legacy data, it is strongly recommended that this always be specified.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ObservationNumber" type="xs:long" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The observation number for this marker. This may be used, for example, to distinguish it from other marker observations recorded on the same date and/or with the same name.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="StratigraphyKind" type="witsml:StratigraphyKindExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The kind of stratigraphy this marker represents. Should be populated if WellboreMarkerKind is stratigraphic.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="StratigraphyKindQualifier" type="witsml:StratigraphyKindQualifierExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An optional, additional qualifier on the kind of stratigraphy this marker represents.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GeologicAge" type="eml:TimeMeasureExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geologic age associated with the marker.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MarkerQualifier" type="witsml:MarkerQualifierExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Qualifier for markers that may be missing or need additional information carried about them.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PointOfInterest" type="witsml:WellborePointOfInterestExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The point of interest in a wellbore that this marker represents. Should be populated if WellboreMarkerKind is point of interest.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HighConfidenceMdInterval" type="eml:MdInterval" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Measured depth interval that marks the limit of the high confidence range for the marker pick.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GeologicUnitInterpretation" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Reference to a RESQML geologic unit interpretation that this marker is characterizing.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="WellboreMarkerKind" type="witsml:WellboreMarkerKindExt" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A high level classification of what this marker represents: stratigraphic information, a point of interest in a well or something else.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Wellbore" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Trajectory" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="WellboreMarkerSet" type="witsml:WellboreMarkerSet" substitutionGroup="eml:AbstractDataObject"/>
+	<xs:complexType name="WellboreMarkerSet">
+		<xs:annotation>
+			<xs:documentation>A collection of wellbore markers.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eml:AbstractObject">
+				<xs:sequence>
+					<xs:element name="MarkerSetInterval" type="eml:MdInterval" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Measured depth interval that contains the shallowest and deepest formation markers. This is computed by the server and is read only.
+
+STORE MANAGED. This is populated by a store on read. Customer provided values are ignored on write</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Wellbore" type="eml:DataObjectReference" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="FormationMarker" type="witsml:WellboreMarker" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

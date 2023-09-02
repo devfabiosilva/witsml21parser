@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.energistics.org/energyml/data/commonv2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3">
+	<!--                                                         -->
+	<!-- Energistics License Agreement
+		This file is distributed under the Energistics Product License Agreement at
+		http://www.energistics.org/product-license-agreement
+		Use of this file constitutes agreement with the Energistics Product License Agreement.
+		Copyright (c) 2021 Energistics. All rights reserved.
+		Energistics, WITSML, PRODML and RESQML are trademarks or registered trademarks of Energistics.
+	-->
+	<!--                                                         -->
+	<xs:include schemaLocation="Abstract.xsd"/>
+	<xs:include schemaLocation="Activities.xsd"/>
+	<xs:include schemaLocation="Aggregate.xsd"/>
+	<xs:include schemaLocation="Attachment.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="BusinessAssociate.xsd"/>
+	<xs:include schemaLocation="Collection.xsd"/>
+	<xs:include schemaLocation="ColumnBasedTable.xsd"/>
+	<xs:include schemaLocation="CommonEnumerations.xsd"/>
+	<xs:include schemaLocation="CommonTypes.xsd"/>
+	<xs:include schemaLocation="CRS.xsd"/>
+	<xs:include schemaLocation="Datum.xsd"/>
+	<xs:include schemaLocation="DataAssurance.xsd"/>
+	<xs:include schemaLocation="GraphicalInformation.xsd"/>
+	<xs:include schemaLocation="LegacyUnitsOfMeasure.xsd"/>
+	<xs:include schemaLocation="MeasureType.xsd"/>
+	<xs:include schemaLocation="ObjectReference.xsd"/>
+	<xs:include schemaLocation="OSDUIntegration.xsd"/>
+	<xs:include schemaLocation="QuantityClass.xsd"/>
+	<xs:include schemaLocation="ValueTypes.xsd"/></xs:schema>

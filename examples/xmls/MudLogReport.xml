@@ -1,0 +1,660 @@
+<MudLogReport uuid="" schemaVersion="" objectVersion="">
+ <Aliases xsi:type="ObjectAlias" authority="">
+  <Identifier xsi:type="String64"></Identifier>
+  <IdentifierKind xsi:type="AliasIdentifierKindExt"></IdentifierKind>
+  <Description xsi:type="String2000"></Description>
+  <EffectiveDateTime xsi:type="TimeStamp">2023-05-03T02:44:00Z</EffectiveDateTime>
+  <TerminationDateTime xsi:type="TimeStamp">2023-05-03T02:44:00Z</TerminationDateTime>
+ </Aliases>
+ <Citation xsi:type="Citation">
+  <Title xsi:type="String256"></Title>
+  <Originator xsi:type="String64"></Originator>
+  <Creation xsi:type="TimeStamp">2023-05-03T02:44:00Z</Creation>
+  <Format xsi:type="String2000"></Format>
+  <Editor xsi:type="String64"></Editor>
+  <LastUpdate xsi:type="TimeStamp">2023-05-03T02:44:00Z</LastUpdate>
+  <Description xsi:type="String2000"></Description>
+  <EditorHistory xsi:type="String64"></EditorHistory>
+  <DescriptiveKeywords xsi:type="String2000"></DescriptiveKeywords>
+ </Citation>
+ <Existence xsi:type="ExistenceKindExt"></Existence>
+ <ObjectVersionReason xsi:type="String2000"></ObjectVersionReason>
+ <BusinessActivityHistory xsi:type="String64"></BusinessActivityHistory>
+ <OSDUIntegration xsi:type="OSDUIntegration">
+  <LineageAssertions xsi:type="OSDULineageAssertion">
+   <ID xsi:type="String256"></ID>
+   <LineageRelationshipKind xsi:type="OSDULineageRelationshipKind">direct</LineageRelationshipKind>
+  </LineageAssertions>
+  <OwnerGroup xsi:type="String256"></OwnerGroup>
+  <ViewerGroup xsi:type="String256"></ViewerGroup>
+  <LegalTags xsi:type="String256"></LegalTags>
+  <OSDUGeoJSON xsi:type="xsd:string"></OSDUGeoJSON>
+  <WGS84Latitude xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</WGS84Latitude>
+  <WGS84Longitude xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</WGS84Longitude>
+  <WGS84LocationMetadata xsi:type="OSDUSpatialLocationIntegration">
+   <SpatialLocationCoordinatesDate xsi:type="TimeStamp">2023-05-03T02:44:00Z</SpatialLocationCoordinatesDate>
+   <QuantitativeAccuracyBand xsi:type="String64"></QuantitativeAccuracyBand>
+   <QualitativeSpatialAccuracyType xsi:type="String64"></QualitativeSpatialAccuracyType>
+   <CoordinateQualityCheckPerformedBy xsi:type="String64"></CoordinateQualityCheckPerformedBy>
+   <CoordinateQualityCheckDateTime xsi:type="TimeStamp">2023-05-03T02:44:00Z</CoordinateQualityCheckDateTime>
+   <CoordinateQualityCheckRemark xsi:type="String256"></CoordinateQualityCheckRemark>
+   <AppliedOperation xsi:type="String256"></AppliedOperation>
+  </WGS84LocationMetadata>
+  <Field xsi:type="String64"></Field>
+  <Country xsi:type="String64"></Country>
+  <State xsi:type="String64"></State>
+  <County xsi:type="String64"></County>
+  <City xsi:type="String64"></City>
+  <Region xsi:type="String64"></Region>
+  <District xsi:type="String64"></District>
+  <Block xsi:type="String64"></Block>
+  <Prospect xsi:type="String64"></Prospect>
+  <Play xsi:type="String64"></Play>
+  <Basin xsi:type="String64"></Basin>
+ </OSDUIntegration>
+ <CustomData xsi:type="CustomData">
+  <!-- extensibility element(s) -->
+ </CustomData>
+ <!--ExtensionNameValue xsi:type="ExtensionNameValue">
+  <Name xsi:type="String64"></Name>
+  <Value xsi:type="StringMeasure" uom=""></Value>
+  <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+  <DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+  <Index xsi:type="xsd:long">0</Index>
+  <Description xsi:type="String2000"></Description>
+ </ExtensionNameValue-->
+ <ActiveStatus xsi:type="ActiveStatusKind">active</ActiveStatus>
+ <Index xsi:type="GrowingObjectIndex">
+  <IndexKind xsi:type="DataIndexKind">measured depth</IndexKind>
+  <IndexPropertyKind xsi:type="DataObjectReference">
+   <Uuid xsi:type="UuidString"></Uuid>
+   <ObjectVersion xsi:type="String64"></ObjectVersion>
+   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+   <Title xsi:type="String2000"></Title>
+   <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+   <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+   <!--ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ExtensionNameValue-->
+  </IndexPropertyKind>
+  <Uom xsi:type="UnitOfMeasureExt"></Uom>
+  <Direction xsi:type="IndexDirection">decreasing</Direction>
+  <Datum xsi:type="DataObjectReference">
+   <Uuid xsi:type="UuidString"></Uuid>
+   <ObjectVersion xsi:type="String64"></ObjectVersion>
+   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+   <Title xsi:type="String2000"></Title>
+   <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+   <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+   <ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ExtensionNameValue>
+  </Datum>
+ </Index>
+ <MdInterval xsi:type="MdInterval">
+  <Comment xsi:type="String2000"></Comment>
+  <MdMin xsi:type="xsd:double">0.0</MdMin>
+  <MdMax xsi:type="xsd:double">0.0</MdMax>
+  <Uom xsi:type="LengthUomExt"></Uom>
+  <Datum xsi:type="DataObjectReference">
+   <Uuid xsi:type="UuidString"></Uuid>
+   <ObjectVersion xsi:type="String64"></ObjectVersion>
+   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+   <Title xsi:type="String2000"></Title>
+   <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+   <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+   <ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ExtensionNameValue>
+  </Datum>
+ </MdInterval>
+ <ns1:MudLogCompany xsi:type="DataObjectReference">
+  <Uuid xsi:type="UuidString"></Uuid>
+  <ObjectVersion xsi:type="String64"></ObjectVersion>
+  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+  <Title xsi:type="String2000"></Title>
+  <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+  <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+  <ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ExtensionNameValue>
+ </ns1:MudLogCompany>
+ <ns1:MudLogEngineers xsi:type="String2000"></ns1:MudLogEngineers>
+ <ns1:MudLogGeologists xsi:type="String2000"></ns1:MudLogGeologists>
+ <ns1:Wellbore xsi:type="DataObjectReference">
+  <Uuid xsi:type="UuidString"></Uuid>
+  <ObjectVersion xsi:type="String64"></ObjectVersion>
+  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+  <Title xsi:type="String2000"></Title>
+  <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+  <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+  <ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ExtensionNameValue>
+ </ns1:Wellbore>
+ <ns1:WellboreGeology xsi:type="DataObjectReference">
+  <Uuid xsi:type="UuidString"></Uuid>
+  <ObjectVersion xsi:type="String64"></ObjectVersion>
+  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+  <Title xsi:type="String2000"></Title>
+  <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+  <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+  <ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ExtensionNameValue>
+ </ns1:WellboreGeology>
+ <ns1:RelatedLog xsi:type="DataObjectReference">
+  <Uuid xsi:type="UuidString"></Uuid>
+  <ObjectVersion xsi:type="String64"></ObjectVersion>
+  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+  <Title xsi:type="String2000"></Title>
+  <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+  <LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ExtensionNameValue-->
+ </ns1:RelatedLog>
+ <ns1:MudlogReportInterval xsi:type="ns1:MudlogReportInterval" uid="" objectVersion="">
+  <Creation xsi:type="TimeStamp">2023-05-03T02:44:00Z</Creation>
+  <LastUpdate xsi:type="TimeStamp">2023-05-03T02:44:00Z</LastUpdate>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
+   <Name xsi:type="String64"></Name>
+   <Value xsi:type="StringMeasure" uom=""></Value>
+   <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+   <DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+   <Index xsi:type="xsd:long">0</Index>
+   <Description xsi:type="String2000"></Description>
+  </ExtensionNameValue-->
+  <MdInterval xsi:type="MdInterval">
+   <Comment xsi:type="String2000"></Comment>
+   <MdMin xsi:type="xsd:double">0.0</MdMin>
+   <MdMax xsi:type="xsd:double">0.0</MdMax>
+   <Uom xsi:type="LengthUomExt"></Uom>
+   <Datum xsi:type="DataObjectReference">
+<Uuid xsi:type="UuidString"></Uuid>
+<ObjectVersion xsi:type="String64"></ObjectVersion>
+<QualifiedType xsi:type="QualifiedType"></QualifiedType>
+<Title xsi:type="String2000"></Title>
+<EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+<LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name xsi:type="String64"></Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description xsi:type="String2000"></Description>
+</ExtensionNameValue-->
+   </Datum>
+  </MdInterval>
+  <ns1:CuttingsGeologyInterval xsi:type="ns1:CuttingsGeologyInterval" uid="" objectVersion="">
+   <Creation xsi:type="TimeStamp">2023-05-03T02:44:00Z</Creation>
+   <LastUpdate xsi:type="TimeStamp">2023-05-03T02:44:00Z</LastUpdate>
+   <!--ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ExtensionNameValue-->
+   <MdInterval xsi:type="MdInterval">
+<Comment xsi:type="String2000"></Comment>
+<MdMin xsi:type="xsd:double">0.0</MdMin>
+<MdMax xsi:type="xsd:double">0.0</MdMax>
+<Uom xsi:type="LengthUomExt"></Uom>
+<Datum xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <LocatorUrl xsi:nil="true"/>
+ <!--ExtensionNameValue xsi:nil="true"/-->
+</Datum>
+   </MdInterval>
+   <ns1:DensBulk xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:DensBulk>
+   <ns1:DensShale xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:DensShale>
+   <ns1:Calcite xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Calcite>
+   <ns1:CalcStab xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:CalcStab>
+   <ns1:Cec xsi:type="DimensionlessMeasure" uom="%">0.0</ns1:Cec>
+   <ns1:Dolomite xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Dolomite>
+   <ns1:SizeMin xsi:type="LengthMeasure" uom="m">0.0</ns1:SizeMin>
+   <ns1:SizeMax xsi:type="LengthMeasure" uom="m">0.0</ns1:SizeMax>
+   <ns1:Qft xsi:type="IlluminanceMeasure" uom="footcandle">0.0</ns1:Qft>
+   <ns1:CleaningMethod xsi:type="String64"></ns1:CleaningMethod>
+   <ns1:DryingMethod xsi:type="String64"></ns1:DryingMethod>
+   <ns1:BottomsUpTime xsi:type="TimeMeasure" uom="a">0.0</ns1:BottomsUpTime>
+   <ns1:CuttingsIntervalLithology xsi:type="ns1:CuttingsIntervalLithology" uid="">
+<ns1:Kind xsi:type="LithologyKindExt"></ns1:Kind>
+<ns1:LithPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:LithPc>
+<ns1:Citation xsi:type="Citation">
+ <Title xsi:type="String256"></Title>
+ <Originator xsi:type="String64"></Originator>
+ <Creation xsi:type="TimeStamp">2023-05-03T02:44:00Z</Creation>
+ <Format xsi:type="String2000"></Format>
+ <Editor xsi:type="String64"></Editor>
+ <LastUpdate xsi:nil="true"/>
+ <Description xsi:type="String2000"></Description>
+ <EditorHistory xsi:nil="true"/>
+ <DescriptiveKeywords xsi:type="String2000"></DescriptiveKeywords>
+</ns1:Citation>
+<ns1:CodeLith xsi:type="String64"></ns1:CodeLith>
+<ns1:Color xsi:type="String64"></ns1:Color>
+<ns1:Texture xsi:type="String64"></ns1:Texture>
+<ns1:Hardness xsi:type="String64"></ns1:Hardness>
+<ns1:Compaction xsi:type="String64"></ns1:Compaction>
+<ns1:SizeGrain xsi:type="String64"></ns1:SizeGrain>
+<ns1:Roundness xsi:type="String64"></ns1:Roundness>
+<ns1:Sphericity xsi:type="String64"></ns1:Sphericity>
+<ns1:Sorting xsi:type="String64"></ns1:Sorting>
+<ns1:MatrixCement xsi:type="MatrixCementKind">ankerite</ns1:MatrixCement>
+<ns1:PorosityVisible xsi:type="String64"></ns1:PorosityVisible>
+<ns1:PorosityFabric xsi:type="String64"></ns1:PorosityFabric>
+<ns1:Permeability xsi:type="String64"></ns1:Permeability>
+<ns1:Shows xsi:type="ns1:CuttingsIntervalShow" uid="">
+ <ns1:Citation xsi:nil="true"/>
+ <ns1:ShowRating xsi:nil="true"/>
+ <ns1:StainColor xsi:type="String64"></ns1:StainColor>
+ <ns1:StainDistr xsi:type="String64"></ns1:StainDistr>
+ <ns1:StainPc xsi:nil="true"/>
+ <ns1:CutSpeed xsi:nil="true"/>
+ <ns1:CutColor xsi:type="String64"></ns1:CutColor>
+ <ns1:CutStrength xsi:type="String64"></ns1:CutStrength>
+ <ns1:CutForm xsi:nil="true"/>
+ <ns1:CutLevel xsi:type="String64"></ns1:CutLevel>
+ <ns1:CutFlorForm xsi:nil="true"/>
+ <ns1:CutFlorColor xsi:type="String64"></ns1:CutFlorColor>
+ <ns1:CutFlorStrength xsi:type="String64"></ns1:CutFlorStrength>
+ <ns1:CutFlorSpeed xsi:nil="true"/>
+ <ns1:CutFlorLevel xsi:nil="true"/>
+ <ns1:NatFlorColor xsi:type="String64"></ns1:NatFlorColor>
+ <ns1:NatFlorPc xsi:nil="true"/>
+ <ns1:NatFlorLevel xsi:nil="true"/>
+ <ns1:NatFlorDesc xsi:type="String64"></ns1:NatFlorDesc>
+ <ns1:ResidueColor xsi:type="String64"></ns1:ResidueColor>
+ <ns1:ImpregnatedLitho xsi:type="String64"></ns1:ImpregnatedLitho>
+ <ns1:Odor xsi:type="String64"></ns1:Odor>
+ <ns1:CuttingFluid xsi:type="String64"></ns1:CuttingFluid>
+</ns1:Shows>
+<ns1:Qualifier xsi:type="ns1:LithologyQualifier" uid="">
+ <ns1:Kind xsi:type="LithologyQualifierKindExt"></ns1:Kind>
+ <ns1:MdInterval xsi:nil="true"/>
+ <ns1:Abundance xsi:nil="true"/>
+ <ns1:Description xsi:type="String2000"></ns1:Description>
+</ns1:Qualifier>
+   </ns1:CuttingsIntervalLithology>
+  </ns1:CuttingsGeologyInterval>
+  <ns1:InterpretedGeologyInterval xsi:type="ns1:InterpretedGeologyInterval" uid="" objectVersion="">
+   <Creation xsi:type="TimeStamp">2023-05-03T02:44:00Z</Creation>
+   <LastUpdate xsi:type="TimeStamp">2023-05-03T02:44:00Z</LastUpdate>
+   <!--ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ExtensionNameValue-->
+   <MdInterval xsi:type="MdInterval">
+<Comment xsi:type="String2000"></Comment>
+<MdMin xsi:type="xsd:double">0.0</MdMin>
+<MdMax xsi:type="xsd:double">0.0</MdMax>
+<Uom xsi:type="LengthUomExt"></Uom>
+<Datum xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <LocatorUrl xsi:nil="true"/>
+ <!--ExtensionNameValue xsi:nil="true"/-->
+</Datum>
+   </MdInterval>
+   <ns1:GeochronologicalUnit xsi:type="ns1:GeochronologicalUnit" authority="" kind="eon"></ns1:GeochronologicalUnit>
+   <ns1:LithostratigraphicUnit xsi:type="ns1:LithostratigraphicUnit" authority="" kind="group"></ns1:LithostratigraphicUnit>
+   <ns1:InterpretedLithology xsi:type="ns1:InterpretedIntervalLithology" uid="">
+<ns1:Kind xsi:type="LithologyKindExt"></ns1:Kind>
+<ns1:Citation xsi:type="Citation">
+ <Title xsi:type="String256"></Title>
+ <Originator xsi:type="String64"></Originator>
+ <Creation xsi:type="TimeStamp">2023-05-03T02:44:00Z</Creation>
+ <Format xsi:type="String2000"></Format>
+ <Editor xsi:type="String64"></Editor>
+ <LastUpdate xsi:nil="true"/>
+ <Description xsi:type="String2000"></Description>
+ <EditorHistory xsi:nil="true"/>
+ <DescriptiveKeywords xsi:type="String2000"></DescriptiveKeywords>
+</ns1:Citation>
+<ns1:CodeLith xsi:type="String64"></ns1:CodeLith>
+<ns1:Color xsi:type="String64"></ns1:Color>
+<ns1:Texture xsi:type="String64"></ns1:Texture>
+<ns1:Hardness xsi:type="String64"></ns1:Hardness>
+<ns1:Compaction xsi:type="String64"></ns1:Compaction>
+<ns1:SizeGrain xsi:type="String64"></ns1:SizeGrain>
+<ns1:Roundness xsi:type="String64"></ns1:Roundness>
+<ns1:Sorting xsi:type="String64"></ns1:Sorting>
+<ns1:Sphericity xsi:type="String64"></ns1:Sphericity>
+<ns1:MatrixCement xsi:type="MatrixCementKind">ankerite</ns1:MatrixCement>
+<ns1:PorosityVisible xsi:type="String64"></ns1:PorosityVisible>
+<ns1:PorosityFabric xsi:type="String64"></ns1:PorosityFabric>
+<ns1:Permeability xsi:type="String64"></ns1:Permeability>
+<ns1:Qualifier xsi:type="ns1:LithologyQualifier" uid="">
+ <ns1:Kind xsi:type="LithologyQualifierKindExt"></ns1:Kind>
+ <ns1:MdInterval xsi:nil="true"/>
+ <ns1:Abundance xsi:nil="true"/>
+ <ns1:Description xsi:type="String2000"></ns1:Description>
+</ns1:Qualifier>
+   </ns1:InterpretedLithology>
+  </ns1:InterpretedGeologyInterval>
+  <ns1:ShowEvaluationInterval xsi:type="ns1:ShowEvaluationInterval" uid="" objectVersion="">
+   <Creation xsi:type="TimeStamp">2023-05-03T02:44:00Z</Creation>
+   <LastUpdate xsi:type="TimeStamp">2023-05-03T02:44:00Z</LastUpdate>
+   <!--ExtensionNameValue xsi:type="ExtensionNameValue">
+<Name xsi:type="String64"></Name>
+<Value xsi:type="StringMeasure" uom=""></Value>
+<MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
+<DTim xsi:type="TimeStamp">2023-05-03T02:44:00Z</DTim>
+<Index xsi:type="xsd:long">0</Index>
+<Description xsi:type="String2000"></Description>
+   </ExtensionNameValue-->
+   <MdInterval xsi:type="MdInterval">
+<Comment xsi:type="String2000"></Comment>
+<MdMin xsi:type="xsd:double">0.0</MdMin>
+<MdMax xsi:type="xsd:double">0.0</MdMax>
+<Uom xsi:type="LengthUomExt"></Uom>
+<Datum xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <LocatorUrl xsi:nil="true"/>
+ <!--ExtensionNameValue xsi:nil="true"/-->
+</Datum>
+   </MdInterval>
+   <ns1:ShowFluid xsi:type="ns1:ShowFluid">gas</ns1:ShowFluid>
+   <ns1:ShowRating xsi:type="ns1:ShowRating">none</ns1:ShowRating>
+   <ns1:BottomsUpTime xsi:type="TimeMeasure" uom="a">0.0</ns1:BottomsUpTime>
+  </ns1:ShowEvaluationInterval>
+  <ns1:BottomsUpTime xsi:type="TimeMeasure" uom="a">0.0</ns1:BottomsUpTime>
+  <ns1:Chromatograph xsi:type="ns1:Chromatograph">
+   <ns1:ChromatographMdInterval xsi:type="MdInterval">
+<Comment xsi:type="String2000"></Comment>
+<MdMin xsi:type="xsd:double">0.0</MdMin>
+<MdMax xsi:type="xsd:double">0.0</MdMax>
+<Uom xsi:type="LengthUomExt"></Uom>
+<Datum xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <LocatorUrl xsi:nil="true"/>
+ <!--ExtensionNameValue xsi:nil="true"/-->
+</Datum>
+   </ns1:ChromatographMdInterval>
+   <ns1:DateTimeGasSampleProcessed xsi:type="TimeStamp">2023-05-03T02:44:00Z</ns1:DateTimeGasSampleProcessed>
+   <ns1:ChromatographType xsi:type="String64"></ns1:ChromatographType>
+   <ns1:ETimChromCycle xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimChromCycle>
+   <ns1:ChromReportTime xsi:type="TimeStamp">2023-05-03T02:44:00Z</ns1:ChromReportTime>
+   <ns1:MudWeightIn xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:MudWeightIn>
+   <ns1:MudWeightOut xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:MudWeightOut>
+   <ns1:MethAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:MethAv>
+   <ns1:MethMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:MethMn>
+   <ns1:MethMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:MethMx>
+   <ns1:EthAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:EthAv>
+   <ns1:EthMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:EthMn>
+   <ns1:EthMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:EthMx>
+   <ns1:PropAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:PropAv>
+   <ns1:PropMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:PropMn>
+   <ns1:PropMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:PropMx>
+   <ns1:IbutAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:IbutAv>
+   <ns1:IbutMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:IbutMn>
+   <ns1:IbutMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:IbutMx>
+   <ns1:NbutAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:NbutAv>
+   <ns1:NbutMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:NbutMn>
+   <ns1:NbutMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:NbutMx>
+   <ns1:IpentAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:IpentAv>
+   <ns1:IpentMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:IpentMn>
+   <ns1:IpentMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:IpentMx>
+   <ns1:NpentAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:NpentAv>
+   <ns1:NpentMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:NpentMn>
+   <ns1:NpentMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:NpentMx>
+   <ns1:EpentAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:EpentAv>
+   <ns1:EpentMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:EpentMn>
+   <ns1:EpentMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:EpentMx>
+   <ns1:IhexAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:IhexAv>
+   <ns1:IhexMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:IhexMn>
+   <ns1:IhexMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:IhexMx>
+   <ns1:NhexAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:NhexAv>
+   <ns1:NhexMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:NhexMn>
+   <ns1:NhexMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:NhexMx>
+   <ns1:Co2Av xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Co2Av>
+   <ns1:Co2Mn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Co2Mn>
+   <ns1:Co2Mx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Co2Mx>
+   <ns1:H2sAv xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:H2sAv>
+   <ns1:H2sMn xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:H2sMn>
+   <ns1:H2sMx xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:H2sMx>
+   <ns1:Acetylene xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Acetylene>
+   <ns1:Channel xsi:type="DataObjectReference">
+<Uuid xsi:type="UuidString"></Uuid>
+<ObjectVersion xsi:type="String64"></ObjectVersion>
+<QualifiedType xsi:type="QualifiedType"></QualifiedType>
+<Title xsi:type="String2000"></Title>
+<EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+<LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+<ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name xsi:type="String64"></Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description xsi:type="String2000"></Description>
+</ExtensionNameValue>
+   </ns1:Channel>
+  </ns1:Chromatograph>
+  <ns1:DrillingParameters xsi:type="ns1:DrillingParameters">
+   <ns1:Rop xsi:type="ns1:RopStatistics">
+<ns1:Average xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</ns1:Average>
+<ns1:Minimum xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</ns1:Minimum>
+<ns1:Maximum xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</ns1:Maximum>
+<ns1:Channel xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</ns1:Channel>
+   </ns1:Rop>
+   <ns1:AverageWeightOnBit xsi:type="ns1:WobStatistics">
+<ns1:Average xsi:type="ForceMeasure" uom="N">0.0</ns1:Average>
+<ns1:Channel xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</ns1:Channel>
+   </ns1:AverageWeightOnBit>
+   <ns1:AverageTorque xsi:type="ns1:TorqueStatistics">
+<ns1:Average xsi:type="MomentOfForceMeasure" uom="J">0.0</ns1:Average>
+<ns1:Channel xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</ns1:Channel>
+   </ns1:AverageTorque>
+   <ns1:AverageTorqueCurrent xsi:type="ns1:TorqueCurrentStatistics">
+<ns1:Average xsi:type="ElectricCurrentMeasure" uom="A">0.0</ns1:Average>
+<ns1:Channel xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</ns1:Channel>
+   </ns1:AverageTorqueCurrent>
+   <ns1:AverageTurnRate xsi:type="ns1:RpmStatistics">
+<ns1:Average xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</ns1:Average>
+<ns1:Channel xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <!--EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</ns1:Channel>
+   </ns1:AverageTurnRate>
+   <ns1:AverageMudDensity xsi:type="ns1:MudDensityStatistics">
+<ns1:Average xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Average>
+<ns1:Channel xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</ns1:Channel>
+   </ns1:AverageMudDensity>
+   <ns1:AverageEcdAtTd xsi:type="ns1:EcdStatistics">
+<ns1:Average xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Average>
+<ns1:Channel xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <LocatorUrl xsi:nil="true"/>
+ <!--ExtensionNameValue xsi:nil="true"/-->
+</ns1:Channel>
+   </ns1:AverageEcdAtTd>
+   <ns1:AverageDrillingCoefficient xsi:type="ns1:DxcStatistics">
+<ns1:Average xsi:type="DimensionlessMeasure" uom="%">0.0</ns1:Average>
+<ns1:Channel xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</ns1:Channel>
+   </ns1:AverageDrillingCoefficient>
+  </ns1:DrillingParameters>
+  <ns1:MudGas xsi:type="ns1:MudGas">
+   <ns1:GasInMud xsi:type="ns1:GasInMud">
+<ns1:Average xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Average>
+<ns1:Maximum xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Maximum>
+<ns1:Channel xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <!--LocatorUrl xsi:nil="true"/>
+ <ExtensionNameValue xsi:nil="true"/-->
+</ns1:Channel>
+   </ns1:GasInMud>
+   <ns1:GasPeak xsi:type="ns1:GasPeak">
+<ns1:PeakType xsi:type="ns1:GasPeakType">circulating background gas</ns1:PeakType>
+<ns1:MdPeak xsi:type="LengthMeasure" uom="m">0.0</ns1:MdPeak>
+<ns1:AverageGas xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:AverageGas>
+<ns1:PeakGas xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:PeakGas>
+<ns1:BackgroundGas xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:BackgroundGas>
+<ns1:Channel xsi:type="DataObjectReference">
+ <Uuid xsi:type="UuidString"></Uuid>
+ <ObjectVersion xsi:type="String64"></ObjectVersion>
+ <QualifiedType xsi:type="QualifiedType"></QualifiedType>
+ <Title xsi:type="String2000"></Title>
+ <EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+ <LocatorUrl xsi:nil="true"/>
+ <!--ExtensionNameValue xsi:nil="true"/-->
+</ns1:Channel>
+   </ns1:GasPeak>
+  </ns1:MudGas>
+ </ns1:MudlogReportInterval>
+ <ns1:Parameter xsi:type="ns1:MudLogParameter" uid="">
+  <ns1:MdInterval xsi:type="MdInterval">
+   <Comment xsi:type="String2000"></Comment>
+   <MdMin xsi:type="xsd:double">0.0</MdMin>
+   <MdMax xsi:type="xsd:double">0.0</MdMax>
+   <Uom xsi:type="LengthUomExt"></Uom>
+   <Datum xsi:type="DataObjectReference">
+<Uuid xsi:type="UuidString"></Uuid>
+<ObjectVersion xsi:type="String64"></ObjectVersion>
+<QualifiedType xsi:type="QualifiedType"></QualifiedType>
+<Title xsi:type="String2000"></Title>
+<EnergisticsUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</EnergisticsUri>
+<LocatorUrl xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</LocatorUrl>
+<!--ExtensionNameValue xsi:type="ExtensionNameValue">
+ <Name xsi:type="String64"></Name>
+ <Value xsi:nil="true"/>
+ <MeasureClass xsi:nil="true"/>
+ <DTim xsi:nil="true"/>
+ <Index xsi:nil="true"/>
+ <Description xsi:type="String2000"></Description>
+</ExtensionNameValue-->
+   </Datum>
+  </ns1:MdInterval>
+  <ns1:Citation xsi:type="Citation">
+   <Title xsi:type="String256"></Title>
+   <Originator xsi:type="String64"></Originator>
+   <Creation xsi:type="TimeStamp">2023-05-03T02:44:00Z</Creation>
+   <Format xsi:type="String2000"></Format>
+   <Editor xsi:type="String64"></Editor>
+   <LastUpdate xsi:type="TimeStamp">2023-05-03T02:44:00Z</LastUpdate>
+   <Description xsi:type="String2000"></Description>
+   <EditorHistory xsi:type="String64"></EditorHistory>
+   <DescriptiveKeywords xsi:type="String2000"></DescriptiveKeywords>
+  </ns1:Citation>
+  <ns1:Comments xsi:type="String2000"></ns1:Comments>
+ </ns1:Parameter>
+</MudLogReport>
