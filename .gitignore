@@ -56,7 +56,13 @@ dkms.conf
 *.class
 Java/target/
 
+# MISC FILES
+versionBuilder
+
 # C third-party libraries
 third-party/mongo-c-driver/
 include/bson/
+
+# BSON files
+*.bson
 

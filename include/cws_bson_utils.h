@@ -9,5 +9,10 @@
 void cws_bson_free(bson_t **);
 char *cws_data_to_json(size_t *, const uint8_t *, size_t);
 int bson_serialize(uint8_t **, size_t *, const char *, int, bson_t *);
+int json_to_bson_serialized(
+  uint8_t **, size_t *,
+  const char *, ssize_t,
+  char *, size_t
+);
 #endif
 

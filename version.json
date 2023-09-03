@@ -1,0 +1,21 @@
+{
+ "version": "0.1.0",
+ "witsmlVersion": "2.1",
+ "website": "https://github.com/devfabiosilva/witsml21parser",
+ "license": "MIT",
+ "licenseInformation": "WARNING: Library dependencies are proprietary code. See each library dependences licenses",
+ "dependencies": {
+  "gSoap": {
+   "version": "2.8.129",
+   "website": "https://www.genivia.com/",
+   "contact": "contact@genivia.com",
+   "license": "See https://www.genivia.com/products.html"
+  },
+  "libbson": {
+   "version": "1.24.3",
+   "website": "https://github.com/mongodb/mongo-c-driver",
+   "license": "Apache License 2.0"
+  }
+ }
+}
+

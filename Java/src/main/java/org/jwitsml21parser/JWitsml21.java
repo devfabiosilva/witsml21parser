@@ -26,6 +26,7 @@ public class JWitsml21 {
 
     public native JWitsmlParser parser(String xml, int options) throws JWitsmlException, Exception;
     public static native byte[] bsonToString(byte[] bson) throws Exception;
+    public static native byte[] cwsVersion() throws Exception;
 
     public JWitsmlParser parser(String xml) throws JWitsmlException, Exception {
         return parser(xml, this.options);

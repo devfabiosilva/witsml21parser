@@ -174,4 +174,10 @@ public class JWitsml21Test {
             assertEquals("Empty Binary BSON", e.getMessage());
         }
     }
+
+    @Test
+    public void testVersion() throws JWitsmlException, Exception {
+        JWitsmlParser jWitsmlParser = new JWitsmlParser();
+        assertNotNull(jWitsmlParser.getBsonVersion());
+    }
 }

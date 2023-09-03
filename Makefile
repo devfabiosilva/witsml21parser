@@ -2,6 +2,7 @@
 ENDIAN?=LITTLE
 STAT?=WITH_STATISTICS
 AR=ar rcs
+LD=ld -r -b binary
 CC=gcc
 STRIP=strip
 CURDIR=$(PWD)
@@ -28,6 +29,12 @@ EXECSTACK=execstack -c
 
 all: main
 
+cws_version.o:
+	@echo "Generating version ..."
+	@$(CC) -O2 $(CURDIR)/misc/versionBuilder.c $(CURDIR)/src/cws_utils.c $(CURDIR)/src/cws_bson_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/misc/versionBuilder -L$(LIBDIR) -lbson-static-1.0 -Wall $(FLAG) -DVERGEN
+	cd $(CURDIR)/misc/;./versionBuilder
+	$(LD) -o $(CURDIR)/src/version_bson.o version.bson
+
 cws_utils.o:
 	@echo "Build utilities for CWS for parsing ..."
 	@$(CC) -O2 -c $(CURDIR)/src/cws_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_utils.o -Wall $(FLAG)
@@ -52,7 +59,7 @@ cws_bson_utils.o:
 	@echo "Build BSON utilities for CWS ..."
 	@$(CC) -O2 -c $(CURDIR)/src/cws_bson_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_bson_utils.o -Wall $(FLAG)
 
-lib$(LIBANAME).a: cws_utils.o request_context.o cws_memory.o cws_bson_utils.o cws_soap.o wistml2bson_deserializer.o
+lib$(LIBANAME).a: cws_version.o cws_utils.o request_context.o cws_memory.o cws_bson_utils.o cws_soap.o wistml2bson_deserializer.o
 	@echo "Build lib$(LIBANAME).a ..."
 	$(AR) $(LIBDIR)/lib$(LIBANAME).a $(CURDIR)/src/*.o -v
 
@@ -90,7 +97,7 @@ cws_bson_utils_debug.o:
 	@echo "Build BSON utilities for CWS (DEBUG) ..."
 	@$(CC) -O2 -c $(CURDIR)/src/cws_bson_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_bson_utils_debug.o -Wall $(DEBUG_FLAG)
 
-lib$(LIBANAME)_debug.a: cws_utils_debug.o request_context_debug.o cws_memory_debug.o cws_bson_utils_debug.o cws_soap_debug.o wistml2bson_deserializer_debug.o
+lib$(LIBANAME)_debug.a: cws_version.o cws_utils_debug.o request_context_debug.o cws_memory_debug.o cws_bson_utils_debug.o cws_soap_debug.o wistml2bson_deserializer_debug.o
 	@echo "Build lib$(LIBANAME)_debug.a ..."
 	$(AR) $(LIBDIR)/lib$(LIBANAME)_debug.a $(CURDIR)/src/*.o -v
 
@@ -139,12 +146,18 @@ cws_bson_utils_jni.o:
 	@echo "Build BSON utilities for CWS (JNI)..."
 	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_bson_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_bson_utils_jni.o.o -Wall $(FLAG_JNI)
 
-lib$(LIBANAME_JNI).a: cws_utils_jni.o request_context_jni.o wistml2bson_deserializer_jni.o cws_soap_jni.o cws_memory_jni.o cws_bson_utils_jni.o
+lib$(LIBANAME_JNI).a: cws_version.o cws_utils_jni.o request_context_jni.o wistml2bson_deserializer_jni.o cws_soap_jni.o cws_memory_jni.o cws_bson_utils_jni.o
 	@echo "Build lib$(LIBANAME_JNI).a for Java/Kotlin ..."
 	$(AR) $(LIBDIR)/lib$(LIBANAME_JNI).a $(CURDIR)/src/*.o -v
 
 .PHONY:
 clean:
+ifneq ("$(wildcard $(CURDIR)/misc/versionBuilder)","")
+	@echo "Removing versionBuilder ..."
+	rm -v $(CURDIR)/misc/versionBuilder
+else
+	@echo "Nothing to do with versionBuilder"
+endif
 ifneq ("$(wildcard $(CURDIR)/src/*.o)","")
 	@echo "Removing objects ..."
 	rm -v $(CURDIR)/src/*.o

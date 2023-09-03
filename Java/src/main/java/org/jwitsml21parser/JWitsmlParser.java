@@ -10,15 +10,20 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import static org.jwitsml21parser.JWitsml21.bsonToString;
+import static org.jwitsml21parser.JWitsml21.cwsVersion;
 
 @SuppressWarnings("all")
 public class JWitsmlParser {
     private final String witsmlParserInstanceName = null;
     private final String witsmlObjectName = null;
     public byte [] object = null;
+    public byte [] objectVersion = null;
     private BSONObject bson = null;
+    private BSONObject bsonVersion = null;
     private String json = null;
+    private String jsonVersion = null;
     private byte[] jsonByte = null;
+    private byte[] jsonByteVersion = null;
     private long memoryUsed = -1;
     private int type = -1;
     private int costs = -1;
@@ -35,6 +40,7 @@ public class JWitsmlParser {
     private int event_types = -1 ;
     private int total = -1;
     private Map<String,Object> map = null;
+    private Map<String,Object> mapVersion = null;
     private Map<String, Object> statistic = null;
 
     public Map<String, Object> getStatistic() throws JWitsmlException {
@@ -121,11 +127,39 @@ public class JWitsmlParser {
         throw new JWitsmlException("Could not parse binary data to BSON", 10, "", "", this.witsmlParserInstanceName);
     }
 
+    public BSONObject getBsonVersion() throws JWitsmlException, Exception {
+        if (this.bsonVersion != null)
+            return this.bsonVersion;
+
+        this.objectVersion = cwsVersion();
+
+        BSONDecoder decoder = new BasicBSONDecoder();
+
+        return (this.bsonVersion = decoder.readObject(this.objectVersion));
+    }
+
+    public Map<String, Object> getMapVersion() throws JWitsmlException, Exception {
+        if (this.mapVersion != null)
+            return this.mapVersion;
+
+        return (this.mapVersion = getBsonVersion().toMap());
+    }
+
     public Map<String, Object> getMap() throws JWitsmlException {
         if (this.map != null)
             return this.map;
 
         return (this.map = getBson().toMap());
+    }
+
+    public String getJsonVersion() throws JWitsmlException, Exception {
+        if (this.jsonVersion != null)
+            return jsonVersion;
+
+        if (this.jsonByteVersion == null)
+            this.jsonByteVersion = bsonToString(this.objectVersion);
+
+        return (this.json =  new String(jsonByteVersion, StandardCharsets.UTF_8));
     }
 
     public String getJson() throws JWitsmlException, Exception {

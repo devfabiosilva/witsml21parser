@@ -5,6 +5,7 @@
 #include <request_context.h>
 #include <cws_soap.h>
 #include <wistml2bson_deserializer.h>
+#include <cws_utils.h>
 #include <jni.h>
 
 _Static_assert(sizeof(jbyteArray)==sizeof(void *), "Error");
@@ -455,6 +456,37 @@ Java_org_jwitsml21parser_JWitsml21_bsonToString_resume1:
   (*env)->ReleaseByteArrayElements(env, bson, (jbyte *)c_bson, JNI_ABORT);
 
   return NULL;
+}
+
+/*
+ * Class:     org_jwitsml21parser_JWitsml21
+ * Method:    cwsVersion
+ * Signature: ()[B
+ */
+JNIEXPORT jbyteArray JNICALL Java_org_jwitsml21parser_JWitsml21_cwsVersion(JNIEnv *env, jclass thisClass)
+{
+
+  struct cws_version_t version;
+  jbyteArray j_json;
+
+  cws_version(&version);
+
+  j_json = (*env)->NewByteArray(env, (jsize)version.versionSize);
+
+  if (!j_json) {
+    throwCWitsml21ErrorA("Could not allocate BSON in Java Byte");
+    return NULL;
+  }
+
+  (*env)->SetByteArrayRegion(env, j_json, 0, (jsize)version.versionSize, (const jbyte *)version.version);
+
+  if ((*env)->ExceptionCheck(env)) {
+    throwCWitsml21ErrorA("Could not parse serialized BSON version information to Java Byte");
+    (*env)->DeleteLocalRef(env, j_json);
+    return NULL;
+  }
+
+  return j_json;
 }
 
 /////////////////////////////////////////////////////// C Witsml Parser /////////////////////////////////////////////////////// 
