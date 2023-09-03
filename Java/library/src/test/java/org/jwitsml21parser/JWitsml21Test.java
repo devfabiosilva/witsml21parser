@@ -13,6 +13,8 @@ import static org.jwitsml21parser.JWitsml21.bsonToString;
 public class JWitsml21Test {
 
     JWitsml21 publicParser = new JWitsml21();
+    private final String relativePath = "../../examples/";
+    private final String relativeInputPath = relativePath + "xmls/";
 
     public String readFile(String fileName) throws IOException {
         FileInputStream fstream = new FileInputStream(fileName);
@@ -22,15 +24,15 @@ public class JWitsml21Test {
     }
     @Test
     public void test() throws Exception {
-        String f = readFile("OpsReport.xml");
+        String f = readFile(relativeInputPath + "OpsReport.xml");
         JWitsml21 jWitsml21 = new JWitsml21();
 
         try {
 
             JWitsmlParser parser = jWitsml21.parser(f, -1);
 
-            parser.saveToFile("bsonFile" + parser.getWitsmlObjectName());
-            parser.saveToFileJson("jsonFile" + parser.getWitsmlObjectName());
+            parser.saveToFile(relativePath + "bsonFile" + parser.getWitsmlObjectName());
+            parser.saveToFileJson(relativePath + "jsonFile" + parser.getWitsmlObjectName());
 
             assertNotNull(parser.getBson());
             assertNotNull(parser.getMap());
@@ -47,10 +49,10 @@ public class JWitsml21Test {
     @Test
     public void test2() throws Exception {
         try {
-            JWitsmlParser parser = new JWitsml21().readFile ("OpsReport.xml", -1);
+            JWitsmlParser parser = new JWitsml21().readFile ( relativeInputPath + "OpsReport.xml", -1);
 
-            parser.saveToFile("bsonFileTest2" + parser.getWitsmlObjectName());
-            parser.saveToFileJson("jsonFileTest2" + parser.getWitsmlObjectName());
+            parser.saveToFile(relativePath + "bsonFileTest2" + parser.getWitsmlObjectName());
+            parser.saveToFileJson(relativePath + "jsonFileTest2" + parser.getWitsmlObjectName());
 
             assertNotNull(parser.getBson());
             assertNotNull(parser.getMap());
@@ -67,7 +69,7 @@ public class JWitsml21Test {
     @Test
     public void testOptions() throws Exception, JWitsmlException {
 
-        JWitsmlParser parser = publicParser.readFile("StimJob.xml");
+        JWitsmlParser parser = publicParser.readFile(relativeInputPath + "StimJob.xml");
 
         assertNotNull(parser.getBson());
         assertNotNull(parser.getMap());
@@ -76,59 +78,54 @@ public class JWitsml21Test {
         System.out.println(parser.getStatistic());
 
         try {
-            publicParser.readFile("StimJob.xml", 500);
+            publicParser.readFile(relativeInputPath + "StimJob.xml", 500);
             fail("Could not execute this line");
         } catch (Exception e) {
             assertEquals("Invalid options", e.getMessage());
         }
 
         try {
-            publicParser.clearOptions().readFile("StimJob.xml");
+            publicParser.clearOptions().readFile(relativeInputPath +"StimJob.xml");
             fail("Could never execute this code");
         } catch (JWitsmlException e) {
             assertNotNull(e.getWitsmlParserInstanceName());
             assertEquals("Validation constraint violation: tag name or namespace mismatch in element 'Aliases'", e.getFaultstring());
         }
 
-        parser = publicParser.setXMLIgnoreNS().readFile("StimJob.xml");
-        parser.saveToFileJson(parser.getWitsmlObjectName());
-        parser.saveToFile(parser.getWitsmlObjectName());
+        parser = publicParser.setXMLIgnoreNS().readFile(relativeInputPath + "StimJob.xml");
+        parser.saveToFileJson(relativePath + parser.getWitsmlObjectName());
+        parser.saveToFile(relativePath + parser.getWitsmlObjectName());
 
         assertNotNull(parser.getWitsmlObjectName());
 
         try {
-            publicParser.clearOptions().setXMLStrict().readFile("WellboreGeology.xml");
+            publicParser.clearOptions().setXMLStrict().readFile(relativeInputPath + "WellboreGeology.xml");
         } catch (JWitsmlException e) {
             assertEquals(13, e.getCwitsmlError());
             assertEquals("<CWitsmlStoreError type=\"SOAP_INTERNAL\" subCode=\"SOAP-ENV:Client\" errorCode=\"13\">Validation constraint violation: tag name or namespace mismatch in element 'Aliases'</CWitsmlStoreError>", e.getXMLfaultdetail());
         }
 
-        parser = publicParser.clearOptions().setXMLStrict().readFile("WellboreGeologyNS.xml");
+        parser = publicParser.clearXMLStrict().setXMLIgnoreNS().readFile(relativeInputPath + "Trajectory.xml");
 
-        parser.saveToFileJson(parser.getWitsmlObjectName());
-        parser.saveToFile(parser.getWitsmlObjectName());
+        parser.saveToFileJson(relativePath + parser.getWitsmlObjectName());
+        parser.saveToFile(relativePath + parser.getWitsmlObjectName());
 
-        parser = publicParser.clearXMLStrict().setXMLIgnoreNS().readFile("Trajectory.xml");
+        parser = publicParser.readFile(relativeInputPath + "Risk.xml");
 
-        parser.saveToFileJson(parser.getWitsmlObjectName());
-        parser.saveToFile(parser.getWitsmlObjectName());
+        parser.saveToFileJson(relativePath + parser.getWitsmlObjectName());
+        parser.saveToFile(relativePath + parser.getWitsmlObjectName());
 
-        parser = publicParser.clearXMLIgnoreNS().readFile("Risk.xml");
+        parser = publicParser.setDefault().readFile(relativeInputPath + "ToolErrorModel.xml");
 
-        parser.saveToFileJson(parser.getWitsmlObjectName());
-        parser.saveToFile(parser.getWitsmlObjectName());
+        parser.saveToFileJson(relativePath + parser.getWitsmlObjectName());
+        parser.saveToFile(relativePath + parser.getWitsmlObjectName());
 
-        parser = publicParser.setDefault().readFile("ToolErrorModel.xml");
-
-        parser.saveToFileJson(parser.getWitsmlObjectName());
-        parser.saveToFile(parser.getWitsmlObjectName());
-
-        String f = readFile("Rig.xml");
+        String f = readFile(relativeInputPath + "Rig.xml");
 
         parser = publicParser.parser(f);
 
-        parser.saveToFileJson(parser.getWitsmlObjectName());
-        parser.saveToFile(parser.getWitsmlObjectName());
+        parser.saveToFileJson(relativePath + parser.getWitsmlObjectName());
+        parser.saveToFile(relativePath + parser.getWitsmlObjectName());
 
     }
 
@@ -179,5 +176,6 @@ public class JWitsml21Test {
     public void testVersion() throws JWitsmlException, Exception {
         JWitsmlParser jWitsmlParser = new JWitsmlParser();
         assertNotNull(jWitsmlParser.getBsonVersion());
+        assertEquals("0.1.0", jWitsmlParser.getBsonVersion().get("version"));
     }
 }

@@ -59,6 +59,9 @@ Java/target/
 # MISC FILES
 versionBuilder
 
+# IDEA JAVA
+.idea/
+
 # C third-party libraries
 third-party/mongo-c-driver/
 include/bson/

@@ -221,6 +221,20 @@ else
 	@echo "Nothing to do with $(LIBJNI)"
 endif
 
+ifneq ("$(wildcard $(CURDIR)/examples/*.json)","")
+	@echo "Removing json files example ..."
+	rm -v $(CURDIR)/examples/*.json
+else
+	@echo "Nothing to do with examples/*.json"
+endif
+
+ifneq ("$(wildcard $(CURDIR)/examples/*.bson)","")
+	@echo "Removing BSON files example ..."
+	rm -v $(CURDIR)/examples/*.bson
+else
+	@echo "Nothing to do with examples/*.bson"
+endif
+
 .PHONY:
 pre_remove:
 ifneq ("$(wildcard $(CURDIR)/soapC.o)","")

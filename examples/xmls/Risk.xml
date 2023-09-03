@@ -1,10 +1,10 @@
-<Risk xsi:type="ns1:Risk" uuid="" schemaVersion="" objectVersion="">
- <Aliases xsi:type="ObjectAlias" authority="">
-  <Identifier xsi:type="String64"></Identifier>
-  <IdentifierKind xsi:type="AliasIdentifierKindExt"></IdentifierKind>
-  <Description xsi:type="String2000"></Description>
-  <EffectiveDateTime xsi:type="TimeStamp">2023-05-05T17:14:29Z</EffectiveDateTime>
-  <TerminationDateTime xsi:type="TimeStamp">2023-05-05T17:14:29Z</TerminationDateTime>
+<Risk uuid="" schemaVersion="" objectVersion="">
+ <Aliases authority="a">
+  <Identifier></Identifier>
+  <IdentifierKind></IdentifierKind>
+  <Description></Description>
+  <EffectiveDateTime>2023-05-05T17:14:29Z</EffectiveDateTime>
+  <TerminationDateTime>2023-05-05T17:14:29Z</TerminationDateTime>
  </Aliases>
  <Citation xsi:type="Citation">
   <Title xsi:type="String256"></Title>
