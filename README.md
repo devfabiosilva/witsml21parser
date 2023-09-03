@@ -2,6 +2,16 @@
 
 A fast, robust and portable Witsml 2.1 to BSON parser
 
+## Features
+
+- Fast
+- Robust
+- Portable (Java/Kotlin | Python (in development) | PHP (in development))
+- Low dependency. Only two libraries dependency!
+- No Garbage Collector on parsing
+- Low memory allocation/reallocation
+- Optimized for C/C++ applications
+
 # Before you install
 
 Before you install you need to check these tools:
@@ -101,13 +111,13 @@ make -j12 jni
 
 Before you run your code you MUST set native library environment.
 
-- Go to Java sources [folder](https://github.com/devfabiosilva/witsml21parser/tree/master/Java/src)
+- Go to Java sources [folder](https://github.com/devfabiosilva/witsml21parser/tree/master/Java/library)
 - Execute shell script:
 
 ```sh
 source env.sh
 ```
-- Open with your favorite IDE and run Java code [here](https://github.com/devfabiosilva/witsml21parser/tree/master/Java/src)
+- Open with your favorite IDE and run Java code [here](https://github.com/devfabiosilva/witsml21parser/tree/master/Java/library)
 - Run Tests and Aplication
 
 # SAMPLE APP jwitsml21cmd-1.0.jar
@@ -185,4 +195,39 @@ Saving to file Risk.bson
 Statistics for "../../examples/xmls/Risk.xml":
         {arrays=12, dateTime=17, enums=14, long64s=9, measures=18, strings=106, total=176}
 ```
+
+# BENCHMARKS
+
+Primary benchmarks in Java had been shown that in WITSML 1.4.1.1 parsing objects are 56 % faster than JAXB in Java application.
+
+JAXB only parses XML objects and store their values in respective Java objects. In other hand WITSML BSON parser not only parses XML objects in C structs but it creates BSON objects and add objects to BSON and serialize it and parses it to Java object.
+
+Wait. But how WITSML BSON parser is faster doing more stuffs than JAXB?
+
+Answer is simple.
+
+- Less allocation/reallocation in memory
+- Referencing objects instead create and copy
+- gSoap optimization in parsing XML to C structs. See some interesting GENIVIA articles [here](https://www.genivia.com/ugrep.html)
+- Recycle alloc'd memory
+- Low memory usage
+- Only two library dependency (gSoap and libbson)
+
+# LICENSES
+
+This project is fully open source and MIT license.
+
+## WARNING
+
+Care must be taken because WITSML 2.1 BSON parser needs library with different licenses.
+
+See [version.json](https://github.com/devfabiosilva/witsml21parser/blob/master/version.json) for details.
+
+# DONATIONS
+
+Any donation is welcome.
+
+Consider donation in **BITCOIN**: _1JUzcSh3vsBCRji5n5rJsbHQfW3hYrNAW4_
+
+Thank you :)
 

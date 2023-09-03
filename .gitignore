@@ -54,13 +54,15 @@ dkms.conf
 # Java libraries
 
 *.class
-Java/target/
+Java/library/target/
+Java/sampleApp/target/
 
 # MISC FILES
 versionBuilder
 
-# IDEA JAVA
-.idea/
+# JAVA IDEs
+Java/library/.idea/
+Java/sampleApp/.idea/
 
 # C third-party libraries
 third-party/mongo-c-driver/
