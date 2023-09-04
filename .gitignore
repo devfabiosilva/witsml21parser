@@ -61,6 +61,7 @@ Java/sampleApp/target/
 versionBuilder
 
 # JAVA IDEs
+Java/.idea/
 Java/library/.idea/
 Java/sampleApp/.idea/
 

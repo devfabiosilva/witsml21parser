@@ -1,13 +1,13 @@
 # witsml21parser
 
-A fast, robust and portable Witsml 2.1 to BSON parser
+A fast, robust and portable [Witsml 2.1 protocol](https://energistics.org/witsml-data-standards) to [BSON parser](https://bsonspec.org/)
 
 ## Features
 
 - Fast
 - Robust
-- Portable (Java/Kotlin | Python (in development) | PHP (in development))
-- Low dependency. Only two libraries dependency!
+- Portable ([Java/Kotlin](https://github.com/devfabiosilva/witsml21parser/tree/master/Java) | Python (in development) | PHP (in development))
+- Low dependency libraries.
 - No Garbage Collector on parsing
 - Low memory allocation/reallocation
 - Optimized for C/C++ applications
@@ -18,11 +18,11 @@ Before you install you need to check these tools:
 
 ```sh
 A Linux based OS
-gcc
-cmake
-make
-git
-execstack
+gcc >= 9.4.0
+cmake >= 3.16.3
+make >= 4.2.1
+git >= 2.25.1
+execstack >= 1.0 (for Java application)
 ```
 
 # Downloading
@@ -35,7 +35,7 @@ git clone https://github.com/devfabiosilva/witsml21parser.git
 
 **_witsml21parser_** needs _libbson_ library to be compiled. For first time compiling you need to download and compile dependencies first.
 
-There are two statics dependencies:
+There are two static dependencies:
 
 - libbson
 - WITSML 2.1 - ETP validation schemas C code
@@ -200,7 +200,7 @@ Statistics for "../../examples/xmls/Risk.xml":
 
 Primary benchmarks in Java had been shown that in WITSML 1.4.1.1 parsing objects are 56 % faster than JAXB in Java application.
 
-JAXB only parses XML objects and store their values in respective Java objects. In other hand WITSML BSON parser not only parses XML objects in C structs but it creates BSON objects and add objects to BSON and serialize it and parses it to Java object.
+JAXB only parses XML objects and store their values in respective Java objects. In other hand, WITSML BSON parser not only parses XML objects in C structs but it creates BSON objects and add objects to BSON and serialize it and parses it to Java object.
 
 Wait. But how WITSML BSON parser is faster doing more stuffs than JAXB?
 
@@ -209,9 +209,10 @@ Answer is simple.
 - Less allocation/reallocation in memory
 - Referencing objects instead create and copy
 - gSoap optimization in parsing XML to C structs. See some interesting GENIVIA articles [here](https://www.genivia.com/ugrep.html)
-- Recycle alloc'd memory
+- Recycled alloc'd memory
 - Low memory usage
 - Only two library dependency (gSoap and libbson)
+- No garbage collector
 
 # LICENSES
 
@@ -227,7 +228,7 @@ See [version.json](https://github.com/devfabiosilva/witsml21parser/blob/master/v
 
 Any donation is welcome.
 
-Consider donation in **BITCOIN**: _1JUzcSh3vsBCRji5n5rJsbHQfW3hYrNAW4_
+Consider any amount of donation in _BITCOIN_: *1JUzcSh3vsBCRji5n5rJsbHQfW3hYrNAW4*
 
 Thank you :)
 
