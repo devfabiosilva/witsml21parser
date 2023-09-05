@@ -28,5 +28,16 @@ int bson_read_WellboreGeology2_1(struct soap *);
 int bson_read_WellCMLedger2_1(struct soap *);
 int bson_read_WellCompletion2_1(struct soap *);
 
+#define C_WITSML21_PARSER_BUILD \
+int ns21__readWitsmlObject(struct soap *soap_internal, struct ns21__witsmlObject *WitsmlObject, char **result) \
+{ \
+  readWitsmlObjectFn parser=readWitsmlObjectBsonParser(soap_internal, WitsmlObject); \
+\
+  if ((parser!=NULL)&&(parser(soap_internal)==SOAP_OK)) \
+      return SOAP_OK;\
+\
+  return SOAP_FAULT; \
+}
+
 #endif
 

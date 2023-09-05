@@ -491,13 +491,5 @@ JNIEXPORT jbyteArray JNICALL Java_org_jwitsml21parser_JWitsml21_cwsVersion(JNIEn
 
 /////////////////////////////////////////////////////// C Witsml Parser /////////////////////////////////////////////////////// 
 
-int ns21__readWitsmlObject(struct soap *soap_internal, struct ns21__witsmlObject *WitsmlObject, char **result)
-{
-  readWitsmlObjectFn parser=readWitsmlObjectBsonParser(soap_internal, WitsmlObject);
-
-  if ((parser!=NULL)&&(parser(soap_internal)==SOAP_OK))
-      return SOAP_OK;
-
-  return SOAP_FAULT;
-}
+C_WITSML21_PARSER_BUILD
 
