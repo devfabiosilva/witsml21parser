@@ -8,7 +8,7 @@ STRIP=strip
 CURDIR=$(PWD)
 INCLUDEDIR=$(CURDIR)/include
 #FLAG=-DWITH_ZLIB -DWITH_OPENSSL -DWITH_NOSERVEREQUEST -Wno-stringop-truncation
-FLAG=-Wno-stringop-truncation -D$(STAT) -DCWS_$(ENDIAN)_ENDIAN
+FLAG=-lpthread -Wno-stringop-truncation -D$(STAT) -DCWS_$(ENDIAN)_ENDIAN
 DEBUG_FLAG=-g -fsanitize=address,leak -DSOAP_DEBUG $(FLAG)
 TARG=cws
 TARG_DBG=$(TARG)_debug
