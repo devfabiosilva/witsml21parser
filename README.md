@@ -1,6 +1,6 @@
 # witsml21parser
 
-A fast, robust and portable [Witsml 2.1 protocol](https://energistics.org/witsml-data-standards) to [BSON parser](https://bsonspec.org/)
+A fast, robust and portable [Witsml 2.1](https://energistics.org/witsml-data-standards) to [BSON parser](https://bsonspec.org/)
 
 ## Features
 
@@ -18,6 +18,7 @@ Before you install you need to check these tools:
 
 ```sh
 A Linux based OS
+Python >= 3.8 (For Python 3 application)
 gcc >= 9.4.0
 cmake >= 3.16.3
 make >= 4.2.1
