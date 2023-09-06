@@ -27,6 +27,9 @@ JAVAINCLUDE=/usr/lib/jvm/java-11-openjdk-amd64/include
 JAVAINCLUDE_LINUX=/usr/lib/jvm/java-11-openjdk-amd64/include/linux
 EXECSTACK=execstack -c
 
+LIBANAME_PY=$(LIBANAME)_py
+FLAG_PY=-Wno-stringop-truncation -DJNI_RUSAGE_CHILDREN -DCWS_$(ENDIAN)_ENDIAN -D$(STAT)
+
 all: main
 
 cws_version.o:
@@ -41,11 +44,11 @@ cws_utils.o:
 
 request_context.o:
 	@echo "Build request context for parsing ..."
-	@$(CC) -O2 -c $(CURDIR)/src/request_context.c -I$(INCLUDEDIR) -I$(CURDIR) -I$(CURDIR)/../include -o $(CURDIR)/src/request_context.o -Wall $(FLAG)
+	@$(CC) -O2 -c $(CURDIR)/src/request_context.c -I$(INCLUDEDIR) -I$(CURDIR)  -o $(CURDIR)/src/request_context.o -Wall $(FLAG)
 
 wistml2bson_deserializer.o:
 	@echo "Build WITSML to BSON deserializer ..."
-	@$(CC) -O2 -c $(CURDIR)/src/wistml2bson_deserializer.c -I$(INCLUDEDIR) -I$(CURDIR) -I$(CURDIR)/../include -o $(CURDIR)/src/wistml2bson_deserializer.o -Wall $(FLAG)
+	@$(CC) -O2 -c $(CURDIR)/src/wistml2bson_deserializer.c -I$(INCLUDEDIR) -I$(CURDIR)  -o $(CURDIR)/src/wistml2bson_deserializer.o -Wall $(FLAG)
 
 cws_soap.o:
 	@echo "Build CWS INTERNAL/EXTERNAL SOAP constructors/destructors ..."
@@ -65,17 +68,17 @@ lib$(LIBANAME).a: cws_version.o cws_utils.o request_context.o cws_memory.o cws_b
 
 soapC.o:
 	@echo "Building soapC.o ... It can take a little time ..."
-	@$(CC) -O2 -c -o soapC.o soapC.c -I../include -I../share/gsoap -L../lib  -Wall $(FLAG)
+	@$(CC) -O2 -c -o soapC.o soapC.c -Wall $(FLAG)
 	@echo "Finishing soapC.o"
 
 soapC_shared.o:
 	@echo "Building soapC_shared.o ... It can take a little time ..."
-	@$(CC) -O2 -fPIC -c -o soapC_shared.o soapC.c -I../include -I../share/gsoap -L../lib  -Wall $(FLAG)
+	@$(CC) -O2 -fPIC -c -o soapC_shared.o soapC.c -Wall $(FLAG)
 	@echo "Finishing soapC_shared.o"
 
 wistml2bson_deserializer_debug.o:
 	@echo "Build WITSML to BSON deserializer (DEBUG) ..."
-	@$(CC) -O2 -c $(CURDIR)/src/wistml2bson_deserializer.c -I$(INCLUDEDIR) -I$(CURDIR) -I$(CURDIR)/../include -o $(CURDIR)/src/wistml2bson_deserializer_debug.o -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 -c $(CURDIR)/src/wistml2bson_deserializer.c -I$(INCLUDEDIR) -I$(CURDIR)  -o $(CURDIR)/src/wistml2bson_deserializer_debug.o -Wall $(DEBUG_FLAG)
 
 cws_utils_debug.o:
 	@echo "Build utilities for CWS for parsing (DEBUG) ..."
@@ -83,7 +86,7 @@ cws_utils_debug.o:
 
 request_context_debug.o:
 	@echo "Build request context for parsing (DEBUG) ..."
-	@$(CC) -O2 -c $(CURDIR)/src/request_context.c -I$(INCLUDEDIR) -I$(CURDIR) -I$(CURDIR)/../include -o $(CURDIR)/src/request_context_debug.o -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 -c $(CURDIR)/src/request_context.c -I$(INCLUDEDIR) -I$(CURDIR) -o $(CURDIR)/src/request_context_debug.o -Wall $(DEBUG_FLAG)
 
 cws_soap_debug.o:
 	@echo "Build CWS INTERNAL/EXTERNAL SOAP constructors/destructors (DEBUG) ..."
@@ -103,22 +106,22 @@ lib$(LIBANAME)_debug.a: cws_version.o cws_utils_debug.o request_context_debug.o 
 
 soapC_debug_sanitize.o:
 	@echo "Building soapC_debug_sanitize.o ... It can take a little time ..."
-	@$(CC) -O2 -c -o soapC_debug_sanitize.o soapC.c -I../include -I../share/gsoap -L../lib  -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 -c -o soapC_debug_sanitize.o soapC.c -Wall $(DEBUG_FLAG)
 	@echo "Finishing soapC_debug_sanitize.o"
 ###
 soapC_shared_debug_sanitize.o:
 	@echo "Building soapC_shared_debug_sanitize.o ... It can take a little time ..."
-	@$(CC) -O2 -fPIC -c -o soapC_shared_debug_sanitize.o soapC.c -I../include -I../share/gsoap -L../lib  -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 -fPIC -c -o soapC_shared_debug_sanitize.o soapC.c -Wall $(DEBUG_FLAG)
 	@echo "Finishing soapC_shared_debug_sanitize.o"
 
 main: soapC.o lib$(LIBANAME).a
 	@echo "Compiling ..."
-	@$(CC) -O2 -o $(TARG) main.c stdsoap2.c soapC.o soapServer.c -I$(INCLUDEDIR) -I../include -I../share/gsoap -L../lib -L$(LIBDIR) -lcws  -lpthread -lbson-static-1.0 -Wall $(FLAG)
+	@$(CC) -O2 -o $(TARG) main.c stdsoap2.c soapC.o soapServer.c -I$(INCLUDEDIR) -L$(LIBDIR) -lcws  -lpthread -lbson-static-1.0 -Wall $(FLAG)
 	@echo "Finished"
 
 dbg: soapC_debug_sanitize.o lib$(LIBANAME)_debug.a
 	@echo "Compiling in debug mode ..."
-	@$(CC) -O2 -o $(TARG_DBG) main.c stdsoap2.c soapC_debug_sanitize.o soapServer.c -I$(INCLUDEDIR) -I../include -I../share/gsoap -L$(LIBDIR) -L../lib -lcws_debug  -lpthread -lbson-static-1.0 -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 -o $(TARG_DBG) main.c stdsoap2.c soapC_debug_sanitize.o soapServer.c -I$(INCLUDEDIR) -L$(LIBDIR) -L../lib -lcws_debug  -lpthread -lbson-static-1.0 -Wall $(DEBUG_FLAG)
 	@echo "Finished in debug mode."
 
 ##JNI ONLY SOAP INTERNAL
@@ -128,15 +131,15 @@ cws_utils_jni.o:
 
 request_context_jni.o:
 	@echo "Build request context for parsing (JNI)..."
-	@$(CC) -O2 -fPIC -c $(CURDIR)/src/request_context.c -I$(INCLUDEDIR) -I$(CURDIR) -I$(CURDIR)/../include -o $(CURDIR)/src/request_context_jni.o -Wall $(FLAG_JNI)
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/request_context.c -I$(INCLUDEDIR) -I$(CURDIR)  -o $(CURDIR)/src/request_context_jni.o -Wall $(FLAG_JNI)
 
 wistml2bson_deserializer_jni.o:
 	@echo "Build WITSML to BSON deserializer (JNI)  ..."
-	@$(CC) -O2 -fPIC -c $(CURDIR)/src/wistml2bson_deserializer.c -I$(INCLUDEDIR) -I$(CURDIR) -I$(CURDIR)/../include -o $(CURDIR)/src/wistml2bson_deserializer_jni.o -Wall $(FLAG_JNI)
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/wistml2bson_deserializer.c -I$(INCLUDEDIR) -I$(CURDIR)  -o $(CURDIR)/src/wistml2bson_deserializer_jni.o -Wall $(FLAG_JNI)
 
 cws_soap_jni.o:
 	@echo "Build CWS INTERNAL/EXTERNAL SOAP constructors/destructors (JNI)..."
-	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_soap.c -I$(INCLUDEDIR) -I../include -o $(CURDIR)/src/cws_soap_jni.o -Wall $(FLAG_JNI)
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_soap.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_soap_jni.o -Wall $(FLAG_JNI)
 
 cws_memory_jni.o:
 	@echo "Build memory management for CWS (JNI)..."
@@ -144,11 +147,40 @@ cws_memory_jni.o:
 
 cws_bson_utils_jni.o:
 	@echo "Build BSON utilities for CWS (JNI)..."
-	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_bson_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_bson_utils_jni.o.o -Wall $(FLAG_JNI)
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_bson_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_bson_utils_jni.o -Wall $(FLAG_JNI)
 
 lib$(LIBANAME_JNI).a: cws_version.o cws_utils_jni.o request_context_jni.o wistml2bson_deserializer_jni.o cws_soap_jni.o cws_memory_jni.o cws_bson_utils_jni.o
 	@echo "Build lib$(LIBANAME_JNI).a for Java/Kotlin ..."
 	$(AR) $(LIBDIR)/lib$(LIBANAME_JNI).a $(CURDIR)/src/*.o -v
+
+#PY
+cws_utils_py.o:
+	@echo "Build utilities for CWS for parsing (Python) ..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_utils_py.o -Wall $(FLAG_PY)
+
+request_context_py.o:
+	@echo "Build request context for parsing (Python)..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/request_context.c -I$(INCLUDEDIR) -I$(CURDIR) -o $(CURDIR)/src/request_context_py.o -Wall $(FLAG_PY)
+
+wistml2bson_deserializer_py.o:
+	@echo "Build WITSML to BSON deserializer (Python)  ..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/wistml2bson_deserializer.c -I$(INCLUDEDIR) -I$(CURDIR) -o $(CURDIR)/src/wistml2bson_deserializer_py.o -Wall $(FLAG_PY)
+
+cws_soap_py.o:
+	@echo "Build CWS INTERNAL/EXTERNAL SOAP constructors/destructors (Python)..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_soap.c -I$(INCLUDEDIR) -I../include -o $(CURDIR)/src/cws_soap_py.o -Wall $(FLAG_PY)
+
+cws_memory_py.o:
+	@echo "Build memory management for CWS (Python)..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_memory.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_memory_py.o -Wall $(FLAG_PY)
+
+cws_bson_utils_py.o:
+	@echo "Build BSON utilities for CWS (Python)..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_bson_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_bson_utils_py.o -Wall $(FLAG_PY)
+
+lib$(LIBANAME_PY).a: cws_version.o cws_utils_py.o request_context_py.o wistml2bson_deserializer_py.o cws_soap_py.o cws_memory_py.o cws_bson_utils_py.o
+	@echo "Build lib$(LIBANAME_PY).a for Python 3 ..."
+	$(AR) $(LIBDIR)/lib$(LIBANAME_PY).a $(CURDIR)/src/*.o -v
 
 .PHONY:
 clean:
@@ -198,6 +230,20 @@ ifneq ("$(wildcard $(LIBDIR)/lib$(LIBANAME_JNI).a)","")
 	rm -v $(LIBDIR)/lib$(LIBANAME_JNI).a
 else
 	@echo "Nothing to do $(LIBDIR)/lib$(LIBANAME_JNI).a"
+endif
+
+ifneq ("$(wildcard $(LIBDIR)/lib$(LIBANAME_PY).a)","")
+	@echo "Removing lib$(LIBANAME_PY).a..."
+	rm -v $(LIBDIR)/lib$(LIBANAME_PY).a
+else
+	@echo "Nothing to do $(LIBDIR)/lib$(LIBANAME_PY).a"
+endif
+
+ifneq ("$(wildcard $(CURDIR)/build)","")
+	@echo "Removing Python 3 library $(CURDIR)/build ..."
+	rm -frv $(CURDIR)/build
+else
+	@echo "Nothing to do $(CURDIR)/build"
 endif
 
 ifneq ("$(wildcard $(CURDIR)/*.log)","")
@@ -275,13 +321,20 @@ pre_shared: soapC_shared.o soapC_shared_debug_sanitize.o
 .PHONY:
 jni: lib$(LIBANAME_JNI).a
 	@echo "Compiling $(LIBJNI)..."
-	@$(CC) -O2 -shared -fPIC -o $(LIBJNI) src/jni/parser.c stdsoap2.c soapC_shared.o soapServer.c -I$(INCLUDEDIR) -I$(JAVAINCLUDE) -I$(JAVAINCLUDE_LINUX) -I../include -I../share/gsoap -L../lib -L$(LIBDIR) -lcws_jni -lpthread -lbson-shared-1.0 -Wall $(FLAG_JNI)
+	@$(CC) -O2 -shared -fPIC -o $(LIBJNI) src/jni/parser.c stdsoap2.c soapC_shared.o soapServer.c -I$(INCLUDEDIR) -I$(JAVAINCLUDE) -I$(JAVAINCLUDE_LINUX)  -L$(LIBDIR) -lcws_jni -lpthread -lbson-shared-1.0 -Wall $(FLAG_JNI)
 	@echo "Striping $(LIBJNI) ..."
 	@$(STRIP) $(LIBJNI)
 	@echo "Disabling execstack ..."
 	@$(EXECSTACK) $(LIBJNI)
 	@echo "Unchecking executable library ..."
 	@chmod -x $(LIBJNI)
+	@echo "Finished"
+
+#PYTHON ONLY SOAP INTERNAL
+.PHONY:
+py: lib$(LIBANAME_PY).a
+	@echo "Compiling Python 3 module ..."
+	@python3 setup.py build
 	@echo "Finished"
 
 .PHONY:

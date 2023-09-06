@@ -69,6 +69,10 @@ Java/sampleApp/.idea/
 third-party/mongo-c-driver/
 include/bson/
 
+# Python C modules
+build/
+
+
 # BSON files
 *.bson
 

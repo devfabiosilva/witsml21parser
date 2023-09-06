@@ -118,6 +118,7 @@ int writeToFile(struct soap *, const char *);
 #define GET_INSTANCE_NAME ((CWS_CONFIG *)(soap_internal->user))->instance_name
 #define GET_OBJECT_TYPE ((CWS_CONFIG *)(soap_internal->user))->object_type
 #define GET_OBJECT_NAME ((CWS_CONFIG *)(soap_internal->user))->object_name
+#define DECLARE_CONFIG(soap) CWS_CONFIG *config=((CWS_CONFIG *)(soap->user));
 
 #define IS_WITSML_2_1(soap_ptr) (((CWS_CONFIG *)(soap_ptr->user))->witsml_version==VERSION_2_1)
 
