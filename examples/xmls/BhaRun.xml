@@ -63,21 +63,21 @@
   <Index xsi:type="xsd:long">0</Index>
   <Description xsi:type="String2000"></Description>
  </ExtensionNameValue>
- <ns1:DTimStart xsi:type="TimeStamp">2023-04-27T01:34:19Z</ns1:DTimStart>
- <ns1:DTimStop xsi:type="TimeStamp">2023-04-27T01:34:19Z</ns1:DTimStop>
- <ns1:DTimStartDrilling xsi:type="TimeStamp">2023-04-27T01:34:19Z</ns1:DTimStartDrilling>
- <ns1:DTimStopDrilling xsi:type="TimeStamp">2023-04-27T01:34:19Z</ns1:DTimStopDrilling>
- <ns1:PlanDogleg xsi:type="AnglePerLengthMeasure" uom="0.01 dega/ft">0.0</ns1:PlanDogleg>
- <ns1:ActDogleg xsi:type="AnglePerLengthMeasure" uom="0.01 dega/ft">0.0</ns1:ActDogleg>
- <ns1:ActDoglegMx xsi:type="AnglePerLengthMeasure" uom="0.01 dega/ft">0.0</ns1:ActDoglegMx>
- <ns1:BhaRunStatus xsi:type="ns1:BhaStatus">final</ns1:BhaRunStatus>
- <ns1:NumBitRun xsi:type="xsd:long">0</ns1:NumBitRun>
- <ns1:NumStringRun xsi:type="xsd:long">0</ns1:NumStringRun>
- <ns1:ReasonTrip xsi:type="String2000"></ns1:ReasonTrip>
- <ns1:ObjectiveBha xsi:type="String2000"></ns1:ObjectiveBha>
- <ns1:DrillingParams xsi:type="ns1:DrillingParams" uid="">
-  <ns1:ETimOpBit xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimOpBit>
-  <ns1:MdHoleStart xsi:type="MeasuredDepth">
+ <DTimStart xsi:type="TimeStamp">2023-04-27T01:34:19Z</DTimStart>
+ <DTimStop xsi:type="TimeStamp">2023-04-27T01:34:19Z</DTimStop>
+ <DTimStartDrilling xsi:type="TimeStamp">2023-04-27T01:34:19Z</DTimStartDrilling>
+ <DTimStopDrilling xsi:type="TimeStamp">2023-04-27T01:34:19Z</DTimStopDrilling>
+ <PlanDogleg xsi:type="AnglePerLengthMeasure" uom="0.01 dega/ft">0.0</PlanDogleg>
+ <ActDogleg xsi:type="AnglePerLengthMeasure" uom="0.01 dega/ft">0.0</ActDogleg>
+ <ActDoglegMx xsi:type="AnglePerLengthMeasure" uom="0.01 dega/ft">0.0</ActDoglegMx>
+ <BhaRunStatus xsi:type="BhaStatus">final</BhaRunStatus>
+ <NumBitRun xsi:type="xsd:long">0</NumBitRun>
+ <NumStringRun xsi:type="xsd:long">0</NumStringRun>
+ <ReasonTrip xsi:type="String2000"></ReasonTrip>
+ <ObjectiveBha xsi:type="String2000"></ObjectiveBha>
+ <DrillingParams xsi:type="DrillingParams" uid="">
+  <ETimOpBit xsi:type="TimeMeasure" uom="a">0.0</ETimOpBit>
+  <MdHoleStart xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -95,8 +95,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue>
    </Datum>
-  </ns1:MdHoleStart>
-  <ns1:MdHoleStop xsi:type="MeasuredDepth">
+  </MdHoleStart>
+  <MdHoleStop xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -114,71 +114,71 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue>
    </Datum>
-  </ns1:MdHoleStop>
-  <ns1:HkldRot xsi:type="ForceMeasure" uom="N">0.0</ns1:HkldRot>
-  <ns1:OverPull xsi:type="ForceMeasure" uom="N">0.0</ns1:OverPull>
-  <ns1:SlackOff xsi:type="ForceMeasure" uom="N">0.0</ns1:SlackOff>
-  <ns1:HkldUp xsi:type="ForceMeasure" uom="N">0.0</ns1:HkldUp>
-  <ns1:HkldDn xsi:type="ForceMeasure" uom="N">0.0</ns1:HkldDn>
-  <ns1:TqOnBotAv xsi:type="MomentOfForceMeasure" uom="J">0.0</ns1:TqOnBotAv>
-  <ns1:TqOnBotMx xsi:type="MomentOfForceMeasure" uom="J">0.0</ns1:TqOnBotMx>
-  <ns1:TqOnBotMn xsi:type="MomentOfForceMeasure" uom="J">0.0</ns1:TqOnBotMn>
-  <ns1:TqOffBotAv xsi:type="MomentOfForceMeasure" uom="J">0.0</ns1:TqOffBotAv>
-  <ns1:TqDhAv xsi:type="MomentOfForceMeasure" uom="J">0.0</ns1:TqDhAv>
-  <ns1:WtAboveJar xsi:type="ForceMeasure" uom="N">0.0</ns1:WtAboveJar>
-  <ns1:WtBelowJar xsi:type="ForceMeasure" uom="N">0.0</ns1:WtBelowJar>
-  <ns1:WtMud xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:WtMud>
-  <ns1:FlowratePumpAv xsi:type="VolumePerTimeMeasure" uom="">0.0</ns1:FlowratePumpAv>
-  <ns1:FlowratePumpMx xsi:type="VolumePerTimeMeasure" uom="">0.0</ns1:FlowratePumpMx>
-  <ns1:FlowratePumpMn xsi:type="VolumePerTimeMeasure" uom="">0.0</ns1:FlowratePumpMn>
-  <ns1:VelNozzleAv xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</ns1:VelNozzleAv>
-  <ns1:PowBit xsi:type="PowerMeasure" uom="W">0.0</ns1:PowBit>
-  <ns1:PresDropBit xsi:type="PressureMeasure" uom="">0.0</ns1:PresDropBit>
-  <ns1:CTimHold xsi:type="TimeMeasure" uom="a">0.0</ns1:CTimHold>
-  <ns1:CTimSteering xsi:type="TimeMeasure" uom="a">0.0</ns1:CTimSteering>
-  <ns1:CTimDrillRot xsi:type="TimeMeasure" uom="a">0.0</ns1:CTimDrillRot>
-  <ns1:CTimDrillSlid xsi:type="TimeMeasure" uom="a">0.0</ns1:CTimDrillSlid>
-  <ns1:CTimCirc xsi:type="TimeMeasure" uom="a">0.0</ns1:CTimCirc>
-  <ns1:CTimReam xsi:type="TimeMeasure" uom="a">0.0</ns1:CTimReam>
-  <ns1:DistDrillRot xsi:type="LengthMeasure" uom="m">0.0</ns1:DistDrillRot>
-  <ns1:DistDrillSlid xsi:type="LengthMeasure" uom="m">0.0</ns1:DistDrillSlid>
-  <ns1:DistReam xsi:type="LengthMeasure" uom="m">0.0</ns1:DistReam>
-  <ns1:DistHold xsi:type="LengthMeasure" uom="m">0.0</ns1:DistHold>
-  <ns1:DistSteering xsi:type="LengthMeasure" uom="m">0.0</ns1:DistSteering>
-  <ns1:RpmAv xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</ns1:RpmAv>
-  <ns1:RpmMx xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</ns1:RpmMx>
-  <ns1:RpmMn xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</ns1:RpmMn>
-  <ns1:RpmAvDh xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</ns1:RpmAvDh>
-  <ns1:RopAv xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</ns1:RopAv>
-  <ns1:RopMx xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</ns1:RopMx>
-  <ns1:RopMn xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</ns1:RopMn>
-  <ns1:WobAv xsi:type="ForceMeasure" uom="N">0.0</ns1:WobAv>
-  <ns1:WobMx xsi:type="ForceMeasure" uom="N">0.0</ns1:WobMx>
-  <ns1:WobMn xsi:type="ForceMeasure" uom="N">0.0</ns1:WobMn>
-  <ns1:WobAvDh xsi:type="ForceMeasure" uom="N">0.0</ns1:WobAvDh>
-  <ns1:ReasonTrip xsi:type="String2000"></ns1:ReasonTrip>
-  <ns1:ObjectiveBha xsi:type="String2000"></ns1:ObjectiveBha>
-  <ns1:AziTop xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:AziTop>
-  <ns1:AziBottom xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:AziBottom>
-  <ns1:InclStart xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:InclStart>
-  <ns1:InclMx xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:InclMx>
-  <ns1:InclMn xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:InclMn>
-  <ns1:InclStop xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:InclStop>
-  <ns1:TempMudDhMx xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempMudDhMx>
-  <ns1:PresPumpAv xsi:type="PressureMeasure" uom="">0.0</ns1:PresPumpAv>
-  <ns1:FlowrateBit xsi:type="VolumePerTimeMeasure" uom="">0.0</ns1:FlowrateBit>
-  <ns1:MudClass xsi:type="ns1:MudClass">oil-based</ns1:MudClass>
-  <ns1:MudSubClass xsi:type="ns1:MudSubClass">aerated mud</ns1:MudSubClass>
-  <ns1:Comments xsi:type="String2000"></ns1:Comments>
-  <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </MdHoleStop>
+  <HkldRot xsi:type="ForceMeasure" uom="N">0.0</HkldRot>
+  <OverPull xsi:type="ForceMeasure" uom="N">0.0</OverPull>
+  <SlackOff xsi:type="ForceMeasure" uom="N">0.0</SlackOff>
+  <HkldUp xsi:type="ForceMeasure" uom="N">0.0</HkldUp>
+  <HkldDn xsi:type="ForceMeasure" uom="N">0.0</HkldDn>
+  <TqOnBotAv xsi:type="MomentOfForceMeasure" uom="J">0.0</TqOnBotAv>
+  <TqOnBotMx xsi:type="MomentOfForceMeasure" uom="J">0.0</TqOnBotMx>
+  <TqOnBotMn xsi:type="MomentOfForceMeasure" uom="J">0.0</TqOnBotMn>
+  <TqOffBotAv xsi:type="MomentOfForceMeasure" uom="J">0.0</TqOffBotAv>
+  <TqDhAv xsi:type="MomentOfForceMeasure" uom="J">0.0</TqDhAv>
+  <WtAboveJar xsi:type="ForceMeasure" uom="N">0.0</WtAboveJar>
+  <WtBelowJar xsi:type="ForceMeasure" uom="N">0.0</WtBelowJar>
+  <WtMud xsi:type="MassPerVolumeMeasure" uom="">0.0</WtMud>
+  <FlowratePumpAv xsi:type="VolumePerTimeMeasure" uom="">0.0</FlowratePumpAv>
+  <FlowratePumpMx xsi:type="VolumePerTimeMeasure" uom="">0.0</FlowratePumpMx>
+  <FlowratePumpMn xsi:type="VolumePerTimeMeasure" uom="">0.0</FlowratePumpMn>
+  <VelNozzleAv xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</VelNozzleAv>
+  <PowBit xsi:type="PowerMeasure" uom="W">0.0</PowBit>
+  <PresDropBit xsi:type="PressureMeasure" uom="">0.0</PresDropBit>
+  <CTimHold xsi:type="TimeMeasure" uom="a">0.0</CTimHold>
+  <CTimSteering xsi:type="TimeMeasure" uom="a">0.0</CTimSteering>
+  <CTimDrillRot xsi:type="TimeMeasure" uom="a">0.0</CTimDrillRot>
+  <CTimDrillSlid xsi:type="TimeMeasure" uom="a">0.0</CTimDrillSlid>
+  <CTimCirc xsi:type="TimeMeasure" uom="a">0.0</CTimCirc>
+  <CTimReam xsi:type="TimeMeasure" uom="a">0.0</CTimReam>
+  <DistDrillRot xsi:type="LengthMeasure" uom="m">0.0</DistDrillRot>
+  <DistDrillSlid xsi:type="LengthMeasure" uom="m">0.0</DistDrillSlid>
+  <DistReam xsi:type="LengthMeasure" uom="m">0.0</DistReam>
+  <DistHold xsi:type="LengthMeasure" uom="m">0.0</DistHold>
+  <DistSteering xsi:type="LengthMeasure" uom="m">0.0</DistSteering>
+  <RpmAv xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</RpmAv>
+  <RpmMx xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</RpmMx>
+  <RpmMn xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</RpmMn>
+  <RpmAvDh xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</RpmAvDh>
+  <RopAv xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</RopAv>
+  <RopMx xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</RopMx>
+  <RopMn xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</RopMn>
+  <WobAv xsi:type="ForceMeasure" uom="N">0.0</WobAv>
+  <WobMx xsi:type="ForceMeasure" uom="N">0.0</WobMx>
+  <WobMn xsi:type="ForceMeasure" uom="N">0.0</WobMn>
+  <WobAvDh xsi:type="ForceMeasure" uom="N">0.0</WobAvDh>
+  <ReasonTrip xsi:type="String2000"></ReasonTrip>
+  <ObjectiveBha xsi:type="String2000"></ObjectiveBha>
+  <AziTop xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</AziTop>
+  <AziBottom xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</AziBottom>
+  <InclStart xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</InclStart>
+  <InclMx xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</InclMx>
+  <InclMn xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</InclMn>
+  <InclStop xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</InclStop>
+  <TempMudDhMx xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempMudDhMx>
+  <PresPumpAv xsi:type="PressureMeasure" uom="">0.0</PresPumpAv>
+  <FlowrateBit xsi:type="VolumePerTimeMeasure" uom="">0.0</FlowrateBit>
+  <MudClass xsi:type="MudClass">oil-based</MudClass>
+  <MudSubClass xsi:type="MudSubClass">aerated mud</MudSubClass>
+  <Comments xsi:type="String2000"></Comments>
+  <ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-04-27T01:34:19Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue>
-  <ns1:Tubular xsi:type="DataObjectReference">
+  </ExtensionNameValue>
+  <Tubular xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -193,9 +193,9 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:Tubular>
- </ns1:DrillingParams>
- <ns1:Wellbore xsi:type="DataObjectReference">
+  </Tubular>
+ </DrillingParams>
+ <Wellbore xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -210,8 +210,8 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:Wellbore>
- <ns1:Tubular xsi:type="DataObjectReference">
+ </Wellbore>
+ <Tubular xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -226,5 +226,5 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:Tubular>
+ </Tubular>
 </BhaRun>

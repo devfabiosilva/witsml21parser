@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include "stdsoap2.h"
 // C Witsml store memory alignment 1^4 (16 bytes)
 //#include <stdio.h>
 
@@ -21,7 +22,26 @@ void *cws_malloc(size_t size)
 
   CWS_ALIGN
 
+  if (size_tmp>SOAP_MAXALLOCSIZE)
+    return NULL;
+
   if ((result=(uint8_t *)malloc(size_tmp)))
+    if ((size_tmp-=size))
+       memset((void *)&result[size], 0, size_tmp);
+
+  return (void *)result;
+}
+
+void *cws_realloc(void *ptr, size_t size)
+{
+  uint8_t *result;
+
+  CWS_ALIGN
+
+  if (size_tmp>SOAP_MAXALLOCSIZE)
+    return NULL;
+
+  if ((result=(uint8_t *)realloc(ptr, size_tmp)))
     if ((size_tmp-=size))
        memset((void *)&result[size], 0, size_tmp);
 

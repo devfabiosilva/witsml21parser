@@ -20,10 +20,33 @@ struct const_t {
    const char *name;
    int value;
 } CONST[] = {
-   {"ALG_1", 1},
-   {"ALG_2", 2},
-   {"ALG_3", 3},
-   {NULL}
+  {"XML_IGNORENS", SOAP_XML_IGNORENS},
+  {"XML_STRICT", SOAP_XML_STRICT},
+  {"TYPE_None", TYPE_None},
+  {"TYPE_BhaRun", TYPE_BhaRun},
+  {"TYPE_CementJob", TYPE_CementJob},
+  {"TYPE_DepthRegImage", TYPE_DepthRegImage},
+  {"TYPE_DownholeComponent", TYPE_DownholeComponent},
+  {"TYPE_DrillReport", TYPE_DrillReport},
+  {"TYPE_FluidsReport", TYPE_FluidsReport},
+  {"TYPE_Log", TYPE_Log},
+  {"TYPE_MudLogReport", TYPE_MudLogReport},
+  {"TYPE_OpsReport", TYPE_OpsReport},
+  {"TYPE_Rig", TYPE_Rig},
+  {"TYPE_Risk", TYPE_Risk},
+  {"TYPE_StimJob", TYPE_StimJob},
+  {"TYPE_SurveyProgram", TYPE_SurveyProgram},
+  {"TYPE_Target", TYPE_Target},
+  {"TYPE_ToolErrorModel", TYPE_ToolErrorModel},
+  {"TYPE_Trajectory", TYPE_Trajectory},
+  {"TYPE_Tubular", TYPE_Tubular},
+  {"TYPE_Well", TYPE_Well},
+  {"TYPE_Wellbore", TYPE_Wellbore},
+  {"TYPE_WellboreCompletion", TYPE_WellboreCompletion},
+  {"TYPE_WellboreGeology", TYPE_WellboreGeology},
+  {"TYPE_WellCMLedger", TYPE_WellCMLedger},
+  {"TYPE_WellCompletion", TYPE_WellCompletion},
+  {NULL}
 };
 
 //#ifdef SOAP_DEBUG
@@ -55,8 +78,7 @@ static PyObject *c_obj_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
 static int c_obj_init(PyTypeObject *self, PyObject *args, PyObject *kwds)
 {
-  //struct soap *soap_internal=((Py_WITSML21_PARSER *)self)->soap_internal;
-  CWS_CONFIG *config=cws_config_new("Python3 Init");
+  CWS_CONFIG *config=cws_config_new("PyWITSML 2.1 BSON parser");
 
   if (!config)
     Py_WITSML21_ERROR("Could not initialize CWS config", -500)
@@ -76,24 +98,80 @@ static int c_obj_init(PyTypeObject *self, PyObject *args, PyObject *kwds)
 
 static void c_obj_dealloc(void *self)
 {
-  DECLARE_CONFIG(((Py_WITSML21_PARSER *)self)->soap_internal)
+  CWS_CONFIG *config;
 
-  Py_WITSML21_DEBUG(stdout, "Destroying soap internal %p\n", ((Py_WITSML21_PARSER *)self)->soap_internal)
-  cws_internal_soap_free(&((Py_WITSML21_PARSER *)self)->soap_internal);
-  Py_WITSML21_DEBUG(stdout, "Destroyed soap internal %p\n", ((Py_WITSML21_PARSER *)self)->soap_internal)
+  if (((Py_WITSML21_PARSER *)self)->soap_internal) {
+    config=(CWS_CONFIG *)((Py_WITSML21_PARSER *)self)->soap_internal->user;
 
-  Py_WITSML21_DEBUG(stdout, "Destroying config %p\n", config)
-  cws_config_free(&config);
-  Py_WITSML21_DEBUG(stdout, "Destroyed config %p\n", config)
+    Py_WITSML21_DEBUG(stdout, "Destroying soap internal %p\n", ((Py_WITSML21_PARSER *)self)->soap_internal)
+    cws_internal_soap_free(&((Py_WITSML21_PARSER *)self)->soap_internal);
+    Py_WITSML21_DEBUG(stdout, "Destroyed soap internal %p\n", ((Py_WITSML21_PARSER *)self)->soap_internal)
+
+    Py_WITSML21_DEBUG(stdout, "Destroying config %p\n", config)
+    cws_config_free(&config);
+    Py_WITSML21_DEBUG(stdout, "Destroyed config %p\n", config)
+  }
 }
 
 static PyObject *c_parse(PyTypeObject *self, PyObject *args, PyObject *kwds)
 {
-   return Py_BuildValue("s", "Test");
+  struct soap *soap_internal=((Py_WITSML21_PARSER *)self)->soap_internal;
+  struct c_bson_serialized_t *bson_ser;
+  DECLARE_CONFIG(soap_internal)
+  char
+   *kwlist[] = {"xml", NULL};
+
+  const char *c_xml=NULL;
+  Py_ssize_t c_xml_size=0;
+
+  Py_WITSML21_DEBUG(stdout, "\nSoap internal %p\n", soap_internal)
+
+  if (!PyArg_ParseTupleAndKeywords(
+    args, kwds, "s#", kwlist,
+    &c_xml, &c_xml_size
+  )) Py_WITSML21_ERROR("Error on parse WITSML 2.1 xml", NULL)
+
+  if (c_xml_size<1)
+    Py_WITSML21_ERROR("Wrong xml size or empty xml string", NULL)
+
+  cws_internal_soap_recycle(soap_internal);
+  cws_recycle_config(config);
+
+  if (!cws_parse_XML_soap_envelope(soap_internal, (char *)c_xml, (size_t)c_xml_size))
+    Py_WITSML21_ERROR("Could not parse xml string. See xml errors for details", NULL)
+
+  if (cws_soap_serve(soap_internal))
+    Py_WITSML21_ERROR("Could not deserialize xml string. See xml errors for details", NULL)
+
+  if (!(bson_ser=bsonSerialize(soap_internal)))
+    Py_WITSML21_ERROR("Could not serialize BSON", NULL)
+ 
+  return Py_BuildValue("y#", (const char *)bson_ser->bson, (Py_ssize_t)bson_ser->bson_size);
+}
+
+static PyObject *c_get_object_name(PyTypeObject *self, PyObject *args, PyObject *kwds)
+{
+  struct soap *soap_internal=((Py_WITSML21_PARSER *)self)->soap_internal;
+  return Py_BuildValue("z", GET_OBJECT_NAME);
+}
+
+static PyObject *c_get_object_type(PyTypeObject *self, PyObject *args, PyObject *kwds)
+{
+  struct soap *soap_internal=((Py_WITSML21_PARSER *)self)->soap_internal;
+  return PyLong_FromLong((long int)GET_OBJECT_TYPE);
+}
+
+static PyObject *c_get_instance_name(PyTypeObject *self, PyObject *args, PyObject *kwds)
+{
+  struct soap *soap_internal=((Py_WITSML21_PARSER *)self)->soap_internal;
+  return Py_BuildValue("s", (const char *)GET_INSTANCE_NAME);
 }
 
 static PyMethodDef py_witsml21_methods[] = {
-  {"parseA", (PyCFunction)c_parse, METH_NOARGS/*METH_VARARGS|METH_KEYWORDS*/, "Parses a WITSML 2.1 XML to BSON"},
+  {"parse", (PyCFunction)c_parse, METH_VARARGS|METH_KEYWORDS, "Parses a WITSML 2.1 XML to BSON"},
+  {"getObjectName", (PyCFunction)c_get_object_name, METH_NOARGS, "Get WITSML 2.1 object name"},
+  {"getObjectType", (PyCFunction)c_get_object_type, METH_NOARGS, "Get WITSML 2.1 object type"},
+  {"getInstanceName", (PyCFunction)c_get_instance_name, METH_NOARGS, "Get WITSML 2.1 instance name and its C config pointer"},
   {NULL}
 };
 
@@ -111,38 +189,38 @@ static PyTypeObject Py_WITSML21_Type = {
 };
 
 static PyModuleDef Py_WITSML21_module = {
-    PyModuleDef_HEAD_INIT,
-    .m_name="WITSML 2.1 to BSON parser module",
-    .m_doc="WITSML 2.1 to BSON parser module for Python 3 using C library",
-    .m_size=-1,
+  PyModuleDef_HEAD_INIT,
+  .m_name="WITSML 2.1 to BSON parser module",
+  .m_doc="WITSML 2.1 to BSON parser module for Python 3 using C library",
+  .m_size=-1,
 };
 
 PyMODINIT_FUNC PyInit_witsml21bson(void)
 {
-   PyObject *m;
-   struct const_t *c;
+  PyObject *m;
+  struct const_t *c;
 
-   Py_WITSML21_DEBUG(stdout, "Check is WITSML 2.1 parser is ready\n")
-   if (PyType_Ready(&Py_WITSML21_Type)<0)
-      Py_WITSML21_ERROR("\n\"Can't initialize module WITSML 2.1 parser\"\n", NULL)
+  Py_WITSML21_DEBUG(stdout, "Check is WITSML 2.1 parser is ready\n")
+  if (PyType_Ready(&Py_WITSML21_Type)<0)
+    Py_WITSML21_ERROR("\n\"Can't initialize module WITSML 2.1 parser\"\n", NULL)
 
-   Py_WITSML21_DEBUG(stdout, "Creating module ...\n")
-   if (!(m=PyModule_Create(&Py_WITSML21_module)))
-      Py_WITSML21_ERROR("\nCannot create module \"Py_WITSML21_module\"\n", NULL)
+  Py_WITSML21_DEBUG(stdout, "Creating module ...\n")
+  if (!(m=PyModule_Create(&Py_WITSML21_module)))
+    Py_WITSML21_ERROR("\nCannot create module \"Py_WITSML21_module\"\n", NULL)
 
-   Py_WITSML21_DEBUG(stdout, "Module %p created\n", m);
-   if (PyModule_AddObject(m, "create", (PyObject *) &Py_WITSML21_Type)<0)
-      Py_WITSML21_ERROR("\nCannot create module \"WITSML 2.1 to BSON parser\" from \"Py_WITSML21_Type\"\n", NULL)
+  Py_WITSML21_DEBUG(stdout, "Module %p created\n", m);
+  if (PyModule_AddObject(m, "create", (PyObject *) &Py_WITSML21_Type)<0)
+    Py_WITSML21_ERROR("\nCannot create module \"WITSML 2.1 to BSON parser\" from \"Py_WITSML21_Type\"\n", NULL)
 
-   c=CONST;
-   while (c->name) {
-      if (PyModule_AddIntConstant(m, c->name, (long int)c->value))
-         Py_WITSML21_ERROR("Could not add const value", NULL)
+  c=CONST;
+  while (c->name) {
+    if (PyModule_AddIntConstant(m, c->name, (long int)c->value))
+      Py_WITSML21_ERROR("Could not add const value", NULL)
 
-      c++;
-   }
+    c++;
+  }
 
-   return m;
+  return m;
 }
 
 /////////////////////////////////////////////////////// C Witsml Parser /////////////////////////////////////////////////////// 

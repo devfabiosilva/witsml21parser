@@ -7,6 +7,8 @@
 int cws_internal_soap_new(struct soap **, CWS_CONFIG *, int *);
 int cws_soap_serve(struct soap *);
 
+void cws_internal_soap_recycle(struct soap *);
+
 void cws_internal_soap_free(struct soap **);
 
 void cws_set_soap_fault_util(struct soap *, int, char *, size_t, int);

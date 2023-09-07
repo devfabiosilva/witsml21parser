@@ -21,7 +21,7 @@ long int getResourceSize() {
   return -1;
 }
 #endif
-
+/*
 static
 char *request_parser_util(CWS_CONFIG *config)
 {
@@ -40,6 +40,51 @@ char *request_parser_util(CWS_CONFIG *config)
       return config->xmlSoap;
     }
   }
+
+  #undef PARSE_TOTAL_LEN
+
+  config->xmlSoapLen=0;
+  return NULL;
+}
+*/
+static
+char *request_parser_util(CWS_CONFIG *config)
+{
+  char
+    *p,
+    *xmlSoapTmp;
+  size_t soapLenTmp;
+
+  #define PARSE_TOTAL_LEN (MESSAGE_REQUEST_BEGIN_LEN + MESSAGE_REQUEST_END_LEN)
+
+  soapLenTmp=PARSE_TOTAL_LEN + config->xmlLen;
+
+  if (config->xmlSoap) {
+
+    if (config->xmlSoapSize > soapLenTmp)
+      goto request_parser_util_copy;
+
+    if ((xmlSoapTmp=cws_realloc((void *)config->xmlSoap, ++soapLenTmp))) {
+      config->xmlSoap=xmlSoapTmp;
+      config->xmlSoapSize=soapLenTmp;
+
+      goto request_parser_util_copy;
+    }
+
+    config->xmlSoapSize=0;
+    config->xmlSoap[0]=0;
+
+  } else if ((config->xmlSoap=(char *)cws_malloc(config->xmlSoapSize=(soapLenTmp+1)))) {
+
+request_parser_util_copy:
+    p=&((char *)memcpy(config->xmlSoap, MESSAGE_REQUEST_BEGIN, MESSAGE_REQUEST_BEGIN_LEN))[MESSAGE_REQUEST_BEGIN_LEN];
+    p=&((char *)memcpy(p, config->xmlIn, config->xmlLen))[config->xmlLen];
+    p=&((char *)memcpy(p, MESSAGE_REQUEST_END, MESSAGE_REQUEST_END_LEN))[MESSAGE_REQUEST_END_LEN];
+    *p=0;
+
+    return config->xmlSoap;
+  } else
+    config->xmlSoapSize=0;
 
   #undef PARSE_TOTAL_LEN
 
@@ -98,44 +143,92 @@ CWS_CONFIG *cws_config_new(const char *config_name)
 
 #undef CWS_CONFIG_SZ
 
+#define _FREE_CONFIG_PARTIAL \
+cws_bson_free(&(*cws_config)->object); \
+\
+if ((*cws_config)->c_bson_serialized.bson) { \
+  bson_free((void *)((*cws_config)->c_bson_serialized.bson)); \
+  (*cws_config)->c_bson_serialized.bson=NULL; \
+  (*cws_config)->c_bson_serialized.bson_size=0; \
+} \
+\
+if ((*cws_config)->c_json_str.json) { \
+  bson_free((*cws_config)->c_json_str.json); \
+  (*cws_config)->c_json_str.json=NULL; \
+  (*cws_config)->c_json_str.json_len=0; \
+}
+
+#define _FREE_CONFIG_PARTIAL_DEBUG \
+printf("\nBegin freeing BSON object %p ...", (*cws_config)->object); \
+cws_bson_free(&(*cws_config)->object); \
+printf("\nFinishing freeing BSON object"); \
+\
+if ((*cws_config)->c_bson_serialized.bson) { \
+  printf("\nBegin freeing BSON (serialized) object %p ...", (*cws_config)->c_bson_serialized.bson); \
+  bson_free((void *)((*cws_config)->c_bson_serialized.bson)); \
+  (*cws_config)->c_bson_serialized.bson=NULL; \
+  (*cws_config)->c_bson_serialized.bson_size=0; \
+  printf("\nFinishing freeing BSON (serialized) object"); \
+} \
+\
+if ((*cws_config)->c_json_str.json) { \
+  printf("\nBegin freeing JSON string object %p ...", (*cws_config)->c_json_str.json); \
+  bson_free((*cws_config)->c_json_str.json); \
+  (*cws_config)->c_json_str.json=NULL; \
+  (*cws_config)->c_json_str.json_len=0; \
+  printf("\nFinishing freeing JSON string object"); \
+}
+
+void cws_recycle_config(CWS_CONFIG *cws_config)
+{
+  cws_bson_free(&cws_config->object);
+
+  if (cws_config->c_bson_serialized.bson) {
+    bson_free((void *)cws_config->c_bson_serialized.bson);
+    cws_config->c_bson_serialized.bson=NULL;
+    cws_config->c_bson_serialized.bson_size=0;
+  }
+
+  if (cws_config->c_json_str.json) {
+    bson_free(cws_config->c_json_str.json);
+    cws_config->c_json_str.json=NULL;
+    cws_config->c_json_str.json_len=0;
+  }
+
+  cws_config->xmlIn="";
+  cws_config->xmlLen=0;
+  cws_config->object_type=TYPE_None;
+  cws_config->object_name=NULL;
+
+}
+
 void cws_config_free(CWS_CONFIG **cws_config)
 {
   if (*cws_config) {
 #ifndef SOAP_DEBUG
-    cws_bson_free(&(*cws_config)->object);
 
-    if ((*cws_config)->c_bson_serialized.bson) {
-      bson_free((void *)((*cws_config)->c_bson_serialized.bson));
-      (*cws_config)->c_bson_serialized.bson=NULL;
-      (*cws_config)->c_bson_serialized.bson_size=0;
+    if ((*cws_config)->xmlSoap) {
+      free((void *)(*cws_config)->xmlSoap);
+      (*cws_config)->xmlSoap=NULL;
+      (*cws_config)->xmlSoapSize=0;
+      (*cws_config)->xmlSoapLen=0;
     }
 
-    if ((*cws_config)->c_json_str.json) {
-      bson_free((*cws_config)->c_json_str.json);
-      (*cws_config)->c_json_str.json=NULL;
-    }
+    _FREE_CONFIG_PARTIAL
 
     free((void *)*cws_config);
 
 #else
-    printf("\nBegin freeing BSON object %p ...", (*cws_config)->object);
-    cws_bson_free(&(*cws_config)->object);
-    printf("\nFinishing freeing BSON object");
 
-    if ((*cws_config)->c_bson_serialized.bson) {
-      printf("\nBegin freeing BSON (serialized) object %p ...", (*cws_config)->c_bson_serialized.bson);
-      bson_free((void *)((*cws_config)->c_bson_serialized.bson));
-      (*cws_config)->c_bson_serialized.bson=NULL;
-      (*cws_config)->c_bson_serialized.bson_size=0;
-      printf("\nFinishing freeing BSON (serialized) object");
+    printf("\nBegin freeing xmlSoap object %p ...", (*cws_config)->xmlSoap);
+    if ((*cws_config)->xmlSoap) {
+      free((void *)(*cws_config)->xmlSoap);
+      (*cws_config)->xmlSoap=NULL;
+      (*cws_config)->xmlSoapSize=0;
+      (*cws_config)->xmlSoapLen=0;
     }
 
-    if ((*cws_config)->c_json_str.json) {
-      printf("\nBegin freeing JSON string object %p ...", (*cws_config)->c_json_str.json);
-      bson_free((*cws_config)->c_json_str.json);
-      (*cws_config)->c_json_str.json=NULL;
-      printf("\nFinishing freeing JSON string object");
-    }
+    _FREE_CONFIG_PARTIAL_DEBUG
 
     printf(
       "\nBegin freeing config instance name %s ...\n",
@@ -147,6 +240,9 @@ void cws_config_free(CWS_CONFIG **cws_config)
     *cws_config=NULL;
   }
 }
+
+#undef _FREE_CONFIG_PARTIAL_DEBUG
+#undef _FREE_CONFIG_PARTIAL
 
 const char *
 cws_get_witsml_version_str_from_id(enum witsml_version_e id)

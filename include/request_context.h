@@ -82,13 +82,14 @@ enum object_type_e {
 
 typedef struct cws_config_t {
   struct soap *soap_internal; // Pointer of soap internal. For service use
-  char instance_name[48]; // Name of config instance (Optional)
+  char instance_name[128]; // Name of config instance (Optional)
   int internal_soap_error; // Error number for internal soap.
   int internalInitFlag; // soap internal initialization flag
   char *xmlIn; // Pointer of XML object in (from client)
   size_t xmlLen; // Length of XML in (from client) excluding NULL char
-  char *xmlSoap; // Pointer of XML object with soap envelope (for internal service process object). Should be free by soap internal
+  char *xmlSoap; // Pointer of XML object with soap envelope (for internal service process object). Should be free
   size_t xmlSoapLen; //Length of XML with SOAP envelope in (from client) excluding NULL char
+  size_t xmlSoapSize; // Size of alloc'd memory of xmlSoap pointer
   const char *internal_os; // Internal SOAP output stream. Used only for debug
   struct ns21__witsmlObject *WitsmlObject; // Pointer of WITSML object
   enum witsml_version_e witsml_version; // Witsml version parsed from client
@@ -106,6 +107,7 @@ typedef struct cws_config_t {
 
 char *cws_parse_XML_soap_envelope(struct soap *, char *, size_t/*, unsigned int*/);
 CWS_CONFIG *cws_config_new(const char *);
+void cws_recycle_config(CWS_CONFIG *);
 void cws_config_free(CWS_CONFIG **);
 
 struct c_json_str_t *getJson(struct soap *);

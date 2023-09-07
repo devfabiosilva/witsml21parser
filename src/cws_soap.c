@@ -64,6 +64,23 @@ int cws_soap_serve(struct soap *soap_internal)
   return errCode;
 }
 
+void cws_internal_soap_recycle(struct soap *soap_internal)
+{
+  DECLARE_CONFIG(soap_internal)
+
+  if (config->cws_soap_fault.faultstring) {
+    free((void *)config->cws_soap_fault.faultstring);
+    config->cws_soap_fault.faultstring=NULL;
+    config->cws_soap_fault.faultstring_len=0;
+  }
+
+  if (config->cws_soap_fault.XMLfaultdetail) {
+    free((void *)config->cws_soap_fault.XMLfaultdetail);
+    config->cws_soap_fault.XMLfaultdetail=NULL;
+    config->cws_soap_fault.XMLfaultdetail_len=0;
+  }
+}
+
 void cws_internal_soap_free(struct soap **soap)
 {
   CWS_CONFIG *config;
@@ -75,11 +92,13 @@ void cws_internal_soap_free(struct soap **soap)
     if (config->cws_soap_fault.faultstring) {
       free((void *)config->cws_soap_fault.faultstring);
       config->cws_soap_fault.faultstring=NULL;
+      config->cws_soap_fault.faultstring_len=0;
     }
 
     if (config->cws_soap_fault.XMLfaultdetail) {
       free((void *)config->cws_soap_fault.XMLfaultdetail);
       config->cws_soap_fault.XMLfaultdetail=NULL;
+      config->cws_soap_fault.XMLfaultdetail_len=0;
     }
 
     CWS_INTERNAL_SOAP_FREE(*soap)

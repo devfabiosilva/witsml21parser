@@ -52,11 +52,11 @@ wistml2bson_deserializer.o:
 
 cws_soap.o:
 	@echo "Build CWS INTERNAL/EXTERNAL SOAP constructors/destructors ..."
-	@$(CC) -O2 -c $(CURDIR)/src/cws_soap.c -I$(INCLUDEDIR) -I../include -o $(CURDIR)/src/cws_soap.o -Wall $(FLAG)
+	@$(CC) -O2 -c $(CURDIR)/src/cws_soap.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_soap.o -Wall $(FLAG)
 
 cws_memory.o:
 	@echo "Build memory management for CWS ..."
-	@$(CC) -O2 -c $(CURDIR)/src/cws_memory.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_memory.o -Wall $(FLAG)
+	@$(CC) -O2 -c $(CURDIR)/src/cws_memory.c -I$(INCLUDEDIR) -I$(CURDIR) -o $(CURDIR)/src/cws_memory.o -Wall $(FLAG)
 
 cws_bson_utils.o:
 	@echo "Build BSON utilities for CWS ..."
@@ -90,11 +90,11 @@ request_context_debug.o:
 
 cws_soap_debug.o:
 	@echo "Build CWS INTERNAL/EXTERNAL SOAP constructors/destructors (DEBUG) ..."
-	@$(CC) -O2 -c $(CURDIR)/src/cws_soap.c -I$(INCLUDEDIR) -I../include -o $(CURDIR)/src/cws_soap_debug.o -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 -c $(CURDIR)/src/cws_soap.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_soap_debug.o -Wall $(DEBUG_FLAG)
 
 cws_memory_debug.o:
 	@echo "Build memory management for CWS (DEBUG) ..."
-	@$(CC) -O2 -c $(CURDIR)/src/cws_memory.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_memory_debug.o -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 -c $(CURDIR)/src/cws_memory.c -I$(INCLUDEDIR) -I$(CURDIR) -o $(CURDIR)/src/cws_memory_debug.o -Wall $(DEBUG_FLAG)
 
 cws_bson_utils_debug.o:
 	@echo "Build BSON utilities for CWS (DEBUG) ..."
@@ -143,7 +143,7 @@ cws_soap_jni.o:
 
 cws_memory_jni.o:
 	@echo "Build memory management for CWS (JNI)..."
-	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_memory.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_memory_jni.o -Wall $(FLAG_JNI)
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_memory.c -I$(INCLUDEDIR) -I$(CURDIR) -o $(CURDIR)/src/cws_memory_jni.o -Wall $(FLAG_JNI)
 
 cws_bson_utils_jni.o:
 	@echo "Build BSON utilities for CWS (JNI)..."
@@ -168,11 +168,11 @@ wistml2bson_deserializer_py.o:
 
 cws_soap_py.o:
 	@echo "Build CWS INTERNAL/EXTERNAL SOAP constructors/destructors (Python)..."
-	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_soap.c -I$(INCLUDEDIR) -I../include -o $(CURDIR)/src/cws_soap_py.o -Wall $(FLAG_PY)
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_soap.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_soap_py.o -Wall $(FLAG_PY)
 
 cws_memory_py.o:
 	@echo "Build memory management for CWS (Python)..."
-	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_memory.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_memory_py.o -Wall $(FLAG_PY)
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_memory.c -I$(INCLUDEDIR) -I$(CURDIR) -o $(CURDIR)/src/cws_memory_py.o -Wall $(FLAG_PY)
 
 cws_bson_utils_py.o:
 	@echo "Build BSON utilities for CWS (Python)..."

@@ -13,7 +13,7 @@ def main():
             library_dirs=['lib'],
             libraries=['cws_py', 'bson-shared-1.0'],
             extra_objects=["soapC_shared.o"],
-            include_dirs=['include', 'include/bson'],
+            include_dirs=['include'],
             define_macros=[('CWS_LITTLE_ENDIAN', None)]
         )])
 
