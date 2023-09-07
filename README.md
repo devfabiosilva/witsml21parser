@@ -6,7 +6,7 @@ A fast, robust and portable [Witsml 2.1](https://energistics.org/witsml-data-sta
 
 - Fast
 - Robust
-- Portable ([Java/Kotlin](https://github.com/devfabiosilva/witsml21parser/tree/master/Java) | [Python 3](https://github.com/devfabiosilva/witsml21parser/tree/master/Python) | PHP (in development))
+- Portable ([Java/Kotlin](https://github.com/devfabiosilva/witsml21parser/tree/master/Java) | [Python 3](https://github.com/devfabiosilva/witsml21parser/tree/master/Python) | NodeJS (in development) | WebAssembly (in development) | PHP (in development))
 - Low dependency libraries.
 - No Garbage Collector on parsing
 - Low memory allocation/reallocation
@@ -197,13 +197,17 @@ Statistics for "../../examples/xmls/Risk.xml":
         {arrays=12, dateTime=17, enums=14, long64s=9, measures=18, strings=106, total=176}
 ```
 
+### Executing Python 3 WITSML 2.1 to BSON parser
+
+TODO
+
 # BENCHMARKS
 
-Primary benchmarks in Java had been shown that in WITSML 1.4.1.1 parsing objects are 56 % faster than JAXB in Java application.
+Primary benchmarks in Java had been shown that WITSML 1.4.1.1 parsing objects are 56 % faster than JAXB in Java application.
 
-JAXB only parses XML objects and store their values in respective Java objects. In other hand, WITSML BSON parser not only parses XML objects in C structs but it creates BSON objects and add objects to BSON and serialize it and parses it to Java object.
+JAXB only parses XML objects and store their values in respective Java objects. In other hand, WITSML BSON parser not only parses XML objects in C structs but it creates BSON objects, adds objects to BSON, serializes it and parses it to Java native byte object.
 
-Wait. But how WITSML BSON parser is faster doing more stuffs than JAXB?
+But wait! How is WITSML BSON parser faster than JAXB doing more stuffs?
 
 Answer is simple.
 
@@ -212,7 +216,7 @@ Answer is simple.
 - gSoap optimization in parsing XML to C structs. See some interesting GENIVIA articles [here](https://www.genivia.com/ugrep.html)
 - Recycled alloc'd memory
 - Low memory usage
-- Only two library dependency (gSoap and libbson)
+- Only two library dependency ([gSoap](https://www.genivia.com/products.html) and [libbson](https://github.com/mongodb/mongo-c-driver/tree/master/src/libbson))
 - No garbage collector
 
 # LICENSES

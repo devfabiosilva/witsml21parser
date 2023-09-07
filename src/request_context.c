@@ -21,32 +21,7 @@ long int getResourceSize() {
   return -1;
 }
 #endif
-/*
-static
-char *request_parser_util(CWS_CONFIG *config)
-{
-  char *p;
 
-  #define PARSE_TOTAL_LEN (MESSAGE_REQUEST_BEGIN_LEN + MESSAGE_REQUEST_END_LEN)
-
-  if ((config->xmlSoapLen=(PARSE_TOTAL_LEN + config->xmlLen))<SOAP_MAXALLOCSIZE) {
-    if ((config->xmlSoap=soap_malloc(config->soap_internal, config->xmlSoapLen+1))) {
-
-      p=&((char *)memcpy(config->xmlSoap, MESSAGE_REQUEST_BEGIN, MESSAGE_REQUEST_BEGIN_LEN))[MESSAGE_REQUEST_BEGIN_LEN];
-      p=&((char *)memcpy(p, config->xmlIn, config->xmlLen))[config->xmlLen];
-      p=&((char *)memcpy(p, MESSAGE_REQUEST_END, MESSAGE_REQUEST_END_LEN))[MESSAGE_REQUEST_END_LEN];
-      *p=0;
-
-      return config->xmlSoap;
-    }
-  }
-
-  #undef PARSE_TOTAL_LEN
-
-  config->xmlSoapLen=0;
-  return NULL;
-}
-*/
 static
 char *request_parser_util(CWS_CONFIG *config)
 {
@@ -194,10 +169,18 @@ void cws_recycle_config(CWS_CONFIG *cws_config)
     cws_config->c_json_str.json_len=0;
   }
 
+  cws_config->internal_soap_error=0;
+  cws_config->WitsmlObject=NULL;
   cws_config->xmlIn="";
   cws_config->xmlLen=0;
   cws_config->object_type=TYPE_None;
   cws_config->object_name=NULL;
+  cws_config->witsml_version=VERSION_UNKNOWN;
+
+#ifdef WITH_STATISTICS
+  memset((void *)&cws_config->statistics, 0, sizeof(cws_config->statistics));
+  cws_config->initial_resource_size=0;
+#endif
 
 }
 
