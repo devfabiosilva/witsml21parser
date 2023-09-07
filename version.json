@@ -3,6 +3,10 @@
  "witsmlVersion": "2.1",
  "website": "https://github.com/devfabiosilva/witsml21parser",
  "license": "MIT",
+ "author":"Fábio Pereira da Silva",
+ "contact_email": "fabioegel@gmail.com",
+ "pgp_pub_key_location": "https://github.com/devfabiosilva/witsml21parser/blob/master/fabioegel.asc",
+ "pgp_pub_key_fingerprint": "6E21 A6B6 E1A4 6580 CA00 FA54 1077 26E9 14B9 16A2",
  "licenseInformation": "WARNING: Library dependencies are proprietary code. See each library dependences licenses",
  "dependencies": {
   "gSoap": {
