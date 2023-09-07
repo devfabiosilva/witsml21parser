@@ -71,7 +71,6 @@ char *request_parser_util(CWS_CONFIG *config)
       goto request_parser_util_copy;
     }
 
-    config->xmlSoapSize=0;
     config->xmlSoap[0]=0;
 
   } else if ((config->xmlSoap=(char *)cws_malloc(config->xmlSoapSize=(soapLenTmp+1)))) {
