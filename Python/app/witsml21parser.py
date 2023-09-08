@@ -5,6 +5,7 @@ import bson
 from bson.json_util import dumps
 
 def main():
+#TODO Implementing C Python modules
   f = open("../../examples/xmls/BhaRun.xml")
   parser=witsml21bson.create()
   print(parser.getInstanceName())

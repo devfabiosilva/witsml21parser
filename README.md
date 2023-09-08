@@ -6,7 +6,7 @@ A fast, robust and portable [Witsml 2.1](https://energistics.org/witsml-data-sta
 
 - Fast
 - Robust
-- Portable ([Java/Kotlin](https://github.com/devfabiosilva/witsml21parser/tree/master/Java) | [Python 3](https://github.com/devfabiosilva/witsml21parser/tree/master/Python) | NodeJS (in development) | WebAssembly (in development) | PHP (in development))
+- Portable (NodeJS (in development) | [Java/Kotlin](https://github.com/devfabiosilva/witsml21parser/tree/master/Java) | PHP (in development) | [Python 3](https://github.com/devfabiosilva/witsml21parser/tree/master/Python) | WebAssembly (in development))
 - Low dependency libraries.
 - No Garbage Collector on parsing
 - Low memory allocation/reallocation
@@ -197,7 +197,7 @@ Statistics for "../../examples/xmls/Risk.xml":
         {arrays=12, dateTime=17, enums=14, long64s=9, measures=18, strings=106, total=176}
 ```
 
-### Executing Python 3 WITSML 2.1 to BSON parser
+# Executing Python 3 WITSML 2.1 to BSON parser
 
 TODO
 
@@ -213,11 +213,11 @@ Answer is simple.
 
 - Less allocation/reallocation in memory
 - Referencing objects instead create and copy
-- gSoap optimization in parsing XML to C structs. See some interesting GENIVIA articles [here](https://www.genivia.com/ugrep.html)
+- gSoap optimization on parsing XML to C structs. See some interesting [GENIVIA](https://www.genivia.com/) articles [here](https://www.genivia.com/ugrep.html)
 - Recycled alloc'd memory
 - Low memory usage
 - Only two library dependency ([gSoap](https://www.genivia.com/products.html) and [libbson](https://github.com/mongodb/mongo-c-driver/tree/master/src/libbson))
-- No garbage collector
+- No garbage collector on parsing objects
 
 # LICENSES
 
@@ -225,7 +225,7 @@ This project is fully open source and MIT license.
 
 ## WARNING
 
-Care must be taken because WITSML 2.1 BSON parser needs library with different licenses.
+WITSML 2.1 BSON parser needs library with different licenses.
 
 See [version.json](https://github.com/devfabiosilva/witsml21parser/blob/master/version.json) for details.
 
