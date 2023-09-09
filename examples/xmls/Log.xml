@@ -65,18 +65,18 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue>
 <ActiveStatus xsi:type="ActiveStatusKind">active</ActiveStatus>
-<ns1:ChannelState xsi:type="ns1:ChannelState">calculated</ns1:ChannelState>
-<ns1:RunNumber xsi:type="String64"></ns1:RunNumber>
-<ns1:PassNumber xsi:type="String64"></ns1:PassNumber>
-<ns1:PassDescription xsi:type="String64"></ns1:PassDescription>
-<ns1:PassDetail xsi:type="ns1:PassDetail">
- <ns1:Pass xsi:type="xsd:long">0</ns1:Pass>
- <ns1:Description xsi:type="String64"></ns1:Description>
-</ns1:PassDetail>
-<ns1:PrimaryIndexInterval xsi:type="AbstractInterval">
+<ChannelState xsi:type="ChannelState">calculated</ChannelState>
+<RunNumber xsi:type="String64"></RunNumber>
+<PassNumber xsi:type="String64"></PassNumber>
+<PassDescription xsi:type="String64"></PassDescription>
+<PassDetail xsi:type="PassDetail">
+ <Pass xsi:type="xsd:long">0</Pass>
+ <Description xsi:type="String64"></Description>
+</PassDetail>
+<PrimaryIndexInterval xsi:type="AbstractInterval">
  <Comment xsi:type="String2000"></Comment>
-</ns1:PrimaryIndexInterval>
-<ns1:LoggingCompany xsi:type="DataObjectReference">
+</PrimaryIndexInterval>
+<LoggingCompany xsi:type="DataObjectReference">
  <Uuid xsi:type="UuidString"></Uuid>
  <ObjectVersion xsi:type="String64"></ObjectVersion>
  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -91,9 +91,9 @@
   <Index xsi:type="xsd:long">0</Index>
   <Description xsi:type="String2000"></Description>
  </ExtensionNameValue>
-</ns1:LoggingCompany>
-<ns1:LoggingCompanyCode xsi:type="xsd:long">0</ns1:LoggingCompanyCode>
-<ns1:LoggingToolKind xsi:type="DataObjectReference">
+</LoggingCompany>
+<LoggingCompanyCode xsi:type="xsd:long">0</LoggingCompanyCode>
+<LoggingToolKind xsi:type="DataObjectReference">
  <Uuid xsi:type="UuidString"></Uuid>
  <ObjectVersion xsi:type="String64"></ObjectVersion>
  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -108,27 +108,27 @@
   <Index xsi:type="xsd:long">0</Index>
   <Description xsi:type="String2000"></Description>
  </ExtensionNameValue>
-</ns1:LoggingToolKind>
-<ns1:LoggingToolClass xsi:type="ns1:LoggingToolClassExt"></ns1:LoggingToolClass>
-<ns1:LoggingToolClassLongName xsi:type="String256"></ns1:LoggingToolClassLongName>
-<ns1:LoggingServicePeriod xsi:type="DateTimeInterval">
+</LoggingToolKind>
+<LoggingToolClass xsi:type="LoggingToolClassExt"></LoggingToolClass>
+<LoggingToolClassLongName xsi:type="String256"></LoggingToolClassLongName>
+<LoggingServicePeriod xsi:type="DateTimeInterval">
  <Comment xsi:type="String2000"></Comment>
  <StartTime xsi:type="TimeStamp">2023-04-13T00:53:05Z</StartTime>
  <EndTime xsi:type="TimeStamp">2023-04-13T00:53:05Z</EndTime>
-</ns1:LoggingServicePeriod>
-<ns1:Derivation xsi:type="ns1:ChannelDerivation">raw</ns1:Derivation>
-<ns1:LoggingMethod xsi:type="ns1:LoggingMethod">coiled tubing</ns1:LoggingMethod>
-<ns1:NominalHoleSize xsi:type="LengthMeasureExt" uom="">0.0</ns1:NominalHoleSize>
-<ns1:MudClass xsi:type="ns1:MudClassExt"></ns1:MudClass>
-<ns1:MudSubClass xsi:type="ns1:MudSubClassExt"></ns1:MudSubClass>
-<ns1:HoleLoggingStatus xsi:type="ns1:HoleLoggingStatus">open hole</ns1:HoleLoggingStatus>
-<ns1:NominalSamplingInterval xsi:type="GenericMeasure" uom="">0.0</ns1:NominalSamplingInterval>
-<ns1:LogOSDUIntegration xsi:type="ns1:LogOSDUIntegration">
- <ns1:LogVersion xsi:type="String64"></ns1:LogVersion>
- <ns1:ZeroTime xsi:type="TimeStamp">2023-04-13T00:53:05Z</ns1:ZeroTime>
- <ns1:FrameIdentifier xsi:type="String64"></ns1:FrameIdentifier>
- <ns1:IsRegular xsi:type="xsd:boolean">false</ns1:IsRegular>
- <ns1:IntermediaryServiceCompany xsi:type="DataObjectReference">
+</LoggingServicePeriod>
+<Derivation xsi:type="ChannelDerivation">raw</Derivation>
+<LoggingMethod xsi:type="LoggingMethod">coiled tubing</LoggingMethod>
+<NominalHoleSize xsi:type="LengthMeasureExt" uom="">0.0</NominalHoleSize>
+<MudClass xsi:type="MudClassExt"></MudClass>
+<MudSubClass xsi:type="MudSubClassExt"></MudSubClass>
+<HoleLoggingStatus xsi:type="HoleLoggingStatus">open hole</HoleLoggingStatus>
+<NominalSamplingInterval xsi:type="GenericMeasure" uom="">0.0</NominalSamplingInterval>
+<LogOSDUIntegration xsi:type="LogOSDUIntegration">
+ <LogVersion xsi:type="String64"></LogVersion>
+ <ZeroTime xsi:type="TimeStamp">2023-04-13T00:53:05Z</ZeroTime>
+ <FrameIdentifier xsi:type="String64"></FrameIdentifier>
+ <IsRegular xsi:type="xsd:boolean">false</IsRegular>
+ <IntermediaryServiceCompany xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -143,9 +143,9 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:IntermediaryServiceCompany>
-</ns1:LogOSDUIntegration>
-<ns1:ChannelSet xsi:type="ns1:ChannelSet" uuid="" schemaVersion="" objectVersion="">
+ </IntermediaryServiceCompany>
+</LogOSDUIntegration>
+<ChannelSet xsi:type="ChannelSet" uuid="" schemaVersion="" objectVersion="">
  <Aliases xsi:type="ObjectAlias" authority="">
   <Identifier xsi:type="String64"></Identifier>
   <IdentifierKind xsi:type="AliasIdentifierKindExt"></IdentifierKind>
@@ -213,18 +213,18 @@
   <Description xsi:type="String2000"></Description>
  </ExtensionNameValue>
  <ActiveStatus xsi:type="ActiveStatusKind">active</ActiveStatus>
- <ns1:ChannelState xsi:type="ns1:ChannelState">calculated</ns1:ChannelState>
- <ns1:RunNumber xsi:type="String64"></ns1:RunNumber>
- <ns1:PassNumber xsi:type="String64"></ns1:PassNumber>
- <ns1:PassDescription xsi:type="String64"></ns1:PassDescription>
- <ns1:PassDetail xsi:type="ns1:PassDetail">
-  <ns1:Pass xsi:type="xsd:long">0</ns1:Pass>
-  <ns1:Description xsi:type="String64"></ns1:Description>
- </ns1:PassDetail>
- <ns1:PrimaryIndexInterval xsi:type="AbstractInterval">
+ <ChannelState xsi:type="ChannelState">calculated</ChannelState>
+ <RunNumber xsi:type="String64"></RunNumber>
+ <PassNumber xsi:type="String64"></PassNumber>
+ <PassDescription xsi:type="String64"></PassDescription>
+ <PassDetail xsi:type="PassDetail">
+  <Pass xsi:type="xsd:long">0</Pass>
+  <Description xsi:type="String64"></Description>
+ </PassDetail>
+ <PrimaryIndexInterval xsi:type="AbstractInterval">
   <Comment xsi:type="String2000"></Comment>
- </ns1:PrimaryIndexInterval>
- <ns1:LoggingCompany xsi:type="DataObjectReference">
+ </PrimaryIndexInterval>
+ <LoggingCompany xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -239,9 +239,9 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:LoggingCompany>
- <ns1:LoggingCompanyCode xsi:type="xsd:long">0</ns1:LoggingCompanyCode>
- <ns1:LoggingToolKind xsi:type="DataObjectReference">
+ </LoggingCompany>
+ <LoggingCompanyCode xsi:type="xsd:long">0</LoggingCompanyCode>
+ <LoggingToolKind xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -256,20 +256,20 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:LoggingToolKind>
- <ns1:LoggingToolClass xsi:type="ns1:LoggingToolClassExt"></ns1:LoggingToolClass>
- <ns1:LoggingToolClassLongName xsi:type="String256"></ns1:LoggingToolClassLongName>
- <ns1:Derivation xsi:type="ns1:ChannelDerivation">raw</ns1:Derivation>
- <ns1:LoggingMethod xsi:type="ns1:LoggingMethod">coiled tubing</ns1:LoggingMethod>
- <ns1:NominalHoleSize xsi:type="LengthMeasureExt" uom="">0.0</ns1:NominalHoleSize>
- <ns1:MudClass xsi:type="ns1:MudClassExt"></ns1:MudClass>
- <ns1:MudSubClass xsi:type="ns1:MudSubClassExt"></ns1:MudSubClass>
- <ns1:HoleLoggingStatus xsi:type="ns1:HoleLoggingStatus">open hole</ns1:HoleLoggingStatus>
- <ns1:NominalSamplingInterval xsi:type="GenericMeasure" uom="">0.0</ns1:NominalSamplingInterval>
- <ns1:ChannelSetOSDUIntegration xsi:type="ns1:ChannelSetOSDUIntegration">
-  <ns1:ChannelSetVersion xsi:type="String64"></ns1:ChannelSetVersion>
-  <ns1:FrameIdentifier xsi:type="String64"></ns1:FrameIdentifier>
-  <ns1:IntermediaryServiceCompany xsi:type="DataObjectReference">
+ </LoggingToolKind>
+ <LoggingToolClass xsi:type="LoggingToolClassExt"></LoggingToolClass>
+ <LoggingToolClassLongName xsi:type="String256"></LoggingToolClassLongName>
+ <Derivation xsi:type="ChannelDerivation">raw</Derivation>
+ <LoggingMethod xsi:type="LoggingMethod">coiled tubing</LoggingMethod>
+ <NominalHoleSize xsi:type="LengthMeasureExt" uom="">0.0</NominalHoleSize>
+ <MudClass xsi:type="MudClassExt"></MudClass>
+ <MudSubClass xsi:type="MudSubClassExt"></MudSubClass>
+ <HoleLoggingStatus xsi:type="HoleLoggingStatus">open hole</HoleLoggingStatus>
+ <NominalSamplingInterval xsi:type="GenericMeasure" uom="">0.0</NominalSamplingInterval>
+ <ChannelSetOSDUIntegration xsi:type="ChannelSetOSDUIntegration">
+  <ChannelSetVersion xsi:type="String64"></ChannelSetVersion>
+  <FrameIdentifier xsi:type="String64"></FrameIdentifier>
+  <IntermediaryServiceCompany xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -284,13 +284,13 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:IntermediaryServiceCompany>
-  <ns1:IsRegular xsi:type="xsd:boolean">false</ns1:IsRegular>
-  <ns1:ZeroTime xsi:type="TimeStamp">2023-04-13T00:53:05Z</ns1:ZeroTime>
- </ns1:ChannelSetOSDUIntegration>
- <ns1:Index xsi:type="ns1:ChannelIndex">
-  <ns1:IndexKind xsi:type="DataIndexKind">measured depth</ns1:IndexKind>
-  <ns1:IndexPropertyKind xsi:type="DataObjectReference">
+  </IntermediaryServiceCompany>
+  <IsRegular xsi:type="xsd:boolean">false</IsRegular>
+  <ZeroTime xsi:type="TimeStamp">2023-04-13T00:53:05Z</ZeroTime>
+ </ChannelSetOSDUIntegration>
+ <Index xsi:type="ChannelIndex">
+  <IndexKind xsi:type="DataIndexKind">measured depth</IndexKind>
+  <IndexPropertyKind xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -305,11 +305,11 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:IndexPropertyKind>
-  <ns1:Uom xsi:type="UnitOfMeasureExt"></ns1:Uom>
-  <ns1:Direction xsi:type="IndexDirection">decreasing</ns1:Direction>
-  <ns1:Mnemonic xsi:type="String64"></ns1:Mnemonic>
-  <ns1:Datum xsi:type="DataObjectReference">
+  </IndexPropertyKind>
+  <Uom xsi:type="UnitOfMeasureExt"></Uom>
+  <Direction xsi:type="IndexDirection">decreasing</Direction>
+  <Mnemonic xsi:type="String64"></Mnemonic>
+  <Datum xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -324,12 +324,12 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:Datum>
-  <ns1:IndexInterval xsi:type="AbstractInterval">
+  </Datum>
+  <IndexInterval xsi:type="AbstractInterval">
    <Comment xsi:type="String2000"></Comment>
-  </ns1:IndexInterval>
- </ns1:Index>
- <ns1:Channel xsi:type="ns1:Channel" uuid="" schemaVersion="" objectVersion="">
+  </IndexInterval>
+ </Index>
+ <Channel xsi:type="Channel" uuid="" schemaVersion="" objectVersion="">
   <Aliases xsi:type="ObjectAlias" authority="">
    <Identifier xsi:type="String64"></Identifier>
    <IdentifierKind xsi:type="AliasIdentifierKindExt"></IdentifierKind>
@@ -395,13 +395,13 @@
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
   <ActiveStatus xsi:type="ActiveStatusKind">active</ActiveStatus>
-  <ns1:Mnemonic xsi:type="String64"></ns1:Mnemonic>
-  <ns1:GlobalMnemonic xsi:type="String64"></ns1:GlobalMnemonic>
-  <ns1:DataKind xsi:type="ns1:ChannelDataKind">boolean</ns1:DataKind>
-  <ns1:Uom xsi:type="UnitOfMeasureExt"></ns1:Uom>
-  <ns1:Source xsi:type="String64"></ns1:Source>
-  <ns1:ChannelState xsi:type="ns1:ChannelState">calculated</ns1:ChannelState>
-  <ns1:ChannelPropertyKind xsi:type="DataObjectReference">
+  <Mnemonic xsi:type="String64"></Mnemonic>
+  <GlobalMnemonic xsi:type="String64"></GlobalMnemonic>
+  <DataKind xsi:type="ChannelDataKind">boolean</DataKind>
+  <Uom xsi:type="UnitOfMeasureExt"></Uom>
+  <Source xsi:type="String64"></Source>
+  <ChannelState xsi:type="ChannelState">calculated</ChannelState>
+  <ChannelPropertyKind xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -416,18 +416,18 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:ChannelPropertyKind>
-  <ns1:RunNumber xsi:type="String64"></ns1:RunNumber>
-  <ns1:PassNumber xsi:type="String64"></ns1:PassNumber>
-  <ns1:PassDescription xsi:type="String64"></ns1:PassDescription>
-  <ns1:PassDetail xsi:type="ns1:PassDetail">
-   <ns1:Pass xsi:type="xsd:long">0</ns1:Pass>
-   <ns1:Description xsi:type="String64"></ns1:Description>
-  </ns1:PassDetail>
-  <ns1:PrimaryIndexInterval xsi:type="AbstractInterval">
+  </ChannelPropertyKind>
+  <RunNumber xsi:type="String64"></RunNumber>
+  <PassNumber xsi:type="String64"></PassNumber>
+  <PassDescription xsi:type="String64"></PassDescription>
+  <PassDetail xsi:type="PassDetail">
+   <Pass xsi:type="xsd:long">0</Pass>
+   <Description xsi:type="String64"></Description>
+  </PassDetail>
+  <PrimaryIndexInterval xsi:type="AbstractInterval">
    <Comment xsi:type="String2000"></Comment>
-  </ns1:PrimaryIndexInterval>
-  <ns1:LoggingCompany xsi:type="DataObjectReference">
+  </PrimaryIndexInterval>
+  <LoggingCompany xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -442,9 +442,9 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:LoggingCompany>
-  <ns1:LoggingCompanyCode xsi:type="xsd:long">0</ns1:LoggingCompanyCode>
-  <ns1:ChannelKind xsi:type="DataObjectReference">
+  </LoggingCompany>
+  <LoggingCompanyCode xsi:type="xsd:long">0</LoggingCompanyCode>
+  <ChannelKind xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -459,8 +459,8 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:ChannelKind>
-  <ns1:LoggingToolKind xsi:type="DataObjectReference">
+  </ChannelKind>
+  <LoggingToolKind xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -475,20 +475,20 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:LoggingToolKind>
-  <ns1:LoggingToolClass xsi:type="ns1:LoggingToolClassExt"></ns1:LoggingToolClass>
-  <ns1:Derivation xsi:type="ns1:ChannelDerivation">raw</ns1:Derivation>
-  <ns1:LoggingMethod xsi:type="ns1:LoggingMethod">coiled tubing</ns1:LoggingMethod>
-  <ns1:NominalHoleSize xsi:type="LengthMeasureExt" uom="">0.0</ns1:NominalHoleSize>
-  <ns1:SensorOffset xsi:type="LengthMeasureExt" uom="">0.0</ns1:SensorOffset>
-  <ns1:MudClass xsi:type="ns1:MudClassExt"></ns1:MudClass>
-  <ns1:MudSubClass xsi:type="ns1:MudSubClassExt"></ns1:MudSubClass>
-  <ns1:HoleLoggingStatus xsi:type="ns1:HoleLoggingStatus">open hole</ns1:HoleLoggingStatus>
-  <ns1:IsContinuous xsi:type="xsd:boolean">false</ns1:IsContinuous>
-  <ns1:NominalSamplingInterval xsi:type="GenericMeasure" uom="">0.0</ns1:NominalSamplingInterval>
-  <ns1:ChannelOSDUIntegration xsi:type="ns1:ChannelOSDUIntegration">
-   <ns1:ChannelQuality xsi:type="String64"></ns1:ChannelQuality>
-   <ns1:IntermediaryServiceCompany xsi:type="DataObjectReference">
+  </LoggingToolKind>
+  <LoggingToolClass xsi:type="LoggingToolClassExt"></LoggingToolClass>
+  <Derivation xsi:type="ChannelDerivation">raw</Derivation>
+  <LoggingMethod xsi:type="LoggingMethod">coiled tubing</LoggingMethod>
+  <NominalHoleSize xsi:type="LengthMeasureExt" uom="">0.0</NominalHoleSize>
+  <SensorOffset xsi:type="LengthMeasureExt" uom="">0.0</SensorOffset>
+  <MudClass xsi:type="MudClassExt"></MudClass>
+  <MudSubClass xsi:type="MudSubClassExt"></MudSubClass>
+  <HoleLoggingStatus xsi:type="HoleLoggingStatus">open hole</HoleLoggingStatus>
+  <IsContinuous xsi:type="xsd:boolean">false</IsContinuous>
+  <NominalSamplingInterval xsi:type="GenericMeasure" uom="">0.0</NominalSamplingInterval>
+  <ChannelOSDUIntegration xsi:type="ChannelOSDUIntegration">
+   <ChannelQuality xsi:type="String64"></ChannelQuality>
+   <IntermediaryServiceCompany xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
 <ObjectVersion xsi:type="String64"></ObjectVersion>
 <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -503,14 +503,14 @@
  <Index xsi:nil="true"/>
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue>
-   </ns1:IntermediaryServiceCompany>
-   <ns1:IsRegular xsi:type="xsd:boolean">false</ns1:IsRegular>
-   <ns1:ZeroTime xsi:type="TimeStamp">2023-04-13T00:53:05Z</ns1:ZeroTime>
-   <ns1:ChannelBusinessValue xsi:type="String64"></ns1:ChannelBusinessValue>
-   <ns1:ChannelMainFamily xsi:type="String64"></ns1:ChannelMainFamily>
-   <ns1:ChannelFamily xsi:type="String64"></ns1:ChannelFamily>
-  </ns1:ChannelOSDUIntegration>
-  <ns1:Datum xsi:type="DataObjectReference">
+   </IntermediaryServiceCompany>
+   <IsRegular xsi:type="xsd:boolean">false</IsRegular>
+   <ZeroTime xsi:type="TimeStamp">2023-04-13T00:53:05Z</ZeroTime>
+   <ChannelBusinessValue xsi:type="String64"></ChannelBusinessValue>
+   <ChannelMainFamily xsi:type="String64"></ChannelMainFamily>
+   <ChannelFamily xsi:type="String64"></ChannelFamily>
+  </ChannelOSDUIntegration>
+  <Datum xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -525,8 +525,8 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:Datum>
-  <ns1:SeismicReferenceElevation xsi:type="DataObjectReference">
+  </Datum>
+  <SeismicReferenceElevation xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -541,12 +541,12 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:SeismicReferenceElevation>
-  <ns1:Data xsi:type="ns1:ChannelData">
-   <ns1:Data xsi:type="xsd:string"></ns1:Data>
-   <ns1:FileUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns1:FileUri>
-  </ns1:Data>
-  <ns1:DataSource xsi:type="DataObjectReference">
+  </SeismicReferenceElevation>
+  <Data xsi:type="ChannelData">
+   <Data xsi:type="xsd:string"></Data>
+   <FileUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</FileUri>
+  </Data>
+  <DataSource xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -561,10 +561,10 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:DataSource>
-  <ns1:Index xsi:type="ns1:ChannelIndex">
-   <ns1:IndexKind xsi:type="DataIndexKind">measured depth</ns1:IndexKind>
-   <ns1:IndexPropertyKind xsi:type="DataObjectReference">
+  </DataSource>
+  <Index xsi:type="ChannelIndex">
+   <IndexKind xsi:type="DataIndexKind">measured depth</IndexKind>
+   <IndexPropertyKind xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
 <ObjectVersion xsi:type="String64"></ObjectVersion>
 <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -579,11 +579,11 @@
  <Index xsi:nil="true"/>
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue>
-   </ns1:IndexPropertyKind>
-   <ns1:Uom xsi:type="UnitOfMeasureExt"></ns1:Uom>
-   <ns1:Direction xsi:type="IndexDirection">decreasing</ns1:Direction>
-   <ns1:Mnemonic xsi:type="String64"></ns1:Mnemonic>
-   <ns1:Datum xsi:type="DataObjectReference">
+   </IndexPropertyKind>
+   <Uom xsi:type="UnitOfMeasureExt"></Uom>
+   <Direction xsi:type="IndexDirection">decreasing</Direction>
+   <Mnemonic xsi:type="String64"></Mnemonic>
+   <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
 <ObjectVersion xsi:type="String64"></ObjectVersion>
 <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -598,12 +598,12 @@
  <Index xsi:nil="true"/>
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue>
-   </ns1:Datum>
-   <ns1:IndexInterval xsi:type="AbstractInterval">
+   </Datum>
+   <IndexInterval xsi:type="AbstractInterval">
 <Comment xsi:type="String2000"></Comment>
-   </ns1:IndexInterval>
-  </ns1:Index>
-  <ns1:DerivedFrom xsi:type="DataObjectReference">
+   </IndexInterval>
+  </Index>
+  <DerivedFrom xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -618,8 +618,8 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:DerivedFrom>
-  <ns1:Wellbore xsi:type="DataObjectReference">
+  </DerivedFrom>
+  <Wellbore xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -634,21 +634,21 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:Wellbore>
-  <ns1:AxisDefinition xsi:type="ns1:LogChannelAxis" uid="">
-   <ns1:AxisStart xsi:type="xsd:double">0.0</ns1:AxisStart>
-   <ns1:AxisSpacing xsi:type="xsd:double">0.0</ns1:AxisSpacing>
-   <ns1:AxisCount xsi:type="PositiveLong">1</ns1:AxisCount>
-   <ns1:AxisName xsi:type="String64"></ns1:AxisName>
-   <ns1:AxisPropertyKind xsi:type="String64"></ns1:AxisPropertyKind>
-   <ns1:AxisUom xsi:type="UnitOfMeasureExt"></ns1:AxisUom>
-  </ns1:AxisDefinition>
-  <ns1:PointMetadata xsi:type="ns1:PointMetadata">
-   <ns1:Name xsi:type="String64"></ns1:Name>
-   <ns1:DataKind xsi:type="ns1:ChannelDataKind">boolean</ns1:DataKind>
-   <ns1:Description xsi:type="String2000"></ns1:Description>
-   <ns1:Uom xsi:type="UnitOfMeasureExt"></ns1:Uom>
-   <ns1:MetadataPropertyKind xsi:type="DataObjectReference">
+  </Wellbore>
+  <AxisDefinition xsi:type="LogChannelAxis" uid="">
+   <AxisStart xsi:type="xsd:double">0.0</AxisStart>
+   <AxisSpacing xsi:type="xsd:double">0.0</AxisSpacing>
+   <AxisCount xsi:type="PositiveLong">1</AxisCount>
+   <AxisName xsi:type="String64"></AxisName>
+   <AxisPropertyKind xsi:type="String64"></AxisPropertyKind>
+   <AxisUom xsi:type="UnitOfMeasureExt"></AxisUom>
+  </AxisDefinition>
+  <PointMetadata xsi:type="PointMetadata">
+   <Name xsi:type="String64"></Name>
+   <DataKind xsi:type="ChannelDataKind">boolean</DataKind>
+   <Description xsi:type="String2000"></Description>
+   <Uom xsi:type="UnitOfMeasureExt"></Uom>
+   <MetadataPropertyKind xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
 <ObjectVersion xsi:type="String64"></ObjectVersion>
 <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -663,16 +663,16 @@
  <Index xsi:nil="true"/>
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue>
-   </ns1:MetadataPropertyKind>
-   <ns1:AxisDefinition xsi:type="ns1:LogChannelAxis" uid="">
-<ns1:AxisStart xsi:type="xsd:double">0.0</ns1:AxisStart>
-<ns1:AxisSpacing xsi:type="xsd:double">0.0</ns1:AxisSpacing>
-<ns1:AxisCount xsi:type="PositiveLong">1</ns1:AxisCount>
-<ns1:AxisName xsi:type="String64"></ns1:AxisName>
-<ns1:AxisPropertyKind xsi:type="String64"></ns1:AxisPropertyKind>
-<ns1:AxisUom xsi:type="UnitOfMeasureExt"></ns1:AxisUom>
-   </ns1:AxisDefinition>
-   <ns1:Datum xsi:type="DataObjectReference">
+   </MetadataPropertyKind>
+   <AxisDefinition xsi:type="LogChannelAxis" uid="">
+<AxisStart xsi:type="xsd:double">0.0</AxisStart>
+<AxisSpacing xsi:type="xsd:double">0.0</AxisSpacing>
+<AxisCount xsi:type="PositiveLong">1</AxisCount>
+<AxisName xsi:type="String64"></AxisName>
+<AxisPropertyKind xsi:type="String64"></AxisPropertyKind>
+<AxisUom xsi:type="UnitOfMeasureExt"></AxisUom>
+   </AxisDefinition>
+   <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
 <ObjectVersion xsi:type="String64"></ObjectVersion>
 <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -687,14 +687,14 @@
  <Index xsi:nil="true"/>
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue>
-   </ns1:Datum>
-  </ns1:PointMetadata>
- </ns1:Channel>
- <ns1:Data xsi:type="ns1:ChannelData">
-  <ns1:Data xsi:type="xsd:string"></ns1:Data>
-  <ns1:FileUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</ns1:FileUri>
- </ns1:Data>
- <ns1:Wellbore xsi:type="DataObjectReference">
+   </Datum>
+  </PointMetadata>
+ </Channel>
+ <Data xsi:type="ChannelData">
+  <Data xsi:type="xsd:string"></Data>
+  <FileUri xsi:type="xsd:anyURI">http://www.example.com/schema/anyURI</FileUri>
+ </Data>
+ <Wellbore xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -709,8 +709,8 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:Wellbore>
- <ns1:DataSource xsi:type="DataObjectReference">
+ </Wellbore>
+ <DataSource xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -725,9 +725,9 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:DataSource>
-</ns1:ChannelSet>
-<ns1:Wellbore xsi:type="DataObjectReference">
+ </DataSource>
+</ChannelSet>
+<Wellbore xsi:type="DataObjectReference">
  <Uuid xsi:type="UuidString"></Uuid>
  <ObjectVersion xsi:type="String64"></ObjectVersion>
  <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -742,5 +742,5 @@
   <Index xsi:type="xsd:long">0</Index>
   <Description xsi:type="String2000"></Description>
  </ExtensionNameValue>
-</ns1:Wellbore>
+</Wellbore>
    </Log>

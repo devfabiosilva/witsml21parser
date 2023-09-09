@@ -57,12 +57,12 @@ struct const_t {
   {NULL}
 };
 
-//#ifdef SOAP_DEBUG
+#ifdef SOAP_DEBUG
  #define Py_WITSML21_DEBUG(std, ...) \
     fprintf(std, __VA_ARGS__);
-//#else
-// #define Py_WITSML21_DEBUG(std, ...)
-//#endif
+#else
+ #define Py_WITSML21_DEBUG(std, ...)
+#endif
 
 #define Py_WITSML21_ERROR(err_msg, errNumber) \
  {\
@@ -347,6 +347,82 @@ static PyObject *c_get_bson_version(PyTypeObject *self, PyObject *args, PyObject
   return Py_BuildValue("y#", (const char *)version.version, (Py_ssize_t)version.versionSize);
 }
 
+static PyObject *c_get_bson_bytes(PyTypeObject *self, PyObject *args, PyObject *kwds)
+{
+  struct soap *soap_internal=((Py_WITSML21_PARSER *)self)->soap_internal;
+  struct c_bson_serialized_t *bson_ser;
+
+  CHECK_HAS_ERROR("c_get_bson_bytes: Could not get BSON serialized for this object. Object not found or error on parsing", NULL)
+
+  if ((bson_ser=bsonSerialize(soap_internal)))
+    return Py_BuildValue("y#", (const char *)bson_ser->bson, (Py_ssize_t)bson_ser->bson_size);
+
+  PyErr_SetString(PyExc_Exception, "c_get_bson_bytes: Could not parse bson serialized. Maybe libbson out of memory");
+  return NULL;
+}
+
+static PyObject *c_get_json(PyTypeObject *self, PyObject *args, PyObject *kwds)
+{
+  struct soap *soap_internal=((Py_WITSML21_PARSER *)self)->soap_internal;
+  struct c_json_str_t *c_json;
+
+  CHECK_HAS_ERROR("c_get_json: Could not get JSON string for this object. Object not found or error on parsing", NULL)
+
+  if ((c_json=getJson(soap_internal)))
+    return Py_BuildValue("s#", (const char *)c_json->json, (Py_ssize_t)c_json->json_len);
+
+  PyErr_SetString(PyExc_Exception, "c_get_json: Could not parse JSON string. Maybe libbson out of memory");
+  return NULL;
+}
+
+static PyObject *c_save_to_file(PyTypeObject *self, PyObject *args, PyObject *kwds)
+{
+  char
+   *kwlist[] = {"bson_filename", NULL};
+
+  const char
+    *c_xml_file=NULL;
+
+  struct soap *soap_internal=((Py_WITSML21_PARSER *)self)->soap_internal;
+
+  CHECK_HAS_ERROR("c_save_to_file: Could not save BSON serialized to file for this object. Object not found or error on parsing", NULL)
+
+  if (!PyArg_ParseTupleAndKeywords(
+    args, kwds, "|z", kwlist,
+    &c_xml_file
+  )) Py_WITSML21_ERROR("c_save_to_file: Error on parse output BSON filename", NULL)
+
+  if (!writeToFile(soap_internal, c_xml_file))
+    return Py_None;
+
+  PyErr_SetString(PyExc_Exception, "c_save_to_file: Could not save BSON to file.");
+  return NULL;
+}
+
+static PyObject *c_save_json_to_file(PyTypeObject *self, PyObject *args, PyObject *kwds)
+{
+  char
+   *kwlist[] = {"json_filename", NULL};
+
+  const char
+    *c_xml_file=NULL;
+
+  struct soap *soap_internal=((Py_WITSML21_PARSER *)self)->soap_internal;
+
+  CHECK_HAS_ERROR("c_save_json_to_file: Could not save JSON string to file for this object. Object not found or error on parsing", NULL)
+
+  if (!PyArg_ParseTupleAndKeywords(
+    args, kwds, "|z", kwlist,
+    &c_xml_file
+  )) Py_WITSML21_ERROR("c_save_json_to_file: Error on parse output JSON string filename", NULL)
+
+  if (!writeToFileJSON(soap_internal, c_xml_file))
+    return Py_None;
+
+  PyErr_SetString(PyExc_Exception, "c_save_json_to_file: Could not save JSON string to file.");
+  return NULL;
+}
+
 #ifdef WITH_STATISTICS
 #define Py_SET_STAT(k) #k, (long int)stat->k
 static PyObject *c_get_statistics(PyTypeObject *self, PyObject *args, PyObject *kwds)
@@ -395,6 +471,10 @@ static PyMethodDef py_witsml21_methods[] = {
   {"getError", (PyCFunction)c_get_error, METH_NOARGS, "Get WITSML 2.1 error"},
   {"getFaultString", (PyCFunction)c_get_faultstring, METH_NOARGS, "Get WITSML 2.1 XML error 'faultstring' description"},
   {"getXMLfaultdetail", (PyCFunction)c_get_XMLfaultdetail, METH_NOARGS, "Get WITSML 2.1 XML error 'XMLfaultdetail' description"},
+  {"getBsonBytes", (PyCFunction)c_get_bson_bytes, METH_NOARGS, "Get WITSML 2.1 objects in BSON serialized"},
+  {"getJson", (PyCFunction)c_get_json, METH_NOARGS, "Get WITSML 2.1 objects in JSON string"},
+  {"saveToFile", (PyCFunction)c_save_to_file, METH_VARARGS|METH_KEYWORDS, "Saves WITSML 2.1 objects to BSON file"},
+  {"saveToFileJSON", (PyCFunction)c_save_json_to_file, METH_VARARGS|METH_KEYWORDS, "Saves WITSML 2.1 objects to JSON string file"},
 #ifdef WITH_STATISTICS
   {"getStatistics", (PyCFunction)c_get_statistics, METH_NOARGS, "Get WITSML 2.1 xml document statistics"},
 #endif

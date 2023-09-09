@@ -63,14 +63,14 @@
   <Index xsi:type="xsd:long">0</Index>
   <Description xsi:type="String2000"></Description>
  </ExtensionNameValue>
- <ns1:Type xsi:type="ns1:RiskType">risk</ns1:Type>
- <ns1:Category xsi:type="ns1:RiskCategory">hydraulics</ns1:Category>
- <ns1:SubCategory xsi:type="ns1:RiskSubCategory">gas kick</ns1:SubCategory>
- <ns1:ExtendCategory xsi:type="String64"></ns1:ExtendCategory>
- <ns1:AffectedPersonnel xsi:type="ns1:RiskAffectedPersonnel">cementer</ns1:AffectedPersonnel>
- <ns1:DTimStart xsi:type="TimeStamp">2023-05-05T17:14:29Z</ns1:DTimStart>
- <ns1:DTimEnd xsi:type="TimeStamp">2023-05-05T17:14:29Z</ns1:DTimEnd>
- <ns1:MdHoleStart xsi:type="MeasuredDepth">
+ <Type xsi:type="RiskType">risk</Type>
+ <Category xsi:type="RiskCategory">hydraulics</Category>
+ <SubCategory xsi:type="RiskSubCategory">gas kick</SubCategory>
+ <ExtendCategory xsi:type="String64"></ExtendCategory>
+ <AffectedPersonnel xsi:type="RiskAffectedPersonnel">cementer</AffectedPersonnel>
+ <DTimStart xsi:type="TimeStamp">2023-05-05T17:14:29Z</DTimStart>
+ <DTimEnd xsi:type="TimeStamp">2023-05-05T17:14:29Z</DTimEnd>
+ <MdHoleStart xsi:type="MeasuredDepth">
   <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
   <Datum xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
@@ -88,8 +88,8 @@
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
   </Datum>
- </ns1:MdHoleStart>
- <ns1:MdHoleEnd xsi:type="MeasuredDepth">
+ </MdHoleStart>
+ <MdHoleEnd xsi:type="MeasuredDepth">
   <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
   <Datum xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
@@ -107,8 +107,8 @@
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
   </Datum>
- </ns1:MdHoleEnd>
- <ns1:TvdHoleStart xsi:type="AbstractVerticalDepth">
+ </MdHoleEnd>
+ <TvdHoleStart xsi:type="AbstractVerticalDepth">
   <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
   <Trajectory xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
@@ -126,8 +126,8 @@
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
   </Trajectory>
- </ns1:TvdHoleStart>
- <ns1:TvdHoleEnd xsi:type="AbstractVerticalDepth">
+ </TvdHoleStart>
+ <TvdHoleEnd xsi:type="AbstractVerticalDepth">
   <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
   <Trajectory xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
@@ -145,8 +145,8 @@
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
   </Trajectory>
- </ns1:TvdHoleEnd>
- <ns1:MdBitStart xsi:type="MeasuredDepth">
+ </TvdHoleEnd>
+ <MdBitStart xsi:type="MeasuredDepth">
   <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
   <Datum xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
@@ -164,8 +164,8 @@
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
   </Datum>
- </ns1:MdBitStart>
- <ns1:MdBitEnd xsi:type="MeasuredDepth">
+ </MdBitStart>
+ <MdBitEnd xsi:type="MeasuredDepth">
   <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
   <Datum xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
@@ -183,16 +183,16 @@
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
   </Datum>
- </ns1:MdBitEnd>
- <ns1:DiaHole xsi:type="LengthMeasure" uom="m">0.0</ns1:DiaHole>
- <ns1:SeverityLevel xsi:type="ns1:LevelIntegerCode">0</ns1:SeverityLevel>
- <ns1:ProbabilityLevel xsi:type="ns1:LevelIntegerCode">0</ns1:ProbabilityLevel>
- <ns1:Summary xsi:type="String2000"></ns1:Summary>
- <ns1:Details xsi:type="String2000"></ns1:Details>
- <ns1:Identification xsi:type="String2000"></ns1:Identification>
- <ns1:Contingency xsi:type="String2000"></ns1:Contingency>
- <ns1:Mitigation xsi:type="String2000"></ns1:Mitigation>
- <ns1:ObjectReference xsi:type="DataObjectReference">
+ </MdBitEnd>
+ <DiaHole xsi:type="LengthMeasure" uom="m">0.0</DiaHole>
+ <SeverityLevel xsi:type="LevelIntegerCode">0</SeverityLevel>
+ <ProbabilityLevel xsi:type="LevelIntegerCode">0</ProbabilityLevel>
+ <Summary xsi:type="String2000"></Summary>
+ <Details xsi:type="String2000"></Details>
+ <Identification xsi:type="String2000"></Identification>
+ <Contingency xsi:type="String2000"></Contingency>
+ <Mitigation xsi:type="String2000"></Mitigation>
+ <ObjectReference xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -207,8 +207,8 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:ObjectReference>
- <ns1:Wellbore xsi:type="DataObjectReference">
+ </ObjectReference>
+ <Wellbore xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -223,5 +223,5 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:Wellbore>
+ </Wellbore>
 </Risk>

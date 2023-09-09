@@ -63,8 +63,8 @@
   <Index xsi:type="xsd:long">0</Index>
   <Description xsi:type="String2000"></Description>
  </ExtensionNameValue>
- <ns1:DTim xsi:type="TimeStamp">2023-05-03T02:07:15Z</ns1:DTim>
- <ns1:Md xsi:type="MeasuredDepth">
+ <DTim xsi:type="TimeStamp">2023-05-03T02:07:15Z</DTim>
+ <Md xsi:type="MeasuredDepth">
   <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
   <Datum xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
@@ -82,8 +82,8 @@
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
   </Datum>
- </ns1:Md>
- <ns1:Tvd xsi:type="AbstractVerticalDepth">
+ </Md>
+ <Tvd xsi:type="AbstractVerticalDepth">
   <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
   <Trajectory xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
@@ -101,13 +101,13 @@
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
   </Trajectory>
- </ns1:Tvd>
- <ns1:NumReport xsi:type="xsd:long">0</ns1:NumReport>
- <ns1:Fluid xsi:type="ns1:Fluid" uid="">
-  <ns1:Type xsi:type="String64"></ns1:Type>
-  <ns1:LocationSample xsi:type="String64"></ns1:LocationSample>
-  <ns1:DTim xsi:type="TimeStamp">2023-05-03T02:07:15Z</ns1:DTim>
-  <ns1:Md xsi:type="MeasuredDepth">
+ </Tvd>
+ <NumReport xsi:type="xsd:long">0</NumReport>
+ <Fluid xsi:type="Fluid" uid="">
+  <Type xsi:type="String64"></Type>
+  <LocationSample xsi:type="String64"></LocationSample>
+  <DTim xsi:type="TimeStamp">2023-05-03T02:07:15Z</DTim>
+  <Md xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -125,8 +125,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue>
    </Datum>
-  </ns1:Md>
-  <ns1:Tvd xsi:type="AbstractVerticalDepth">
+  </Md>
+  <Tvd xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -144,58 +144,58 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue>
    </Trajectory>
-  </ns1:Tvd>
-  <ns1:Ecd xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Ecd>
-  <ns1:KickToleranceVolume xsi:type="VolumeMeasure" uom="">0.0</ns1:KickToleranceVolume>
-  <ns1:KickToleranceIntensity xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:KickToleranceIntensity>
-  <ns1:TempFlowLine xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempFlowLine>
-  <ns1:PresBopRating xsi:type="PressureMeasure" uom="">0.0</ns1:PresBopRating>
-  <ns1:MudClass xsi:type="ns1:MudClass">oil-based</ns1:MudClass>
-  <ns1:Density xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Density>
-  <ns1:VisFunnel xsi:type="TimeMeasure" uom="a">0.0</ns1:VisFunnel>
-  <ns1:TempVis xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempVis>
-  <ns1:Pv xsi:type="DynamicViscosityMeasure" uom="P">0.0</ns1:Pv>
-  <ns1:Yp xsi:type="PressureMeasure" uom="">0.0</ns1:Yp>
-  <ns1:Gel3Sec xsi:type="PressureMeasureExt" uom="">0.0</ns1:Gel3Sec>
-  <ns1:Gel6Sec xsi:type="PressureMeasureExt" uom="">0.0</ns1:Gel6Sec>
-  <ns1:Gel10Sec xsi:type="PressureMeasure" uom="">0.0</ns1:Gel10Sec>
-  <ns1:Gel10Min xsi:type="PressureMeasure" uom="">0.0</ns1:Gel10Min>
-  <ns1:Gel30Min xsi:type="PressureMeasure" uom="">0.0</ns1:Gel30Min>
-  <ns1:FilterCakeLtlp xsi:type="LengthMeasure" uom="m">0.0</ns1:FilterCakeLtlp>
-  <ns1:FiltrateLtlp xsi:type="VolumeMeasure" uom="">0.0</ns1:FiltrateLtlp>
-  <ns1:TempHthp xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempHthp>
-  <ns1:PresHthp xsi:type="PressureMeasure" uom="">0.0</ns1:PresHthp>
-  <ns1:FiltrateHthp xsi:type="VolumeMeasure" uom="">0.0</ns1:FiltrateHthp>
-  <ns1:FilterCakeHthp xsi:type="LengthMeasure" uom="m">0.0</ns1:FilterCakeHthp>
-  <ns1:SolidsPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SolidsPc>
-  <ns1:WaterPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:WaterPc>
-  <ns1:OilPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:OilPc>
-  <ns1:SandPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SandPc>
-  <ns1:SolidsLowGravPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SolidsLowGravPc>
-  <ns1:SolidsLowGrav xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:SolidsLowGrav>
-  <ns1:SolidsCalcPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SolidsCalcPc>
-  <ns1:BaritePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:BaritePc>
-  <ns1:Lcm xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Lcm>
-  <ns1:Mbt xsi:type="CationExchangeCapacityMeasureExt" uom="">0.0</ns1:Mbt>
-  <ns1:Ph xsi:type="xsd:double">0.0</ns1:Ph>
-  <ns1:TempPh xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempPh>
-  <ns1:Pm xsi:type="VolumeMeasure" uom="">0.0</ns1:Pm>
-  <ns1:PmFiltrate xsi:type="VolumeMeasure" uom="">0.0</ns1:PmFiltrate>
-  <ns1:Mf xsi:type="VolumeMeasure" uom="">0.0</ns1:Mf>
-  <ns1:AlkalinityP1 xsi:type="VolumeMeasure" uom="">0.0</ns1:AlkalinityP1>
-  <ns1:AlkalinityP2 xsi:type="VolumeMeasure" uom="">0.0</ns1:AlkalinityP2>
-  <ns1:Chloride xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Chloride>
-  <ns1:Calcium xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Calcium>
-  <ns1:Magnesium xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Magnesium>
-  <ns1:Potassium xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Potassium>
-  <ns1:BrinePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:BrinePc>
-  <ns1:BrineDensity xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:BrineDensity>
-  <ns1:BrineClass xsi:type="ns1:BrineClassExt"></ns1:BrineClass>
-  <ns1:Lime xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Lime>
-  <ns1:ElectStab xsi:type="ElectricPotentialDifferenceMeasure" uom="V">0.0</ns1:ElectStab>
-  <ns1:CalciumChloridePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:CalciumChloridePc>
-  <ns1:CalciumChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:CalciumChloride>
-  <ns1:Company xsi:type="DataObjectReference">
+  </Tvd>
+  <Ecd xsi:type="MassPerVolumeMeasure" uom="">0.0</Ecd>
+  <KickToleranceVolume xsi:type="VolumeMeasure" uom="">0.0</KickToleranceVolume>
+  <KickToleranceIntensity xsi:type="MassPerVolumeMeasure" uom="">0.0</KickToleranceIntensity>
+  <TempFlowLine xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempFlowLine>
+  <PresBopRating xsi:type="PressureMeasure" uom="">0.0</PresBopRating>
+  <MudClass xsi:type="MudClass">oil-based</MudClass>
+  <Density xsi:type="MassPerVolumeMeasure" uom="">0.0</Density>
+  <VisFunnel xsi:type="TimeMeasure" uom="a">0.0</VisFunnel>
+  <TempVis xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempVis>
+  <Pv xsi:type="DynamicViscosityMeasure" uom="P">0.0</Pv>
+  <Yp xsi:type="PressureMeasure" uom="">0.0</Yp>
+  <Gel3Sec xsi:type="PressureMeasureExt" uom="">0.0</Gel3Sec>
+  <Gel6Sec xsi:type="PressureMeasureExt" uom="">0.0</Gel6Sec>
+  <Gel10Sec xsi:type="PressureMeasure" uom="">0.0</Gel10Sec>
+  <Gel10Min xsi:type="PressureMeasure" uom="">0.0</Gel10Min>
+  <Gel30Min xsi:type="PressureMeasure" uom="">0.0</Gel30Min>
+  <FilterCakeLtlp xsi:type="LengthMeasure" uom="m">0.0</FilterCakeLtlp>
+  <FiltrateLtlp xsi:type="VolumeMeasure" uom="">0.0</FiltrateLtlp>
+  <TempHthp xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempHthp>
+  <PresHthp xsi:type="PressureMeasure" uom="">0.0</PresHthp>
+  <FiltrateHthp xsi:type="VolumeMeasure" uom="">0.0</FiltrateHthp>
+  <FilterCakeHthp xsi:type="LengthMeasure" uom="m">0.0</FilterCakeHthp>
+  <SolidsPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SolidsPc>
+  <WaterPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</WaterPc>
+  <OilPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</OilPc>
+  <SandPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SandPc>
+  <SolidsLowGravPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SolidsLowGravPc>
+  <SolidsLowGrav xsi:type="MassPerVolumeMeasure" uom="">0.0</SolidsLowGrav>
+  <SolidsCalcPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SolidsCalcPc>
+  <BaritePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</BaritePc>
+  <Lcm xsi:type="MassPerVolumeMeasure" uom="">0.0</Lcm>
+  <Mbt xsi:type="CationExchangeCapacityMeasureExt" uom="">0.0</Mbt>
+  <Ph xsi:type="xsd:double">0.0</Ph>
+  <TempPh xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempPh>
+  <Pm xsi:type="VolumeMeasure" uom="">0.0</Pm>
+  <PmFiltrate xsi:type="VolumeMeasure" uom="">0.0</PmFiltrate>
+  <Mf xsi:type="VolumeMeasure" uom="">0.0</Mf>
+  <AlkalinityP1 xsi:type="VolumeMeasure" uom="">0.0</AlkalinityP1>
+  <AlkalinityP2 xsi:type="VolumeMeasure" uom="">0.0</AlkalinityP2>
+  <Chloride xsi:type="MassPerVolumeMeasure" uom="">0.0</Chloride>
+  <Calcium xsi:type="MassPerVolumeMeasure" uom="">0.0</Calcium>
+  <Magnesium xsi:type="MassPerVolumeMeasure" uom="">0.0</Magnesium>
+  <Potassium xsi:type="MassPerVolumeMeasure" uom="">0.0</Potassium>
+  <BrinePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</BrinePc>
+  <BrineDensity xsi:type="MassPerVolumeMeasure" uom="">0.0</BrineDensity>
+  <BrineClass xsi:type="BrineClassExt"></BrineClass>
+  <Lime xsi:type="MassPerVolumeMeasure" uom="">0.0</Lime>
+  <ElectStab xsi:type="ElectricPotentialDifferenceMeasure" uom="V">0.0</ElectStab>
+  <CalciumChloridePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</CalciumChloridePc>
+  <CalciumChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</CalciumChloride>
+  <Company xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -210,63 +210,63 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue>
-  </ns1:Company>
-  <ns1:Engineer xsi:type="String64"></ns1:Engineer>
-  <ns1:Asg xsi:type="MassPerMassMeasure" uom="%">0.0</ns1:Asg>
-  <ns1:SolidsHiGravPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SolidsHiGravPc>
-  <ns1:SolidsHiGrav xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:SolidsHiGrav>
-  <ns1:Polymer xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Polymer>
-  <ns1:PolyType xsi:type="String64"></ns1:PolyType>
-  <ns1:SolCorPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SolCorPc>
-  <ns1:OilCtg xsi:type="MassPerMassMeasure" uom="%">0.0</ns1:OilCtg>
-  <ns1:OilCtgDry xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:OilCtgDry>
-  <ns1:HardnessCa xsi:type="MassPerMassMeasure" uom="%">0.0</ns1:HardnessCa>
-  <ns1:Sulfide xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Sulfide>
-  <ns1:AverageCuttingSize xsi:type="LengthMeasure" uom="m">0.0</ns1:AverageCuttingSize>
-  <ns1:Carbonate xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Carbonate>
-  <ns1:Iron xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Iron>
-  <ns1:MetalRecovered xsi:type="MassMeasure" uom="g">0.0</ns1:MetalRecovered>
-  <ns1:Turbidity xsi:type="xsd:double">0.0</ns1:Turbidity>
-  <ns1:OilGrease xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:OilGrease>
-  <ns1:Salt xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Salt>
-  <ns1:SaltPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SaltPc>
-  <ns1:Tct xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:Tct>
-  <ns1:WaterPhaseSalinity xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:WaterPhaseSalinity>
-  <ns1:WholeMudCalcium xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:WholeMudCalcium>
-  <ns1:WholeMudChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:WholeMudChloride>
-  <ns1:ZincOxide xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:ZincOxide>
-  <ns1:SodiumChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:SodiumChloride>
-  <ns1:SodiumChloridePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SodiumChloridePc>
-  <ns1:PptSpurtLoss xsi:type="VolumeMeasureExt" uom="">0.0</ns1:PptSpurtLoss>
-  <ns1:PptPressure xsi:type="PressureMeasureExt" uom="">0.0</ns1:PptPressure>
-  <ns1:PptTemperature xsi:type="ThermodynamicTemperatureMeasureExt" uom="">0.0</ns1:PptTemperature>
-  <ns1:Comments xsi:type="String2000"></ns1:Comments>
-  <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </Company>
+  <Engineer xsi:type="String64"></Engineer>
+  <Asg xsi:type="MassPerMassMeasure" uom="%">0.0</Asg>
+  <SolidsHiGravPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SolidsHiGravPc>
+  <SolidsHiGrav xsi:type="MassPerVolumeMeasure" uom="">0.0</SolidsHiGrav>
+  <Polymer xsi:type="VolumePerVolumeMeasure" uom="">0.0</Polymer>
+  <PolyType xsi:type="String64"></PolyType>
+  <SolCorPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SolCorPc>
+  <OilCtg xsi:type="MassPerMassMeasure" uom="%">0.0</OilCtg>
+  <OilCtgDry xsi:type="MassPerVolumeMeasure" uom="">0.0</OilCtgDry>
+  <HardnessCa xsi:type="MassPerMassMeasure" uom="%">0.0</HardnessCa>
+  <Sulfide xsi:type="MassPerVolumeMeasure" uom="">0.0</Sulfide>
+  <AverageCuttingSize xsi:type="LengthMeasure" uom="m">0.0</AverageCuttingSize>
+  <Carbonate xsi:type="MassPerVolumeMeasure" uom="">0.0</Carbonate>
+  <Iron xsi:type="MassPerVolumeMeasure" uom="">0.0</Iron>
+  <MetalRecovered xsi:type="MassMeasure" uom="g">0.0</MetalRecovered>
+  <Turbidity xsi:type="xsd:double">0.0</Turbidity>
+  <OilGrease xsi:type="MassPerVolumeMeasure" uom="">0.0</OilGrease>
+  <Salt xsi:type="MassPerVolumeMeasure" uom="">0.0</Salt>
+  <SaltPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SaltPc>
+  <Tct xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</Tct>
+  <WaterPhaseSalinity xsi:type="MassPerVolumeMeasure" uom="">0.0</WaterPhaseSalinity>
+  <WholeMudCalcium xsi:type="MassPerVolumeMeasure" uom="">0.0</WholeMudCalcium>
+  <WholeMudChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</WholeMudChloride>
+  <ZincOxide xsi:type="MassPerVolumeMeasure" uom="">0.0</ZincOxide>
+  <SodiumChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</SodiumChloride>
+  <SodiumChloridePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SodiumChloridePc>
+  <PptSpurtLoss xsi:type="VolumeMeasureExt" uom="">0.0</PptSpurtLoss>
+  <PptPressure xsi:type="PressureMeasureExt" uom="">0.0</PptPressure>
+  <PptTemperature xsi:type="ThermodynamicTemperatureMeasureExt" uom="">0.0</PptTemperature>
+  <Comments xsi:type="String2000"></Comments>
+  <ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-03T02:07:15Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue>
-  <ns1:Rheometer xsi:type="ns1:Rheometer" uid="">
-   <ns1:TempRheom xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempRheom>
-   <ns1:PresRheom xsi:type="PressureMeasure" uom="">0.0</ns1:PresRheom>
-   <ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </ExtensionNameValue>
+  <Rheometer xsi:type="Rheometer" uid="">
+   <TempRheom xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempRheom>
+   <PresRheom xsi:type="PressureMeasure" uom="">0.0</PresRheom>
+   <ExtensionNameValue xsi:type="ExtensionNameValue">
 <Name xsi:type="String64"></Name>
 <Value xsi:type="StringMeasure" uom=""></Value>
 <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
 <DTim xsi:type="TimeStamp">2023-05-03T02:07:15Z</DTim>
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
-   </ns1:ExtensionNameValue>
-   <ns1:Viscosity xsi:type="ns1:RheometerViscosity" uid="">
-<ns1:Speed xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</ns1:Speed>
-<ns1:Viscosity xsi:type="xsd:double">0.0</ns1:Viscosity>
-   </ns1:Viscosity>
-  </ns1:Rheometer>
- </ns1:Fluid>
- <ns1:Wellbore xsi:type="DataObjectReference">
+   </ExtensionNameValue>
+   <Viscosity xsi:type="RheometerViscosity" uid="">
+<Speed xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</Speed>
+<Viscosity xsi:type="xsd:double">0.0</Viscosity>
+   </Viscosity>
+  </Rheometer>
+ </Fluid>
+ <Wellbore xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -281,5 +281,5 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:Wellbore>
+ </Wellbore>
 </FluidsReport>

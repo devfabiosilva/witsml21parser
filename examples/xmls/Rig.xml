@@ -1,4 +1,4 @@
-<Rig xsi:type="ns1:Rig" uuid="" schemaVersion="" objectVersion="">
+<Rig uuid="" schemaVersion="" objectVersion="">
  <Aliases xsi:type="ObjectAlias" authority="">
   <Identifier xsi:type="String64"></Identifier>
   <IdentifierKind xsi:type="AliasIdentifierKindExt"></IdentifierKind>
@@ -64,7 +64,7 @@
   <Description xsi:type="String2000"></Description>
  </ExtensionNameValue>
  <ActiveStatus xsi:type="ActiveStatusKind">active</ActiveStatus>
- <ns1:Owner xsi:type="DataObjectReference">
+ <Owner xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -79,9 +79,9 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:Owner>
- <ns1:TypeRig xsi:type="ns1:RigType">barge</ns1:TypeRig>
- <ns1:Manufacturer xsi:type="DataObjectReference">
+ </Owner>
+ <TypeRig xsi:type="RigType">barge</TypeRig>
+ <Manufacturer xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -96,21 +96,21 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:Manufacturer>
- <ns1:YearEntService xsi:type="xsd:gYear"></ns1:YearEntService>
- <ns1:ClassRig xsi:type="String64"></ns1:ClassRig>
- <ns1:Approvals xsi:type="String64"></ns1:Approvals>
- <ns1:Registration xsi:type="String64"></ns1:Registration>
- <ns1:TelNumber xsi:type="String64"></ns1:TelNumber>
- <ns1:FaxNumber xsi:type="String64"></ns1:FaxNumber>
- <ns1:EmailAddress xsi:type="String64"></ns1:EmailAddress>
- <ns1:NameContact xsi:type="String64"></ns1:NameContact>
- <ns1:RatingDrillDepth xsi:type="LengthMeasure" uom="m">0.0</ns1:RatingDrillDepth>
- <ns1:RatingWaterDepth xsi:type="LengthMeasure" uom="m">0.0</ns1:RatingWaterDepth>
- <ns1:IsOffshore xsi:type="xsd:boolean">false</ns1:IsOffshore>
- <ns1:TypeDerrick xsi:type="ns1:DerrickType">double</ns1:TypeDerrick>
- <ns1:RatingDerrick xsi:type="ForceMeasure" uom="N">0.0</ns1:RatingDerrick>
- <ns1:HtDerrick xsi:type="LengthMeasure" uom="m">0.0</ns1:HtDerrick>
- <ns1:CapWindDerrick xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</ns1:CapWindDerrick>
- <ns1:NumCranes xsi:type="xsd:long">0</ns1:NumCranes>
+ </Manufacturer>
+ <YearEntService xsi:type="xsd:gYear"></YearEntService>
+ <ClassRig xsi:type="String64"></ClassRig>
+ <Approvals xsi:type="String64"></Approvals>
+ <Registration xsi:type="String64"></Registration>
+ <TelNumber xsi:type="String64"></TelNumber>
+ <FaxNumber xsi:type="String64"></FaxNumber>
+ <EmailAddress xsi:type="String64"></EmailAddress>
+ <NameContact xsi:type="String64"></NameContact>
+ <RatingDrillDepth xsi:type="LengthMeasure" uom="m">0.0</RatingDrillDepth>
+ <RatingWaterDepth xsi:type="LengthMeasure" uom="m">0.0</RatingWaterDepth>
+ <IsOffshore xsi:type="xsd:boolean">false</IsOffshore>
+ <TypeDerrick xsi:type="DerrickType">double</TypeDerrick>
+ <RatingDerrick xsi:type="ForceMeasure" uom="N">0.0</RatingDerrick>
+ <HtDerrick xsi:type="LengthMeasure" uom="m">0.0</HtDerrick>
+ <CapWindDerrick xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</CapWindDerrick>
+ <NumCranes xsi:type="xsd:long">0</NumCranes>
 </Rig>

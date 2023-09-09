@@ -116,6 +116,7 @@ struct statistics_t *getStatistics(struct soap *);
 #endif
 struct c_bson_serialized_t *bsonSerialize(struct soap *); 
 int writeToFile(struct soap *, const char *);
+int writeToFileJSON(struct soap *, const char *);
 
 #define GET_INSTANCE_NAME ((CWS_CONFIG *)(soap_internal->user))->instance_name
 #define GET_OBJECT_TYPE ((CWS_CONFIG *)(soap_internal->user))->object_type

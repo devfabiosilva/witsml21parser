@@ -298,6 +298,18 @@ struct c_bson_serialized_t *bsonSerialize(struct soap *soap_internal)
   return NULL;
 }
 
+static int file_exists(const char *filename)
+{
+  FILE *f;
+
+  if ((f=fopen(filename, "r"))) {
+    fclose(f);
+    return -156;
+  }
+
+  return 0;
+}
+
 int writeToFile(struct soap *soap_internal, const char *filename)
 {
   int err;
@@ -312,10 +324,40 @@ int writeToFile(struct soap *soap_internal, const char *filename)
   if (!filename)
     snprintf((char *)(filename=(const char *)fname), sizeof(fname), "%s.bson", GET_OBJECT_NAME);
 
+  if ((err=file_exists(filename)))
+    return err;
+
   if (!(f=fopen(filename, "w")))
     return -2;
 
   err=(fwrite((void *)ptr->bson, sizeof(uint8_t), ptr->bson_size, f)==ptr->bson_size)?0:-3;
+
+  fclose(f);
+
+  return err;
+}
+
+int writeToFileJSON(struct soap *soap_internal, const char *filename)
+{
+  int err;
+  FILE *f;
+  char fname[64];
+
+  struct c_json_str_t *ptr;
+
+  if (!(ptr=getJson(soap_internal)))
+    return -4;
+
+  if (!filename)
+    snprintf((char *)(filename=(const char *)fname), sizeof(fname), "%s.json", GET_OBJECT_NAME);
+
+  if ((err=file_exists(filename)))
+    return err;
+
+  if (!(f=fopen(filename, "w")))
+    return -5;
+
+  err=(fwrite((void *)ptr->json, sizeof(uint8_t), ptr->json_len, f)==ptr->json_len)?0:-6;
 
   fclose(f);
 

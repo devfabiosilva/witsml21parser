@@ -63,11 +63,11 @@
   <Index xsi:type="xsd:long">0</Index>
   <Description xsi:type="String2000"></Description>
  </ExtensionNameValue-->
- <ns1:DTimStart xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTimStart>
- <ns1:DTimEnd xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTimEnd>
- <ns1:VersionKind xsi:type="ns1:OpsReportVersion">preliminary</ns1:VersionKind>
- <ns1:CreateDate xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:CreateDate>
- <ns1:Datum xsi:type="DataObjectReference">
+ <DTimStart xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTimStart>
+ <DTimEnd xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTimEnd>
+ <VersionKind xsi:type="OpsReportVersion">preliminary</VersionKind>
+ <CreateDate xsi:type="TimeStamp">2023-05-01T16:54:58Z</CreateDate>
+ <Datum xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -82,13 +82,13 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue-->
- </ns1:Datum>
- <ns1:BitRecord xsi:type="ns1:BitRecord" uid="">
-  <ns1:NumBit xsi:type="String64"></ns1:NumBit>
-  <ns1:DiaBit xsi:type="LengthMeasure" uom="m">0.0</ns1:DiaBit>
-  <ns1:DiaPassThru xsi:type="LengthMeasure" uom="m">0.0</ns1:DiaPassThru>
-  <ns1:DiaPilot xsi:type="LengthMeasure" uom="m">0.0</ns1:DiaPilot>
-  <ns1:Manufacturer xsi:type="DataObjectReference">
+ </Datum>
+ <BitRecord xsi:type="BitRecord" uid="">
+  <NumBit xsi:type="String64"></NumBit>
+  <DiaBit xsi:type="LengthMeasure" uom="m">0.0</DiaBit>
+  <DiaPassThru xsi:type="LengthMeasure" uom="m">0.0</DiaPassThru>
+  <DiaPilot xsi:type="LengthMeasure" uom="m">0.0</DiaPilot>
+  <Manufacturer xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -103,43 +103,43 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:Manufacturer>
-  <ns1:TypeBit xsi:type="ns1:BitType">diamond</ns1:TypeBit>
-  <ns1:CodeMfg xsi:type="String64"></ns1:CodeMfg>
-  <ns1:CodeIADC xsi:type="String64"></ns1:CodeIADC>
-  <ns1:CondInitInner xsi:type="ns1:IadcIntegerCode">0</ns1:CondInitInner>
-  <ns1:CondInitOuter xsi:type="ns1:IadcIntegerCode">0</ns1:CondInitOuter>
-  <ns1:CondInitDull xsi:type="ns1:BitDullCode">BC</ns1:CondInitDull>
-  <ns1:CondInitLocation xsi:type="String64"></ns1:CondInitLocation>
-  <ns1:CondInitBearing xsi:type="ns1:IadcBearingWearCode">0</ns1:CondInitBearing>
-  <ns1:CondInitGauge xsi:type="String64"></ns1:CondInitGauge>
-  <ns1:CondInitOther xsi:type="String64"></ns1:CondInitOther>
-  <ns1:CondInitReason xsi:type="ns1:BitReasonPulled">BHA</ns1:CondInitReason>
-  <ns1:CondFinalInner xsi:type="ns1:IadcIntegerCode">0</ns1:CondFinalInner>
-  <ns1:CondFinalOuter xsi:type="ns1:IadcIntegerCode">0</ns1:CondFinalOuter>
-  <ns1:CondFinalDull xsi:type="ns1:BitDullCode">BC</ns1:CondFinalDull>
-  <ns1:CondFinalLocation xsi:type="String64"></ns1:CondFinalLocation>
-  <ns1:CondFinalBearing xsi:type="ns1:IadcBearingWearCode">0</ns1:CondFinalBearing>
-  <ns1:CondFinalGauge xsi:type="String64"></ns1:CondFinalGauge>
-  <ns1:CondFinalOther xsi:type="String64"></ns1:CondFinalOther>
-  <ns1:CondFinalReason xsi:type="ns1:BitReasonPulled">BHA</ns1:CondFinalReason>
-  <ns1:Drive xsi:type="String64"></ns1:Drive>
-  <ns1:BitClass xsi:type="String64"></ns1:BitClass>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </Manufacturer>
+  <TypeBit xsi:type="BitType">diamond</TypeBit>
+  <CodeMfg xsi:type="String64"></CodeMfg>
+  <CodeIADC xsi:type="String64"></CodeIADC>
+  <CondInitInner xsi:type="IadcIntegerCode">0</CondInitInner>
+  <CondInitOuter xsi:type="IadcIntegerCode">0</CondInitOuter>
+  <CondInitDull xsi:type="BitDullCode">BC</CondInitDull>
+  <CondInitLocation xsi:type="String64"></CondInitLocation>
+  <CondInitBearing xsi:type="IadcBearingWearCode">0</CondInitBearing>
+  <CondInitGauge xsi:type="String64"></CondInitGauge>
+  <CondInitOther xsi:type="String64"></CondInitOther>
+  <CondInitReason xsi:type="BitReasonPulled">BHA</CondInitReason>
+  <CondFinalInner xsi:type="IadcIntegerCode">0</CondFinalInner>
+  <CondFinalOuter xsi:type="IadcIntegerCode">0</CondFinalOuter>
+  <CondFinalDull xsi:type="BitDullCode">BC</CondFinalDull>
+  <CondFinalLocation xsi:type="String64"></CondFinalLocation>
+  <CondFinalBearing xsi:type="IadcBearingWearCode">0</CondFinalBearing>
+  <CondFinalGauge xsi:type="String64"></CondFinalGauge>
+  <CondFinalOther xsi:type="String64"></CondFinalOther>
+  <CondFinalReason xsi:type="BitReasonPulled">BHA</CondFinalReason>
+  <Drive xsi:type="String64"></Drive>
+  <BitClass xsi:type="String64"></BitClass>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
-  <ns1:Cost xsi:type="Cost" currency="">0.0</ns1:Cost>
- </ns1:BitRecord>
- <ns1:WellboreInfo xsi:type="ns1:DrillReportWellboreInfo">
-  <ns1:DTimSpud xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTimSpud>
-  <ns1:DTimPreSpud xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTimPreSpud>
-  <ns1:DateDrillComplete xsi:type="xsd:date">1999-12-31</ns1:DateDrillComplete>
-  <ns1:Operator xsi:type="DataObjectReference">
+  </ExtensionNameValue-->
+  <Cost xsi:type="Cost" currency="">0.0</Cost>
+ </BitRecord>
+ <WellboreInfo xsi:type="DrillReportWellboreInfo">
+  <DTimSpud xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTimSpud>
+  <DTimPreSpud xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTimPreSpud>
+  <DateDrillComplete xsi:type="xsd:date">1999-12-31</DateDrillComplete>
+  <Operator xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -154,8 +154,8 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:Operator>
-  <ns1:DrillContractor xsi:type="DataObjectReference">
+  </Operator>
+  <DrillContractor xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -170,8 +170,8 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:DrillContractor>
-  <ns1:Rig xsi:type="DataObjectReference">
+  </DrillContractor>
+  <Rig xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -186,11 +186,11 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:Rig>
- </ns1:WellboreInfo>
- <ns1:StatusInfo xsi:type="ns1:DrillReportStatusInfo" uid="">
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTim>
-  <ns1:Md xsi:type="MeasuredDepth">
+  </Rig>
+ </WellboreInfo>
+ <StatusInfo xsi:type="DrillReportStatusInfo" uid="">
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
+  <Md xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -208,8 +208,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:Md>
-  <ns1:Tvd xsi:type="AbstractVerticalDepth">
+  </Md>
+  <Tvd xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -227,8 +227,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:Tvd>
-  <ns1:MdPlugTop xsi:type="MeasuredDepth">
+  </Tvd>
+  <MdPlugTop xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -246,9 +246,9 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdPlugTop>
-  <ns1:DiaHole xsi:type="LengthMeasure" uom="m">0.0</ns1:DiaHole>
-  <ns1:MdDiaHoleStart xsi:type="MeasuredDepth">
+  </MdPlugTop>
+  <DiaHole xsi:type="LengthMeasure" uom="m">0.0</DiaHole>
+  <MdDiaHoleStart xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -266,9 +266,9 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdDiaHoleStart>
-  <ns1:DiaPilot xsi:type="LengthMeasure" uom="m">0.0</ns1:DiaPilot>
-  <ns1:MdDiaPilotPlan xsi:type="MeasuredDepth">
+  </MdDiaHoleStart>
+  <DiaPilot xsi:type="LengthMeasure" uom="m">0.0</DiaPilot>
+  <MdDiaPilotPlan xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -286,8 +286,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdDiaPilotPlan>
-  <ns1:TvdDiaPilotPlan xsi:type="AbstractVerticalDepth">
+  </MdDiaPilotPlan>
+  <TvdDiaPilotPlan xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -305,9 +305,9 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:TvdDiaPilotPlan>
-  <ns1:TypeWellbore xsi:type="ns1:WellboreType">bypass</ns1:TypeWellbore>
-  <ns1:MdKickoff xsi:type="MeasuredDepth">
+  </TvdDiaPilotPlan>
+  <TypeWellbore xsi:type="WellboreType">bypass</TypeWellbore>
+  <MdKickoff xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -325,8 +325,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdKickoff>
-  <ns1:TvdKickoff xsi:type="MeasuredDepth">
+  </MdKickoff>
+  <TvdKickoff xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -344,9 +344,9 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:TvdKickoff>
-  <ns1:StrengthForm xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:StrengthForm>
-  <ns1:MdStrengthForm xsi:type="MeasuredDepth">
+  </TvdKickoff>
+  <StrengthForm xsi:type="MassPerVolumeMeasure" uom="">0.0</StrengthForm>
+  <MdStrengthForm xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -364,8 +364,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdStrengthForm>
-  <ns1:TvdStrengthForm xsi:type="AbstractVerticalDepth">
+  </MdStrengthForm>
+  <TvdStrengthForm xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -383,9 +383,9 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:TvdStrengthForm>
-  <ns1:DiaCsgLast xsi:type="LengthMeasure" uom="m">0.0</ns1:DiaCsgLast>
-  <ns1:MdCsgLast xsi:type="MeasuredDepth">
+  </TvdStrengthForm>
+  <DiaCsgLast xsi:type="LengthMeasure" uom="m">0.0</DiaCsgLast>
+  <MdCsgLast xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -403,8 +403,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdCsgLast>
-  <ns1:TvdCsgLast xsi:type="AbstractVerticalDepth">
+  </MdCsgLast>
+  <TvdCsgLast xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -422,9 +422,9 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:TvdCsgLast>
-  <ns1:PresTestType xsi:type="ns1:PresTestType">leak off test</ns1:PresTestType>
-  <ns1:MdPlanned xsi:type="MeasuredDepth">
+  </TvdCsgLast>
+  <PresTestType xsi:type="PresTestType">leak off test</PresTestType>
+  <MdPlanned xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -442,12 +442,12 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdPlanned>
-  <ns1:DistDrill xsi:type="LengthMeasure" uom="m">0.0</ns1:DistDrill>
-  <ns1:Sum24Hr xsi:type="String2000"></ns1:Sum24Hr>
-  <ns1:Forecast24Hr xsi:type="String2000"></ns1:Forecast24Hr>
-  <ns1:RopCurrent xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</ns1:RopCurrent>
-  <ns1:RigUtilization xsi:type="DataObjectReference">
+  </MdPlanned>
+  <DistDrill xsi:type="LengthMeasure" uom="m">0.0</DistDrill>
+  <Sum24Hr xsi:type="String2000"></Sum24Hr>
+  <Forecast24Hr xsi:type="String2000"></Forecast24Hr>
+  <RopCurrent xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</RopCurrent>
+  <RigUtilization xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -462,33 +462,33 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:RigUtilization>
-  <ns1:ETimStart xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimStart>
-  <ns1:ETimSpud xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimSpud>
-  <ns1:ETimLoc xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimLoc>
-  <ns1:ETimDrill xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimDrill>
-  <ns1:RopAv xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</ns1:RopAv>
-  <ns1:Supervisor xsi:type="String64"></ns1:Supervisor>
-  <ns1:Engineer xsi:type="String64"></ns1:Engineer>
-  <ns1:Geologist xsi:type="String64"></ns1:Geologist>
-  <ns1:ETimDrillRot xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimDrillRot>
-  <ns1:ETimDrillSlid xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimDrillSlid>
-  <ns1:ETimCirc xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimCirc>
-  <ns1:ETimReam xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimReam>
-  <ns1:ETimHold xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimHold>
-  <ns1:ETimSteering xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimSteering>
-  <ns1:DistDrillRot xsi:type="LengthMeasure" uom="m">0.0</ns1:DistDrillRot>
-  <ns1:DistDrillSlid xsi:type="LengthMeasure" uom="m">0.0</ns1:DistDrillSlid>
-  <ns1:DistReam xsi:type="LengthMeasure" uom="m">0.0</ns1:DistReam>
-  <ns1:DistHold xsi:type="LengthMeasure" uom="m">0.0</ns1:DistHold>
-  <ns1:DistSteering xsi:type="LengthMeasure" uom="m">0.0</ns1:DistSteering>
-  <ns1:NumPob xsi:type="xsd:long">0</ns1:NumPob>
-  <ns1:NumContract xsi:type="xsd:long">0</ns1:NumContract>
-  <ns1:NumOperator xsi:type="xsd:long">0</ns1:NumOperator>
-  <ns1:NumService xsi:type="xsd:long">0</ns1:NumService>
-  <ns1:NumAFE xsi:type="String64"></ns1:NumAFE>
-  <ns1:ConditionHole xsi:type="String64"></ns1:ConditionHole>
-  <ns1:TvdLot xsi:type="AbstractVerticalDepth">
+  </RigUtilization>
+  <ETimStart xsi:type="TimeMeasure" uom="a">0.0</ETimStart>
+  <ETimSpud xsi:type="TimeMeasure" uom="a">0.0</ETimSpud>
+  <ETimLoc xsi:type="TimeMeasure" uom="a">0.0</ETimLoc>
+  <ETimDrill xsi:type="TimeMeasure" uom="a">0.0</ETimDrill>
+  <RopAv xsi:type="LengthPerTimeMeasure" uom="1000 ft/h">0.0</RopAv>
+  <Supervisor xsi:type="String64"></Supervisor>
+  <Engineer xsi:type="String64"></Engineer>
+  <Geologist xsi:type="String64"></Geologist>
+  <ETimDrillRot xsi:type="TimeMeasure" uom="a">0.0</ETimDrillRot>
+  <ETimDrillSlid xsi:type="TimeMeasure" uom="a">0.0</ETimDrillSlid>
+  <ETimCirc xsi:type="TimeMeasure" uom="a">0.0</ETimCirc>
+  <ETimReam xsi:type="TimeMeasure" uom="a">0.0</ETimReam>
+  <ETimHold xsi:type="TimeMeasure" uom="a">0.0</ETimHold>
+  <ETimSteering xsi:type="TimeMeasure" uom="a">0.0</ETimSteering>
+  <DistDrillRot xsi:type="LengthMeasure" uom="m">0.0</DistDrillRot>
+  <DistDrillSlid xsi:type="LengthMeasure" uom="m">0.0</DistDrillSlid>
+  <DistReam xsi:type="LengthMeasure" uom="m">0.0</DistReam>
+  <DistHold xsi:type="LengthMeasure" uom="m">0.0</DistHold>
+  <DistSteering xsi:type="LengthMeasure" uom="m">0.0</DistSteering>
+  <NumPob xsi:type="xsd:long">0</NumPob>
+  <NumContract xsi:type="xsd:long">0</NumContract>
+  <NumOperator xsi:type="xsd:long">0</NumOperator>
+  <NumService xsi:type="xsd:long">0</NumService>
+  <NumAFE xsi:type="String64"></NumAFE>
+  <ConditionHole xsi:type="String64"></ConditionHole>
+  <TvdLot xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -506,12 +506,12 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:TvdLot>
-  <ns1:PresLotEmw xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:PresLotEmw>
-  <ns1:PresKickTol xsi:type="PressureMeasure" uom="">0.0</ns1:PresKickTol>
-  <ns1:VolKickTol xsi:type="VolumeMeasure" uom="">0.0</ns1:VolKickTol>
-  <ns1:Maasp xsi:type="PressureMeasure" uom="">0.0</ns1:Maasp>
-  <ns1:Tubular xsi:type="DataObjectReference">
+  </TvdLot>
+  <PresLotEmw xsi:type="MassPerVolumeMeasure" uom="">0.0</PresLotEmw>
+  <PresKickTol xsi:type="PressureMeasure" uom="">0.0</PresKickTol>
+  <VolKickTol xsi:type="VolumeMeasure" uom="">0.0</VolKickTol>
+  <Maasp xsi:type="PressureMeasure" uom="">0.0</Maasp>
+  <Tubular xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -526,8 +526,8 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:Tubular>
-  <ns1:ParentWellbore xsi:type="DataObjectReference">
+  </Tubular>
+  <ParentWellbore xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -542,26 +542,26 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:ParentWellbore>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </ParentWellbore>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
-  <ns1:ElevKelly xsi:type="AbstractElevation">
+  </ExtensionNameValue-->
+  <ElevKelly xsi:type="AbstractElevation">
    <Elevation xsi:type="LengthMeasureExt" uom="">0.0</Elevation>
-  </ns1:ElevKelly>
-  <ns1:CostDay xsi:type="Cost" currency="">0.0</ns1:CostDay>
-  <ns1:CostDayMud xsi:type="Cost" currency="">0.0</ns1:CostDayMud>
- </ns1:StatusInfo>
- <ns1:Fluid xsi:type="ns1:Fluid" uid="">
-  <ns1:Type xsi:type="String64"></ns1:Type>
-  <ns1:LocationSample xsi:type="String64"></ns1:LocationSample>
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTim>
-  <ns1:Md xsi:type="MeasuredDepth">
+  </ElevKelly>
+  <CostDay xsi:type="Cost" currency="">0.0</CostDay>
+  <CostDayMud xsi:type="Cost" currency="">0.0</CostDayMud>
+ </StatusInfo>
+ <Fluid xsi:type="Fluid" uid="">
+  <Type xsi:type="String64"></Type>
+  <LocationSample xsi:type="String64"></LocationSample>
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
+  <Md xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -579,8 +579,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:Md>
-  <ns1:Tvd xsi:type="AbstractVerticalDepth">
+  </Md>
+  <Tvd xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -598,58 +598,58 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:Tvd>
-  <ns1:Ecd xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Ecd>
-  <ns1:KickToleranceVolume xsi:type="VolumeMeasure" uom="">0.0</ns1:KickToleranceVolume>
-  <ns1:KickToleranceIntensity xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:KickToleranceIntensity>
-  <ns1:TempFlowLine xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempFlowLine>
-  <ns1:PresBopRating xsi:type="PressureMeasure" uom="">0.0</ns1:PresBopRating>
-  <ns1:MudClass xsi:type="ns1:MudClass">oil-based</ns1:MudClass>
-  <ns1:Density xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Density>
-  <ns1:VisFunnel xsi:type="TimeMeasure" uom="a">0.0</ns1:VisFunnel>
-  <ns1:TempVis xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempVis>
-  <ns1:Pv xsi:type="DynamicViscosityMeasure" uom="P">0.0</ns1:Pv>
-  <ns1:Yp xsi:type="PressureMeasure" uom="">0.0</ns1:Yp>
-  <ns1:Gel3Sec xsi:type="PressureMeasureExt" uom="">0.0</ns1:Gel3Sec>
-  <ns1:Gel6Sec xsi:type="PressureMeasureExt" uom="">0.0</ns1:Gel6Sec>
-  <ns1:Gel10Sec xsi:type="PressureMeasure" uom="">0.0</ns1:Gel10Sec>
-  <ns1:Gel10Min xsi:type="PressureMeasure" uom="">0.0</ns1:Gel10Min>
-  <ns1:Gel30Min xsi:type="PressureMeasure" uom="">0.0</ns1:Gel30Min>
-  <ns1:FilterCakeLtlp xsi:type="LengthMeasure" uom="m">0.0</ns1:FilterCakeLtlp>
-  <ns1:FiltrateLtlp xsi:type="VolumeMeasure" uom="">0.0</ns1:FiltrateLtlp>
-  <ns1:TempHthp xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempHthp>
-  <ns1:PresHthp xsi:type="PressureMeasure" uom="">0.0</ns1:PresHthp>
-  <ns1:FiltrateHthp xsi:type="VolumeMeasure" uom="">0.0</ns1:FiltrateHthp>
-  <ns1:FilterCakeHthp xsi:type="LengthMeasure" uom="m">0.0</ns1:FilterCakeHthp>
-  <ns1:SolidsPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SolidsPc>
-  <ns1:WaterPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:WaterPc>
-  <ns1:OilPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:OilPc>
-  <ns1:SandPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SandPc>
-  <ns1:SolidsLowGravPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SolidsLowGravPc>
-  <ns1:SolidsLowGrav xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:SolidsLowGrav>
-  <ns1:SolidsCalcPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SolidsCalcPc>
-  <ns1:BaritePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:BaritePc>
-  <ns1:Lcm xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Lcm>
-  <ns1:Mbt xsi:type="CationExchangeCapacityMeasureExt" uom="">0.0</ns1:Mbt>
-  <ns1:Ph xsi:type="xsd:double">0.0</ns1:Ph>
-  <ns1:TempPh xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempPh>
-  <ns1:Pm xsi:type="VolumeMeasure" uom="">0.0</ns1:Pm>
-  <ns1:PmFiltrate xsi:type="VolumeMeasure" uom="">0.0</ns1:PmFiltrate>
-  <ns1:Mf xsi:type="VolumeMeasure" uom="">0.0</ns1:Mf>
-  <ns1:AlkalinityP1 xsi:type="VolumeMeasure" uom="">0.0</ns1:AlkalinityP1>
-  <ns1:AlkalinityP2 xsi:type="VolumeMeasure" uom="">0.0</ns1:AlkalinityP2>
-  <ns1:Chloride xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Chloride>
-  <ns1:Calcium xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Calcium>
-  <ns1:Magnesium xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Magnesium>
-  <ns1:Potassium xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Potassium>
-  <ns1:BrinePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:BrinePc>
-  <ns1:BrineDensity xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:BrineDensity>
-  <ns1:BrineClass xsi:type="ns1:BrineClassExt"></ns1:BrineClass>
-  <ns1:Lime xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Lime>
-  <ns1:ElectStab xsi:type="ElectricPotentialDifferenceMeasure" uom="V">0.0</ns1:ElectStab>
-  <ns1:CalciumChloridePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:CalciumChloridePc>
-  <ns1:CalciumChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:CalciumChloride>
-  <ns1:Company xsi:type="DataObjectReference">
+  </Tvd>
+  <Ecd xsi:type="MassPerVolumeMeasure" uom="">0.0</Ecd>
+  <KickToleranceVolume xsi:type="VolumeMeasure" uom="">0.0</KickToleranceVolume>
+  <KickToleranceIntensity xsi:type="MassPerVolumeMeasure" uom="">0.0</KickToleranceIntensity>
+  <TempFlowLine xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempFlowLine>
+  <PresBopRating xsi:type="PressureMeasure" uom="">0.0</PresBopRating>
+  <MudClass xsi:type="MudClass">oil-based</MudClass>
+  <Density xsi:type="MassPerVolumeMeasure" uom="">0.0</Density>
+  <VisFunnel xsi:type="TimeMeasure" uom="a">0.0</VisFunnel>
+  <TempVis xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempVis>
+  <Pv xsi:type="DynamicViscosityMeasure" uom="P">0.0</Pv>
+  <Yp xsi:type="PressureMeasure" uom="">0.0</Yp>
+  <Gel3Sec xsi:type="PressureMeasureExt" uom="">0.0</Gel3Sec>
+  <Gel6Sec xsi:type="PressureMeasureExt" uom="">0.0</Gel6Sec>
+  <Gel10Sec xsi:type="PressureMeasure" uom="">0.0</Gel10Sec>
+  <Gel10Min xsi:type="PressureMeasure" uom="">0.0</Gel10Min>
+  <Gel30Min xsi:type="PressureMeasure" uom="">0.0</Gel30Min>
+  <FilterCakeLtlp xsi:type="LengthMeasure" uom="m">0.0</FilterCakeLtlp>
+  <FiltrateLtlp xsi:type="VolumeMeasure" uom="">0.0</FiltrateLtlp>
+  <TempHthp xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempHthp>
+  <PresHthp xsi:type="PressureMeasure" uom="">0.0</PresHthp>
+  <FiltrateHthp xsi:type="VolumeMeasure" uom="">0.0</FiltrateHthp>
+  <FilterCakeHthp xsi:type="LengthMeasure" uom="m">0.0</FilterCakeHthp>
+  <SolidsPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SolidsPc>
+  <WaterPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</WaterPc>
+  <OilPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</OilPc>
+  <SandPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SandPc>
+  <SolidsLowGravPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SolidsLowGravPc>
+  <SolidsLowGrav xsi:type="MassPerVolumeMeasure" uom="">0.0</SolidsLowGrav>
+  <SolidsCalcPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SolidsCalcPc>
+  <BaritePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</BaritePc>
+  <Lcm xsi:type="MassPerVolumeMeasure" uom="">0.0</Lcm>
+  <Mbt xsi:type="CationExchangeCapacityMeasureExt" uom="">0.0</Mbt>
+  <Ph xsi:type="xsd:double">0.0</Ph>
+  <TempPh xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempPh>
+  <Pm xsi:type="VolumeMeasure" uom="">0.0</Pm>
+  <PmFiltrate xsi:type="VolumeMeasure" uom="">0.0</PmFiltrate>
+  <Mf xsi:type="VolumeMeasure" uom="">0.0</Mf>
+  <AlkalinityP1 xsi:type="VolumeMeasure" uom="">0.0</AlkalinityP1>
+  <AlkalinityP2 xsi:type="VolumeMeasure" uom="">0.0</AlkalinityP2>
+  <Chloride xsi:type="MassPerVolumeMeasure" uom="">0.0</Chloride>
+  <Calcium xsi:type="MassPerVolumeMeasure" uom="">0.0</Calcium>
+  <Magnesium xsi:type="MassPerVolumeMeasure" uom="">0.0</Magnesium>
+  <Potassium xsi:type="MassPerVolumeMeasure" uom="">0.0</Potassium>
+  <BrinePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</BrinePc>
+  <BrineDensity xsi:type="MassPerVolumeMeasure" uom="">0.0</BrineDensity>
+  <BrineClass xsi:type="BrineClassExt"></BrineClass>
+  <Lime xsi:type="MassPerVolumeMeasure" uom="">0.0</Lime>
+  <ElectStab xsi:type="ElectricPotentialDifferenceMeasure" uom="V">0.0</ElectStab>
+  <CalciumChloridePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</CalciumChloridePc>
+  <CalciumChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</CalciumChloride>
+  <Company xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -664,67 +664,67 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:Company>
-  <ns1:Engineer xsi:type="String64"></ns1:Engineer>
-  <ns1:Asg xsi:type="MassPerMassMeasure" uom="%">0.0</ns1:Asg>
-  <ns1:SolidsHiGravPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SolidsHiGravPc>
-  <ns1:SolidsHiGrav xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:SolidsHiGrav>
-  <ns1:Polymer xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Polymer>
-  <ns1:PolyType xsi:type="String64"></ns1:PolyType>
-  <ns1:SolCorPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SolCorPc>
-  <ns1:OilCtg xsi:type="MassPerMassMeasure" uom="%">0.0</ns1:OilCtg>
-  <ns1:OilCtgDry xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:OilCtgDry>
-  <ns1:HardnessCa xsi:type="MassPerMassMeasure" uom="%">0.0</ns1:HardnessCa>
-  <ns1:Sulfide xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Sulfide>
-  <ns1:AverageCuttingSize xsi:type="LengthMeasure" uom="m">0.0</ns1:AverageCuttingSize>
-  <ns1:Carbonate xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Carbonate>
-  <ns1:Iron xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Iron>
-  <ns1:MetalRecovered xsi:type="MassMeasure" uom="g">0.0</ns1:MetalRecovered>
-  <ns1:Turbidity xsi:type="xsd:double">0.0</ns1:Turbidity>
-  <ns1:OilGrease xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:OilGrease>
-  <ns1:Salt xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:Salt>
-  <ns1:SaltPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SaltPc>
-  <ns1:Tct xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:Tct>
-  <ns1:WaterPhaseSalinity xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:WaterPhaseSalinity>
-  <ns1:WholeMudCalcium xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:WholeMudCalcium>
-  <ns1:WholeMudChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:WholeMudChloride>
-  <ns1:ZincOxide xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:ZincOxide>
-  <ns1:SodiumChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:SodiumChloride>
-  <ns1:SodiumChloridePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:SodiumChloridePc>
-  <ns1:PptSpurtLoss xsi:type="VolumeMeasureExt" uom="">0.0</ns1:PptSpurtLoss>
-  <ns1:PptPressure xsi:type="PressureMeasureExt" uom="">0.0</ns1:PptPressure>
-  <ns1:PptTemperature xsi:type="ThermodynamicTemperatureMeasureExt" uom="">0.0</ns1:PptTemperature>
-  <ns1:Comments xsi:type="String2000"></ns1:Comments>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </Company>
+  <Engineer xsi:type="String64"></Engineer>
+  <Asg xsi:type="MassPerMassMeasure" uom="%">0.0</Asg>
+  <SolidsHiGravPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SolidsHiGravPc>
+  <SolidsHiGrav xsi:type="MassPerVolumeMeasure" uom="">0.0</SolidsHiGrav>
+  <Polymer xsi:type="VolumePerVolumeMeasure" uom="">0.0</Polymer>
+  <PolyType xsi:type="String64"></PolyType>
+  <SolCorPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SolCorPc>
+  <OilCtg xsi:type="MassPerMassMeasure" uom="%">0.0</OilCtg>
+  <OilCtgDry xsi:type="MassPerVolumeMeasure" uom="">0.0</OilCtgDry>
+  <HardnessCa xsi:type="MassPerMassMeasure" uom="%">0.0</HardnessCa>
+  <Sulfide xsi:type="MassPerVolumeMeasure" uom="">0.0</Sulfide>
+  <AverageCuttingSize xsi:type="LengthMeasure" uom="m">0.0</AverageCuttingSize>
+  <Carbonate xsi:type="MassPerVolumeMeasure" uom="">0.0</Carbonate>
+  <Iron xsi:type="MassPerVolumeMeasure" uom="">0.0</Iron>
+  <MetalRecovered xsi:type="MassMeasure" uom="g">0.0</MetalRecovered>
+  <Turbidity xsi:type="xsd:double">0.0</Turbidity>
+  <OilGrease xsi:type="MassPerVolumeMeasure" uom="">0.0</OilGrease>
+  <Salt xsi:type="MassPerVolumeMeasure" uom="">0.0</Salt>
+  <SaltPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SaltPc>
+  <Tct xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</Tct>
+  <WaterPhaseSalinity xsi:type="MassPerVolumeMeasure" uom="">0.0</WaterPhaseSalinity>
+  <WholeMudCalcium xsi:type="MassPerVolumeMeasure" uom="">0.0</WholeMudCalcium>
+  <WholeMudChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</WholeMudChloride>
+  <ZincOxide xsi:type="MassPerVolumeMeasure" uom="">0.0</ZincOxide>
+  <SodiumChloride xsi:type="MassPerVolumeMeasure" uom="">0.0</SodiumChloride>
+  <SodiumChloridePc xsi:type="VolumePerVolumeMeasure" uom="">0.0</SodiumChloridePc>
+  <PptSpurtLoss xsi:type="VolumeMeasureExt" uom="">0.0</PptSpurtLoss>
+  <PptPressure xsi:type="PressureMeasureExt" uom="">0.0</PptPressure>
+  <PptTemperature xsi:type="ThermodynamicTemperatureMeasureExt" uom="">0.0</PptTemperature>
+  <Comments xsi:type="String2000"></Comments>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
-  <ns1:Rheometer xsi:type="ns1:Rheometer" uid="">
-   <ns1:TempRheom xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempRheom>
-   <ns1:PresRheom xsi:type="PressureMeasure" uom="">0.0</ns1:PresRheom>
-   <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </ExtensionNameValue-->
+  <Rheometer xsi:type="Rheometer" uid="">
+   <TempRheom xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempRheom>
+   <PresRheom xsi:type="PressureMeasure" uom="">0.0</PresRheom>
+   <!--ExtensionNameValue xsi:type="ExtensionNameValue">
 <Name xsi:type="String64"></Name>
 <Value xsi:type="StringMeasure" uom=""></Value>
 <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
 <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
-   </ns1:ExtensionNameValue-->
-   <ns1:Viscosity xsi:type="ns1:RheometerViscosity" uid="">
-<ns1:Speed xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</ns1:Speed>
-<ns1:Viscosity xsi:type="xsd:double">0.0</ns1:Viscosity>
-   </ns1:Viscosity>
-  </ns1:Rheometer>
- </ns1:Fluid>
- <ns1:PorePressure xsi:type="ns1:DrillReportPorePressure" uid="">
-  <ns1:ReadingKind xsi:type="ns1:ReadingKind">measured</ns1:ReadingKind>
-  <ns1:EquivalentMudWeight xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:EquivalentMudWeight>
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTim>
-  <ns1:Md xsi:type="MeasuredDepth">
+   </ExtensionNameValue-->
+   <Viscosity xsi:type="RheometerViscosity" uid="">
+<Speed xsi:type="AngularVelocityMeasure" uom="dega/h">0.0</Speed>
+<Viscosity xsi:type="xsd:double">0.0</Viscosity>
+   </Viscosity>
+  </Rheometer>
+ </Fluid>
+ <PorePressure xsi:type="DrillReportPorePressure" uid="">
+  <ReadingKind xsi:type="ReadingKind">measured</ReadingKind>
+  <EquivalentMudWeight xsi:type="MassPerVolumeMeasure" uom="">0.0</EquivalentMudWeight>
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
+  <Md xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -742,8 +742,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:Md>
-  <ns1:Tvd xsi:type="AbstractVerticalDepth">
+  </Md>
+  <Tvd xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -761,21 +761,21 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:Tvd>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </Tvd>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
- </ns1:PorePressure>
- <ns1:ExtendedReport xsi:type="ns1:TimestampedCommentString" dTim="2023-05-01T16:54:58Z"></ns1:ExtendedReport>
- <ns1:SurveyStations xsi:type="ns1:DrillReportSurveyStationReport">
-  <ns1:AcquisitionRemark xsi:type="String2000"></ns1:AcquisitionRemark>
-  <ns1:MagDeclUsed xsi:type="PlaneAngleMeasureExt" uom="">0.0</ns1:MagDeclUsed>
-  <ns1:MdMaxExtrapolated xsi:type="MeasuredDepth">
+  </ExtensionNameValue-->
+ </PorePressure>
+ <ExtendedReport xsi:type="TimestampedCommentString" dTim="2023-05-01T16:54:58Z"></ExtendedReport>
+ <SurveyStations xsi:type="DrillReportSurveyStationReport">
+  <AcquisitionRemark xsi:type="String2000"></AcquisitionRemark>
+  <MagDeclUsed xsi:type="PlaneAngleMeasureExt" uom="">0.0</MagDeclUsed>
+  <MdMaxExtrapolated xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -793,8 +793,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdMaxExtrapolated>
-  <ns1:MdMaxMeasured xsi:type="MeasuredDepth">
+  </MdMaxExtrapolated>
+  <MdMaxMeasured xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -812,8 +812,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdMaxMeasured>
-  <ns1:MdTieOn xsi:type="MeasuredDepth">
+  </MdMaxMeasured>
+  <MdTieOn xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -831,14 +831,14 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdTieOn>
-  <ns1:NominalCalcAlgorithm xsi:type="ns1:TrajStnCalcAlgorithmExt"></ns1:NominalCalcAlgorithm>
-  <ns1:NominalTypeSurveyTool xsi:type="ns1:TypeSurveyToolExt"></ns1:NominalTypeSurveyTool>
-  <ns1:NominalTypeTrajStation xsi:type="ns1:TrajStationTypeExt"></ns1:NominalTypeTrajStation>
-  <ns1:TrajectoryOSDUIntegration xsi:type="ns1:TrajectoryOSDUIntegration">
-   <ns1:ActiveIndicator xsi:type="xsd:boolean">false</ns1:ActiveIndicator>
-   <ns1:AppliedOperation xsi:type="String256"></ns1:AppliedOperation>
-   <ns1:IntermediaryServiceCompany xsi:type="DataObjectReference">
+  </MdTieOn>
+  <NominalCalcAlgorithm xsi:type="TrajStnCalcAlgorithmExt"></NominalCalcAlgorithm>
+  <NominalTypeSurveyTool xsi:type="TypeSurveyToolExt"></NominalTypeSurveyTool>
+  <NominalTypeTrajStation xsi:type="TrajStationTypeExt"></NominalTypeTrajStation>
+  <TrajectoryOSDUIntegration xsi:type="TrajectoryOSDUIntegration">
+   <ActiveIndicator xsi:type="xsd:boolean">false</ActiveIndicator>
+   <AppliedOperation xsi:type="String256"></AppliedOperation>
+   <IntermediaryServiceCompany xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
 <ObjectVersion xsi:type="String64"></ObjectVersion>
 <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -853,19 +853,19 @@
  <Index xsi:nil="true"/>
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
-   </ns1:IntermediaryServiceCompany>
-   <ns1:SurveyToolType xsi:type="String256"></ns1:SurveyToolType>
-   <ns1:TrajectoryVersion xsi:type="String64"></ns1:TrajectoryVersion>
-  </ns1:TrajectoryOSDUIntegration>
-  <ns1:GridConUsed xsi:type="PlaneAngleMeasureExt" uom="">0.0</ns1:GridConUsed>
-  <ns1:GridScaleFactorUsed xsi:type="LengthPerLengthMeasureExt" uom="">0.0</ns1:GridScaleFactorUsed>
-  <ns1:AziVertSect xsi:type="PlaneAngleMeasureExt" uom="">0.0</ns1:AziVertSect>
-  <ns1:DispNsVertSectOrig xsi:type="LengthMeasureExt" uom="">0.0</ns1:DispNsVertSectOrig>
-  <ns1:DispEwVertSectOrig xsi:type="LengthMeasureExt" uom="">0.0</ns1:DispEwVertSectOrig>
-  <ns1:AziRef xsi:type="NorthReferenceKind">astronomic north</ns1:AziRef>
-  <ns1:DrillReportSurveyStation xsi:type="ns1:DrillReportSurveyStation" uid="">
-   <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTim>
-   <ns1:Md xsi:type="MeasuredDepth">
+   </IntermediaryServiceCompany>
+   <SurveyToolType xsi:type="String256"></SurveyToolType>
+   <TrajectoryVersion xsi:type="String64"></TrajectoryVersion>
+  </TrajectoryOSDUIntegration>
+  <GridConUsed xsi:type="PlaneAngleMeasureExt" uom="">0.0</GridConUsed>
+  <GridScaleFactorUsed xsi:type="LengthPerLengthMeasureExt" uom="">0.0</GridScaleFactorUsed>
+  <AziVertSect xsi:type="PlaneAngleMeasureExt" uom="">0.0</AziVertSect>
+  <DispNsVertSectOrig xsi:type="LengthMeasureExt" uom="">0.0</DispNsVertSectOrig>
+  <DispEwVertSectOrig xsi:type="LengthMeasureExt" uom="">0.0</DispEwVertSectOrig>
+  <AziRef xsi:type="NorthReferenceKind">astronomic north</AziRef>
+  <DrillReportSurveyStation xsi:type="DrillReportSurveyStation" uid="">
+   <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
+   <Md xsi:type="MeasuredDepth">
 <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
 <Datum xsi:type="DataObjectReference">
  <Uuid xsi:type="UuidString"></Uuid>
@@ -876,8 +876,8 @@
  <LocatorUrl xsi:nil="true"/>
  <!--ExtensionNameValue xsi:nil="true"/-->
 </Datum>
-   </ns1:Md>
-   <ns1:Tvd xsi:type="AbstractVerticalDepth">
+   </Md>
+   <Tvd xsi:type="AbstractVerticalDepth">
 <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
 <Trajectory xsi:type="DataObjectReference">
  <Uuid xsi:type="UuidString"></Uuid>
@@ -888,29 +888,29 @@
  <LocatorUrl xsi:nil="true"/>
  <!--ExtensionNameValue xsi:nil="true"/-->
 </Trajectory>
-   </ns1:Tvd>
-   <ns1:Incl xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:Incl>
-   <ns1:Azi xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</ns1:Azi>
-   <ns1:VertSect xsi:type="LengthMeasure" uom="m">0.0</ns1:VertSect>
-   <ns1:Dls xsi:type="AnglePerLengthMeasure" uom="0.01 dega/ft">0.0</ns1:Dls>
-   <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+   </Tvd>
+   <Incl xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</Incl>
+   <Azi xsi:type="PlaneAngleMeasure" uom="0.001 seca">0.0</Azi>
+   <VertSect xsi:type="LengthMeasure" uom="m">0.0</VertSect>
+   <Dls xsi:type="AnglePerLengthMeasure" uom="0.01 dega/ft">0.0</Dls>
+   <!--ExtensionNameValue xsi:type="ExtensionNameValue">
 <Name xsi:type="String64"></Name>
 <Value xsi:type="StringMeasure" uom=""></Value>
 <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
 <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
-   </ns1:ExtensionNameValue-->
-   <ns1:Location xsi:type="Abstract2dPosition">
-   </ns1:Location>
-  </ns1:DrillReportSurveyStation>
- </ns1:SurveyStations>
- <ns1:DrillActivity xsi:type="ns1:DrillActivity" uid="">
-  <ns1:DTimStart xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTimStart>
-  <ns1:ProprietaryCode xsi:type="NameStruct" authority=""></ns1:ProprietaryCode>
-  <ns1:DTimEnd xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTimEnd>
-  <ns1:Duration xsi:type="TimeMeasure" uom="a">0.0</ns1:Duration>
-  <ns1:Md xsi:type="MeasuredDepth">
+   </ExtensionNameValue-->
+   <Location xsi:type="Abstract2dPosition">
+   </Location>
+  </DrillReportSurveyStation>
+ </SurveyStations>
+ <DrillActivity xsi:type="DrillActivity" uid="">
+  <DTimStart xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTimStart>
+  <ProprietaryCode xsi:type="NameStruct" authority=""></ProprietaryCode>
+  <DTimEnd xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTimEnd>
+  <Duration xsi:type="TimeMeasure" uom="a">0.0</Duration>
+  <Md xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -928,8 +928,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:Md>
-  <ns1:Tvd xsi:type="AbstractVerticalDepth">
+  </Md>
+  <Tvd xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -947,12 +947,12 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:Tvd>
-  <ns1:Phase xsi:type="String64"></ns1:Phase>
-  <ns1:ActivityCode xsi:type="ns1:DrillActivityCode">abandonment</ns1:ActivityCode>
-  <ns1:DetailActivity xsi:type="String64"></ns1:DetailActivity>
-  <ns1:TypeActivityClass xsi:type="ns1:DrillActivityClassType">planned</ns1:TypeActivityClass>
-  <ns1:ActivityMdInterval xsi:type="MdInterval">
+  </Tvd>
+  <Phase xsi:type="String64"></Phase>
+  <ActivityCode xsi:type="DrillActivityCode">abandonment</ActivityCode>
+  <DetailActivity xsi:type="String64"></DetailActivity>
+  <TypeActivityClass xsi:type="DrillActivityClassType">planned</TypeActivityClass>
+  <ActivityMdInterval xsi:type="MdInterval">
    <Comment xsi:type="String2000"></Comment>
    <MdMin xsi:type="xsd:double">0.0</MdMin>
    <MdMax xsi:type="xsd:double">0.0</MdMax>
@@ -973,8 +973,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:ActivityMdInterval>
-  <ns1:ActivityTvdInterval xsi:type="AbstractTvdInterval">
+  </ActivityMdInterval>
+  <ActivityTvdInterval xsi:type="AbstractTvdInterval">
    <Comment xsi:type="String2000"></Comment>
    <TvdMin xsi:type="xsd:double">0.0</TvdMin>
    <TvdMax xsi:type="xsd:double">0.0</TvdMax>
@@ -995,8 +995,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:ActivityTvdInterval>
-  <ns1:BitMdInterval xsi:type="MdInterval">
+  </ActivityTvdInterval>
+  <BitMdInterval xsi:type="MdInterval">
    <Comment xsi:type="String2000"></Comment>
    <MdMin xsi:type="xsd:double">0.0</MdMin>
    <MdMax xsi:type="xsd:double">0.0</MdMax>
@@ -1017,10 +1017,10 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:BitMdInterval>
-  <ns1:State xsi:type="String64"></ns1:State>
-  <ns1:StateDetailActivity xsi:type="ns1:StateDetailActivity">injury</ns1:StateDetailActivity>
-  <ns1:Operator xsi:type="DataObjectReference">
+  </BitMdInterval>
+  <State xsi:type="String64"></State>
+  <StateDetailActivity xsi:type="StateDetailActivity">injury</StateDetailActivity>
+  <Operator xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -1035,20 +1035,20 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:Operator>
-  <ns1:Optimum xsi:type="xsd:boolean">false</ns1:Optimum>
-  <ns1:Productive xsi:type="xsd:boolean">false</ns1:Productive>
-  <ns1:ItemState xsi:type="ns1:ItemState">actual</ns1:ItemState>
-  <ns1:Comments xsi:type="String2000"></ns1:Comments>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </Operator>
+  <Optimum xsi:type="xsd:boolean">false</Optimum>
+  <Productive xsi:type="xsd:boolean">false</Productive>
+  <ItemState xsi:type="ItemState">actual</ItemState>
+  <Comments xsi:type="String2000"></Comments>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
-  <ns1:BhaRun xsi:type="DataObjectReference">
+  </ExtensionNameValue-->
+  <BhaRun xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -1063,8 +1063,8 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:BhaRun>
-  <ns1:Tubular xsi:type="DataObjectReference">
+  </BhaRun>
+  <Tubular xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -1079,12 +1079,12 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:Tubular>
- </ns1:DrillActivity>
- <ns1:LogInfo xsi:type="ns1:DrillReportLogInfo" uid="">
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTim>
-  <ns1:RunNumber xsi:type="String64"></ns1:RunNumber>
-  <ns1:ServiceCompany xsi:type="DataObjectReference">
+  </Tubular>
+ </DrillActivity>
+ <LogInfo xsi:type="DrillReportLogInfo" uid="">
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
+  <RunNumber xsi:type="String64"></RunNumber>
+  <ServiceCompany xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -1099,8 +1099,8 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:ServiceCompany>
-  <ns1:LoggedMdInterval xsi:type="MdInterval">
+  </ServiceCompany>
+  <LoggedMdInterval xsi:type="MdInterval">
    <Comment xsi:type="String2000"></Comment>
    <MdMin xsi:type="xsd:double">0.0</MdMin>
    <MdMax xsi:type="xsd:double">0.0</MdMax>
@@ -1121,8 +1121,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:LoggedMdInterval>
-  <ns1:LoggedTvdInterval xsi:type="AbstractTvdInterval">
+  </LoggedMdInterval>
+  <LoggedTvdInterval xsi:type="AbstractTvdInterval">
    <Comment xsi:type="String2000"></Comment>
    <TvdMin xsi:type="xsd:double">0.0</TvdMin>
    <TvdMax xsi:type="xsd:double">0.0</TvdMax>
@@ -1143,8 +1143,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:LoggedTvdInterval>
-  <ns1:Tool xsi:type="DataObjectReference">
+  </LoggedTvdInterval>
+  <Tool xsi:type="DataObjectReference">
    <Uuid xsi:type="UuidString"></Uuid>
    <ObjectVersion xsi:type="String64"></ObjectVersion>
    <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -1159,8 +1159,8 @@
 <Index xsi:type="xsd:long">0</Index>
 <Description xsi:type="String2000"></Description>
    </ExtensionNameValue-->
-  </ns1:Tool>
-  <ns1:MdTempTool xsi:type="MeasuredDepth">
+  </Tool>
+  <MdTempTool xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1178,8 +1178,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdTempTool>
-  <ns1:TvdTempTool xsi:type="AbstractVerticalDepth">
+  </MdTempTool>
+  <TvdTempTool xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1197,23 +1197,23 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:TvdTempTool>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </TvdTempTool>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
-  <ns1:BottomHoleTemperature xsi:type="ns1:AbstractBottomHoleTemperature">
-   <ns1:BottomHoleTemperature xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:BottomHoleTemperature>
-  </ns1:BottomHoleTemperature>
- </ns1:LogInfo>
- <ns1:CoreInfo xsi:type="ns1:DrillReportCoreInfo" uid="">
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTim>
-  <ns1:CoreNumber xsi:type="String64"></ns1:CoreNumber>
-  <ns1:CoredMdInterval xsi:type="MdInterval">
+  </ExtensionNameValue-->
+  <BottomHoleTemperature xsi:type="AbstractBottomHoleTemperature">
+   <BottomHoleTemperature xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</BottomHoleTemperature>
+  </BottomHoleTemperature>
+ </LogInfo>
+ <CoreInfo xsi:type="DrillReportCoreInfo" uid="">
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
+  <CoreNumber xsi:type="String64"></CoreNumber>
+  <CoredMdInterval xsi:type="MdInterval">
    <Comment xsi:type="String2000"></Comment>
    <MdMin xsi:type="xsd:double">0.0</MdMin>
    <MdMax xsi:type="xsd:double">0.0</MdMax>
@@ -1234,8 +1234,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:CoredMdInterval>
-  <ns1:CoredTvdInterval xsi:type="AbstractTvdInterval">
+  </CoredMdInterval>
+  <CoredTvdInterval xsi:type="AbstractTvdInterval">
    <Comment xsi:type="String2000"></Comment>
    <TvdMin xsi:type="xsd:double">0.0</TvdMin>
    <TvdMax xsi:type="xsd:double">0.0</TvdMax>
@@ -1256,26 +1256,26 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:CoredTvdInterval>
-  <ns1:LenRecovered xsi:type="LengthMeasure" uom="m">0.0</ns1:LenRecovered>
-  <ns1:RecoverPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:RecoverPc>
-  <ns1:LenBarrel xsi:type="LengthMeasure" uom="m">0.0</ns1:LenBarrel>
-  <ns1:InnerBarrelType xsi:type="ns1:InnerBarrelType">undifferentiated</ns1:InnerBarrelType>
-  <ns1:CoreDescription xsi:type="String2000"></ns1:CoreDescription>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </CoredTvdInterval>
+  <LenRecovered xsi:type="LengthMeasure" uom="m">0.0</LenRecovered>
+  <RecoverPc xsi:type="VolumePerVolumeMeasure" uom="">0.0</RecoverPc>
+  <LenBarrel xsi:type="LengthMeasure" uom="m">0.0</LenBarrel>
+  <InnerBarrelType xsi:type="InnerBarrelType">undifferentiated</InnerBarrelType>
+  <CoreDescription xsi:type="String2000"></CoreDescription>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
- </ns1:CoreInfo>
- <ns1:WellTestInfo xsi:type="ns1:DrillReportWellTestInfo" uid="">
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTim>
-  <ns1:TestType xsi:type="ns1:WellTestType">drill stem test</ns1:TestType>
-  <ns1:TestNumber xsi:type="xsd:long">0</ns1:TestNumber>
-  <ns1:TestMdInterval xsi:type="MdInterval">
+  </ExtensionNameValue-->
+ </CoreInfo>
+ <WellTestInfo xsi:type="DrillReportWellTestInfo" uid="">
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
+  <TestType xsi:type="WellTestType">drill stem test</TestType>
+  <TestNumber xsi:type="xsd:long">0</TestNumber>
+  <TestMdInterval xsi:type="MdInterval">
    <Comment xsi:type="String2000"></Comment>
    <MdMin xsi:type="xsd:double">0.0</MdMin>
    <MdMax xsi:type="xsd:double">0.0</MdMax>
@@ -1296,8 +1296,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:TestMdInterval>
-  <ns1:TestTvdInterval xsi:type="AbstractTvdInterval">
+  </TestMdInterval>
+  <TestTvdInterval xsi:type="AbstractTvdInterval">
    <Comment xsi:type="String2000"></Comment>
    <TvdMin xsi:type="xsd:double">0.0</TvdMin>
    <TvdMax xsi:type="xsd:double">0.0</TvdMax>
@@ -1318,38 +1318,38 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:TestTvdInterval>
-  <ns1:ChokeOrificeSize xsi:type="LengthMeasure" uom="m">0.0</ns1:ChokeOrificeSize>
-  <ns1:DensityOil xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:DensityOil>
-  <ns1:DensityWater xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:DensityWater>
-  <ns1:DensityGas xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:DensityGas>
-  <ns1:FlowRateOil xsi:type="VolumePerTimeMeasure" uom="">0.0</ns1:FlowRateOil>
-  <ns1:FlowRateWater xsi:type="VolumePerTimeMeasure" uom="">0.0</ns1:FlowRateWater>
-  <ns1:FlowRateGas xsi:type="VolumePerTimeMeasure" uom="">0.0</ns1:FlowRateGas>
-  <ns1:PresShutIn xsi:type="PressureMeasure" uom="">0.0</ns1:PresShutIn>
-  <ns1:PresFlowing xsi:type="PressureMeasure" uom="">0.0</ns1:PresFlowing>
-  <ns1:PresBottom xsi:type="PressureMeasure" uom="">0.0</ns1:PresBottom>
-  <ns1:GasOilRatio xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:GasOilRatio>
-  <ns1:WaterOilRatio xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:WaterOilRatio>
-  <ns1:Chloride xsi:type="MassPerMassMeasure" uom="%">0.0</ns1:Chloride>
-  <ns1:CarbonDioxide xsi:type="MassPerMassMeasure" uom="%">0.0</ns1:CarbonDioxide>
-  <ns1:HydrogenSulfide xsi:type="MassPerMassMeasure" uom="%">0.0</ns1:HydrogenSulfide>
-  <ns1:VolOilTotal xsi:type="VolumeMeasure" uom="">0.0</ns1:VolOilTotal>
-  <ns1:VolGasTotal xsi:type="VolumeMeasure" uom="">0.0</ns1:VolGasTotal>
-  <ns1:VolWaterTotal xsi:type="VolumeMeasure" uom="">0.0</ns1:VolWaterTotal>
-  <ns1:VolOilStored xsi:type="VolumeMeasure" uom="">0.0</ns1:VolOilStored>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </TestTvdInterval>
+  <ChokeOrificeSize xsi:type="LengthMeasure" uom="m">0.0</ChokeOrificeSize>
+  <DensityOil xsi:type="MassPerVolumeMeasure" uom="">0.0</DensityOil>
+  <DensityWater xsi:type="MassPerVolumeMeasure" uom="">0.0</DensityWater>
+  <DensityGas xsi:type="MassPerVolumeMeasure" uom="">0.0</DensityGas>
+  <FlowRateOil xsi:type="VolumePerTimeMeasure" uom="">0.0</FlowRateOil>
+  <FlowRateWater xsi:type="VolumePerTimeMeasure" uom="">0.0</FlowRateWater>
+  <FlowRateGas xsi:type="VolumePerTimeMeasure" uom="">0.0</FlowRateGas>
+  <PresShutIn xsi:type="PressureMeasure" uom="">0.0</PresShutIn>
+  <PresFlowing xsi:type="PressureMeasure" uom="">0.0</PresFlowing>
+  <PresBottom xsi:type="PressureMeasure" uom="">0.0</PresBottom>
+  <GasOilRatio xsi:type="VolumePerVolumeMeasure" uom="">0.0</GasOilRatio>
+  <WaterOilRatio xsi:type="VolumePerVolumeMeasure" uom="">0.0</WaterOilRatio>
+  <Chloride xsi:type="MassPerMassMeasure" uom="%">0.0</Chloride>
+  <CarbonDioxide xsi:type="MassPerMassMeasure" uom="%">0.0</CarbonDioxide>
+  <HydrogenSulfide xsi:type="MassPerMassMeasure" uom="%">0.0</HydrogenSulfide>
+  <VolOilTotal xsi:type="VolumeMeasure" uom="">0.0</VolOilTotal>
+  <VolGasTotal xsi:type="VolumeMeasure" uom="">0.0</VolGasTotal>
+  <VolWaterTotal xsi:type="VolumeMeasure" uom="">0.0</VolWaterTotal>
+  <VolOilStored xsi:type="VolumeMeasure" uom="">0.0</VolOilStored>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
- </ns1:WellTestInfo>
- <ns1:FormTestInfo xsi:type="ns1:DrillReportFormTestInfo" uid="">
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTim>
-  <ns1:Md xsi:type="MeasuredDepth">
+  </ExtensionNameValue-->
+ </WellTestInfo>
+ <FormTestInfo xsi:type="DrillReportFormTestInfo" uid="">
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
+  <Md xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1367,8 +1367,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:Md>
-  <ns1:Tvd xsi:type="AbstractVerticalDepth">
+  </Md>
+  <Tvd xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1386,10 +1386,10 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:Tvd>
-  <ns1:PresPore xsi:type="PressureMeasure" uom="">0.0</ns1:PresPore>
-  <ns1:GoodSeal xsi:type="xsd:boolean">false</ns1:GoodSeal>
-  <ns1:MdSample xsi:type="MeasuredDepth">
+  </Tvd>
+  <PresPore xsi:type="PressureMeasure" uom="">0.0</PresPore>
+  <GoodSeal xsi:type="xsd:boolean">false</GoodSeal>
+  <MdSample xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1407,23 +1407,23 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdSample>
-  <ns1:DominateComponent xsi:type="String64"></ns1:DominateComponent>
-  <ns1:DensityHC xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:DensityHC>
-  <ns1:VolumeSample xsi:type="VolumeMeasure" uom="">0.0</ns1:VolumeSample>
-  <ns1:Description xsi:type="String2000"></ns1:Description>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </MdSample>
+  <DominateComponent xsi:type="String64"></DominateComponent>
+  <DensityHC xsi:type="MassPerVolumeMeasure" uom="">0.0</DensityHC>
+  <VolumeSample xsi:type="VolumeMeasure" uom="">0.0</VolumeSample>
+  <Description xsi:type="String2000"></Description>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
- </ns1:FormTestInfo>
- <ns1:LithShowInfo xsi:type="ns1:DrillReportLithShowInfo" uid="">
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTim>
-  <ns1:ShowMdInterval xsi:type="MdInterval">
+  </ExtensionNameValue-->
+ </FormTestInfo>
+ <LithShowInfo xsi:type="DrillReportLithShowInfo" uid="">
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
+  <ShowMdInterval xsi:type="MdInterval">
    <Comment xsi:type="String2000"></Comment>
    <MdMin xsi:type="xsd:double">0.0</MdMin>
    <MdMax xsi:type="xsd:double">0.0</MdMax>
@@ -1444,8 +1444,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:ShowMdInterval>
-  <ns1:ShowTvdInterval xsi:type="AbstractTvdInterval">
+  </ShowMdInterval>
+  <ShowTvdInterval xsi:type="AbstractTvdInterval">
    <Comment xsi:type="String2000"></Comment>
    <TvdMin xsi:type="xsd:double">0.0</TvdMin>
    <TvdMax xsi:type="xsd:double">0.0</TvdMax>
@@ -1466,21 +1466,21 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:ShowTvdInterval>
-  <ns1:Show xsi:type="String2000"></ns1:Show>
-  <ns1:Lithology xsi:type="String2000"></ns1:Lithology>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </ShowTvdInterval>
+  <Show xsi:type="String2000"></Show>
+  <Lithology xsi:type="String2000"></Lithology>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
- </ns1:LithShowInfo>
- <ns1:EquipFailureInfo xsi:type="ns1:DrillReportEquipFailureInfo" uid="">
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTim>
-  <ns1:Md xsi:type="MeasuredDepth">
+  </ExtensionNameValue-->
+ </LithShowInfo>
+ <EquipFailureInfo xsi:type="DrillReportEquipFailureInfo" uid="">
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTim>
+  <Md xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1498,8 +1498,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:Md>
-  <ns1:Tvd xsi:type="AbstractVerticalDepth">
+  </Md>
+  <Tvd xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1517,23 +1517,23 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:Tvd>
-  <ns1:EquipClass xsi:type="String64"></ns1:EquipClass>
-  <ns1:ETimMissProduction xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimMissProduction>
-  <ns1:DTimRepair xsi:type="TimeStamp">2023-05-01T16:54:58Z</ns1:DTimRepair>
-  <ns1:Description xsi:type="String2000"></ns1:Description>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </Tvd>
+  <EquipClass xsi:type="String64"></EquipClass>
+  <ETimMissProduction xsi:type="TimeMeasure" uom="a">0.0</ETimMissProduction>
+  <DTimRepair xsi:type="TimeStamp">2023-05-01T16:54:58Z</DTimRepair>
+  <Description xsi:type="String2000"></Description>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
- </ns1:EquipFailureInfo>
- <ns1:ControlIncidentInfo xsi:type="ns1:DrillReportControlIncidentInfo" uid="">
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</ns1:DTim>
-  <ns1:MdInflow xsi:type="MeasuredDepth">
+  </ExtensionNameValue-->
+ </EquipFailureInfo>
+ <ControlIncidentInfo xsi:type="DrillReportControlIncidentInfo" uid="">
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTim>
+  <MdInflow xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1551,8 +1551,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdInflow>
-  <ns1:TvdInflow xsi:type="AbstractVerticalDepth">
+  </MdInflow>
+  <TvdInflow xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1570,14 +1570,14 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:TvdInflow>
-  <ns1:Phase xsi:type="String64"></ns1:Phase>
-  <ns1:ActivityCode xsi:type="ns1:DrillActivityCode">abandonment</ns1:ActivityCode>
-  <ns1:DetailActivity xsi:type="String64"></ns1:DetailActivity>
-  <ns1:ETimLost xsi:type="TimeMeasure" uom="a">0.0</ns1:ETimLost>
-  <ns1:DTimRegained xsi:type="TimeStamp">2023-05-01T16:54:59Z</ns1:DTimRegained>
-  <ns1:DiaBit xsi:type="LengthMeasure" uom="m">0.0</ns1:DiaBit>
-  <ns1:MdBit xsi:type="MeasuredDepth">
+  </TvdInflow>
+  <Phase xsi:type="String64"></Phase>
+  <ActivityCode xsi:type="DrillActivityCode">abandonment</ActivityCode>
+  <DetailActivity xsi:type="String64"></DetailActivity>
+  <ETimLost xsi:type="TimeMeasure" uom="a">0.0</ETimLost>
+  <DTimRegained xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTimRegained>
+  <DiaBit xsi:type="LengthMeasure" uom="m">0.0</DiaBit>
+  <MdBit xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1595,11 +1595,11 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdBit>
-  <ns1:WtMud xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:WtMud>
-  <ns1:PorePressure xsi:type="MassPerVolumeMeasure" uom="">0.0</ns1:PorePressure>
-  <ns1:DiaCsgLast xsi:type="LengthMeasure" uom="m">0.0</ns1:DiaCsgLast>
-  <ns1:MdCsgLast xsi:type="MeasuredDepth">
+  </MdBit>
+  <WtMud xsi:type="MassPerVolumeMeasure" uom="">0.0</WtMud>
+  <PorePressure xsi:type="MassPerVolumeMeasure" uom="">0.0</PorePressure>
+  <DiaCsgLast xsi:type="LengthMeasure" uom="m">0.0</DiaCsgLast>
+  <MdCsgLast xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1617,29 +1617,29 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdCsgLast>
-  <ns1:VolMudGained xsi:type="VolumeMeasure" uom="">0.0</ns1:VolMudGained>
-  <ns1:PresShutInCasing xsi:type="PressureMeasure" uom="">0.0</ns1:PresShutInCasing>
-  <ns1:PresShutInDrill xsi:type="PressureMeasure" uom="">0.0</ns1:PresShutInDrill>
-  <ns1:IncidentType xsi:type="ns1:WellControlIncidentType">shallow gas kick</ns1:IncidentType>
-  <ns1:KillingType xsi:type="ns1:WellKillingProcedureType">drillers method</ns1:KillingType>
-  <ns1:Formation xsi:type="String2000"></ns1:Formation>
-  <ns1:TempBottom xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</ns1:TempBottom>
-  <ns1:PresMaxChoke xsi:type="PressureMeasure" uom="">0.0</ns1:PresMaxChoke>
-  <ns1:Description xsi:type="String2000"></ns1:Description>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </MdCsgLast>
+  <VolMudGained xsi:type="VolumeMeasure" uom="">0.0</VolMudGained>
+  <PresShutInCasing xsi:type="PressureMeasure" uom="">0.0</PresShutInCasing>
+  <PresShutInDrill xsi:type="PressureMeasure" uom="">0.0</PresShutInDrill>
+  <IncidentType xsi:type="WellControlIncidentType">shallow gas kick</IncidentType>
+  <KillingType xsi:type="WellKillingProcedureType">drillers method</KillingType>
+  <Formation xsi:type="String2000"></Formation>
+  <TempBottom xsi:type="ThermodynamicTemperatureMeasure" uom="K">0.0</TempBottom>
+  <PresMaxChoke xsi:type="PressureMeasure" uom="">0.0</PresMaxChoke>
+  <Description xsi:type="String2000"></Description>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
-  <ns1:ProprietaryCode xsi:type="NameStruct" authority=""></ns1:ProprietaryCode>
- </ns1:ControlIncidentInfo>
- <ns1:StratInfo xsi:type="ns1:DrillReportStratInfo" uid="">
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</ns1:DTim>
-  <ns1:MdTop xsi:type="MeasuredDepth">
+  </ExtensionNameValue-->
+  <ProprietaryCode xsi:type="NameStruct" authority=""></ProprietaryCode>
+ </ControlIncidentInfo>
+ <StratInfo xsi:type="DrillReportStratInfo" uid="">
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTim>
+  <MdTop xsi:type="MeasuredDepth">
    <MeasuredDepth xsi:type="LengthMeasureExt" uom="">0.0</MeasuredDepth>
    <Datum xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1657,8 +1657,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:MdTop>
-  <ns1:TvdTop xsi:type="AbstractVerticalDepth">
+  </MdTop>
+  <TvdTop xsi:type="AbstractVerticalDepth">
    <VerticalDepth xsi:type="LengthMeasureExt" uom="">0.0</VerticalDepth>
    <Trajectory xsi:type="DataObjectReference">
 <Uuid xsi:type="UuidString"></Uuid>
@@ -1676,21 +1676,21 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:TvdTop>
-  <ns1:Description xsi:type="String2000"></ns1:Description>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </TvdTop>
+  <Description xsi:type="String2000"></Description>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
- </ns1:StratInfo>
- <ns1:PerfInfo xsi:type="ns1:DrillReportPerfInfo" uid="">
-  <ns1:DTimOpen xsi:type="TimeStamp">2023-05-01T16:54:59Z</ns1:DTimOpen>
-  <ns1:DTimClose xsi:type="TimeStamp">2023-05-01T16:54:59Z</ns1:DTimClose>
-  <ns1:PerforationMdInterval xsi:type="MdInterval">
+  </ExtensionNameValue-->
+ </StratInfo>
+ <PerfInfo xsi:type="DrillReportPerfInfo" uid="">
+  <DTimOpen xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTimOpen>
+  <DTimClose xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTimClose>
+  <PerforationMdInterval xsi:type="MdInterval">
    <Comment xsi:type="String2000"></Comment>
    <MdMin xsi:type="xsd:double">0.0</MdMin>
    <MdMax xsi:type="xsd:double">0.0</MdMax>
@@ -1711,8 +1711,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:PerforationMdInterval>
-  <ns1:PerforationTvdInterval xsi:type="AbstractTvdInterval">
+  </PerforationMdInterval>
+  <PerforationTvdInterval xsi:type="AbstractTvdInterval">
    <Comment xsi:type="String2000"></Comment>
    <TvdMin xsi:type="xsd:double">0.0</TvdMin>
    <TvdMax xsi:type="xsd:double">0.0</TvdMax>
@@ -1733,20 +1733,20 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:PerforationTvdInterval>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </PerforationTvdInterval>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
- </ns1:PerfInfo>
- <ns1:GasReadingInfo xsi:type="ns1:DrillReportGasReadingInfo" uid="">
-  <ns1:DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</ns1:DTim>
-  <ns1:ReadingType xsi:type="ns1:GasPeakType">circulating background gas</ns1:ReadingType>
-  <ns1:GasReadingMdInterval xsi:type="MdInterval">
+  </ExtensionNameValue-->
+ </PerfInfo>
+ <GasReadingInfo xsi:type="DrillReportGasReadingInfo" uid="">
+  <DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTim>
+  <ReadingType xsi:type="GasPeakType">circulating background gas</ReadingType>
+  <GasReadingMdInterval xsi:type="MdInterval">
    <Comment xsi:type="String2000"></Comment>
    <MdMin xsi:type="xsd:double">0.0</MdMin>
    <MdMax xsi:type="xsd:double">0.0</MdMax>
@@ -1767,8 +1767,8 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Datum>
-  </ns1:GasReadingMdInterval>
-  <ns1:GasReadingTvdInterval xsi:type="AbstractTvdInterval">
+  </GasReadingMdInterval>
+  <GasReadingTvdInterval xsi:type="AbstractTvdInterval">
    <Comment xsi:type="String2000"></Comment>
    <TvdMin xsi:type="xsd:double">0.0</TvdMin>
    <TvdMax xsi:type="xsd:double">0.0</TvdMax>
@@ -1789,25 +1789,25 @@
  <Description xsi:type="String2000"></Description>
 </ExtensionNameValue-->
    </Trajectory>
-  </ns1:GasReadingTvdInterval>
-  <ns1:GasHigh xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:GasHigh>
-  <ns1:GasLow xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:GasLow>
-  <ns1:Meth xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Meth>
-  <ns1:Eth xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Eth>
-  <ns1:Prop xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Prop>
-  <ns1:Ibut xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Ibut>
-  <ns1:Nbut xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Nbut>
-  <ns1:Ipent xsi:type="VolumePerVolumeMeasure" uom="">0.0</ns1:Ipent>
-  <!--ns1:ExtensionNameValue xsi:type="ExtensionNameValue">
+  </GasReadingTvdInterval>
+  <GasHigh xsi:type="VolumePerVolumeMeasure" uom="">0.0</GasHigh>
+  <GasLow xsi:type="VolumePerVolumeMeasure" uom="">0.0</GasLow>
+  <Meth xsi:type="VolumePerVolumeMeasure" uom="">0.0</Meth>
+  <Eth xsi:type="VolumePerVolumeMeasure" uom="">0.0</Eth>
+  <Prop xsi:type="VolumePerVolumeMeasure" uom="">0.0</Prop>
+  <Ibut xsi:type="VolumePerVolumeMeasure" uom="">0.0</Ibut>
+  <Nbut xsi:type="VolumePerVolumeMeasure" uom="">0.0</Nbut>
+  <Ipent xsi:type="VolumePerVolumeMeasure" uom="">0.0</Ipent>
+  <!--ExtensionNameValue xsi:type="ExtensionNameValue">
    <Name xsi:type="String64"></Name>
    <Value xsi:type="StringMeasure" uom=""></Value>
    <MeasureClass xsi:type="MeasureClass">absorbed dose</MeasureClass>
    <DTim xsi:type="TimeStamp">2023-05-01T16:54:59Z</DTim>
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
-  </ns1:ExtensionNameValue-->
- </ns1:GasReadingInfo>
- <ns1:Wellbore xsi:type="DataObjectReference">
+  </ExtensionNameValue-->
+ </GasReadingInfo>
+ <Wellbore xsi:type="DataObjectReference">
   <Uuid xsi:type="UuidString"></Uuid>
   <ObjectVersion xsi:type="String64"></ObjectVersion>
   <QualifiedType xsi:type="QualifiedType"></QualifiedType>
@@ -1822,5 +1822,5 @@
    <Index xsi:type="xsd:long">0</Index>
    <Description xsi:type="String2000"></Description>
   </ExtensionNameValue>
- </ns1:Wellbore>
+ </Wellbore>
 </DrillReport>
