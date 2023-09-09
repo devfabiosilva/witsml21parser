@@ -72,7 +72,6 @@ include/bson/
 # Python C modules
 build/
 
-
 # BSON files
 *.bson
 

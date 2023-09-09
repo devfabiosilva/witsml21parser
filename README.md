@@ -19,11 +19,13 @@ Before you install you need to check these tools:
 ```sh
 A Linux based OS
 Python >= 3.8 (For Python 3 application)
+Python 3 development API (for Python 3 application)
 gcc >= 9.4.0
 cmake >= 3.16.3
 make >= 4.2.1
 git >= 2.25.1
 execstack >= 1.0 (for Java application)
+Java SDK development API (for Java application)
 ```
 
 # Downloading
@@ -199,7 +201,23 @@ Statistics for "../../examples/xmls/Risk.xml":
 
 # Executing Python 3 WITSML 2.1 to BSON parser
 
-TODO
+## Before use (first time only)
+
+You need to compile PyWITSML 2.1 to BSON parser
+
+In your root _witsml21parser_ folder
+
+```sh
+make py && cd $(pwd)/Python && source env.sh
+```
+
+## Running
+
+In your [Python](https://github.com/devfabiosilva/witsml21parser/tree/master/Python/) folder:
+
+```sh
+python3 witsml21parser.py
+```
 
 # BENCHMARKS
 
