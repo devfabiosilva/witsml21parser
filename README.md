@@ -6,7 +6,7 @@ A fast, robust and portable [Witsml 2.1](https://energistics.org/witsml-data-sta
 
 - Fast
 - Robust
-- Portable (NodeJS (in development) | [Java/Kotlin](https://github.com/devfabiosilva/witsml21parser/tree/master/Java) | PHP (in development) | [Python 3](https://github.com/devfabiosilva/witsml21parser/tree/master/Python) | WebAssembly (in development))
+- Portable (NodeJS (in development) | [Java/Kotlin](https://github.com/devfabiosilva/witsml21parser/tree/master/Java) | PHP (in development) | [Python 3](https://github.com/devfabiosilva/witsml21parser/tree/master/Python))
 - Low dependency libraries.
 - No Garbage Collector on parsing
 - Low memory allocation/reallocation

@@ -28,8 +28,6 @@ struct const_t {
    const char *name;
    int value;
 } CONST[] = {
-  {"XML_IGNORENS", SOAP_XML_IGNORENS},
-  {"XML_STRICT", SOAP_XML_STRICT},
   {"TYPE_None", TYPE_None},
   {"TYPE_BhaRun", TYPE_BhaRun},
   {"TYPE_CementJob", TYPE_CementJob},

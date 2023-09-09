@@ -1,30 +1,64 @@
 import witsml21bson
 import bson
-#https://pymongo.readthedocs.io/en/stable/api/bson/json_util.html
-#https://docs.python.org/3/c-api/
-from bson.json_util import dumps
 
 def main():
-#TODO Implementing C Python modules
-  f = open("../../examples/xmls/BhaRun.xml")
   parser=witsml21bson.create()
-  print(parser.getInstanceName())
-  r=parser.parse(f.read())
-  print(parser.getObjectName())
-  print(r)
-  f.close()
-  f = open("../../examples/xmls/OpsReport.xml")
-  r=parser.parse(f.read())
-  print(parser.getObjectName())
-  print(r)
-  d=bson.decode(r)
-  print(bson.decode(r))
-  print(type(d))
-  s=dumps(d)
-  print(s)
-  print(type(s))
-  print(parser.getObjectType())
-  f.close()
+  read_witsml21_objects(parser)
+
+O_LIST = [
+ 'BhaRun', 'CementJob', 'DepthRegImage', 'DownholeComponent', 'DrillReport', 'FluidsReport', 'Log', 'MudLogReport', 'OpsReport', 'Rig',
+ 'Risk', 'StimJob', 'SurveyProgram', 'Target', 'ToolErrorModel', 'Trajectory', 'Tubular', 'Well', 'Wellbore', 'WellboreCompletion',
+ 'WellboreGeology', 'WellCMLedger', 'WellCompletion', "INVALID_Log", "INVALID_OpsReport"
+]
+
+DEFAULT_PATH = "../../examples/"
+DEFAULT_PATH_XML = "../../examples/xmls/"
+
+def save_to_file(caller, file_path):
+  try:
+    caller(file_path)
+  except Exception as e:
+    print("File saving error: " + str(e))
+  finally:
+    print("Maybe file " + file_path + " exists")
+
+def print_parser_error(parser):
+  print("Error number: " + str(parser.getError()))
+  faultStr = parser.getFaultString()
+  if (faultStr != None):
+    print("fault string: " + faultStr)
+  xmlFaultDetail = parser.getXMLfaultdetail()
+  if (xmlFaultDetail != None):
+    print("Witsml 2.1 parser detail: " + xmlFaultDetail)
+
+def read_witsml21_objects(parser):
+  for l in O_LIST:
+    fp = DEFAULT_PATH_XML + l + ".xml"
+    print("Opening " + fp)
+    try:
+      bsonByte = parser.parseFromFile(fp)
+    except Exception as e:
+      print("Exception " + str(e))
+      print_parser_error(parser)
+      continue
+
+    try:
+      print("WITSML 2.1 XML statistics:")
+      print(parser.getStatistics())
+      jsonFile = DEFAULT_PATH + l + ".json"
+      print("Saving JSON to file " + jsonFile)
+      save_to_file(parser.saveToFileJSON, jsonFile)
+      bsonFile = DEFAULT_PATH + l + ".bson"
+      print("Saving BSON to file " + bsonFile)
+      save_to_file(parser.saveToFile, bsonFile)
+      print("BSON to Python dictionary")
+      dictionary = bson.decode(bsonByte)
+      print(dictionary)
+      print("JSON string")
+      print(parser.getJson())
+    except Exception as e:
+      print("Error:")
+      print(str(e))
 
 if __name__ == "__main__":
   main()
