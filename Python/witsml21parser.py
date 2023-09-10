@@ -11,16 +11,20 @@ O_LIST = [
  'WellboreGeology', 'WellCMLedger', 'WellCompletion', "INVALID_Log", "INVALID_OpsReport"
 ]
 
-DEFAULT_PATH = "../../examples/"
-DEFAULT_PATH_XML = "../../examples/xmls/"
+DEFAULT_PATH = "../examples/"
+DEFAULT_PATH_XML = "../examples/xmls/"
 
-def save_to_file(caller, file_path):
+def save_to_file(caller, file_path) -> bool:
   try:
     caller(file_path)
+    ret = False
   except Exception as e:
+    ret = True
     print("File saving error: " + str(e))
   finally:
     print("Maybe file " + file_path + " exists")
+
+  return ret
 
 def print_parser_error(parser):
   print("Error number: " + str(parser.getError()))
@@ -47,10 +51,12 @@ def read_witsml21_objects(parser):
       print(parser.getStatistics())
       jsonFile = DEFAULT_PATH + l + ".json"
       print("Saving JSON to file " + jsonFile)
-      save_to_file(parser.saveToFileJSON, jsonFile)
+      if (save_to_file(parser.saveToFileJSON, jsonFile)):
+        continue
       bsonFile = DEFAULT_PATH + l + ".bson"
       print("Saving BSON to file " + bsonFile)
-      save_to_file(parser.saveToFile, bsonFile)
+      if (save_to_file(parser.saveToFile, bsonFile)):
+        continue
       print("BSON to Python dictionary")
       dictionary = bson.decode(bsonByte)
       print(dictionary)

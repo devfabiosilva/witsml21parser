@@ -1,0 +1,11 @@
+#include <ctest/asserts.h>
+#include <pointers_asserts.h>
+
+int main(int argc, char **argv)
+{
+  TITLE_MSG("Begin C Witsml 2.1 parser tests ...")
+  test_pointer_assert();
+  end_tests();
+  return 0;
+}
+

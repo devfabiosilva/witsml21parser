@@ -6,7 +6,7 @@ if [ -d $search_dir ]; then
  export PYTHONPATH=$PYTHONPATH:$(readlink -f $search_dir)
  echo "Python path set to $PYTHONPATH"
 else
- echo "ERROR: Py WITSML 2.1 to BSON parser not found. Compile it witm 'make py' and run this environment again"
+ echo "ERROR: Py WITSML 2.1 to BSON parser not found. Compile module with 'make py' and run this environment again"
  return 1
 fi
 

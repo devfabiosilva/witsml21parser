@@ -30,6 +30,11 @@ EXECSTACK=execstack -c
 LIBANAME_PY=$(LIBANAME)_py
 FLAG_PY=-Wno-stringop-truncation -DJNI_RUSAGE_CHILDREN -DCWS_$(ENDIAN)_ENDIAN -D$(STAT)
 
+TEST_DIR=$(CURDIR)/tests
+TEST_C_DIR=$(TEST_DIR)/c
+TEST_INCLUDE_DIR=$(TEST_C_DIR)/include
+TEST_C_EXEC_NAME=testexec
+
 all: main
 
 cws_version.o:
@@ -281,6 +286,20 @@ else
 	@echo "Nothing to do with examples/*.bson"
 endif
 
+ifneq ("$(wildcard $(TEST_C_DIR)/*.o)","")
+	@echo "Checking C objects (TEST) ..."
+	rm -v $(TEST_C_DIR)/*.o
+else
+	@echo "Nothing to do with C test objects"
+endif
+
+ifneq ("$(wildcard $(TEST_C_DIR)/$(TEST_C_EXEC_NAME))","")
+	@echo "Checking C test executable $(TEST_C_EXEC_NAME) (TEST) ..."
+	rm -v $(TEST_C_DIR)/$(TEST_C_EXEC_NAME)
+else
+	@echo "Nothing to do with $(TEST_C_EXEC_NAME)"
+endif
+
 .PHONY:
 pre_remove:
 ifneq ("$(wildcard $(CURDIR)/soapC.o)","")
@@ -346,3 +365,15 @@ else
 	@echo "Cloning branch $(MONGO_C_BRANCH) from $(MONGO_C_GIT)"
 	pwd; cd $(CURDIR)/third-party; pwd; git clone -b $(MONGO_C_BRANCH) $(MONGO_C_GIT); cd mongo-c-driver;mkdir compiled && cd compiled; cmake .. -DCMAKE_BUILD_TYPE=Release -DENABLE_MONGOC=OFF -DCMAKE_INSTALL_PREFIX=$(MONGO_C_DIR)/compiled/out; make -j12;make install; pwd; cp out/lib/libbson-static-1.0.a $(LIBDIR) -v;cp -frv out/include/libbson-1.0/bson $(INCLUDEDIR);cd src/libbson/CMakeFiles/bson_shared.dir; pwd; ar rcs $(LIBDIR)/libbson-shared-1.0.a src/bson/*.o src/jsonsl/*.o __/common/*.o
 endif
+
+#TESTS
+pointers_assert:
+	@echo "Building C pointer assert (TEST)"
+	@$(CC) -c -O2 $(TEST_C_DIR)/pointers_assert.c -I$(INCLUDEDIR) -I$(TEST_INCLUDE_DIR) -I$(CURDIR) -o $(TEST_C_DIR)/pointers_assert.o -Wall $(DEBUG_FLAG)
+
+.PHONY:
+test: pointers_assert
+	@echo "Build C test (TEST) ..."
+	@$(CC) -O2 $(TEST_C_DIR)/main.c $(CURDIR)/src/ctest/asserts.c $(TEST_C_DIR)/pointers_assert.o -I$(TEST_INCLUDE_DIR) -I$(INCLUDEDIR) -I$(CURDIR) -o $(TEST_C_DIR)/$(TEST_C_EXEC_NAME) -Wall $(DEBUG_FLAG)
+	@$(TEST_C_DIR)/./$(TEST_C_EXEC_NAME)
+

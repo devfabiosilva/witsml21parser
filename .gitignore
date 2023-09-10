@@ -75,3 +75,6 @@ build/
 # BSON files
 *.bson
 
+# C TEST EXECUTABLE
+testexec
+
