@@ -126,7 +126,7 @@ main: soapC.o lib$(LIBANAME).a
 
 dbg: soapC_debug_sanitize.o lib$(LIBANAME)_debug.a
 	@echo "Compiling in debug mode ..."
-	@$(CC) -O2 -o $(TARG_DBG) main.c stdsoap2.c soapC_debug_sanitize.o soapServer.c -I$(INCLUDEDIR) -L$(LIBDIR) -L../lib -lcws_debug  -lpthread -lbson-static-1.0 -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 -o $(TARG_DBG) main.c stdsoap2.c soapC_debug_sanitize.o soapServer.c -I$(INCLUDEDIR) -L$(LIBDIR) -l$(LIBANAME)_debug -lpthread -lbson-static-1.0 -Wall $(DEBUG_FLAG)
 	@echo "Finished in debug mode."
 
 ##JNI ONLY SOAP INTERNAL
@@ -369,11 +369,11 @@ endif
 #TESTS
 pointers_assert:
 	@echo "Building C pointer assert (TEST)"
-	@$(CC) -c -O2 $(TEST_C_DIR)/pointers_assert.c -I$(INCLUDEDIR) -I$(TEST_INCLUDE_DIR) -I$(CURDIR) -o $(TEST_C_DIR)/pointers_assert.o -Wall $(DEBUG_FLAG)
+	@$(CC) -c -O2 $(TEST_C_DIR)/pointers_assert.c -I$(INCLUDEDIR) -I$(TEST_INCLUDE_DIR) -I$(CURDIR) -L$(LIBDIR) -lpthread -lbson-static-1.0 -o $(TEST_C_DIR)/pointers_assert.o -Wall $(DEBUG_FLAG)
 
 .PHONY:
-test: pointers_assert
+test: lib$(LIBANAME)_debug.a pointers_assert
 	@echo "Build C test (TEST) ..."
-	@$(CC) -O2 $(TEST_C_DIR)/main.c $(CURDIR)/src/ctest/asserts.c $(TEST_C_DIR)/pointers_assert.o -I$(TEST_INCLUDE_DIR) -I$(INCLUDEDIR) -I$(CURDIR) -o $(TEST_C_DIR)/$(TEST_C_EXEC_NAME) -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 $(TEST_C_DIR)/main.c $(CURDIR)/src/ctest/asserts.c $(TEST_C_DIR)/pointers_assert.o stdsoap2.c soapC_debug_sanitize.o soapServer.c -I$(TEST_INCLUDE_DIR) -I$(INCLUDEDIR) -I$(CURDIR) -L$(LIBDIR) -l$(LIBANAME)_debug -lpthread -lbson-static-1.0 -o $(TEST_C_DIR)/$(TEST_C_EXEC_NAME) -Wall $(DEBUG_FLAG)
 	@$(TEST_C_DIR)/./$(TEST_C_EXEC_NAME)
 

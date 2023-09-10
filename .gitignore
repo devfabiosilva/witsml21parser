@@ -75,6 +75,9 @@ build/
 # BSON files
 *.bson
 
+# LOG FILES
+*.log
+
 # C TEST EXECUTABLE
 testexec
 
