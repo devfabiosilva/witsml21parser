@@ -59,8 +59,21 @@ void test_pointer_assert()
     CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel)
   ))
 
-  cws_internal_soap_free(&soap_internal);
-  cws_config_free(&config);
+  CHECK_CFG(soap_internal, soap_internal, EQ)
+  CHECK_CFG(internal_soap_error, 0, EQ)
+
+  C_ASSERT_TRUE(CHECK_CONFIG_OBJ_PTR_GT(internalInitFlag, 0), CTEST_SETTER(
+    CTEST_TITLE("Testing internalInitFlag is greater than 0"),
+    CTEST_INFO("config->internalInitFlag value SHOULD be greater than 0"),
+    CTEST_ON_SUCCESS("config->internalInitFlag SUCCESS"),
+    CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel)
+  ))
+
+  CHECK_CFG(xmlIn, NULL, EQ)
+  CHECK_CFG(xmlLen, 0, EQ)
+  CHECK_CFG(xmlSoap, NULL, EQ)
+
+  test_pointer_assert_RELEASE((void *)&test_pointer_assert_rel);
 }
 
 // TODO add tests in parsers and vectors internal_soap pointers
