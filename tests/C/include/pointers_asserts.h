@@ -9,11 +9,14 @@ void test_pointer_assert();
 
 #define CHECK_CONFIG_OBJ_PTR_GT(obj, cond) config->obj>cond
 
-#define CHECK_CFG(child, val, cond) \
+#define CHECK_CONFIG_OBJ_PTR_NEQ(obj, cond) config->obj!=cond
+
+#define CHECK_CFG_P(child, val, cond) \
   C_ASSERT_TRUE(CHECK_CONFIG_OBJ_PTR_##cond(child, val), CTEST_SETTER( \
-    CTEST_TITLE("Testing " #child " is " #val), \
-    CTEST_INFO("config->" #child " value SHOULD be " #val), \
+    CTEST_TITLE("Testing config->" #child " is " #cond " " #val), \
+    CTEST_INFO("config->" #child " value SHOULD be " #cond " " #val), \
     CTEST_ON_SUCCESS("config->" #child " SUCCESS"), \
+    CTEST_ON_ERROR("config->" #child " FAIL"), \
     CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel) \
   ))
 
