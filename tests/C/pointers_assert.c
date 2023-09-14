@@ -4,6 +4,7 @@
 #include <cws_soap.h>
 #include <wistml2bson_deserializer.h>
 #include <ctest/asserts.h>
+#include <cws_utils.h>
 #include <pointers_asserts.h>
 
 #ifndef WITH_NOIDREF
@@ -13,12 +14,16 @@
 struct test_pointer_assert_rel_t {
   CWS_CONFIG *config;
   struct soap *soap_internal;
+  const char *text;
+  size_t textLen;
 };
 
 static void test_pointer_assert_RELEASE(void *p)
 {
   struct test_pointer_assert_rel_t *test_pointer_assert_rel=(struct test_pointer_assert_rel_t *)p;
 
+  readTextFree(&test_pointer_assert_rel->text);
+  test_pointer_assert_rel->textLen=0;
   cws_internal_soap_free(&test_pointer_assert_rel->soap_internal);
   cws_config_free(&test_pointer_assert_rel->config);
 }

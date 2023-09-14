@@ -30,6 +30,9 @@ EXECSTACK=execstack -c
 LIBANAME_PY=$(LIBANAME)_py
 FLAG_PY=-Wno-stringop-truncation -DJNI_RUSAGE_CHILDREN -DCWS_$(ENDIAN)_ENDIAN -D$(STAT)
 
+LIBANAME_JS=$(LIBANAME)_js
+FLAG_JS=-Wno-stringop-truncation -DJNI_RUSAGE_CHILDREN -DCWS_$(ENDIAN)_ENDIAN -D$(STAT)
+
 TEST_DIR=$(CURDIR)/tests
 TEST_C_DIR=$(TEST_DIR)/C
 TEST_INCLUDE_DIR=$(TEST_C_DIR)/include
@@ -187,6 +190,35 @@ lib$(LIBANAME_PY).a: cws_version.o cws_utils_py.o request_context_py.o wistml2bs
 	@echo "Build lib$(LIBANAME_PY).a for Python 3 ..."
 	$(AR) $(LIBDIR)/lib$(LIBANAME_PY).a $(CURDIR)/src/*.o -v
 
+#NODE
+cws_utils_js.o:
+	@echo "Build utilities for CWS for parsing (Node JS) ..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_utils_js.o -Wall $(FLAG_JS)
+
+request_context_js.o:
+	@echo "Build request context for parsing (Node JS)..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/request_context.c -I$(INCLUDEDIR) -I$(CURDIR) -o $(CURDIR)/src/request_context_js.o -Wall $(FLAG_JS)
+
+wistml2bson_deserializer_js.o:
+	@echo "Build WITSML to BSON deserializer (NodeJS)  ..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/wistml2bson_deserializer.c -I$(INCLUDEDIR) -I$(CURDIR) -o $(CURDIR)/src/wistml2bson_deserializer_js.o -Wall $(FLAG_JS)
+
+cws_soap_js.o:
+	@echo "Build CWS INTERNAL/EXTERNAL SOAP constructors/destructors (NodeJS)..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_soap.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_soap_js.o -Wall $(FLAG_JS)
+
+cws_memory_js.o:
+	@echo "Build memory management for CWS (NodeJS)..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_memory.c -I$(INCLUDEDIR) -I$(CURDIR) -o $(CURDIR)/src/cws_memory_js.o -Wall $(FLAG_JS)
+
+cws_bson_utils_js.o:
+	@echo "Build BSON utilities for CWS (NodeJS)..."
+	@$(CC) -O2 -fPIC -c $(CURDIR)/src/cws_bson_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/src/cws_bson_utils_js.o -Wall $(FLAG_JS)
+
+lib$(LIBANAME_JS).a: cws_version.o cws_utils_js.o request_context_js.o wistml2bson_deserializer_js.o cws_soap_js.o cws_memory_js.o cws_bson_utils_js.o
+	@echo "Build lib$(LIBANAME_JS).a for Node JS (>= 16.20.2) ..."
+	$(AR) $(LIBDIR)/lib$(LIBANAME_JS).a $(CURDIR)/src/*.o -v
+
 .PHONY:
 clean:
 ifneq ("$(wildcard $(CURDIR)/misc/versionBuilder)","")
@@ -244,8 +276,15 @@ else
 	@echo "Nothing to do $(LIBDIR)/lib$(LIBANAME_PY).a"
 endif
 
+ifneq ("$(wildcard $(LIBDIR)/lib$(LIBANAME_JS).a)","")
+	@echo "Removing lib$(LIBANAME_JS).a..."
+	rm -v $(LIBDIR)/lib$(LIBANAME_JS).a
+else
+	@echo "Nothing to do $(LIBDIR)/lib$(LIBANAME_JS).a"
+endif
+
 ifneq ("$(wildcard $(CURDIR)/build)","")
-	@echo "Removing Python 3 library $(CURDIR)/build ..."
+	@echo "Removing Python 3 and/or NodeJS library $(CURDIR)/build ..."
 	rm -frv $(CURDIR)/build
 else
 	@echo "Nothing to do $(CURDIR)/build"
@@ -354,6 +393,14 @@ jni: lib$(LIBANAME_JNI).a
 py: lib$(LIBANAME_PY).a
 	@echo "Compiling Python 3 module ..."
 	@python3 setup.py build
+	@echo "Finished"
+
+#NODEJS ONLY SOAP INTERNAL
+.PHONY:
+nodejs: lib$(LIBANAME_JS).a
+	@echo "Compiling NodeJS (>= v16.20.2) module ..."
+	@node-gyp configure
+	@node-gyp build
 	@echo "Finished"
 
 .PHONY:

@@ -6,7 +6,7 @@ A fast, robust and portable [Witsml 2.1](https://energistics.org/witsml-data-sta
 
 - Fast
 - Robust
-- Portable (NodeJS (in development) | [Java/Kotlin](https://github.com/devfabiosilva/witsml21parser/tree/master/Java) | PHP (in development) | [Python 3](https://github.com/devfabiosilva/witsml21parser/tree/master/Python))
+- Portable ([]NodeJS](https://github.com/devfabiosilva/witsml21parser/tree/master/NodeJS/) | [Java/Kotlin](https://github.com/devfabiosilva/witsml21parser/tree/master/Java) | PHP (in development) | [Python 3](https://github.com/devfabiosilva/witsml21parser/tree/master/Python))
 - Low dependency libraries.
 - No Garbage Collector on parsing
 - Low memory allocation/reallocation
@@ -197,6 +197,26 @@ Saving to file Risk.bson
 
 Statistics for "../../examples/xmls/Risk.xml":
         {arrays=12, dateTime=17, enums=14, long64s=9, measures=18, strings=106, total=176}
+```
+
+# Executing NodeJS (>=v16.20.2) WITSML 2.1 to BSON parser
+
+## Before use (first time only)
+
+You need to compile JS WITSML 2.1 to BSON parser
+
+In your root _witsml21parser_ folder
+
+```sh
+make nodejs && cd $(pwd)/NodeJS && source env.sh
+```
+
+## Running
+
+In your [NodeJS](https://github.com/devfabiosilva/witsml21parser/tree/master/NodeJS/) folder:
+
+```sh
+node app.js
 ```
 
 # Executing Python 3 WITSML 2.1 to BSON parser
