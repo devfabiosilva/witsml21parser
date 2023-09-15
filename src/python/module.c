@@ -70,7 +70,7 @@ struct const_t {
 
 static PyObject *c_obj_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-  PyObject *self=NULL;
+  PyObject *self;
 
   if (!(self=type->tp_alloc(type, 0)))
     Py_WITSML21_ERROR("Could not alloc Py_WITSML21_PARSER object", NULL)
