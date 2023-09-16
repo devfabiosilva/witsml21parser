@@ -399,8 +399,8 @@ py: lib$(LIBANAME_PY).a
 .PHONY:
 nodejs: lib$(LIBANAME_JS).a
 	@echo "Compiling NodeJS (>= v16.20.2) module ..."
-	@node-gyp configure
-	@node-gyp build
+	@node-gyp configure --thin=yes --verbose
+	@node-gyp build --thin=yes --verbose
 	@echo "Finished"
 
 .PHONY:
