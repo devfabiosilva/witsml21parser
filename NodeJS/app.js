@@ -5,10 +5,13 @@ a = require('./jswitsml21bson')
 
 b = a.create()
 
-bytes = b.getBsonVersion()
+bytes = b.parseFromFile('../examples/xmls/OpsReport.xml')
 
 const doc = BSON.deserialize(bytes);
-console.log(doc["website"])
-console.log(doc["dependencies"]["gSoap"])
+//console.log(doc["website"])
+//console.log(doc["dependencies"]["gSoap"])
 console.log(doc)
 console.log(EJSON.stringify(doc, { relaxed: false }));
+
+b=null
+

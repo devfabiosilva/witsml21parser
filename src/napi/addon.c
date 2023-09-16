@@ -50,10 +50,21 @@ c=a.create()
   cws_js_throw(env, &cws_js_err, errFunc, errDesc, errCode); \
   return NULL;
 
+#define JS_CWS_THROW_GOTO(errFunc, errDesc, errCode, onErrorGoto) \
+  cws_js_throw(env, &cws_js_err, errFunc, errDesc, errCode); \
+  goto onErrorGoto;
+
+#define JS_CWS_THROW_COND_GOTO(condT, errFunc, errDesc, errCode, onErrorGoto) \
+  if (condT) { \
+    JS_CWS_THROW_GOTO(errFunc, errDesc, errCode, onErrorGoto) \
+  }
+
 #define JS_CWS_THROW_COND(condT, errFunc, errDesc, errCode) \
   if (condT) { \
     JS_CWS_THROW(errFunc, errDesc, errCode) \
   }
+
+#define ERR js_cws_instance->err
 
 /// UTILITIES
 typedef napi_value (*cws_node_fn)(napi_env, napi_callback_info);
@@ -73,6 +84,76 @@ typedef struct cws_js_fn_call_t {
    const char *function_name;
    cws_node_fn fn;
 } CWS_JS_FUNCTIONS_OBJ;
+
+#define TEXT_BUF_ALLOC_MAX_SZ 2048
+static char *textBufAlloc(size_t len)
+{
+  len++;
+
+  if ((len>1)&&(len<TEXT_BUF_ALLOC_MAX_SZ))
+    return cws_malloc(len);
+
+  return NULL;
+}
+#undef TEXT_BUF_ALLOC_MAX_SZ
+
+static char *js_cws_get_value_string_utf8(size_t *len, napi_env env, napi_value value)
+{
+  char *res;
+
+  if (napi_get_value_string_utf8(env, value, NULL, 0, len)!=napi_ok)
+    return NULL;
+
+  if (!(res=textBufAlloc(*len)))
+    return NULL;
+
+  if (napi_get_value_string_utf8(env, value, res, (*len)+1, len)==napi_ok) {
+    JS_WITSML21_DEBUG("\njs_cws_get_value_string_utf8: has NULL terminator: %d\n", res[*len]==0)
+    JS_WITSML21_DEBUG("\njs_cws_get_value_string_utf8: value: %s\n", res)
+    return res;
+  }
+
+  free((void *)res);
+  return NULL;
+}
+
+enum c_parse_util_e {
+  IS_BSON=1,
+  IS_JSON
+};
+
+static int c_parse_util(
+  struct soap *soap_internal, 
+  void **v_ser,
+  const char *c_xml,
+  size_t c_xml_size,
+  enum c_parse_util_e c_parse_util 
+)
+{
+
+  DECLARE_CONFIG(soap_internal)
+  *v_ser=NULL;
+
+  cws_internal_soap_recycle(soap_internal);
+  cws_recycle_config(config);
+
+  if (!cws_parse_XML_soap_envelope(soap_internal, (char *)c_xml, (size_t)c_xml_size))
+    return -500;
+
+  if (cws_soap_serve(soap_internal))
+    return -501;
+
+  if (c_parse_util==IS_BSON) {
+    if ((*v_ser=(void *)bsonSerialize(soap_internal)))
+      return 0;
+
+  } else {
+    if ((*v_ser=(void *)getJson(soap_internal)))
+      return 0;
+  }
+
+  return -503;
+}
 
 static void js_cws_config_free(struct js_cws_config_t **js_cws_config)
 {
@@ -167,6 +248,18 @@ static int cws_add_function_util(napi_value *fn_out, napi_env env, napi_value ex
   return 0;
 }
 
+inline int js_cws_new_array_buffer(napi_value *dest, napi_env env, void *src, size_t src_sz)
+{
+  void *buf;
+
+  if (napi_create_arraybuffer(env, src_sz, &buf, dest)==napi_ok) {
+    memcpy(buf, src, src_sz);
+    return 0;
+  }
+
+  return -1;
+}
+
 ///
 
 napi_value c__witsml21bsonInit_(napi_env env, napi_callback_info info)
@@ -178,34 +271,100 @@ napi_value c_getBsonVersion(napi_env env, napi_callback_info info)
 {
   napi_value argv, res;
   size_t argc=1;
-  void *buf;
   struct cws_js_err_t cws_js_err;
   struct cws_version_t version;
 
-  if (napi_get_cb_info(env, info, &argc, &argv, NULL, NULL)!=napi_ok) {
-    cws_js_throw(env, &cws_js_err, "c_getBsonVersion", "Can't parse arguments", -19);
-    return NULL;
-  }
+  JS_CWS_THROW_COND(napi_get_cb_info(env, info, &argc, &argv, NULL, NULL)!=napi_ok, "napi_get_cb_info", "Can't parse arguments", -19)
 
-  if (argc) {
-    cws_js_throw(env, &cws_js_err, "c_getBsonVersion", "Too many arguments", -20);
-    return NULL;
-  }
+  JS_CWS_THROW_COND(argc, "c_getBsonVersion", "Too many arguments", -20)
 
   cws_version(&version);
 
-  if (napi_create_arraybuffer(env, version.versionSize, &buf, &res)==napi_ok) {
-    memcpy(buf, (void *)version.version, version.versionSize);
+  if (js_cws_new_array_buffer(&res, env, (void *)version.version, version.versionSize)==0)
     return res;
-  }
 
-  cws_js_throw(env, &cws_js_err, "c_getBsonVersion", "Fail to create ArrayBuffer", -21);
+  JS_CWS_THROW("c_getBsonVersion", "Fail to create ArrayBuffer", -21);
+}
+
+napi_value c_parseFromFile(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  char *filename, *text;
+  size_t argc=1, filenameLen, textLen;
+  struct cws_js_err_t cws_js_err;
+  struct c_bson_serialized_t *bson_ser;
+  struct js_cws_config_t *js_cws_instance;
+
+  JS_CWS_THROW_COND(
+    (ERR=(napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok)),
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at create",
+    120
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(js_cws_instance==NULL)),
+    "c_parseFromFile",
+    "Fatal: js_cws_instance. Was expected NOT NULL",
+    121
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(argc==0)),
+    "c_parseFromFile",
+    "Missing argument. Was expected: file path/filename",
+    122
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(argc>1)),
+    "c_parseFromFile",
+    "Too many arguments",
+    123
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=((filename=js_cws_get_value_string_utf8(&filenameLen, env, argv))==NULL)),
+    "c_parseFromFile",
+    "Could not parse filename. Wrong format or invalid utf-8 or no space in C string buffer",
+    124
+  )
+
+  JS_CWS_THROW_COND_GOTO(
+    (ERR=readText((const char **)&text, &textLen, filename)),
+    "readText", "Could not read xml/text",
+    ERR, c_parseFromFile_exit1
+  )
+
+  JS_CWS_THROW_COND_GOTO(
+    (ERR=c_parse_util(js_cws_instance->soap_internal, (void **)&bson_ser, text, textLen, IS_BSON)),
+    "c_parse_util", "BSON parse error @ c_parseFromFile",
+    ERR, c_parseFromFile_exit2
+  )
+
+  JS_CWS_THROW_COND_GOTO(
+    (ERR=js_cws_new_array_buffer(&res, env, (void *)bson_ser->bson, bson_ser->bson_size)),
+    "js_cws_new_array_buffer", "Could not copy BSON bytes to JavaScript array buffer @ c_parseFromFile",
+    ERR, c_parseFromFile_exit2
+  )
+
+  free((void *)text);
+  free((void *)filename);
+
+  return res;
+
+c_parseFromFile_exit2:
+  free((void *)text);
+
+c_parseFromFile_exit1:
+  free((void *)filename);
 
   return NULL;
 }
 
 CWS_JS_FUNCTIONS_OBJ CWS_JS_CREATE_FUNCTIONS[] = {
    SET_JS_FN_CALL(getBsonVersion),
+   SET_JS_FN_CALL(parseFromFile),
    {NULL}
 };
 
