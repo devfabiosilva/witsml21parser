@@ -1,28 +1,3 @@
-// initialize NodeJS Witsml 2.1 API
-//a = require('./jswitsml21bson')
-//napi_add_finalizer
-/*
-a = require('./jswitsml21bson')
-
-b=a.create()
-c=a.create()
-
-{
-  "targets": [
-    {
-      "target_name": "jswitsml21bson",
-      "sources": [ "./src/napi/addon.c", "./soapServer.c", "./stdsoap2.c" ],
-      "include_dirs":[ "./include", "./" ],
-      "libraries": [
-              "-Wl,-rpath,./lib/libbson-shared-1.0.a", "-Wl,-rpath,./lib/libcws_js.a"
-          ],
-      "extra_objects": ["./soapC_shared.o"],
-      "defines": ["CWS_LITTLE_ENDIAN", "WITH_STATISTICS"]
-    }
-  ]
-}
-
-*/
 #define NAPI_VERSION 8
 #include "../../ns1.nsmap" // XML namespace mapping table (only needed once at the global level)
 #include "../../soapH.h"    // server stubs, serializers, etc.
@@ -69,11 +44,14 @@ c=a.create()
 
 #define JS_GET_INTERNAL_SOAP_ERROR ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->internal_soap_error
 #define JS_GET_OBJECT_TYPE ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->object_type
+#define JS_GET_OBJECT_NAME ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->object_name
+#define JS_GET_OBJECT_TYPE ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->object_type
+#define JS_GET_ERROR ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->internal_soap_error
 
 #define ERR js_cws_instance->err
 
 #define CHECK_HAS_ERROR(errFunc, errDesc, errCde) \
-  if ((ERR!=0)||(JS_GET_INTERNAL_SOAP_ERROR!=0)||(JS_GET_OBJECT_TYPE==TYPE_None)) {\
+  if ((ERR!=0)||(JS_GET_INTERNAL_SOAP_ERROR!=0)||(JS_GET_OBJECT_TYPE==TYPE_None)||(JS_GET_OBJECT_NAME==NULL)) {\
     JS_CWS_THROW(errFunc, errDesc, errCde) \
   }
 
@@ -87,6 +65,16 @@ c=a.create()
 \
   return res;
 
+#define JS_CWS_RETURN_UNDEFINED \
+  JS_CWS_THROW_COND( \
+    napi_get_undefined(env, &res)!=napi_ok, \
+    "napi_get_undefined", \
+    "Create JavaScript object 'undefined' error", \
+    -16\
+  )\
+\
+  return res;
+
 /// UTILITIES
 typedef napi_value (*cws_node_fn)(napi_env, napi_callback_info);
 
@@ -96,7 +84,7 @@ struct js_cws_config_t {
 };
 
 struct cws_js_err_t {
-  char buf[256];
+  char buf[512];
   char err[16];
 };
 
@@ -265,7 +253,7 @@ js_cws_config_init_exit1:
 
 //https://nodejs.org/api/n-api.html#napi_finalize
 //typedef void (*napi_finalize)(napi_env env, void* finalize_data, void* finalize_hint);
-static void cws_js_finalize(napi_env env, void *finalize_data, void* finalize_hint)
+static void cws_js_finalize(napi_env env, void *finalize_data, void *finalize_hint)
 {
   void *data=finalize_data;
   JS_WITSML21_DEBUG("\ncws_js_finalize: Entering and perform cleanup %p", data)
@@ -276,7 +264,7 @@ static void cws_js_finalize(napi_env env, void *finalize_data, void* finalize_hi
 
 static void cws_js_throw(napi_env env, struct cws_js_err_t *caster, const char *c_function_name, const char *errMessage, int err)
 {
-  snprintf(caster->buf, sizeof(caster->buf), "%s:%d %s", c_function_name, err, errMessage);
+  snprintf(caster->buf, sizeof(caster->buf), "%s:Err.:%d %s", c_function_name, err, errMessage);
   snprintf(caster->err, sizeof(caster->err), "%d", err);
   napi_throw_error(env, caster->err, caster->buf);
 }
@@ -317,6 +305,19 @@ static int cws_add_int32_util(napi_value *int32_out, napi_env env, napi_value ex
   }
 
   return 0;
+}
+
+static int cws_add_int32_object_list_util(napi_value *int32_out, const char *objName, napi_env env, napi_value exports, struct cws_js_int32_t *value)
+{
+  napi_value obj;
+
+  if (napi_create_object(env, &obj)!=napi_ok)
+    return 602;
+
+  if (napi_set_named_property(env, exports, objName, obj)!=napi_ok)
+    return 603;
+
+  return cws_add_int32_util(int32_out, env, obj, value);
 }
 
 inline int js_cws_new_array_buffer(napi_value *dest, napi_env env, void *src, size_t src_sz)
@@ -554,7 +555,7 @@ napi_value c_saveToFile(napi_env env, napi_callback_info info)
 
   free(filename);
 
-  JS_CWS_RETURN_NULL
+  JS_CWS_RETURN_UNDEFINED
 
 c_saveToFile_exit1:
   free(filename);
@@ -606,7 +607,7 @@ napi_value c_saveToFileJSON(napi_env env, napi_callback_info info)
 
   free(filename);
 
-  JS_CWS_RETURN_NULL
+  JS_CWS_RETURN_UNDEFINED
 
 writeToFileJSON_exit1:
   free(filename);
@@ -647,8 +648,93 @@ napi_value c_getInstanceName(napi_env env, napi_callback_info info)
   return res;
 }
 
+napi_value c_getObjectName(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  size_t argc=0;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_getObjectName",
+    40
+  )
+
+  JS_CWS_THROW_COND(argc, "c_getObjectName", "Too many arguments @ c_getObjectName", 41)
+
+  CHECK_HAS_ERROR("c_getObjectName", "Could not get object name. Object not parsed or internal error", 42)
+
+  JS_CWS_THROW_COND(
+    (napi_create_string_utf8(env, JS_GET_OBJECT_NAME, NAPI_AUTO_LENGTH, &res)!=napi_ok),
+    "napi_create_string_utf8",
+    "napi_create_string_utf8 @ c_getObjectName. Error on get object name",
+    43
+  )
+
+  return res;
+}
+
+napi_value c_getObjectType(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  size_t argc=0;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_getObjectType",
+    50
+  )
+
+  JS_CWS_THROW_COND(argc, "c_getObjectType", "Too many arguments @ c_getObjectType", 51)
+
+  CHECK_HAS_ERROR("c_getObjectType", "Could not get object name. Object not parsed or internal error", 52)
+
+  JS_CWS_THROW_COND(
+    (napi_create_int32(env, JS_GET_OBJECT_TYPE, &res)!=napi_ok),
+    "napi_create_int32",
+    "napi_create_int32 @ c_getObjectType. Error on get object type",
+    53
+  )
+
+  return res;
+}
+
+napi_value c_getError(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  size_t argc=0;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_getError",
+    55
+  )
+
+  JS_CWS_THROW_COND(argc, "c_getError", "Too many arguments @ c_getError", 56)
+
+  JS_CWS_THROW_COND(
+    (napi_create_int32(env, (JS_GET_ERROR)?JS_GET_ERROR:ERR, &res)!=napi_ok),
+    "napi_create_int32",
+    "napi_create_int32 @ c_getError. Unable to get Witsml 2.1 parser error",
+    57
+  )
+
+  return res;
+}
+
 CWS_JS_FUNCTIONS_OBJ CWS_JS_CREATE_FUNCTIONS[] = {
    SET_JS_FN_CALL(getInstanceName),
+   SET_JS_FN_CALL(getObjectName),
+   SET_JS_FN_CALL(getObjectType),
+   SET_JS_FN_CALL(getError),
    SET_JS_FN_CALL(parseFromFile),
    SET_JS_FN_CALL(parseFromFileJSON),
    SET_JS_FN_CALL(saveToFile),
@@ -721,8 +807,8 @@ napi_value Init(napi_env env, napi_value exports)
   )
 
   JS_CWS_THROW_COND(
-    (err=cws_add_int32_util(NULL, env, exports, CWS_JS_INT32)),
-    "cws_add_int32_util",
+    (err=cws_add_int32_object_list_util(NULL, "WITSML21_TYPES_ENUM", env, exports, CWS_JS_INT32)),
+    "cws_add_int32_object_list_util",
     "Could not initialize C WITSML 2.1 const object",
     err
   )
