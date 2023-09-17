@@ -64,6 +64,8 @@ c=a.create()
     JS_CWS_THROW(errFunc, errDesc, errCode) \
   }
 
+#define JS_GET_INSTANCE_NAME ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->instance_name
+
 #define ERR js_cws_instance->err
 
 /// UTILITIES
@@ -84,6 +86,37 @@ typedef struct cws_js_fn_call_t {
    const char *function_name;
    cws_node_fn fn;
 } CWS_JS_FUNCTIONS_OBJ;
+
+struct cws_js_int32_t {
+   const char *name;
+   int32_t value;
+} CWS_JS_INT32[] = {
+  {"TYPE_None", TYPE_None},
+  {"TYPE_BhaRun", TYPE_BhaRun},
+  {"TYPE_CementJob", TYPE_CementJob},
+  {"TYPE_DepthRegImage", TYPE_DepthRegImage},
+  {"TYPE_DownholeComponent", TYPE_DownholeComponent},
+  {"TYPE_DrillReport", TYPE_DrillReport},
+  {"TYPE_FluidsReport", TYPE_FluidsReport},
+  {"TYPE_Log", TYPE_Log},
+  {"TYPE_MudLogReport", TYPE_MudLogReport},
+  {"TYPE_OpsReport", TYPE_OpsReport},
+  {"TYPE_Rig", TYPE_Rig},
+  {"TYPE_Risk", TYPE_Risk},
+  {"TYPE_StimJob", TYPE_StimJob},
+  {"TYPE_SurveyProgram", TYPE_SurveyProgram},
+  {"TYPE_Target", TYPE_Target},
+  {"TYPE_ToolErrorModel", TYPE_ToolErrorModel},
+  {"TYPE_Trajectory", TYPE_Trajectory},
+  {"TYPE_Tubular", TYPE_Tubular},
+  {"TYPE_Well", TYPE_Well},
+  {"TYPE_Wellbore", TYPE_Wellbore},
+  {"TYPE_WellboreCompletion", TYPE_WellboreCompletion},
+  {"TYPE_WellboreGeology", TYPE_WellboreGeology},
+  {"TYPE_WellCMLedger", TYPE_WellCMLedger},
+  {"TYPE_WellCompletion", TYPE_WellCompletion},
+  {NULL}
+};
 
 #define TEXT_BUF_ALLOC_MAX_SZ 2048
 static char *textBufAlloc(size_t len)
@@ -248,6 +281,25 @@ static int cws_add_function_util(napi_value *fn_out, napi_env env, napi_value ex
   return 0;
 }
 
+static int cws_add_int32_util(napi_value *int32_out, napi_env env, napi_value exports, struct cws_js_int32_t *value)
+{
+  napi_value *int32Tmp, int32;
+
+  int32Tmp=(int32_out)?int32_out:&int32;
+
+  while (value->name) {
+    if (napi_create_int32(env, value->value, int32Tmp)!=napi_ok)
+      return 600;
+
+    if (napi_set_named_property(env, exports, value->name, *int32Tmp)!=napi_ok)
+      return 601;
+
+    value++;
+  }
+
+  return 0;
+}
+
 inline int js_cws_new_array_buffer(napi_value *dest, napi_env env, void *src, size_t src_sz)
 {
   void *buf;
@@ -362,9 +414,42 @@ c_parseFromFile_exit1:
   return NULL;
 }
 
+napi_value c_getInstanceName(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  size_t argc=0;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_getInstanceName",
+    130
+  )
+
+  JS_CWS_THROW_COND(argc, "c_getInstanceName", "Too many arguments @ getInstanceName", 131)
+
+  JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_getInstanceName",
+    "Fatal: js_cws_instance @ c_getInstanceName. Was expected NOT NULL",
+    132
+  )
+
+  JS_CWS_THROW_COND(
+    (napi_create_string_utf8(env, JS_GET_INSTANCE_NAME, NAPI_AUTO_LENGTH, &res)!=napi_ok),
+    "napi_create_string_utf8",
+    "napi_create_string_utf8 @ c_getInstanceName. Error on parsing instance name",
+    133
+  )
+
+  return res;
+}
+
 CWS_JS_FUNCTIONS_OBJ CWS_JS_CREATE_FUNCTIONS[] = {
-   SET_JS_FN_CALL(getBsonVersion),
    SET_JS_FN_CALL(parseFromFile),
+   SET_JS_FN_CALL(getInstanceName),
    {NULL}
 };
 
@@ -416,6 +501,7 @@ napi_value c_create(napi_env env, napi_callback_info info)
 
 CWS_JS_FUNCTIONS_OBJ CWS_JS_INIT_FUNCTIONS[] = {
    SET_JS_FN_CALL(create),
+   SET_JS_FN_CALL(getBsonVersion),
    {NULL}
 };
 
@@ -428,6 +514,13 @@ napi_value Init(napi_env env, napi_value exports)
     (err=cws_add_function_util(NULL, env, exports, CWS_JS_INIT_FUNCTIONS, NULL)),
     "cws_add_function_util",
     "Could not initialize C functions",
+    err
+  )
+
+  JS_CWS_THROW_COND(
+    (err=cws_add_int32_util(NULL, env, exports, CWS_JS_INT32)),
+    "cws_add_int32_util",
+    "Could not initialize C WITSML 2.1 const object",
     err
   )
 
