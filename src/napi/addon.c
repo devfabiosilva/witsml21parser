@@ -41,6 +41,7 @@ c=a.create()
 
 #ifdef JS_SOAP_DEBUG
  #define JS_WITSML21_DEBUG(...) \
+    fprintf(stdout, "\nJSWITSML21_PARSER DEBUG: ");\
     fprintf(stdout, __VA_ARGS__);
 #else
  #define JS_WITSML21_DEBUG(std, ...)
@@ -66,7 +67,25 @@ c=a.create()
 
 #define JS_GET_INSTANCE_NAME ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->instance_name
 
+#define JS_GET_INTERNAL_SOAP_ERROR ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->internal_soap_error
+#define JS_GET_OBJECT_TYPE ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->object_type
+
 #define ERR js_cws_instance->err
+
+#define CHECK_HAS_ERROR(errFunc, errDesc, errCde) \
+  if ((ERR!=0)||(JS_GET_INTERNAL_SOAP_ERROR!=0)||(JS_GET_OBJECT_TYPE==TYPE_None)) {\
+    JS_CWS_THROW(errFunc, errDesc, errCde) \
+  }
+
+#define JS_CWS_RETURN_NULL \
+  JS_CWS_THROW_COND( \
+    napi_get_null(env, &res)!=napi_ok, \
+    "napi_get_null", \
+    "Create JavaScript object 'null' error", \
+    -15\
+  )\
+\
+  return res;
 
 /// UTILITIES
 typedef napi_value (*cws_node_fn)(napi_env, napi_callback_info);
@@ -350,7 +369,7 @@ napi_value c_parseFromFile(napi_env env, napi_callback_info info)
   JS_CWS_THROW_COND(
     (ERR=(napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok)),
     "napi_get_cb_info",
-    "Can't parse arguments. Wrong argument at create",
+    "Can't parse arguments. Wrong argument at c_parseFromFile",
     120
   )
 
@@ -378,7 +397,7 @@ napi_value c_parseFromFile(napi_env env, napi_callback_info info)
   JS_CWS_THROW_COND(
     (ERR=((filename=js_cws_get_value_string_utf8(&filenameLen, env, argv))==NULL)),
     "c_parseFromFile",
-    "Could not parse filename. Wrong format or invalid utf-8 or no space in C string buffer",
+    "Could not parse filename. Wrong format or empty string or invalid utf-8 or no space in C string buffer",
     124
   )
 
@@ -410,6 +429,187 @@ c_parseFromFile_exit2:
 
 c_parseFromFile_exit1:
   free((void *)filename);
+
+  return NULL;
+}
+
+napi_value c_parseFromFileJSON(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  char *filename, *text;
+  size_t argc=1, filenameLen, textLen;
+  struct cws_js_err_t cws_js_err;
+  struct c_json_str_t *json_ser;
+  struct js_cws_config_t *js_cws_instance;
+
+  JS_CWS_THROW_COND(
+    (ERR=(napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok)),
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_parseFromFileJSON",
+    140
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(js_cws_instance==NULL)),
+    "c_parseFromFileJSON",
+    "Fatal: js_cws_instance. Was expected NOT NULL",
+    141
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(argc==0)),
+    "c_parseFromFileJSON",
+    "Missing argument. Was expected: file path/filename",
+    142
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(argc>1)),
+    "c_parseFromFileJSON",
+    "Too many arguments",
+    143
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=((filename=js_cws_get_value_string_utf8(&filenameLen, env, argv))==NULL)),
+    "c_parseFromFileJSON",
+    "Could not parse filename. Wrong format or empty string or invalid utf-8 or no space in C string buffer",
+    144
+  )
+
+  JS_CWS_THROW_COND_GOTO(
+    (ERR=readText((const char **)&text, &textLen, filename)),
+    "readText", "Could not read xml/text @ c_parseFromFileJSON",
+    ERR, c_parseFromFileJSON_exit1
+  )
+
+  JS_CWS_THROW_COND_GOTO(
+    (ERR=c_parse_util(js_cws_instance->soap_internal, (void **)&json_ser, text, textLen, IS_JSON)),
+    "c_parse_util", "BSON parse error @ c_parseFromFileJSON",
+    ERR, c_parseFromFileJSON_exit2
+  )
+
+  JS_CWS_THROW_COND_GOTO(
+    (ERR=(napi_create_string_utf8(env, json_ser->json, json_ser->json_len, &res)!=napi_ok)),
+    "napi_create_string_utf8",
+    "napi_create_string_utf8 @ c_parseFromFileJSON. Error on parsing JSON string",
+    145, c_parseFromFileJSON_exit2
+  )
+
+  free((void *)text);
+  free((void *)filename);
+
+  return res;
+
+c_parseFromFileJSON_exit2:
+  free((void *)text);
+
+c_parseFromFileJSON_exit1:
+  free((void *)filename);
+
+  return NULL;
+}
+
+napi_value c_saveToFile(napi_env env, napi_callback_info info)
+{
+  int err;
+  napi_value argv=NULL, res;
+  size_t argc=1, filenameLen;
+  char *filename;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_saveToFile",
+    150
+  )
+
+  JS_CWS_THROW_COND(argc==0, "c_saveToFile", "Missing arguments. Expected: Output filename", 151)
+
+  JS_CWS_THROW_COND(argc>1, "c_saveToFile", "Too many arguments. Expected only one argument: output filename", 152)
+
+  JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_saveToFile",
+    "Fatal: js_cws_instance @ c_saveToFile. Was expected NOT NULL",
+    153
+  )
+
+  CHECK_HAS_ERROR("c_saveToFile", "Could not save BSON serialized to file for this object. Object not found or error on parsing", 154)
+
+  JS_CWS_THROW_COND(
+    (filename=js_cws_get_value_string_utf8(&filenameLen, env, argv))==NULL,
+    "c_saveToFile",
+    "Could not parse filename. Wrong format or empty string or invalid utf-8 or no space in C string buffer",
+    155
+  )
+
+  JS_CWS_THROW_COND_GOTO(
+    (err=writeToFile(js_cws_instance->soap_internal, filename)),
+    "writeToFile", "Could not save BSON file @ c_saveToFile",
+    err, c_saveToFile_exit1
+  )
+
+  free(filename);
+
+  JS_CWS_RETURN_NULL
+
+c_saveToFile_exit1:
+  free(filename);
+
+  return NULL;
+}
+
+napi_value c_saveToFileJSON(napi_env env, napi_callback_info info)
+{
+  int err;
+  napi_value argv=NULL, res;
+  size_t argc=1, filenameLen;
+  char *filename;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_saveToFileJSON",
+    160
+  )
+
+  JS_CWS_THROW_COND(argc==0, "c_saveToFileJSON", "Missing arguments. Expected: Output filename", 161)
+
+  JS_CWS_THROW_COND(argc>1, "c_saveToFileJSON", "Too many arguments. Expected only one argument: output filename", 162)
+
+  JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_saveToFileJSON",
+    "Fatal: js_cws_instance @ c_saveToFileJSON. Was expected NOT NULL",
+    163
+  )
+
+  CHECK_HAS_ERROR("c_saveToFileJSON", "Could not save JSON serialized to file for this object. Object not found or error on parsing", 154)
+
+  JS_CWS_THROW_COND(
+    (filename=js_cws_get_value_string_utf8(&filenameLen, env, argv))==NULL,
+    "c_saveToFileJSON",
+    "Could not parse filename. Wrong format or empty string or invalid utf-8 or no space in C string buffer",
+    165
+  )
+
+  JS_CWS_THROW_COND_GOTO(
+    (err=writeToFileJSON(js_cws_instance->soap_internal, filename)),
+    "writeToFileJSON", "Could not save JSON file @ writeToFileJSON",
+    err, writeToFileJSON_exit1
+  )
+
+  free(filename);
+
+  JS_CWS_RETURN_NULL
+
+writeToFileJSON_exit1:
+  free(filename);
 
   return NULL;
 }
@@ -448,8 +648,11 @@ napi_value c_getInstanceName(napi_env env, napi_callback_info info)
 }
 
 CWS_JS_FUNCTIONS_OBJ CWS_JS_CREATE_FUNCTIONS[] = {
-   SET_JS_FN_CALL(parseFromFile),
    SET_JS_FN_CALL(getInstanceName),
+   SET_JS_FN_CALL(parseFromFile),
+   SET_JS_FN_CALL(parseFromFileJSON),
+   SET_JS_FN_CALL(saveToFile),
+   SET_JS_FN_CALL(saveToFileJSON),
    {NULL}
 };
 
