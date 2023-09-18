@@ -664,13 +664,20 @@ napi_value c_getObjectName(napi_env env, napi_callback_info info)
 
   JS_CWS_THROW_COND(argc, "c_getObjectName", "Too many arguments @ c_getObjectName", 41)
 
-  CHECK_HAS_ERROR("c_getObjectName", "Could not get object name. Object not parsed or internal error", 42)
+  JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_getObjectName",
+    "Fatal: js_cws_instance @ c_getObjectName. Was expected NOT NULL",
+    42
+  )
+
+  CHECK_HAS_ERROR("c_getObjectName", "Could not get object name. Object not parsed or internal error", 43)
 
   JS_CWS_THROW_COND(
     (napi_create_string_utf8(env, JS_GET_OBJECT_NAME, NAPI_AUTO_LENGTH, &res)!=napi_ok),
     "napi_create_string_utf8",
     "napi_create_string_utf8 @ c_getObjectName. Error on get object name",
-    43
+    44
   )
 
   return res;
@@ -692,13 +699,20 @@ napi_value c_getObjectType(napi_env env, napi_callback_info info)
 
   JS_CWS_THROW_COND(argc, "c_getObjectType", "Too many arguments @ c_getObjectType", 51)
 
-  CHECK_HAS_ERROR("c_getObjectType", "Could not get object name. Object not parsed or internal error", 52)
+  JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_getObjectType",
+    "Fatal: js_cws_instance @ c_getObjectType. Was expected NOT NULL",
+    52
+  )
+
+  CHECK_HAS_ERROR("c_getObjectType", "Could not get object name. Object not parsed or internal error", 53)
 
   JS_CWS_THROW_COND(
     (napi_create_int32(env, JS_GET_OBJECT_TYPE, &res)!=napi_ok),
     "napi_create_int32",
     "napi_create_int32 @ c_getObjectType. Error on get object type",
-    53
+    54
   )
 
   return res;
@@ -721,10 +735,103 @@ napi_value c_getError(napi_env env, napi_callback_info info)
   JS_CWS_THROW_COND(argc, "c_getError", "Too many arguments @ c_getError", 56)
 
   JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_getError",
+    "Fatal: js_cws_instance @ c_getError. Was expected NOT NULL",
+    57
+  )
+
+  JS_CWS_THROW_COND(
     (napi_create_int32(env, (JS_GET_ERROR)?JS_GET_ERROR:ERR, &res)!=napi_ok),
     "napi_create_int32",
     "napi_create_int32 @ c_getError. Unable to get Witsml 2.1 parser error",
-    57
+    58
+  )
+
+  return res;
+}
+
+napi_value c_getBsonBytes(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  size_t argc=0;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+  struct c_bson_serialized_t *bson_ser;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_getBsonBytes",
+    70
+  )
+
+  JS_CWS_THROW_COND(argc, "c_getBsonBytes", "Too many arguments @ c_getBsonBytes", 71)
+
+  JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_getBsonBytes",
+    "Fatal: js_cws_instance @ c_getBsonBytes. Was expected NOT NULL",
+    72
+  )
+
+  CHECK_HAS_ERROR("c_getBsonBytes", "Could not get BSON serialized. Object not parsed or internal error", 73)
+
+  JS_CWS_THROW_COND(
+    (bson_ser=bsonSerialize(js_cws_instance->soap_internal))==NULL,
+    "bsonSerialize",
+    "bsonSerialize @ c_getBsonBytes. Unable to load parsed BSON binary data",
+    74
+  )
+
+  JS_CWS_THROW_COND(
+    js_cws_new_array_buffer(&res, env, (void *)bson_ser->bson, bson_ser->bson_size),
+    "napi_create_int32",
+    "napi_create_int32 @ c_getBsonBytes. Unable to copy BSON to JavaScript ArrayBuffer",
+    75
+  )
+
+  return res;
+}
+
+napi_value c_getJson(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  size_t argc=0;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+  struct c_json_str_t *c_json;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_getJson",
+    80
+  )
+
+  JS_CWS_THROW_COND(argc, "c_getJson", "Too many arguments @ c_getJson", 81)
+
+  JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_getJson",
+    "Fatal: js_cws_instance @ c_getJson. Was expected NOT NULL",
+    82
+  )
+
+  CHECK_HAS_ERROR("c_getJson", "Could not get JSON string. Object not parsed or internal error", 83)
+
+  JS_CWS_THROW_COND(
+    (c_json=getJson(js_cws_instance->soap_internal))==NULL,
+    "getJson",
+    "getJson @ c_getJson. Unable to load parsed JSON string",
+    84
+  )
+
+  JS_CWS_THROW_COND(
+    (napi_create_string_utf8(env, c_json->json, c_json->json_len, &res)!=napi_ok),
+    "napi_create_int32",
+    "napi_create_int32 @ c_getJson. Unable to copy JSON string",
+    85
   )
 
   return res;
@@ -734,6 +841,8 @@ CWS_JS_FUNCTIONS_OBJ CWS_JS_CREATE_FUNCTIONS[] = {
    SET_JS_FN_CALL(getInstanceName),
    SET_JS_FN_CALL(getObjectName),
    SET_JS_FN_CALL(getObjectType),
+   SET_JS_FN_CALL(getBsonBytes),
+   SET_JS_FN_CALL(getJson),
    SET_JS_FN_CALL(getError),
    SET_JS_FN_CALL(parseFromFile),
    SET_JS_FN_CALL(parseFromFileJSON),
