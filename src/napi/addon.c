@@ -82,6 +82,9 @@ typedef napi_value (*cws_node_fn)(napi_env, napi_callback_info);
 struct js_cws_config_t {
   struct soap *soap_internal;
   int err;
+  char *str; //Alloc'd draft text for manipulating string and data. Must be free
+  size_t str_len; // Copied string length
+  size_t str_size; // Alloc'd string size
 };
 
 struct cws_js_err_t {
@@ -194,7 +197,7 @@ static int cws_set_uint64_stat_list(napi_env env, napi_value exports, struct sta
 
   return 0;
 }
-
+/* DEPRECATED
 #define TEXT_BUF_ALLOC_MAX_SZ 2048
 static char *textBufAlloc(size_t len)
 {
@@ -206,24 +209,70 @@ static char *textBufAlloc(size_t len)
   return NULL;
 }
 #undef TEXT_BUF_ALLOC_MAX_SZ
+*/
+static char *textBufAlloc(size_t *sz, struct js_cws_config_t *js_cws_config, size_t len)
+{
+  char *str_tmp;
+  size_t str_sz_tmp;
 
-static char *js_cws_get_value_string_utf8(size_t *len, napi_env env, napi_value value)
+  if (len>0) {
+    JS_WITSML21_DEBUG("textBufAlloc: Begin creation/realloc text buf of length %lu", len)
+    if (js_cws_config->str) {
+      if (js_cws_config->str_size>len) {
+        *sz=js_cws_config->str_size;
+        js_cws_config->str[len]=0;
+        JS_WITSML21_DEBUG("textBufAlloc: Recycled buffer %p of size %lu", js_cws_config->str, js_cws_config->str_size)
+        return js_cws_config->str;
+      }
+
+      JS_WITSML21_DEBUG("textBufAlloc: Try to realloc pointer %p of size %lu...", js_cws_config->str, js_cws_config->str_size)
+      if ((str_tmp=(char *)cws_realloc((void *)js_cws_config->str, (str_sz_tmp=(len+1))))) {
+        js_cws_config->str_len=len;
+        *sz=js_cws_config->str_size=str_sz_tmp;
+        JS_WITSML21_DEBUG("textBufAlloc: realloc'd pointer has changed? = %s", (str_tmp==js_cws_config->str)?"FALSE":"TRUE")
+        (js_cws_config->str=str_tmp)[len]=0;
+        JS_WITSML21_DEBUG("textBufAlloc: realloc'd pointer %p of new size %lu...", js_cws_config->str, js_cws_config->str_size)
+        return js_cws_config->str;
+      }
+      
+      *sz=js_cws_config->str_size; // Size <= len. Keep last size (realloc fail) and old pointer
+      js_cws_config->str_len=0;
+      js_cws_config->str[0]=0; // On realloc fail text buffer has empty string
+      JS_WITSML21_DEBUG("textBufAlloc: Fail on realloc. Keep old pointer %p of size %lu", js_cws_config->str, js_cws_config->str_size)
+    } else {
+      JS_WITSML21_DEBUG("textBufAlloc: try to create new text buffer of length %lu", len)
+      if ((js_cws_config->str=(char *)cws_malloc((js_cws_config->str_size=(len+1))))) {
+        js_cws_config->str_len=len;
+        *sz=js_cws_config->str_size;
+        JS_WITSML21_DEBUG("textBufAlloc: try to create text buffer of length %lu. Success at %p with size %lu", len, js_cws_config->str, js_cws_config->str_size)
+        return js_cws_config->str;
+      }
+      js_cws_config->str_len=0;
+      *sz=js_cws_config->str_size=0;
+      JS_WITSML21_DEBUG("textBufAlloc: Unable to alloc new text buffer.")
+    }
+  }
+
+  return NULL;
+}
+
+static char *js_cws_get_value_string_utf8(size_t *len, napi_env env, napi_value value, struct js_cws_config_t *js_cws_config)
 {
   char *res;
+  size_t sz;
 
   if (napi_get_value_string_utf8(env, value, NULL, 0, len)!=napi_ok)
     return NULL;
 
-  if (!(res=textBufAlloc(*len)))
+  if (!(res=textBufAlloc(&sz, js_cws_config, *len)))
     return NULL;
 
-  if (napi_get_value_string_utf8(env, value, res, (*len)+1, len)==napi_ok) {
-    JS_WITSML21_DEBUG("\njs_cws_get_value_string_utf8: has NULL terminator: %d\n", res[*len]==0)
-    JS_WITSML21_DEBUG("\njs_cws_get_value_string_utf8: value: %s\n", res)
+  if (napi_get_value_string_utf8(env, value, res, sz, len)==napi_ok) {
+    JS_WITSML21_DEBUG("js_cws_get_value_string_utf8: has NULL terminator: %d\n", res[*len]==0)
+    JS_WITSML21_DEBUG("js_cws_get_value_string_utf8: value: %s\n", res)
     return res;
   }
 
-  free((void *)res);
   return NULL;
 }
 
@@ -269,22 +318,31 @@ static void js_cws_config_free(struct js_cws_config_t **js_cws_config)
 {
   CWS_CONFIG *config;
 
-  JS_WITSML21_DEBUG("\njs_cws_config_free: Begin free if is NOT NULL %p", *js_cws_config)
+  JS_WITSML21_DEBUG("js_cws_config_free: Begin free if is NOT NULL %p", *js_cws_config)
 
   if (*js_cws_config) {
     config=(CWS_CONFIG *)(*js_cws_config)->soap_internal->user;
 
-    JS_WITSML21_DEBUG("\njs_cws_config_free: Destroying soap_internal %p", (*js_cws_config)->soap_internal)
+    JS_WITSML21_DEBUG("js_cws_config_free: Destroying soap_internal %p", (*js_cws_config)->soap_internal)
     cws_internal_soap_free(&(*js_cws_config)->soap_internal);
 
-    JS_WITSML21_DEBUG("\njs_cws_config_free: Destroying config %p", config)
+    JS_WITSML21_DEBUG("js_cws_config_free: Destroying config %p", config)
     cws_config_free(&config);
 
-    JS_WITSML21_DEBUG("\njs_cws_config_free: Destroying js_cws_config object %p", js_cws_config)
+    if ((*js_cws_config)->str) {
+      JS_WITSML21_DEBUG(
+        "js_cws_config_free: Freeing draft string buffer %p of length %lu of size %lu",
+        (*js_cws_config)->str, (*js_cws_config)->str_len, (*js_cws_config)->str_size
+      )
+      free((*js_cws_config)->str);
+      (*js_cws_config)->str=NULL;
+    }
+
+    JS_WITSML21_DEBUG("js_cws_config_free: Destroying js_cws_config object %p", js_cws_config)
     free((void *)*js_cws_config);
     *js_cws_config=NULL;
 
-    JS_WITSML21_DEBUG("\njs_cws_config_free: Destroyed")
+    JS_WITSML21_DEBUG("js_cws_config_free: Destroyed")
   }
 
 }
@@ -294,7 +352,7 @@ static struct js_cws_config_t *js_cws_config_init()
   CWS_CONFIG *config;
   struct js_cws_config_t *js_cws_config;
 
-  JS_WITSML21_DEBUG("\njs_cws_config_init: Initializing ...")
+  JS_WITSML21_DEBUG("js_cws_config_init: Initializing ...")
   if (!(js_cws_config=(struct js_cws_config_t *)malloc(sizeof(struct js_cws_config_t))))
     return NULL;
 
@@ -305,8 +363,11 @@ static struct js_cws_config_t *js_cws_config_init()
     goto js_cws_config_init_exit2;
 
   js_cws_config->err=0;
+  js_cws_config->str=NULL;
+  js_cws_config->str_len=0;
+  js_cws_config->str_size=0;
 
-  JS_WITSML21_DEBUG("\njs_cws_config_init: SUCCESS ... %p", js_cws_config)
+  JS_WITSML21_DEBUG("js_cws_config_init: SUCCESS ... %p", js_cws_config)
 
   return js_cws_config;
 
@@ -466,40 +527,36 @@ napi_value c_parseFromFile(napi_env env, napi_callback_info info)
   )
 
   JS_CWS_THROW_COND(
-    (ERR=((filename=js_cws_get_value_string_utf8(&filenameLen, env, argv))==NULL)),
+    (ERR=((filename=js_cws_get_value_string_utf8(&filenameLen, env, argv, js_cws_instance))==NULL)),
     "c_parseFromFile",
     "Could not parse filename. Wrong format or empty string or invalid utf-8 or no space in C string buffer",
     124
   )
 
-  JS_CWS_THROW_COND_GOTO(
+  JS_CWS_THROW_COND(
     (ERR=readText((const char **)&text, &textLen, filename)),
     "readText", "Could not read xml/text",
-    ERR, c_parseFromFile_exit1
+    ERR
   )
 
   JS_CWS_THROW_COND_GOTO(
     (ERR=c_parse_util(js_cws_instance->soap_internal, (void **)&bson_ser, text, textLen, IS_BSON)),
     "c_parse_util", "BSON parse error @ c_parseFromFile",
-    ERR, c_parseFromFile_exit2
+    ERR, c_parseFromFile_exit1
   )
 
   JS_CWS_THROW_COND_GOTO(
     (ERR=js_cws_new_array_buffer(&res, env, (void *)bson_ser->bson, bson_ser->bson_size)),
     "js_cws_new_array_buffer", "Could not copy BSON bytes to JavaScript array buffer @ c_parseFromFile",
-    ERR, c_parseFromFile_exit2
+    ERR, c_parseFromFile_exit1
   )
 
   free((void *)text);
-  free((void *)filename);
 
   return res;
 
-c_parseFromFile_exit2:
-  free((void *)text);
-
 c_parseFromFile_exit1:
-  free((void *)filename);
+  free((void *)text);
 
   return NULL;
 }
@@ -542,41 +599,37 @@ napi_value c_parseFromFileJSON(napi_env env, napi_callback_info info)
   )
 
   JS_CWS_THROW_COND(
-    (ERR=((filename=js_cws_get_value_string_utf8(&filenameLen, env, argv))==NULL)),
+    (ERR=((filename=js_cws_get_value_string_utf8(&filenameLen, env, argv, js_cws_instance))==NULL)),
     "c_parseFromFileJSON",
     "Could not parse filename. Wrong format or empty string or invalid utf-8 or no space in C string buffer",
     144
   )
 
-  JS_CWS_THROW_COND_GOTO(
+  JS_CWS_THROW_COND(
     (ERR=readText((const char **)&text, &textLen, filename)),
     "readText", "Could not read xml/text @ c_parseFromFileJSON",
-    ERR, c_parseFromFileJSON_exit1
+    ERR
   )
 
   JS_CWS_THROW_COND_GOTO(
     (ERR=c_parse_util(js_cws_instance->soap_internal, (void **)&json_ser, text, textLen, IS_JSON)),
     "c_parse_util", "BSON parse error @ c_parseFromFileJSON",
-    ERR, c_parseFromFileJSON_exit2
+    ERR, c_parseFromFileJSON_exit1
   )
 
   JS_CWS_THROW_COND_GOTO(
     (ERR=(napi_create_string_utf8(env, json_ser->json, json_ser->json_len, &res)!=napi_ok)),
     "napi_create_string_utf8",
     "napi_create_string_utf8 @ c_parseFromFileJSON. Error on parsing JSON string",
-    145, c_parseFromFileJSON_exit2
+    145, c_parseFromFileJSON_exit1
   )
 
   free((void *)text);
-  free((void *)filename);
 
   return res;
 
-c_parseFromFileJSON_exit2:
-  free((void *)text);
-
 c_parseFromFileJSON_exit1:
-  free((void *)filename);
+  free((void *)text);
 
   return NULL;
 }
@@ -611,26 +664,19 @@ napi_value c_saveToFile(napi_env env, napi_callback_info info)
   CHECK_HAS_ERROR("c_saveToFile", "Could not save BSON serialized to file for this object. Object not found or error on parsing", 154)
 
   JS_CWS_THROW_COND(
-    (filename=js_cws_get_value_string_utf8(&filenameLen, env, argv))==NULL,
+    (filename=js_cws_get_value_string_utf8(&filenameLen, env, argv, js_cws_instance))==NULL,
     "c_saveToFile",
     "Could not parse filename. Wrong format or empty string or invalid utf-8 or no space in C string buffer",
     155
   )
 
-  JS_CWS_THROW_COND_GOTO(
+  JS_CWS_THROW_COND(
     (err=writeToFile(js_cws_instance->soap_internal, filename)),
     "writeToFile", "Could not save BSON file @ c_saveToFile",
-    err, c_saveToFile_exit1
+    err
   )
 
-  free(filename);
-
   JS_CWS_RETURN_UNDEFINED
-
-c_saveToFile_exit1:
-  free(filename);
-
-  return NULL;
 }
 
 napi_value c_saveToFileJSON(napi_env env, napi_callback_info info)
@@ -663,26 +709,19 @@ napi_value c_saveToFileJSON(napi_env env, napi_callback_info info)
   CHECK_HAS_ERROR("c_saveToFileJSON", "Could not save JSON serialized to file for this object. Object not found or error on parsing", 154)
 
   JS_CWS_THROW_COND(
-    (filename=js_cws_get_value_string_utf8(&filenameLen, env, argv))==NULL,
+    (filename=js_cws_get_value_string_utf8(&filenameLen, env, argv, js_cws_instance))==NULL,
     "c_saveToFileJSON",
     "Could not parse filename. Wrong format or empty string or invalid utf-8 or no space in C string buffer",
     165
   )
 
-  JS_CWS_THROW_COND_GOTO(
+  JS_CWS_THROW_COND(
     (err=writeToFileJSON(js_cws_instance->soap_internal, filename)),
     "writeToFileJSON", "Could not save JSON file @ writeToFileJSON",
-    err, writeToFileJSON_exit1
+    err
   )
 
-  free(filename);
-
   JS_CWS_RETURN_UNDEFINED
-
-writeToFileJSON_exit1:
-  free(filename);
-
-  return NULL;
 }
 
 napi_value c_getInstanceName(napi_env env, napi_callback_info info)
