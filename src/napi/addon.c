@@ -46,6 +46,7 @@
 #define JS_GET_OBJECT_TYPE ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->object_type
 #define JS_GET_OBJECT_NAME ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->object_name
 #define JS_GET_OBJECT_TYPE ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->object_type
+#define JS_GET_CWS_CONFIG ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))
 #define JS_GET_ERROR ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->internal_soap_error
 
 #define ERR js_cws_instance->err
@@ -88,6 +89,41 @@ struct cws_js_err_t {
   char err[16];
 };
 
+#define SET_JS_CWS_UINT32_STAT(s) {#s, offsetof(struct statistics_t, s)}
+struct js_cws_uint32_stat_t {
+  const char *name;
+  size_t offset;
+} JS_CWS_UINT32_STAT[] = {
+  SET_JS_CWS_UINT32_STAT(costs),
+  SET_JS_CWS_UINT32_STAT(strings),
+  SET_JS_CWS_UINT32_STAT(shorts),
+  SET_JS_CWS_UINT32_STAT(ints),
+  SET_JS_CWS_UINT32_STAT(long64s),
+  SET_JS_CWS_UINT32_STAT(enums),
+  SET_JS_CWS_UINT32_STAT(arrays),
+  SET_JS_CWS_UINT32_STAT(booleans),
+  SET_JS_CWS_UINT32_STAT(doubles),
+  SET_JS_CWS_UINT32_STAT(date_times),
+  SET_JS_CWS_UINT32_STAT(measures),
+  SET_JS_CWS_UINT32_STAT(event_types),
+  SET_JS_CWS_UINT32_STAT(total),
+  {NULL}
+};
+
+#define SET_JS_CWS_UINT64_STAT(s) SET_JS_CWS_UINT32_STAT(s)
+
+struct js_cws_uint64_stat_t {
+  const char *name;
+  size_t offset;
+} JS_CWS_UINT64_STAT[] = {
+  SET_JS_CWS_UINT64_STAT(used_memory),
+  {NULL}
+};
+
+#undef SET_JS_CWS_UINT64_STAT
+#undef SET_JS_CWS_UINT32_STAT
+
+
 #define SET_JS_FN_CALL(fn) {#fn, c_##fn}
 typedef struct cws_js_fn_call_t {
    const char *function_name;
@@ -124,6 +160,40 @@ struct cws_js_int32_t {
   {"TYPE_WellCompletion", TYPE_WellCompletion},
   {NULL}
 };
+
+static int cws_set_uint32_stat_list(napi_env env, napi_value exports, struct statistics_t *stat, struct js_cws_uint32_stat_t *list)
+{
+  napi_value int32;
+
+  while (list->name) {
+    if (napi_create_uint32(env, (uint32_t)*((uint32_t *)(((size_t)stat)+list->offset)), &int32)!=napi_ok)
+      return 650;
+
+    if (napi_set_named_property(env, exports, list->name, int32)!=napi_ok)
+      return 651;
+
+    list++;
+  }
+
+  return 0;
+}
+
+static int cws_set_uint64_stat_list(napi_env env, napi_value exports, struct statistics_t *stat, struct js_cws_uint64_stat_t *list)
+{
+  napi_value uint64;
+
+  while (list->name) {
+    if (napi_create_bigint_uint64(env, (uint64_t)*((uint64_t *)(((size_t)stat)+list->offset)), &uint64)!=napi_ok)
+      return 650;
+
+    if (napi_set_named_property(env, exports, list->name, uint64)!=napi_ok)
+      return 651;
+
+    list++;
+  }
+
+  return 0;
+}
 
 #define TEXT_BUF_ALLOC_MAX_SZ 2048
 static char *textBufAlloc(size_t len)
@@ -288,17 +358,15 @@ static int cws_add_function_util(napi_value *fn_out, napi_env env, napi_value ex
   return 0;
 }
 
-static int cws_add_int32_util(napi_value *int32_out, napi_env env, napi_value exports, struct cws_js_int32_t *value)
+static int cws_add_int32_util(napi_env env, napi_value exports, struct cws_js_int32_t *value)
 {
-  napi_value *int32Tmp, int32;
-
-  int32Tmp=(int32_out)?int32_out:&int32;
+  napi_value int32;
 
   while (value->name) {
-    if (napi_create_int32(env, value->value, int32Tmp)!=napi_ok)
+    if (napi_create_int32(env, value->value, &int32)!=napi_ok)
       return 600;
 
-    if (napi_set_named_property(env, exports, value->name, *int32Tmp)!=napi_ok)
+    if (napi_set_named_property(env, exports, value->name, int32)!=napi_ok)
       return 601;
 
     value++;
@@ -309,15 +377,17 @@ static int cws_add_int32_util(napi_value *int32_out, napi_env env, napi_value ex
 
 static int cws_add_int32_object_list_util(napi_value *int32_out, const char *objName, napi_env env, napi_value exports, struct cws_js_int32_t *value)
 {
-  napi_value obj;
+  napi_value obj, *objTmp;
 
-  if (napi_create_object(env, &obj)!=napi_ok)
+  objTmp=(int32_out)?int32_out:&obj;
+
+  if (napi_create_object(env, objTmp)!=napi_ok)
     return 602;
 
-  if (napi_set_named_property(env, exports, objName, obj)!=napi_ok)
+  if (napi_set_named_property(env, exports, objName, *objTmp)!=napi_ok)
     return 603;
 
-  return cws_add_int32_util(int32_out, env, obj, value);
+  return cws_add_int32_util(env, obj, value);
 }
 
 inline int js_cws_new_array_buffer(napi_value *dest, napi_env env, void *src, size_t src_sz)
@@ -837,18 +907,72 @@ napi_value c_getJson(napi_env env, napi_callback_info info)
   return res;
 }
 
+napi_value c_getStatistics(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  int err;
+  size_t argc=0;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+  struct statistics_t *stat;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_getStatistics",
+    90
+  )
+
+  JS_CWS_THROW_COND(argc, "c_getStatistics", "Too many arguments @ c_getStatistics", 91)
+
+  JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_getStatistics",
+    "Fatal: js_cws_instance @ c_getStatistics. Was expected NOT NULL",
+    92
+  )
+
+  CHECK_HAS_ERROR("c_getStatistics", "Could not get statistics. Object not parsed or internal error", 93)
+
+  JS_CWS_THROW_COND(
+    (napi_create_object(env, &res)!=napi_ok),
+    "napi_create_object",
+    "napi_create_object @ c_getStatistics. Unable to create object",
+    94
+  )
+
+  JS_CWS_THROW_COND(
+    (err=cws_set_uint32_stat_list(env, res, (stat=getStatistics(js_cws_instance->soap_internal)), JS_CWS_UINT32_STAT)),
+    "cws_set_uint32_stat_list",
+    "cws_set_uint32_stat_list @ c_getStatistics. Unable to parse statistic to JavaScript object",
+    err
+  )
+
+_Static_assert(sizeof(uint64_t)>=sizeof(size_t), "Archtecture error. Refactor it");
+
+  JS_CWS_THROW_COND(
+    (err=cws_set_uint64_stat_list(env, res, stat, JS_CWS_UINT64_STAT)),
+    "cws_set_uint64_stat_list",
+    "cws_set_uint64_stat_list @ c_getStatistics. Unable to parse statistic to JavaScript object",
+    err
+  )
+
+  return res;
+}
+
 CWS_JS_FUNCTIONS_OBJ CWS_JS_CREATE_FUNCTIONS[] = {
-   SET_JS_FN_CALL(getInstanceName),
-   SET_JS_FN_CALL(getObjectName),
-   SET_JS_FN_CALL(getObjectType),
-   SET_JS_FN_CALL(getBsonBytes),
-   SET_JS_FN_CALL(getJson),
-   SET_JS_FN_CALL(getError),
-   SET_JS_FN_CALL(parseFromFile),
-   SET_JS_FN_CALL(parseFromFileJSON),
-   SET_JS_FN_CALL(saveToFile),
-   SET_JS_FN_CALL(saveToFileJSON),
-   {NULL}
+  SET_JS_FN_CALL(getInstanceName),
+  SET_JS_FN_CALL(getObjectName),
+  SET_JS_FN_CALL(getObjectType),
+  SET_JS_FN_CALL(getBsonBytes),
+  SET_JS_FN_CALL(getJson),
+  SET_JS_FN_CALL(getStatistics),
+  SET_JS_FN_CALL(getError),
+  SET_JS_FN_CALL(parseFromFile),
+  SET_JS_FN_CALL(parseFromFileJSON),
+  SET_JS_FN_CALL(saveToFile),
+  SET_JS_FN_CALL(saveToFileJSON),
+  {NULL}
 };
 
 napi_value c_create(napi_env env, napi_callback_info info)
@@ -898,9 +1022,9 @@ napi_value c_create(napi_env env, napi_callback_info info)
 }
 
 CWS_JS_FUNCTIONS_OBJ CWS_JS_INIT_FUNCTIONS[] = {
-   SET_JS_FN_CALL(create),
-   SET_JS_FN_CALL(getBsonVersion),
-   {NULL}
+  SET_JS_FN_CALL(create),
+  SET_JS_FN_CALL(getBsonVersion),
+  {NULL}
 };
 
 napi_value Init(napi_env env, napi_value exports)
