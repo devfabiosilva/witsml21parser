@@ -197,19 +197,7 @@ static int cws_set_uint64_stat_list(napi_env env, napi_value exports, struct sta
 
   return 0;
 }
-/* DEPRECATED
-#define TEXT_BUF_ALLOC_MAX_SZ 2048
-static char *textBufAlloc(size_t len)
-{
-  len++;
 
-  if ((len>1)&&(len<TEXT_BUF_ALLOC_MAX_SZ))
-    return cws_malloc(len);
-
-  return NULL;
-}
-#undef TEXT_BUF_ALLOC_MAX_SZ
-*/
 static char *textBufAlloc(size_t *sz, struct js_cws_config_t *js_cws_config, size_t len)
 {
   char *str_tmp;
@@ -286,7 +274,8 @@ static int c_parse_util(
   void **v_ser,
   const char *c_xml,
   size_t c_xml_size,
-  enum c_parse_util_e c_parse_util 
+  enum c_parse_util_e c_parse_util,
+  char **errMsg
 )
 {
 
@@ -296,19 +285,30 @@ static int c_parse_util(
   cws_internal_soap_recycle(soap_internal);
   cws_recycle_config(config);
 
-  if (!cws_parse_XML_soap_envelope(soap_internal, (char *)c_xml, (size_t)c_xml_size))
+  if (!cws_parse_XML_soap_envelope(soap_internal, (char *)c_xml, (size_t)c_xml_size)) {
+    *errMsg="Could not parse xml string. See xml errors for details";
     return -500;
+  }
 
-  if (cws_soap_serve(soap_internal))
+  if (cws_soap_serve(soap_internal)) {
+    *errMsg="Could not deserialize xml string. See xml errors for details";
     return -501;
+  }
 
   if (c_parse_util==IS_BSON) {
-    if ((*v_ser=(void *)bsonSerialize(soap_internal)))
+    if ((*v_ser=(void *)bsonSerialize(soap_internal))) {
+      *errMsg="";
       return 0;
+    }
 
+    *errMsg="Could not serialize BSON";
   } else {
-    if ((*v_ser=(void *)getJson(soap_internal)))
+    if ((*v_ser=(void *)getJson(soap_internal))) {
+      *errMsg="";
       return 0;
+    }
+
+    *errMsg="Could not serialize JSON";
   }
 
   return -503;
@@ -400,17 +400,15 @@ static void cws_js_throw(napi_env env, struct cws_js_err_t *caster, const char *
   napi_throw_error(env, caster->err, caster->buf);
 }
 
-static int cws_add_function_util(napi_value *fn_out, napi_env env, napi_value exports, CWS_JS_FUNCTIONS_OBJ *function, void *data)
+static int cws_add_function_util(napi_env env, napi_value exports, CWS_JS_FUNCTIONS_OBJ *function, void *data)
 {
-  napi_value *fnTmp, fn;
-
-  fnTmp=(fn_out)?fn_out:&fn;
+  napi_value fn;
 
   while (function->function_name) {
-    if (napi_create_function(env, NULL, 0, function->fn, data, fnTmp)!=napi_ok)
+    if (napi_create_function(env, NULL, 0, function->fn, data, &fn)!=napi_ok)
       return 300;
 
-    if (napi_set_named_property(env, exports, function->function_name, *fnTmp)!=napi_ok)
+    if (napi_set_named_property(env, exports, function->function_name, fn)!=napi_ok)
       return 301;
 
     function++;
@@ -492,7 +490,7 @@ napi_value c_getBsonVersion(napi_env env, napi_callback_info info)
 napi_value c_parseFromFile(napi_env env, napi_callback_info info)
 {
   napi_value argv=NULL, res;
-  char *filename, *text;
+  char *filename, *text, *errMsg;
   size_t argc=1, filenameLen, textLen;
   struct cws_js_err_t cws_js_err;
   struct c_bson_serialized_t *bson_ser;
@@ -540,8 +538,8 @@ napi_value c_parseFromFile(napi_env env, napi_callback_info info)
   )
 
   JS_CWS_THROW_COND_GOTO(
-    (ERR=c_parse_util(js_cws_instance->soap_internal, (void **)&bson_ser, text, textLen, IS_BSON)),
-    "c_parse_util", "BSON parse error @ c_parseFromFile",
+    (ERR=c_parse_util(js_cws_instance->soap_internal, (void **)&bson_ser, text, textLen, IS_BSON, &errMsg)),
+    "c_parse_util", errMsg,
     ERR, c_parseFromFile_exit1
   )
 
@@ -561,10 +559,129 @@ c_parseFromFile_exit1:
   return NULL;
 }
 
+napi_value c_parse(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  char *text, *errMsg;
+  size_t argc=1, textLen;
+  struct cws_js_err_t cws_js_err;
+  struct c_bson_serialized_t *bson_ser;
+  struct js_cws_config_t *js_cws_instance;
+
+  JS_CWS_THROW_COND(
+    (ERR=(napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok)),
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_parse",
+    100
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(js_cws_instance==NULL)),
+    "c_parse",
+    "Fatal: js_cws_instance. Was expected NOT NULL",
+    101
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(argc==0)),
+    "c_parse",
+    "Missing argument. Was expected: xml text",
+    102
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(argc>1)),
+    "c_parse",
+    "Too many arguments",
+    103
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=((text=js_cws_get_value_string_utf8(&textLen, env, argv, js_cws_instance))==NULL)),
+    "js_cws_get_value_string_utf8",
+    "Could not parse xml string. Wrong format or empty string or invalid utf-8 or no space in C string buffer",
+    104
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=c_parse_util(js_cws_instance->soap_internal, (void **)&bson_ser, text, textLen, IS_BSON, &errMsg)),
+    "c_parse_util", errMsg,
+    ERR
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=js_cws_new_array_buffer(&res, env, (void *)bson_ser->bson, bson_ser->bson_size)),
+    "js_cws_new_array_buffer", "Could not copy BSON bytes to JavaScript array buffer @ c_parse",
+    ERR
+  )
+
+  return res;
+}
+
+napi_value c_parseToJSON(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  char *text, *errMsg;
+  size_t argc=1, textLen;
+  struct cws_js_err_t cws_js_err;
+  struct c_json_str_t *json_ser;
+  struct js_cws_config_t *js_cws_instance;
+
+  JS_CWS_THROW_COND(
+    (ERR=(napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok)),
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_parseToJSON",
+    200
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(js_cws_instance==NULL)),
+    "c_parseToJSON",
+    "Fatal: js_cws_instance. Was expected NOT NULL",
+    201
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(argc==0)),
+    "c_parseToJSON",
+    "Missing argument. Was expected: xml text",
+    202
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(argc>1)),
+    "c_parseToJSON",
+    "Too many arguments",
+    203
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=((text=js_cws_get_value_string_utf8(&textLen, env, argv, js_cws_instance))==NULL)),
+    "js_cws_get_value_string_utf8",
+    "Could not parse xml string. Wrong format or empty string or invalid utf-8 or no space in C string buffer",
+    204
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=c_parse_util(js_cws_instance->soap_internal, (void **)&json_ser, text, textLen, IS_JSON, &errMsg)),
+    "c_parse_util", errMsg,
+    ERR
+  )
+
+  JS_CWS_THROW_COND(
+    (ERR=(napi_create_string_utf8(env, json_ser->json, json_ser->json_len, &res)!=napi_ok)),
+    "napi_create_string_utf8",
+    "napi_create_string_utf8 @ c_parseToJSON. Error on parsing JSON string",
+    205
+  )
+
+  return res;
+}
+
 napi_value c_parseFromFileJSON(napi_env env, napi_callback_info info)
 {
   napi_value argv=NULL, res;
-  char *filename, *text;
+  char *filename, *text, *errMsg;
   size_t argc=1, filenameLen, textLen;
   struct cws_js_err_t cws_js_err;
   struct c_json_str_t *json_ser;
@@ -612,8 +729,8 @@ napi_value c_parseFromFileJSON(napi_env env, napi_callback_info info)
   )
 
   JS_CWS_THROW_COND_GOTO(
-    (ERR=c_parse_util(js_cws_instance->soap_internal, (void **)&json_ser, text, textLen, IS_JSON)),
-    "c_parse_util", "BSON parse error @ c_parseFromFileJSON",
+    (ERR=c_parse_util(js_cws_instance->soap_internal, (void **)&json_ser, text, textLen, IS_JSON, &errMsg)),
+    "c_parse_util", errMsg,
     ERR, c_parseFromFileJSON_exit1
   )
 
@@ -1007,6 +1124,8 @@ CWS_JS_FUNCTIONS_OBJ CWS_JS_CREATE_FUNCTIONS[] = {
   SET_JS_FN_CALL(getJson),
   SET_JS_FN_CALL(getStatistics),
   SET_JS_FN_CALL(getError),
+  SET_JS_FN_CALL(parse),
+  SET_JS_FN_CALL(parseToJSON),
   SET_JS_FN_CALL(parseFromFile),
   SET_JS_FN_CALL(parseFromFileJSON),
   SET_JS_FN_CALL(saveToFile),
@@ -1042,7 +1161,7 @@ napi_value c_create(napi_env env, napi_callback_info info)
 
     JS_CWS_THROW_COND((js_cws_instance=js_cws_config_init())==NULL, "js_cws_config_init", "Could not alloc JSWITSML 2.1 C instance", 101)
 
-    if ((err=cws_add_function_util(NULL, env, res, CWS_JS_CREATE_FUNCTIONS, js_cws_instance))) {
+    if ((err=cws_add_function_util(env, res, CWS_JS_CREATE_FUNCTIONS, js_cws_instance))) {
       js_cws_config_free(&js_cws_instance);
 
       JS_CWS_THROW("cws_add_function_util", "Could add functions @ c_create constructor", 102)
@@ -1072,7 +1191,7 @@ napi_value Init(napi_env env, napi_value exports)
   struct cws_js_err_t cws_js_err;
 
   JS_CWS_THROW_COND(
-    (err=cws_add_function_util(NULL, env, exports, CWS_JS_INIT_FUNCTIONS, NULL)),
+    (err=cws_add_function_util(env, exports, CWS_JS_INIT_FUNCTIONS, NULL)),
     "cws_add_function_util",
     "Could not initialize C functions",
     err

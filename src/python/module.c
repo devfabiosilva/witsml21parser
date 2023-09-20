@@ -55,7 +55,7 @@ struct const_t {
   {NULL}
 };
 
-#ifdef SOAP_DEBUG
+#ifdef PY_WITSML21DEBUG
  #define Py_WITSML21_DEBUG(std, ...) \
     fprintf(std, __VA_ARGS__);
 #else
