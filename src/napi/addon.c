@@ -48,6 +48,10 @@
 #define JS_GET_OBJECT_TYPE ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->object_type
 #define JS_GET_CWS_CONFIG ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))
 #define JS_GET_ERROR ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->internal_soap_error
+#define JS_GET_FAULT_STRING ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->cws_soap_fault.faultstring
+#define JS_GET_FAULT_STRING_LEN ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->cws_soap_fault.faultstring_len
+#define JS_GET_XML_FAULT_DETAIL ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->cws_soap_fault.XMLfaultdetail
+#define JS_GET_XML_FAULT_DETAIL_LEN ((CWS_CONFIG *)(js_cws_instance->soap_internal->user))->cws_soap_fault.XMLfaultdetail_len
 
 #define ERR js_cws_instance->err
 
@@ -1116,6 +1120,80 @@ _Static_assert(sizeof(uint64_t)>=sizeof(size_t), "Archtecture error. Refactor it
   return res;
 }
 
+napi_value c_getFaultString(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  size_t argc=0;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_getFaultString",
+    200
+  )
+
+  JS_CWS_THROW_COND(argc, "c_getFaultString", "Too many arguments @ c_getFaultString", 201)
+
+  JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_getFaultString",
+    "Fatal: js_cws_instance @ c_getFaultString. Was expected NOT NULL",
+    202
+  )
+
+  if (JS_GET_FAULT_STRING) {
+    JS_CWS_THROW_COND(
+      (napi_create_string_utf8(env, JS_GET_FAULT_STRING, JS_GET_FAULT_STRING_LEN, &res)!=napi_ok),
+      "napi_create_string_utf8",
+      "napi_create_string_utf8 @ c_getFaultString. Error on parsing fault string message",
+      203
+    )
+
+    return res;
+  }
+
+  JS_CWS_RETURN_NULL
+}
+
+napi_value c_getXMLfaultdetail(napi_env env, napi_callback_info info)
+{
+  napi_value argv=NULL, res;
+  size_t argc=0;
+  struct js_cws_config_t *js_cws_instance;
+  struct cws_js_err_t cws_js_err;
+
+  JS_CWS_THROW_COND(
+    napi_get_cb_info(env, info, &argc, &argv, NULL, (void **)&js_cws_instance)!=napi_ok,
+    "napi_get_cb_info",
+    "Can't parse arguments. Wrong argument at c_getXMLfaultdetail",
+    210
+  )
+
+  JS_CWS_THROW_COND(argc, "c_getXMLfaultdetail", "Too many arguments @ c_getXMLfaultdetail", 211)
+
+  JS_CWS_THROW_COND(
+    (js_cws_instance==NULL),
+    "c_getXMLfaultdetail",
+    "Fatal: js_cws_instance @ c_getXMLfaultdetail. Was expected NOT NULL",
+    212
+  )
+
+  if (JS_GET_XML_FAULT_DETAIL) {
+    JS_CWS_THROW_COND(
+      (napi_create_string_utf8(env, JS_GET_XML_FAULT_DETAIL, JS_GET_XML_FAULT_DETAIL_LEN, &res)!=napi_ok),
+      "napi_create_string_utf8",
+      "napi_create_string_utf8 @ c_getXMLfaultdetail. Error on parsing XML fault detail string message",
+      213
+    )
+
+    return res;
+  }
+
+  JS_CWS_RETURN_NULL
+}
+
 CWS_JS_FUNCTIONS_OBJ CWS_JS_CREATE_FUNCTIONS[] = {
   SET_JS_FN_CALL(getInstanceName),
   SET_JS_FN_CALL(getObjectName),
@@ -1123,6 +1201,8 @@ CWS_JS_FUNCTIONS_OBJ CWS_JS_CREATE_FUNCTIONS[] = {
   SET_JS_FN_CALL(getBsonBytes),
   SET_JS_FN_CALL(getJson),
   SET_JS_FN_CALL(getStatistics),
+  SET_JS_FN_CALL(getFaultString),
+  SET_JS_FN_CALL(getXMLfaultdetail),
   SET_JS_FN_CALL(getError),
   SET_JS_FN_CALL(parse),
   SET_JS_FN_CALL(parseToJSON),
