@@ -191,10 +191,10 @@ static int cws_set_uint64_stat_list(napi_env env, napi_value exports, struct sta
 
   while (list->name) {
     if (napi_create_bigint_uint64(env, (uint64_t)*((uint64_t *)(((size_t)stat)+list->offset)), &uint64)!=napi_ok)
-      return 650;
+      return 660;
 
     if (napi_set_named_property(env, exports, list->name, uint64)!=napi_ok)
-      return 651;
+      return 661;
 
     list++;
   }
@@ -1244,7 +1244,7 @@ napi_value c_create(napi_env env, napi_callback_info info)
     if ((err=cws_add_function_util(env, res, CWS_JS_CREATE_FUNCTIONS, js_cws_instance))) {
       js_cws_config_free(&js_cws_instance);
 
-      JS_CWS_THROW("cws_add_function_util", "Could add functions @ c_create constructor", 102)
+      JS_CWS_THROW("cws_add_function_util", "Could add functions @ c_create constructor", err)
     }
 
     if (napi_add_finalizer(env, res, (void *)js_cws_instance, cws_js_finalize, NULL, NULL)!=napi_ok) {
