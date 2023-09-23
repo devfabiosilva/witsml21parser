@@ -21,7 +21,6 @@ def save_to_file(caller, file_path) -> bool:
   except Exception as e:
     ret = True
     print("File saving error: " + str(e))
-  finally:
     print("Maybe file " + file_path + " exists")
 
   return ret

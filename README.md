@@ -257,6 +257,13 @@ Answer is simple.
 - Only two library dependency ([gSoap](https://www.genivia.com/products.html) and [libbson](https://github.com/mongodb/mongo-c-driver/tree/master/src/libbson))
 - No garbage collector on parsing objects
 
+# SIGNING KEY
+
+_Keys for signature_:
+
+**[fabioegel@gmail.com](mailto:fabioegel@gmail.com)**
+**fingerprint**: 6E21 A6B6 E1A4 6580 CA00 FA54 1077 26E9 14B9 16A2
+
 # LICENSES
 
 This project is fully open source and MIT license.

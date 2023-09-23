@@ -8,7 +8,7 @@
       "libraries": [
               "-Wl,--start-group ../lib/libcws_js.a ../lib/libbson-shared-1.0.a ../soapC_shared.o -Wl,--end-group"
           ],
-      "defines": ["CWS_LITTLE_ENDIAN", "WITH_STATISTICS", "JS_SOAP_DEBUG"],
+      "defines": ["CWS_LITTLE_ENDIAN", "WITH_STATISTICS"],
       "cflags": ["-Wno-stringop-truncation", "-Wno-format-truncation"],
     }
   ]
