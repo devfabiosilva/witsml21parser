@@ -450,7 +450,7 @@ static int cws_add_int32_object_list_util(napi_value *int32_out, const char *obj
   if (napi_set_named_property(env, exports, objName, *objTmp)!=napi_ok)
     return 603;
 
-  return cws_add_int32_util(env, obj, value);
+  return cws_add_int32_util(env, *objTmp, value);
 }
 
 inline int js_cws_new_array_buffer(napi_value *dest, napi_env env, void *src, size_t src_sz)
