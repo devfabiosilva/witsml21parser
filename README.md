@@ -26,6 +26,7 @@ make >= 4.2.1
 git >= 2.25.1
 execstack >= 1.0 (for Java application)
 Java SDK development API (for Java application)
+Node JS >= v16.20.2 API (for Node JS)
 ```
 
 # Downloading

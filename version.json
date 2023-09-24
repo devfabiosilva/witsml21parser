@@ -1,5 +1,5 @@
 {
- "version": "0.1.0",
+ "version": "0.1.1",
  "witsmlVersion": "2.1",
  "website": "https://github.com/devfabiosilva/witsml21parser",
  "license": "MIT",
@@ -7,6 +7,23 @@
  "contact_email": "fabioegel@gmail.com",
  "pgp_pub_key_location": "https://github.com/devfabiosilva/witsml21parser/blob/master/fabioegel.asc",
  "pgp_pub_key_fingerprint": "6E21 A6B6 E1A4 6580 CA00 FA54 1077 26E9 14B9 16A2",
+ "modules": {
+   "C": "yes",
+   "C++": "yes",
+   "Java": {
+     "api": "1.8 or later",
+     "hasStatistics": "yes",
+     "hasJNI": "yes"
+   },
+   "NodeJS": {
+     "api": "v16.20.2 or later",
+     "hasStatistics": "yes"
+   },
+   "Python": {
+     "api": "3.8 or later",
+     "hasStatistics": "yes"
+   }
+ },
  "licenseInformation": "WARNING: Library dependencies are proprietary code. See each library dependences licenses",
  "dependencies": {
   "gSoap": {

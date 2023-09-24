@@ -103,6 +103,25 @@ void test_pointer_assert()
   CHECK_CFG_P(initial_resource_size, 0, NEQ)
 
   test_pointer_assert_RELEASE((void *)&test_pointer_assert_rel);
+
+  C_ASSERT_NULL((void *)test_pointer_assert_rel.soap_internal, CTEST_SETTER(
+    CTEST_TITLE("Testing soap_internal is NULL"),
+    CTEST_INFO("Return value SHOULD be NULL"),
+    CTEST_ON_SUCCESS("soap_internal pointer NULL SUCCESS")
+  ))
+
+  C_ASSERT_NULL((void *)test_pointer_assert_rel.config, CTEST_SETTER(
+    CTEST_TITLE("Testing config is NULL"),
+    CTEST_INFO("Return config value SHOULD be NULL"),
+    CTEST_ON_SUCCESS("config pointer NULL SUCCESS")
+  ))
+
+  C_ASSERT_NULL((void *)test_pointer_assert_rel.text, CTEST_SETTER(
+    CTEST_TITLE("Testing text is NULL"),
+    CTEST_INFO("Return text value SHOULD be NULL"),
+    CTEST_ON_SUCCESS("text pointer NULL SUCCESS")
+  ))
+
 }
 
 // TODO add tests in parsers and vectors internal_soap pointers

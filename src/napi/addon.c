@@ -96,6 +96,7 @@ struct cws_js_err_t {
   char err[16];
 };
 
+#ifdef WITH_STATISTICS
 #define SET_JS_CWS_UINT32_STAT(s) {#s, offsetof(struct statistics_t, s)}
 struct js_cws_uint32_stat_t {
   const char *name;
@@ -129,7 +130,7 @@ struct js_cws_uint64_stat_t {
 
 #undef SET_JS_CWS_UINT64_STAT
 #undef SET_JS_CWS_UINT32_STAT
-
+#endif
 
 #define SET_JS_FN_CALL(fn) {#fn, c_##fn}
 typedef struct cws_js_fn_call_t {
@@ -168,6 +169,7 @@ struct cws_js_int32_t {
   {NULL}
 };
 
+#ifdef WITH_STATISTICS
 static int cws_set_uint32_stat_list(napi_env env, napi_value exports, struct statistics_t *stat, struct js_cws_uint32_stat_t *list)
 {
   napi_value int32;
@@ -201,6 +203,7 @@ static int cws_set_uint64_stat_list(napi_env env, napi_value exports, struct sta
 
   return 0;
 }
+#endif
 
 static char *textBufAlloc(size_t *sz, struct js_cws_config_t *js_cws_config, size_t len)
 {
@@ -1067,6 +1070,7 @@ napi_value c_getJson(napi_env env, napi_callback_info info)
   return res;
 }
 
+#ifdef WITH_STATISTICS
 napi_value c_getStatistics(napi_env env, napi_callback_info info)
 {
   napi_value argv=NULL, res;
@@ -1119,6 +1123,7 @@ _Static_assert(sizeof(uint64_t)>=sizeof(size_t), "Archtecture error. Refactor it
 
   return res;
 }
+#endif
 
 napi_value c_getFaultString(napi_env env, napi_callback_info info)
 {
@@ -1200,7 +1205,9 @@ CWS_JS_FUNCTIONS_OBJ CWS_JS_CREATE_FUNCTIONS[] = {
   SET_JS_FN_CALL(getObjectType),
   SET_JS_FN_CALL(getBsonBytes),
   SET_JS_FN_CALL(getJson),
+#ifdef WITH_STATISTICS
   SET_JS_FN_CALL(getStatistics),
+#endif
   SET_JS_FN_CALL(getFaultString),
   SET_JS_FN_CALL(getXMLfaultdetail),
   SET_JS_FN_CALL(getError),
