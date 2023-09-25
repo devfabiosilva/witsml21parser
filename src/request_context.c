@@ -39,9 +39,9 @@ char *request_parser_util(CWS_CONFIG *config)
     if (config->xmlSoapSize > soapLenTmp)
       goto request_parser_util_copy;
 
-    if ((xmlSoapTmp=cws_realloc((void *)config->xmlSoap, ++soapLenTmp))) {
+    if ((xmlSoapTmp=cws_realloc((void *)config->xmlSoap, soapLenTmp+1))) {
       config->xmlSoap=xmlSoapTmp;
-      config->xmlSoapSize=soapLenTmp;
+      config->xmlSoapSize=soapLenTmp+1;
 
       goto request_parser_util_copy;
     }
@@ -56,6 +56,8 @@ request_parser_util_copy:
     p=&((char *)memcpy(p, MESSAGE_REQUEST_END, MESSAGE_REQUEST_END_LEN))[MESSAGE_REQUEST_END_LEN];
     *p=0;
 
+    config->xmlSoapLen=soapLenTmp;
+
     return config->xmlSoap;
   } else
     config->xmlSoapSize=0;
@@ -66,7 +68,7 @@ request_parser_util_copy:
   return NULL;
 }
 
-char *cws_parse_XML_soap_envelope(struct soap *soap_internal, char *xmlIn, size_t xmlInLen/*, unsigned int action*/)
+char *cws_parse_XML_soap_envelope(struct soap *soap_internal, char *xmlIn, size_t xmlInLen)
 {
   CWS_CONFIG *config=(CWS_CONFIG *)soap_internal->user;
 
@@ -167,6 +169,11 @@ void cws_recycle_config(CWS_CONFIG *cws_config)
     bson_free(cws_config->c_json_str.json);
     cws_config->c_json_str.json=NULL;
     cws_config->c_json_str.json_len=0;
+  }
+
+  if (cws_config->xmlSoap) {
+    cws_config->xmlSoapLen=0;
+    cws_config->xmlSoap[0]=0;
   }
 
   cws_config->internal_soap_error=0;

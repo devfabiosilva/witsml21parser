@@ -2,6 +2,7 @@
  #define POINTER_ASSERTS_H
 
 void test_pointer_assert();
+void test_object_assert();
 
 #define DECLARE_SOAP_INTERNAL struct soap *soap_internal;
 
@@ -17,6 +18,22 @@ void test_pointer_assert();
     CTEST_INFO("config->" #child " value SHOULD be " #cond " " #val), \
     CTEST_ON_SUCCESS("config->" #child " SUCCESS"), \
     CTEST_ON_ERROR("config->" #child " FAIL"), \
+    CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel) \
+  ))
+
+#define CLEAN_TEST_POINTER_ASSERT memset((void *)&test_pointer_assert_rel, 0, sizeof(test_pointer_assert_rel));
+
+#define CHECK_EQ(a, b) a==b
+#define CHECK_NEQ(a, b) a!=b
+#define CHECK_GT(a, b) a>b
+#define CHECK_LT(a, b) a<b
+
+#define COMP_VAL(a, b, cond) \
+  C_ASSERT_TRUE(CHECK_##cond(a, b), CTEST_SETTER( \
+    CTEST_TITLE("Testing " #a " is " #cond " " #b), \
+    CTEST_INFO(#a " value SHOULD be " #cond " " #b), \
+    CTEST_ON_SUCCESS(#a " " #cond " " #b " SUCCESS"), \
+    CTEST_ON_ERROR(#a " " #cond " " #b " FAIL"), \
     CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel) \
   ))
 

@@ -5,6 +5,7 @@ int main(int argc, char **argv)
 {
   TITLE_MSG("Begin C Witsml 2.1 parser tests ...")
   test_pointer_assert();
+  test_object_assert();
   end_tests();
   return 0;
 }
