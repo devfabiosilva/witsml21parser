@@ -37,5 +37,21 @@ void test_object_assert();
     CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel) \
   ))
 
+#define OPEN_XML(file) \
+  TITLE_MSG("Opening file " #file ".xml ...") \
+  err=readText(&test_pointer_assert_rel.text, &test_pointer_assert_rel.textLen, "examples/xmls/" #file".xml");\
+\
+  C_ASSERT_EQUAL_INT(0, err, CTEST_SETTER(\
+    CTEST_TITLE("Opening file " #file "..."),\
+    CTEST_INFO("Return value SHOULD be 0"),\
+    CTEST_ON_SUCCESS("readText SUCCESS"),\
+    CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel)\
+  ))
+
+#define CLOSE_XML \
+TITLE_MSG_FMT("Closing file @ %p with size %lu", test_pointer_assert_rel.text, test_pointer_assert_rel.textLen) \
+readTextFree(&test_pointer_assert_rel.text);\
+test_pointer_assert_rel.textLen=0;
+
 #endif
 

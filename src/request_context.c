@@ -186,7 +186,7 @@ void cws_recycle_config(CWS_CONFIG *cws_config)
 
 #ifdef WITH_STATISTICS
   memset((void *)&cws_config->statistics, 0, sizeof(cws_config->statistics));
-  cws_config->initial_resource_size=0;
+  cws_config->initial_resource_size=getResourceSize();
 #endif
 
 }
