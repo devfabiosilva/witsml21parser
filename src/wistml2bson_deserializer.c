@@ -2143,39 +2143,27 @@ bson_read_CustomData21_util(
 
 //struct ns2__ObjectAlias
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns2, ObjectAlias)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ObjectAlias, Identifier)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ObjectAlias, IdentifierKind)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ObjectAlias, Description)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(ObjectAlias, EffectiveDateTime)
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(ObjectAlias, TerminationDateTime)
-
   //if (bson_put_single_attribute_if_exists(thisBson, CWS_CONST_BSON_KEY("authority"), ObjectAlias->authority, -1))
   //  CWS_SET_SOAP_FAULT("ObjectAlias(READ). Could not set uid to _attribute in authority")
   READ_A_PUT_SINGLE_ATTR_21_VOID(ObjectAlias, authority)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns2, ObjectAlias)
 
 //struct ns2__Citation
 BSON_READ_OBJECT21_BEGIN(ns2, Citation)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Citation, Title)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Citation, Originator)
-
   READ_O_TIME_21_OR_ELSE_GOTO_RESUME(Citation, Creation)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Citation, Format)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Citation, Editor)
-
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(Citation, LastUpdate)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Citation, Description)
-
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Citation, EditorHistory)
-
   READ_O_UTF8_OBJECT_21_VOID(Citation, DescriptiveKeywords)
-
 BSON_READ_OBJECT21_END(Citation)
 
 //struct ns2__OSDULineageAssertion
@@ -2188,36 +2176,25 @@ BSON_READ_ARRAY_OF_OBJECT21_END(ns2, OSDULineageAssertion)
 
 //struct ns2__OSDUSpatialLocationIntegration
 BSON_READ_OBJECT21_BEGIN(ns2, OSDUSpatialLocationIntegration)
-
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(OSDUSpatialLocationIntegration, SpatialLocationCoordinatesDate)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUSpatialLocationIntegration, QuantitativeAccuracyBand)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUSpatialLocationIntegration, QualitativeSpatialAccuracyType)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUSpatialLocationIntegration, CoordinateQualityCheckPerformedBy)
-
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(OSDUSpatialLocationIntegration, CoordinateQualityCheckDateTime)
-
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUSpatialLocationIntegration, CoordinateQualityCheckRemark)
   READ_O_ARRAY_OF_UTF8_OBJECT_21_VOID(OSDUSpatialLocationIntegration, AppliedOperation)
-
 BSON_READ_OBJECT21_END(OSDUSpatialLocationIntegration)
 
 //struct ns2__OSDUIntegration
 BSON_READ_OBJECT21_BEGIN(ns2, OSDUIntegration)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, LineageAssertions, OSDULineageAssertion)
-
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, OwnerGroup)
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, ViewerGroup)
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, LegalTags)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, OSDUGeoJSON)
-
   READ_O_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(OSDUIntegration, WGS84Latitude, PlaneAngleMeasure)
   READ_O_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(OSDUIntegration, WGS84Longitude, PlaneAngleMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, WGS84LocationMetadata, OSDUSpatialLocationIntegration)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, Field)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, Country)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, State)
@@ -2229,279 +2206,180 @@ BSON_READ_OBJECT21_BEGIN(ns2, OSDUIntegration)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, Prospect)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(OSDUIntegration, Play)
   READ_O_UTF8_OBJECT_21_VOID(OSDUIntegration, Basin)
-
 BSON_READ_OBJECT21_END(OSDUIntegration)
 
 //struct ns2__ExtensionNameValue
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns2, ExtensionNameValue)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ExtensionNameValue, Name)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(ExtensionNameValue, Value, StringMeasure)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns2, ExtensionNameValue, MeasureClass, MeasureClass)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(ExtensionNameValue, DTim)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(ExtensionNameValue, Index)
-
   READ_A_UTF8_OBJECT_21_VOID(ExtensionNameValue, Description)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns2, ExtensionNameValue)
 
 //struct ns1__PassDetail
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, PassDetail)
-
   READ_A_LONG64_21_OR_ELSE_GOTO_RESUME(PassDetail, Pass)
-
   READ_A_UTF8_OBJECT_21_VOID(PassDetail, Description)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, PassDetail)
 
 //struct ns2__AbstractInterval
 BSON_READ_OBJECT21_BEGIN(ns2, AbstractInterval)
-
 //TODO. Understand why struct ns2__AbstractInterval transient pointer. And why is it used for?
   READ_O_UTF8_OBJECT_21_VOID(AbstractInterval, Comment)
-
 BSON_READ_OBJECT21_END_(AbstractInterval)
 
 //struct ns2__DataObjectReference
 BSON_READ_OBJECT21_BEGIN(ns2, DataObjectReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, Uuid)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, ObjectVersion)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, QualifiedType)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, Title)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, EnergisticsUri)
-
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, LocatorUrl)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(DataObjectReference, ExtensionNameValue, ExtensionNameValue)
-
 BSON_READ_OBJECT21_END(DataObjectReference)
 
 //struct ns2__DataObjectReference
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns2, DataObjectReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, Uuid)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, ObjectVersion)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, QualifiedType)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, Title)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, EnergisticsUri)
-
   READ_A_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DataObjectReference, LocatorUrl)
-
   READ_A_ARRAY_OF_OBJECT_21_VOID(DataObjectReference, ExtensionNameValue, ExtensionNameValue)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns2, DataObjectReference)
 
 //struct ns2__DateTimeInterval
 BSON_READ_OBJECT21_BEGIN(ns2, DateTimeInterval)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DateTimeInterval, Comment)
-
   READ_O_TIME_21_OR_ELSE_GOTO_RESUME(DateTimeInterval, StartTime)
   READ_O_TIME_21_VOID(DateTimeInterval, EndTime)
-
 BSON_READ_OBJECT21_END(DateTimeInterval)
 
 //struct ns1__LogOSDUIntegration
 BSON_READ_OBJECT21_BEGIN(ns1, LogOSDUIntegration)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(LogOSDUIntegration, LogVersion)
-
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(LogOSDUIntegration, ZeroTime)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(LogOSDUIntegration, FrameIdentifier)
-
   READ_O_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(LogOSDUIntegration, IsRegular)
-
   READ_O_OBJECT_21_VOID(LogOSDUIntegration, IntermediaryServiceCompany, DataObjectReference)
-
 BSON_READ_OBJECT21_END(LogOSDUIntegration)
 
 //struct ns1__ChannelSetOSDUIntegration
 BSON_READ_OBJECT21_BEGIN(ns1, ChannelSetOSDUIntegration)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSetOSDUIntegration, ChannelSetVersion)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSetOSDUIntegration, FrameIdentifier)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSetOSDUIntegration, IntermediaryServiceCompany, DataObjectReference)
-
   READ_O_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(ChannelSetOSDUIntegration, IsRegular)
-
   READ_O_TIME_NULLABLE_21_VOID(ChannelSetOSDUIntegration, ZeroTime)
-
 BSON_READ_OBJECT21_END(ChannelSetOSDUIntegration)
 
 //struct ns1__ChannelIndex
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, ChannelIndex)
-
   READ_A_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME(ns2, ChannelIndex, IndexKind, DataIndexKind)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelIndex, IndexPropertyKind, DataObjectReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelIndex, Uom)
-
   READ_A_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME(ns2, ChannelIndex, Direction, IndexDirection)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelIndex, Mnemonic)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelIndex, Datum, DataObjectReference)
-
   READ_A_OBJECT_21_VOID(ChannelIndex, IndexInterval, AbstractInterval)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, ChannelIndex)
 
 //struct ns1__ChannelOSDUIntegration
 BSON_READ_OBJECT21_BEGIN(ns1, ChannelOSDUIntegration)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelOSDUIntegration, ChannelQuality)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelOSDUIntegration, IntermediaryServiceCompany, DataObjectReference)
   READ_O_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(ChannelOSDUIntegration, IsRegular)
-
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(ChannelOSDUIntegration, ZeroTime)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelOSDUIntegration, ChannelBusinessValue)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelOSDUIntegration, ChannelMainFamily)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelOSDUIntegration, ChannelFamily)
-
 BSON_READ_OBJECT21_END(ChannelOSDUIntegration)
 
 //struct ns1__ChannelData
 BSON_READ_OBJECT21_BEGIN(ns1, ChannelData)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelData, Data)
   READ_O_UTF8_OBJECT_21_VOID(ChannelData, FileUri)
-
 BSON_READ_OBJECT21_END(ChannelData)
 
 //struct ns1__LogChannelAxis
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, LogChannelAxis)
   READ_A_DOUBLE_21_OR_ELSE_GOTO_RESUME(LogChannelAxis, AxisStart)
   READ_A_DOUBLE_21_OR_ELSE_GOTO_RESUME(LogChannelAxis, AxisSpacing)
-
   READ_A_LONG64_21_OR_ELSE_GOTO_RESUME(LogChannelAxis, AxisCount)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(LogChannelAxis, AxisName)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(LogChannelAxis, AxisPropertyKind)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(LogChannelAxis, AxisUom)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(LogChannelAxis, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, LogChannelAxis)
 
 //struct ns1__PointMetadata
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, PointMetadata)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PointMetadata, Name)
-
   READ_A_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME(ns1, PointMetadata, DataKind, ChannelDataKind)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PointMetadata, Description)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PointMetadata, Uom)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PointMetadata, MetadataPropertyKind, DataObjectReference)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PointMetadata, AxisDefinition, LogChannelAxis)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PointMetadata, Datum, DataObjectReference)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, PointMetadata)
 
 //struct ns1__PPFGChannelOSDUIntegration
 BSON_READ_OBJECT21_BEGIN(ns1, PPFGChannelOSDUIntegration)
-
   READ_O_TIME_NULLABLE_21_VOID(PPFGChannelOSDUIntegration, RecordDate)
-
 BSON_READ_OBJECT21_END_(PPFGChannelOSDUIntegration)
 
 //struct ns1__PPFGChannel
 BSON_READ_OBJECT21_BEGIN(ns1, PPFGChannel)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannel, Aliases, ObjectAlias)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannel, Citation, Citation)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannel, Existence)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannel, ObjectVersionReason)
-
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannel, BusinessActivityHistory)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannel, OSDUIntegration, OSDUIntegration)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, PPFGChannel, CustomData, CustomData)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannel, ExtensionNameValue, ExtensionNameValue)
-
   READ_O_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannel, ActiveStatus, ActiveStatusKind)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, Mnemonic)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, GlobalMnemonic)
-
   READ_O_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME(ns1, PPFGChannel, DataKind, ChannelDataKind)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, Uom)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, Source)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGChannel, ChannelState, ChannelState)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, ChannelPropertyKind, DataObjectReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, RunNumber)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PassNumber)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PassDescription)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PassDetail, PassDetail)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PrimaryIndexInterval, AbstractInterval)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, LoggingCompany, DataObjectReference)
-
   READ_O_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(PPFGChannel, LoggingCompanyCode)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, ChannelKind, DataObjectReference)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, LoggingToolKind, DataObjectReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, LoggingToolClass)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGChannel, Derivation, ChannelDerivation)
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGChannel, LoggingMethod, LoggingMethod)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, NominalHoleSize, LengthMeasureExt)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, SensorOffset, LengthMeasureExt)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, MudClass)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, MudSubClass)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGChannel, HoleLoggingStatus, HoleLoggingStatus)
-
   READ_O_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(PPFGChannel, IsContinuous)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, NominalSamplingInterval, GenericMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, ChannelOSDUIntegration, ChannelOSDUIntegration)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, Datum, DataObjectReference)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, SeismicReferenceElevation, DataObjectReference)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, Data, ChannelData)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, DataSource, DataObjectReference)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, Index, ChannelIndex)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, DerivedFrom, DataObjectReference)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, DataSource, DataObjectReference)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, AxisDefinition, LogChannelAxis)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PointMetadata, PointMetadata)
-
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PPFGDataProcessingApplied)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PPFGDerivation)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PPFGFamily)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PPFGFamilyMnemonic)
@@ -2509,331 +2387,193 @@ BSON_READ_OBJECT21_BEGIN(ns1, PPFGChannel)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PPFGModeledLithology)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PPFGTransformModelType)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PPFGUncertaintyClass)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannel, PPFGChannelOSDUIntegration, PPFGChannelOSDUIntegration)
-
   READ_O_PUT_DEFAULT_ATTRIBUTES_21_VOID(PPFGChannel)
-
 BSON_READ_OBJECT21_END(PPFGChannel)
 
 //struct ns1__Channel
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, Channel)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Channel, Aliases, ObjectAlias)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Channel, Citation, Citation)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Channel, Existence)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Channel, ObjectVersionReason)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Channel, OSDUIntegration, OSDUIntegration)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, Channel, CustomData, CustomData)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Channel, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME_B(ns2, Channel, ActiveStatus, ActiveStatusKind)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, Mnemonic)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, GlobalMnemonic)
-
   READ_A_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME(ns1, Channel, DataKind, ChannelDataKind)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, Uom)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, Source)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Channel, ChannelState, ChannelState)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, ChannelPropertyKind, DataObjectReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, RunNumber)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, PassNumber)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, PassDescription)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, PassDetail, PassDetail)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, PrimaryIndexInterval, AbstractInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, LoggingCompany, DataObjectReference)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(Channel, LoggingCompanyCode)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, ChannelKind, DataObjectReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, LoggingToolKind, DataObjectReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, LoggingToolClass)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Channel, Derivation, ChannelDerivation)
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Channel, LoggingMethod, LoggingMethod)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, NominalHoleSize, LengthMeasureExt)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, SensorOffset, LengthMeasureExt)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, MudClass)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, MudSubClass)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Channel, HoleLoggingStatus, HoleLoggingStatus)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(Channel, IsContinuous)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, NominalSamplingInterval, GenericMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, ChannelOSDUIntegration, ChannelOSDUIntegration)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, Datum, DataObjectReference)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, SeismicReferenceElevation, DataObjectReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, Data, ChannelData)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, DataSource, DataObjectReference)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, Index, ChannelIndex)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, DerivedFrom, DataObjectReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, Wellbore, DataObjectReference)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, AxisDefinition, LogChannelAxis)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Channel, PointMetadata, PointMetadata)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, Channel, PPFGChannel, PPFGChannel)
-
   READ_A_PUT_DEFAULT_ATTRIBUTES_21_VOID(Channel)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, Channel)
 
 //struct ns1__PPFGChannelSetOSDUIntegration
 BSON_READ_OBJECT21_BEGIN(ns1, PPFGChannelSetOSDUIntegration)
-
   READ_O_TIME_NULLABLE_21_VOID(PPFGChannelSetOSDUIntegration, RecordDate)
-
 BSON_READ_OBJECT21_END_(PPFGChannelSetOSDUIntegration)
 
 //struct ns1__PPFGChannelSet
 BSON_READ_OBJECT21_BEGIN(ns1, PPFGChannelSet)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannelSet, Aliases, ObjectAlias)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannelSet, Citation, Citation)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannelSet, Existence)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannelSet, ObjectVersionReason)
-
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannelSet, BusinessActivityHistory)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannelSet, OSDUIntegration, OSDUIntegration)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, PPFGChannelSet, CustomData, CustomData)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannelSet, ExtensionNameValue, ExtensionNameValue)
-
   READ_O_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGChannelSet, ActiveStatus, ActiveStatusKind)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGChannelSet, ChannelState, ChannelState)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, RunNumber)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, PassNumber)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, PassDescription)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, PassDetail, PassDetail)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, PrimaryIndexInterval, AbstractInterval)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, LoggingCompany, DataObjectReference)
-
   READ_O_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, LoggingCompanyCode)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, LoggingToolKind, DataObjectReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, LoggingToolClass)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, LoggingToolClassLongName)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGChannelSet, Derivation, ChannelDerivation)
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGChannelSet, LoggingMethod, LoggingMethod)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, NominalHoleSize, LengthMeasureExt)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, MudClass)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, MudSubClass)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGChannelSet, HoleLoggingStatus, HoleLoggingStatus)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, NominalSamplingInterval, GenericMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, ChannelSetOSDUIntegration, ChannelSetOSDUIntegration)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, Index, ChannelIndex)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, Channel, Channel)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, Data, ChannelData)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, Wellbore, DataObjectReference)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, DataSource, DataObjectReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, PPFGComment)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, PPFGDerivation)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, PPFGGaugeType)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, PPFGOffsetWellbore, DataObjectReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, PPFGTectonicSetting)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGChannelSet, PPFGChannelSetOSDUIntegration, PPFGChannelSetOSDUIntegration)
-
   READ_O_PUT_DEFAULT_ATTRIBUTES_21_VOID(PPFGChannelSet)
-
 BSON_READ_OBJECT21_END(PPFGChannelSet)
 
 //struct ns1__ChannelSet
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, ChannelSet)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, ChannelSet, Aliases, ObjectAlias)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, ChannelSet, Citation, Citation)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, ChannelSet, Existence)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, ChannelSet, ObjectVersionReason)
-
   READ_A_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, ChannelSet, BusinessActivityHistory)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, ChannelSet, OSDUIntegration, OSDUIntegration)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, ChannelSet, CustomData, CustomData)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, ChannelSet, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME_B(ns2, ChannelSet, ActiveStatus, ActiveStatusKind)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, ChannelSet, ChannelState, ChannelState)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, RunNumber)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, PassNumber)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, PassDescription)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, PassDetail, PassDetail)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, PrimaryIndexInterval, AbstractInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, LoggingCompany, DataObjectReference)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(ChannelSet, LoggingCompanyCode)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, LoggingToolKind, DataObjectReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, LoggingToolClass)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, LoggingToolClassLongName)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, ChannelSet, Derivation, ChannelDerivation)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, ChannelSet, LoggingMethod, LoggingMethod)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, NominalHoleSize, LengthMeasureExt)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, MudClass)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, MudSubClass)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, ChannelSet, HoleLoggingStatus, HoleLoggingStatus)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, NominalSamplingInterval, GenericMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, ChannelSetOSDUIntegration, ChannelSetOSDUIntegration)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, Index, ChannelIndex)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, Channel, Channel)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, Data, ChannelData)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, Wellbore, DataObjectReference)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ChannelSet, DataSource, DataObjectReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, ChannelSet, PPFGChannelSet, PPFGChannelSet)
-
   READ_A_PUT_DEFAULT_ATTRIBUTES_21_VOID(ChannelSet)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, ChannelSet)
 
 //struct ns1__PPFGLogOSDUIntegration
 BSON_READ_OBJECT21_BEGIN(ns1, PPFGLogOSDUIntegration)
-
   READ_O_TIME_NULLABLE_21_VOID(PPFGLogOSDUIntegration, RecordDate)
-
 BSON_READ_OBJECT21_END_(PPFGLogOSDUIntegration)
 
 //struct ns1__PPFGLog
 BSON_READ_OBJECT21_BEGIN(ns1, PPFGLog)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGLog, Aliases, ObjectAlias)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGLog, Citation, Citation)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGLog, Existence)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGLog, ObjectVersionReason)
-
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGLog, BusinessActivityHistory)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGLog, OSDUIntegration, OSDUIntegration)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, PPFGLog, CustomData, CustomData)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGLog, ExtensionNameValue, ExtensionNameValue)
-
   READ_O_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME_B(ns2, PPFGLog, ActiveStatus, ActiveStatusKind)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGLog, ChannelState, ChannelState)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, RunNumber)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, PassNumber)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, PassDescription)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, PassDetail, PassDetail)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, PrimaryIndexInterval, AbstractInterval)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, LoggingCompany, DataObjectReference)
-
   READ_O_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(PPFGLog, LoggingCompanyCode)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, LoggingToolKind, DataObjectReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, LoggingToolClass)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, LoggingToolClassLongName)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, LoggingServicePeriod, DateTimeInterval)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGLog, Derivation, ChannelDerivation)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGLog, LoggingMethod, LoggingMethod)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, NominalHoleSize, LengthMeasureExt)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, MudClass)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, MudSubClass)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PPFGLog, HoleLoggingStatus, HoleLoggingStatus)
-
   READ_O_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, NominalSamplingInterval, GenericMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, LogOSDUIntegration, LogOSDUIntegration)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, ChannelSet, ChannelSet)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, Wellbore, DataObjectReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, PPFGComment)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, PPFGDerivation)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, PPFGGaugeType)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, PPFGOffsetWellbore, DataObjectReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, PPFGTectonicSetting)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(PPFGLog, PPFGLogOSDUIntegration, PPFGLogOSDUIntegration)
-
   READ_O_PUT_DEFAULT_ATTRIBUTES_21_VOID(PPFGLog)
-
 BSON_READ_OBJECT21_END(PPFGLog)
 
 //struct ns2__MeasuredDepth
@@ -2845,157 +2585,107 @@ BSON_READ_OBJECT21_END(MeasuredDepth)
 //struct ns1__DrillingParams
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillingParams)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, ETimOpBit, TimeMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, MdHoleStart, MeasuredDepth)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, MdHoleStop, MeasuredDepth)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, HkldRot, ForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, OverPull, ForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, SlackOff, ForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, HkldUp, ForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, HkldDn, ForceMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, TqOnBotAv, MomentOfForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, TqOnBotMx, MomentOfForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, TqOnBotMn, MomentOfForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, TqOffBotAv, MomentOfForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, TqDhAv, MomentOfForceMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, WtAboveJar, ForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, WtBelowJar, ForceMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, WtMud, MassPerVolumeMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, FlowratePumpAv, VolumePerTimeMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, FlowratePumpMx, VolumePerTimeMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, FlowratePumpMn, VolumePerTimeMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, VelNozzleAv, LengthPerTimeMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, PowBit, PowerMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, PresDropBit, PressureMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, CTimHold, TimeMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, CTimSteering, TimeMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, CTimDrillRot, TimeMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, CTimDrillSlid, TimeMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, CTimCirc, TimeMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, CTimReam, TimeMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, DistDrillRot, LengthMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, DistDrillSlid, LengthMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, DistReam, LengthMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, DistHold, LengthMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, DistSteering, LengthMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, RpmAv, AngularVelocityMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, RpmMx, AngularVelocityMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, RpmMn, AngularVelocityMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, RpmAvDh, AngularVelocityMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, RopAv, LengthPerTimeMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, RopMx, LengthPerTimeMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, RopMn, LengthPerTimeMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, WobAv, ForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, WobMx, ForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, WobMn, ForceMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, WobAvDh, ForceMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, ReasonTrip)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, ObjectiveBha)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(DrillingParams, AziTop, PlaneAngleMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(DrillingParams, AziBottom, PlaneAngleMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(DrillingParams, InclStart, PlaneAngleMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(DrillingParams, InclMx, PlaneAngleMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(DrillingParams, InclMn, PlaneAngleMeasure)
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(DrillingParams, InclStop, PlaneAngleMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, TempMudDhMx, ThermodynamicTemperatureMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, PresPumpAv, PressureMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, FlowrateBit, VolumePerTimeMeasure)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillingParams, MudClass, MudClass)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillingParams, MudSubClass, MudSubClass)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, Comments)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillingParams, Tubular, DataObjectReference)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillingParams, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillingParams)
 
 //struct ns2__DatumVerticalDepth
 BSON_READ_OBJECT21_BEGIN(ns2, DatumVerticalDepth)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DatumVerticalDepth, VerticalDepth, LengthMeasureExt)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DatumVerticalDepth, Trajectory, DataObjectReference)
-
   READ_O_OBJECT_21_VOID(DatumVerticalDepth, Datum, DataObjectReference)
-
 BSON_READ_OBJECT21_END(DatumVerticalDepth)
 
 //struct ns2__ReferencePointVerticalDepth
 BSON_READ_OBJECT21_BEGIN(ns2, ReferencePointVerticalDepth)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(ReferencePointVerticalDepth, VerticalDepth, LengthMeasureExt)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(ReferencePointVerticalDepth, Trajectory, DataObjectReference)
-
   READ_O_OBJECT_21_VOID(ReferencePointVerticalDepth, ReferencePoint, DataObjectReference)
-
 BSON_READ_OBJECT21_END(ReferencePointVerticalDepth)
 
 //struct ns2__AbstractVerticalDepth
 BSON_READ_OBJECT21_BEGIN(ns2, AbstractVerticalDepth)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(AbstractVerticalDepth, VerticalDepth, LengthMeasureExt)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(AbstractVerticalDepth, Trajectory, DataObjectReference)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, AbstractVerticalDepth, DatumVerticalDepth, DatumVerticalDepth)
-
   READ_O_OBJECT_21_VOID_B(ns2, AbstractVerticalDepth, ReferencePointVerticalDepth, ReferencePointVerticalDepth)
-
 BSON_READ_OBJECT21_END(AbstractVerticalDepth)
 
 //struct ns2__ExtensionNameValue
 BSON_READ_OBJECT21_BEGIN(ns2, ExtensionNameValue)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ExtensionNameValue, Name)
-
   READ_O_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(ExtensionNameValue, Value, StringMeasure)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns2, ExtensionNameValue, MeasureClass, MeasureClass)
-
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(ExtensionNameValue, DTim)
-
   READ_O_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(ExtensionNameValue, Index)
-
   READ_O_UTF8_OBJECT_21_VOID(ExtensionNameValue, Description)
-
 BSON_READ_OBJECT21_END(ExtensionNameValue)
 
 //struct ns2__MdInterval
 BSON_READ_OBJECT21_BEGIN(ns2, MdInterval)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(MdInterval, Comment)
-
   READ_O_DOUBLE_21_OR_ELSE_GOTO_RESUME(MdInterval, MdMin)
   READ_O_DOUBLE_21_OR_ELSE_GOTO_RESUME(MdInterval, MdMax)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(MdInterval, Uom)
-
   READ_O_OBJECT_21_VOID(MdInterval, Datum, DataObjectReference)
-
 BSON_READ_OBJECT21_END(MdInterval)
 
 //struct ns2__MdInterval
@@ -3009,213 +2699,135 @@ BSON_READ_ARRAY_OF_OBJECT21_END(ns2, MdInterval)
 
 //struct ns2__DatumTvdInterval
 BSON_READ_OBJECT21_BEGIN(ns2, DatumTvdInterval)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DatumTvdInterval, Comment)
-
   READ_O_DOUBLE_21_OR_ELSE_GOTO_RESUME(DatumTvdInterval, TvdMin)
   READ_O_DOUBLE_21_OR_ELSE_GOTO_RESUME(DatumTvdInterval, TvdMax)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DatumTvdInterval, Uom)
-
   READ_O_OBJECT_21_VOID(DatumTvdInterval, Trajectory, DataObjectReference)
   READ_O_OBJECT_21_VOID(DatumTvdInterval, Datum, DataObjectReference)
-
 BSON_READ_OBJECT21_END(DatumTvdInterval)
 
 //struct ns2__ReferencePointTvdInterval
 BSON_READ_OBJECT21_BEGIN(ns2, ReferencePointTvdInterval)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ReferencePointTvdInterval, Comment)
-
   READ_O_DOUBLE_21_OR_ELSE_GOTO_RESUME(ReferencePointTvdInterval, TvdMin)
   READ_O_DOUBLE_21_OR_ELSE_GOTO_RESUME(ReferencePointTvdInterval, TvdMax)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ReferencePointTvdInterval, Uom)
-
   READ_O_OBJECT_21_VOID(ReferencePointTvdInterval, Trajectory, DataObjectReference)
   READ_O_OBJECT_21_VOID(ReferencePointTvdInterval, ReferencePoint, DataObjectReference)
-
 BSON_READ_OBJECT21_END(ReferencePointTvdInterval)
 
 //struct ns2__AbstractTvdInterval
 BSON_READ_OBJECT21_BEGIN(ns2, AbstractTvdInterval)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(AbstractTvdInterval, Comment)
-
   READ_O_DOUBLE_21_OR_ELSE_GOTO_RESUME(AbstractTvdInterval, TvdMin)
   READ_O_DOUBLE_21_OR_ELSE_GOTO_RESUME(AbstractTvdInterval, TvdMax)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(AbstractTvdInterval, Uom)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(AbstractTvdInterval, Trajectory, DataObjectReference)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, AbstractTvdInterval, DatumTvdInterval, DatumTvdInterval)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, AbstractTvdInterval, ReferencePointTvdInterval, ReferencePointTvdInterval)
-
 BSON_READ_OBJECT21_END(AbstractTvdInterval)
 
 //struct ns2__AbstractTvdInterval
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns2, AbstractTvdInterval)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(AbstractTvdInterval, Comment)
-
   READ_A_DOUBLE_21_OR_ELSE_GOTO_RESUME(AbstractTvdInterval, TvdMin)
   READ_A_DOUBLE_21_OR_ELSE_GOTO_RESUME(AbstractTvdInterval, TvdMax)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(AbstractTvdInterval, Uom)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(AbstractTvdInterval, Trajectory, DataObjectReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, AbstractTvdInterval, DatumTvdInterval, DatumTvdInterval)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, AbstractTvdInterval, ReferencePointTvdInterval, ReferencePointTvdInterval)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns2, AbstractTvdInterval)
 
 //struct ns1__WellboreGeometrySection
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, WellboreGeometrySection)
-
   READ_A_TIME_21_OR_ELSE_GOTO_RESUME_B(ns2, WellboreGeometrySection, Creation)
   READ_A_TIME_21_OR_ELSE_GOTO_RESUME_B(ns2, WellboreGeometrySection, LastUpdate)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, WellboreGeometrySection, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(WellboreGeometrySection, uid)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(WellboreGeometrySection, objectVersion)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, WellboreGeometrySection, MdInterval, MdInterval)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, WellboreGeometrySection, TypeHoleCasing, HoleCasingType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(WellboreGeometrySection, SectionTvdInterval, AbstractTvdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(WellboreGeometrySection, IdSection, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(WellboreGeometrySection, OdSection, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(WellboreGeometrySection, WtPerLen, MassPerLengthMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(WellboreGeometrySection, Grade)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(WellboreGeometrySection, CurveConductor)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(WellboreGeometrySection, DiaDrift, LengthMeasure)
-
   READ_A_DOUBLE_NULLABLE_21_OR_ELSE_GOTO_RESUME(WellboreGeometrySection, FactFric)
-
   READ_A_ARRAY_OF_OBJECT_21_VOID(WellboreGeometrySection, BhaRun, DataObjectReference)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, WellboreGeometrySection)
 
 //struct ns1__WellboreGeometryReport
 BSON_READ_OBJECT21_BEGIN(ns1, WellboreGeometryReport)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(WellboreGeometryReport, WellboreGeometrySection, WellboreGeometrySection)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(WellboreGeometryReport, DepthWaterMean, LengthMeasureExt)
   READ_O_OBJECT_21_VOID(WellboreGeometryReport, GapAir, LengthMeasureExt)
-
 BSON_READ_OBJECT21_END(WellboreGeometryReport)
 
 //struct ns2__ComponentReference
 BSON_READ_OBJECT21_BEGIN(ns2, ComponentReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ComponentReference, QualifiedType)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ComponentReference, Uid)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ComponentReference, Name)
-
   READ_O_LONG64_NULLABLE_21_VOID(ComponentReference, Index)
-
 BSON_READ_OBJECT21_END(ComponentReference)
 
 //struct ns2__ComponentReference
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns2, ComponentReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ComponentReference, QualifiedType)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ComponentReference, Uid)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ComponentReference, Name)
-
   READ_A_LONG64_NULLABLE_21_VOID(ComponentReference, Index)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns2, ComponentReference)
 
 //struct ns1__CementPumpScheduleStep
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, CementPumpScheduleStep)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementPumpScheduleStep, Fluid, ComponentReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementPumpScheduleStep, RatioFluidExcess, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementPumpScheduleStep, ETimPump, TimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementPumpScheduleStep, RatePump, VolumePerTimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementPumpScheduleStep, VolPump, VolumeMeasure)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementPumpScheduleStep, StrokePump)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementPumpScheduleStep, PresBack, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementPumpScheduleStep, ETimShutdown, TimeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementPumpScheduleStep, Comments)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(CementPumpScheduleStep, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, CementPumpScheduleStep)
 
 //struct ns1__FluidLocation
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, FluidLocation)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(FluidLocation, Fluid, ComponentReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(FluidLocation, MDFluidBase, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(FluidLocation, MDFluidTop, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(FluidLocation, Volume, VolumeMeasure)
-
   READ_A_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME(ns1, FluidLocation, LocationType, WellboreFluidLocation)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(FluidLocation, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, FluidLocation)
 
 //struct ns1__CementStageReport
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, CementStageReport)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, AnnularFlowAfter)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, ReciprocationSlackoff, ForceMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, BotPlug)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, BotPlugNumber)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, DiaTailPipe, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, DisplacementFluid, ComponentReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, ETimPresHeld, TimeMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, FlowrateMudCirc, VolumePerTimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, Gel10Min, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, Gel10Sec, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, MdCircOut, MeasuredDepth)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, MdCoilTbg, MeasuredDepth)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, MdString, MeasuredDepth)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, MdTool, MeasuredDepth)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, MixMethod)
-
   READ_A_LONG64_21_OR_ELSE_GOTO_RESUME(CementStageReport, NumStage)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, ReciprocationOverpull, ForceMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, PillBelowPlug)
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, PlugCatcher)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresBackPressure, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresBump, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresCoilTbgEnd, PressureMeasure)
@@ -3227,167 +2839,106 @@ BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, CementStageReport)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresMudCirc, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresTbgEnd, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresTbgStart, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PvMud, DynamicViscosityMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, SqueezeObjective)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, StageMdInterval, MdInterval)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, TailPipePerf)
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, TailPipeUsed)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, TempBHCT, ThermodynamicTemperatureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, TempBHST, ThermodynamicTemperatureMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, TopPlug)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, TypeOriginalMud)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, TypeStage)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, VolCircPrior, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, VolCsgIn, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, VolCsgOut, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, VolDisplaceFluid, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, VolExcess, VolumeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, VolExcessMethod)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, VolMudLost, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, VolReturns, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, WtMud, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, YpMud, PressureMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, Step, CementPumpScheduleStep)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, OriginalFluidLocation, FluidLocation)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, EndingFluidLocation, FluidLocation)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, DTimMixStart)
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, DTimPumpStart)
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, DTimPumpEnd)
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, DTimDisplaceStart)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresBreakDown, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, FlowrateBreakDown, VolumePerTimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, FlowrateDisplaceAv, VolumePerTimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, FlowrateDisplaceMx, VolumePerTimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresSqueezeAv, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresSqueezeEnd, PressureMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresSqueezeHeld)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, ETimMudCirculation, TimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresSqueeze, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, FlowrateSqueezeAv, VolumePerTimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, FlowrateSqueezeMx, VolumePerTimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, FlowrateEnd, VolumePerTimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, FlowratePumpStart, VolumePerTimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, FlowratePumpEnd, VolumePerTimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, VisFunnelMud, TimeMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, PlugBumped)
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, SqueezeObtained)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageReport, PresPriorBump, PressureMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageReport, FloatHeld)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(CementStageReport, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, CementStageReport)
 
 //struct ns1__CementJobReport
 BSON_READ_OBJECT21_BEGIN(ns1, CementJobReport)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, CementEngr)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, ETimWaitingOnCement, TimeMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, PlugInterval, MdInterval)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, MdHole, MeasuredDepth)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, Contractor, DataObjectReference)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, RpmPipe, AngularVelocityMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, TqInitPipeRot, MomentOfForceMeasure)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, TqPipeAv, MomentOfForceMeasure)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, TqPipeMx, MomentOfForceMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, OverPull, ForceMeasure)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, SlackOff, ForceMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, RpmPipeRecip, AngularVelocityMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, LenPipeRecipStroke, LengthMeasure)
-
   READ_O_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, Reciprocating)
-
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, DTimJobEnd)
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, DTimJobStart)
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, DTimPlugSet)
-
   READ_O_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, CementDrillOut)
-
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, DTimCementDrillOut)
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, DTimSqueeze)
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, DTimPipeRotStart)
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, DTimPipeRotEnd)
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, DTimRecipStart)
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobReport, DTimRecipEnd)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobReport, DensMeasBy)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(CementJobReport, CementReportStage, CementStageReport)
-
 BSON_READ_OBJECT21_END(CementJobReport)
 
 //struct ns1__CementStageDesign
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, CementStageDesign)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageDesign, AnnularFlowAfter)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, ReciprocationSlackoff, ForceMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageDesign, BotPlug)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageDesign, BotPlugNumber)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, DiaTailPipe, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, DisplacementFluid, ComponentReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, ETimPresHeld, TimeMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, FlowrateMudCirc, VolumePerTimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, Gel10Min, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, Gel10Sec, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, MdCircOut, MeasuredDepth)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, MdCoilTbg, MeasuredDepth)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, MdString, MeasuredDepth)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, MdTool, MeasuredDepth)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, MixMethod)
-
   READ_A_LONG64_21_OR_ELSE_GOTO_RESUME(CementStageDesign, NumStage)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageDesign, PillBelowPlug)
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageDesign, PlugCatcher)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, PresBackPressure, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, PresBump, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, PresCoilTbgEnd, PressureMeasure)
@@ -3399,377 +2950,230 @@ BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, CementStageDesign)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, PresMudCirc, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, PresTbgEnd, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, PresTbgStart, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, PvMud, DynamicViscosityMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, SqueezeObjective)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, StageMdInterval, MdInterval)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageDesign, TailPipePerf)
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageDesign, TailPipeUsed)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, TempBHCT, ThermodynamicTemperatureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, TempBHST, ThermodynamicTemperatureMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementStageDesign, TopPlug)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, TypeOriginalMud)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, TypeStage)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, VolCircPrior, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, VolCsgIn, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, VolCsgOut, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, VolDisplaceFluid, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, VolExcess, VolumeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, VolExcessMethod)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, VolMudLost, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, VolReturns, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, WtMud, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, YpMud, PressureMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, Step, CementPumpScheduleStep)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(CementStageDesign, OriginalFluidLocation, FluidLocation)
-
   READ_A_ARRAY_OF_OBJECT_21_VOID(CementStageDesign, EndingFluidLocation, FluidLocation)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, CementStageDesign)
 
 //struct ns1__CementJobDesign
 BSON_READ_OBJECT21_BEGIN(ns1, CementJobDesign)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, CementEngr)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, ETimWaitingOnCement, TimeMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, PlugInterval, MdInterval)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, MdHole, MeasuredDepth)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, Contractor, DataObjectReference)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, RpmPipe, AngularVelocityMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, TqInitPipeRot, MomentOfForceMeasure)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, TqPipeAv, MomentOfForceMeasure)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, TqPipeMx, MomentOfForceMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, OverPull, ForceMeasure)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, SlackOff, ForceMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, RpmPipeRecip, AngularVelocityMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJobDesign, LenPipeRecipStroke, LengthMeasure)
-
   READ_O_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJobDesign, Reciprocating)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(CementJobDesign, CementDesignStage, CementStageDesign)
-
 BSON_READ_OBJECT21_END(CementJobDesign)
 
 //struct ns1__CementAdditive
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, CementAdditive)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementAdditive, NameAdd)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementAdditive, TypeAdd)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementAdditive, FormAdd)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementAdditive, DensAdd, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementAdditive, Additive, MassMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(CementAdditive, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(CementAdditive, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, CementAdditive)
 
 //struct ns1__RheometerViscosity
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, RheometerViscosity)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(RheometerViscosity, Speed, AngularVelocityMeasure)
-
   READ_A_DOUBLE_21_OR_ELSE_GOTO_RESUME(RheometerViscosity, Viscosity)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(RheometerViscosity, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, RheometerViscosity)
 
 //struct ns1__Rheometer
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, Rheometer)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Rheometer, TempRheom, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Rheometer, PresRheom, PressureMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Rheometer, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Rheometer, Viscosity, RheometerViscosity)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(Rheometer, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, Rheometer)
 
 //struct ns1__CementingFluid
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, CementingFluid)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, ETimTransitions, TimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, ETimZeroGel, TimeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, TypeFluid)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementingFluid, FluidIndex)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, DescFluid)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, Purpose)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, ClassSlurryDryBlend)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, SlurryPlacementInterval, MdInterval)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, SourceWater)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolWater, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolCement, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, RatioMixWater, VolumePerMassMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolFluid, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, ExcessPc, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolYield, VolumePerMassMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, Density, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, SolidVolumeFraction, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolPumped, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolOther, VolumeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, FluidRheologicalModel)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, Viscosity, DynamicViscosityMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, Yp, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, N, DimensionlessMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, K, DimensionlessMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(CementingFluid, Gel10SecReading, PlaneAngleMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, Gel10SecStrength, PressureMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(CementingFluid, Gel10MinReading, PlaneAngleMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, Gel10MinStrength, PressureMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, TypeBaseFluid)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, DensBaseFluid, MassPerVolumeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, DryBlendName)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, DryBlendDescription)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, MassDryBlend, MassMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, DensDryBlend, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, MassSackDryBlend, MassMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementingFluid, FoamUsed)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, TypeGasFoam)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolGasFoam, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, RatioConstGasMethodAv, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, DensConstGasMethod, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, RatioConstGasMethodStart, VolumePerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, RatioConstGasMethodEnd, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, DensConstGasFoam, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, ETimThickening, TimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, TempThickening, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, PresTestThickening, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, ConsTestThickening, DimensionlessMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, PcFreeWater, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, TempFreeWater, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolTestFluidLoss, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, TempFluidLoss, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, PresTestFluidLoss, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, TimeFluidLoss, TimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolAPIFluidLoss, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, ETimComprStren1, TimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, ETimComprStren2, TimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, PresComprStren1, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, PresComprStren2, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, TempComprStren1, ThermodynamicTemperatureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, TempComprStren2, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, DensAtPres, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolReserved, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, VolTotSlurry, VolumeMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(CementingFluid, CementAdditive, CementAdditive)
-
   READ_A_ARRAY_OF_OBJECT_21_VOID(CementingFluid, Rheometer, Rheometer)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(CementingFluid, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, CementingFluid)
 
 //struct ns1__EventRefInfo
 BSON_READ_OBJECT21_BEGIN(ns1, EventRefInfo)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(EventRefInfo, Event, DataObjectReference)
-
   READ_O_TIME_NULLABLE_21_VOID(EventRefInfo, EventDate)
-
 BSON_READ_OBJECT21_END(EventRefInfo)
 
 //struct ns1__EventInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, EventInfo)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(EventInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EventInfo, BeginEvent, EventRefInfo)
-
   READ_A_OBJECT_21_VOID(EventInfo, EndEvent, EventRefInfo)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, EventInfo)
 
 //struct ns1__EventInfo
 BSON_READ_OBJECT21_BEGIN(ns1, EventInfo)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(EventInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(EventInfo, BeginEvent, EventRefInfo)
-
   READ_O_OBJECT_21_VOID(EventInfo, EndEvent, EventRefInfo)
-
 BSON_READ_OBJECT21_END(EventInfo)
 
 //struct ns1__ObjectSequence
 BSON_READ_OBJECT21_BEGIN(ns1, ObjectSequence)
-
   READ_O_PUT_SINGLE_ATTR_21_VOID(ObjectSequence, description)
-
 BSON_READ_OBJECT21_END_(ObjectSequence)
 
 //struct ns1__CasingConnectionType
 BSON_READ_OBJECT21_BEGIN(ns1, CasingConnectionType)
-
   READ_O_OBJECT_ENUM_21_VOID(ns1, CasingConnectionType, CasingConnectionType, CasingConnectionTypes)
-
 BSON_READ_OBJECT21_END_(CasingConnectionType)
 
 //struct ns1__OtherConnectionType
 BSON_READ_OBJECT21_BEGIN(ns1, OtherConnectionType)
-
   READ_O_OBJECT_ENUM_21_VOID(ns1, OtherConnectionType, OtherConnectionType, OtherConnectionTypes)
-
 BSON_READ_OBJECT21_END_(OtherConnectionType)
 
 //struct ns1__RodConnectionType
 BSON_READ_OBJECT21_BEGIN(ns1, RodConnectionType)
-
   READ_O_OBJECT_ENUM_21_VOID(ns1, RodConnectionType, RodConnectionType, RodConnectionTypes)
-
 BSON_READ_OBJECT21_END_(RodConnectionType)
 
 //struct ns1__TubingConnectionType
 BSON_READ_OBJECT21_BEGIN(ns1, TubingConnectionType)
-
   READ_O_OBJECT_ENUM_21_VOID(ns1, TubingConnectionType, TubingConnectionType, TubingConnectionTypes)
-
 BSON_READ_OBJECT21_END_(TubingConnectionType)
 
 //struct ns1__AbstractConnectionType
 BSON_READ_OBJECT21_BEGIN(ns1, AbstractConnectionType)
 //TODO understand what is Transient pointer to a derived type value ...
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractConnectionType, CasingConnectionType, CasingConnectionType)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractConnectionType, OtherConnectionType, OtherConnectionType)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractConnectionType, RodConnectionType, RodConnectionType)
-
   READ_O_OBJECT_21_VOID_B(ns1, AbstractConnectionType, TubingConnectionType, TubingConnectionType)
-
 BSON_READ_OBJECT21_END(AbstractConnectionType)
 
 //struct ns1__ReferenceContainer
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, ReferenceContainer)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ReferenceContainer, String, ComponentReference)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ReferenceContainer, Equipment, ComponentReference)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(ReferenceContainer, AccesoryEquipment, ComponentReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ReferenceContainer, Comment)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(ReferenceContainer, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, ReferenceContainer)
 
 //struct ns1__EquipmentConnection
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, EquipmentConnection)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, Id, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, Od, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, Len, LengthMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, TypeThread)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, SizeThread, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, TensYield, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, TqYield, MomentOfForceMeasure)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, EquipmentConnection, Position, ConnectionPosition)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, CriticalCrossSection, AreaMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, PresLeak, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, TqMakeup, MomentOfForceMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, Equipment, ComponentReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, RadialOffset, LengthMeasure)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, EquipmentConnection, ConnectionForm, ConnectionFormType)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, ConnectionUpset)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(EquipmentConnection, ConnectionType, AbstractConnectionType)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(EquipmentConnection, uid)//NOTICE: Order of uid is at the end differs from this struct *
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, EquipmentConnection)
 
 //struct ns1__EquipmentConnection
@@ -3808,296 +3212,184 @@ int bson_read_arrayOfStringEquipment21_util(
 
 //struct ns1__Assembly
 BSON_READ_OBJECT21_BEGIN(ns1, Assembly)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(Assembly, Part, StringEquipment)
-
 BSON_READ_OBJECT21_END_(Assembly)
 
 //struct ns1__StringEquipment
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, StringEquipment)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, Equipment, ComponentReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, EquipmentType)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, Name)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, EquipmentEventHistory, EventInfo)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, Status)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, RunNo)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, PreviousRunDays, TimeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, ObjectCondition)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, SurfaceCondition)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(StringEquipment, Count)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, Length, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, MdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, TvdInterval, AbstractTvdInterval)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(StringEquipment, OutsideString)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, TensileMax, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, PresRating, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, PresCollapse, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, PresBurst, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, HeatRating, ThermodynamicTemperatureMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(StringEquipment, IsLinetoSurface)
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(StringEquipment, IsCentralized)
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(StringEquipment, HasScratchers)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, PerforationSet, ComponentReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, PermanentRemarks)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, UsageComment)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, OrderOfObject, ObjectSequence)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, InsideComponent, ReferenceContainer)
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, OutsideComponent, ReferenceContainer)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, ConnectionNext, EquipmentConnection)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StringEquipment, Assembly, Assembly) //TODO Recursive. Add limit root to avoid client abuse
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(StringEquipment, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, StringEquipment)
 
 //struct ns1__StringEquipmentSet
 BSON_READ_OBJECT21_BEGIN(ns1, StringEquipmentSet)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(StringEquipmentSet, StringEquipment, StringEquipment)
-
 BSON_READ_OBJECT21_END_(StringEquipmentSet)
 
 //struct ns1__StringAccessory
 BSON_READ_OBJECT21_BEGIN(ns1, StringAccessory)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(StringAccessory, Accessory, StringEquipment)
-
 BSON_READ_OBJECT21_END_(StringAccessory)
 
 //struct ns1__DownholeString
 BSON_READ_OBJECT21_BEGIN(ns1, DownholeString)
-
   READ_O_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME(ns1, DownholeString, StringType, DownholeStringType)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DownholeString, SubStringType, SubStringType)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, Name)
-
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DownholeString, StringInstallDate)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, StringMdInterval, MdInterval)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, AxisOffset, LengthMeasure)
-
   READ_O_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, ExtensionNameValue, ExtensionNameValue)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, ParentString, ComponentReference)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, StringEquipmentSet, StringEquipmentSet)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, Accessories, StringAccessory)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, ReferenceWellbore, DataObjectReference)
-
   READ_O_PUT_SINGLE_ATTR_21_VOID(DownholeString, uid)
-
 BSON_READ_OBJECT21_END(DownholeString)
 
 //struct ns1__Borehole
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, Borehole)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Borehole, Name)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Borehole, TypeBorehole, BoreholeType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Borehole, MdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Borehole, TvdInterval, AbstractTvdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Borehole, BoreholeDiameter, LengthMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Borehole, DescriptionPermanent)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Borehole, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Borehole, EquipmentEventHistory, EventInfo)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(Borehole, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, Borehole)
 
 //struct ns1__GeologyFeature
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, GeologyFeature)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(GeologyFeature, Name)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, GeologyFeature, GeologyType, GeologyType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(GeologyFeature, FeatureMdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(GeologyFeature, FeatureTvdInterval, AbstractTvdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(GeologyFeature, GeologicUnitInterpretation, DataObjectReference)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(GeologyFeature, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(GeologyFeature, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, GeologyFeature)
 
 //struct ns1__BoreholeString
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, BoreholeString)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BoreholeString, Name)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(BoreholeString, Borehole, Borehole)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(BoreholeString, GeologyFeature, GeologyFeature)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(BoreholeString, Accessories, StringAccessory)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(BoreholeString, ReferenceWellbore, DataObjectReference)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(BoreholeString, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, BoreholeString)
 
 //struct ns1__BoreholeStringSet
 BSON_READ_OBJECT21_BEGIN(ns1, BoreholeStringSet)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(BoreholeStringSet, BoreholeString, BoreholeString)
-
 BSON_READ_OBJECT21_END_(BoreholeStringSet)
 
 //struct ns1__DownholeString
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DownholeString)
-
   READ_A_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME(ns1, DownholeString, StringType, DownholeStringType)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DownholeString, SubStringType, SubStringType)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, Name)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DownholeString, StringInstallDate)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, StringMdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, AxisOffset, LengthMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, ParentString, ComponentReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, StringEquipmentSet, StringEquipmentSet)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, Accessories, StringAccessory)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeString, ReferenceWellbore, DataObjectReference)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DownholeString, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DownholeString)
 
 //struct ns1__DownholeStringSet
 BSON_READ_OBJECT21_BEGIN(ns1, DownholeStringSet)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(DownholeStringSet, DownholeString, DownholeString)
-
 BSON_READ_OBJECT21_END_(DownholeStringSet)
 
 //struct ns1__ExtPropNameValue
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, ExtPropNameValue)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ExtPropNameValue, Name)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(ExtPropNameValue, Name)
   READ_A_PUT_SINGLE_ATTR_21_VOID(ExtPropNameValue, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, ExtPropNameValue)
 
 //struct ns1__PerfSlot
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, PerfSlot)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfSlot, SlotHeight, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfSlot, SlotWidth, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfSlot, SlotCenterDistance, LengthMeasure)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(PerfSlot, SlotCount)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfSlot, Remarks)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfSlot, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(PerfSlot, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, PerfSlot)
 
 //struct ns1__PerfHole
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, PerfHole)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfHole, MdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfHole, TvdInterval, AbstractTvdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfHole, HoleDiameter, LengthMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(PerfHole, HoleAngle, PlaneAngleMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfHole, HolePattern)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfHole, Remarks)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfHole, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerfHole, HoleDensity, ReciprocalLengthMeasure)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(PerfHole, HoleCount)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(PerfHole, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, PerfHole)
 
 //struct ns1__Equipment
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, Equipment)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, EquipmentName)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, EquipmentType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, Manufacturer, DataObjectReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, Model)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, CatalogId)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, CatalogName)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, BrandName)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, ModelType)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, Series)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(Equipment, IsSerialized)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, SerialNumber)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, PartNo)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, SurfaceCondition)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, Material)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Equipment, Grade, GradeType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, UnitWeight, MassPerLengthMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(Equipment, CoatingLinerApplied)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Equipment, OutsideCoating, Coating)
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Equipment, InsideCoating, Coating)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, UnitLength, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, MajorOd, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, MinorOd, LengthMeasure)
@@ -4111,134 +3403,82 @@ BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, Equipment)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, MinId, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, Drift, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, NominalSize, LengthMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, NameService)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, Description)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, DescriptionPermanent)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, Remark)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, Property, ExtPropNameValue)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, SlotAsManufactured, PerfSlot)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Equipment, HoleAsManufactured, PerfHole)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(Equipment, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, Equipment)
 
 //struct ns1__EquipmentSet
 BSON_READ_OBJECT21_BEGIN(ns1, EquipmentSet)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(EquipmentSet, Equipment, Equipment)
-
 BSON_READ_OBJECT21_END_(EquipmentSet)
 
 //struct ns1__PerforationSet
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, PerforationSet)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, BoreholeString, ComponentReference)
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, DownholeString, ComponentReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, MdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, TvdInterval, AbstractTvdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, HoleDiameter, LengthMeasure)
-
   READ_A_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME_B(PerforationSet, HoleAngle, PlaneAngleMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, HolePattern)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, HoleDensity, ReciprocalLengthMeasure)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(PerforationSet, HoleCount)
-
   READ_A_DOUBLE_NULLABLE_21_OR_ELSE_GOTO_RESUME(PerforationSet, FrictionFactor)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, FrictionPres, PressureMeasure)
-
   READ_A_DOUBLE_NULLABLE_21_OR_ELSE_GOTO_RESUME(PerforationSet, DischargeCoefficient)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, PerforationSet, PerforationTool, PerforationToolType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, PerforationPenetration, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, CrushZoneDiameter, LengthMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, CrushDamageRatio)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(PerforationSet, PerforationDate)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, PermanentRemarks)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(PerforationSet, EventHistory, EventInfo)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(PerforationSet, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, PerforationSet)
 
 //struct ns1__PerforationSets
 BSON_READ_OBJECT21_BEGIN(ns1, PerforationSets)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(PerforationSets, PerforationSet, PerforationSet)
-
 BSON_READ_OBJECT21_END_(PerforationSets)
 
 //struct ns1__BitRecord
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, BitRecord)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, NumBit)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, DiaBit, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, DiaPassThru, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, DiaPilot, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, Manufacturer, DataObjectReference)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, TypeBit, BitType)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, CodeMfg)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, CodeIADC)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, CondInitInner, IadcIntegerCode)
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, CondInitOuter, IadcIntegerCode)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, CondInitDull, BitDullCode)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, CondInitLocation)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, CondInitBearing, IadcBearingWearCode)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, CondInitGauge)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, CondInitOther)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, CondInitReason, BitReasonPulled)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, CondFinalInner, IadcIntegerCode)
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, CondFinalOuter, IadcIntegerCode)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, CondFinalDull, BitDullCode)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, CondFinalLocation)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, CondFinalBearing, IadcBearingWearCode)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, CondFinalGauge)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, CondFinalOther)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BitRecord, CondFinalReason, BitReasonPulled)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, Drive)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, BitClass)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(BitRecord, Cost, Cost)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(BitRecord, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, BitRecord)
 
 //struct ns1__BitRecord
@@ -4276,204 +3516,128 @@ BSON_READ_OBJECT21_END(BitRecord)
 
 //struct ns1__DrillReportWellboreInfo
 BSON_READ_OBJECT21_BEGIN(ns1, DrillReportWellboreInfo)
-
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportWellboreInfo, DTimSpud)
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportWellboreInfo, DTimPreSpud)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellboreInfo, DateDrillComplete)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellboreInfo, Operator, DataObjectReference)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellboreInfo, DrillContractor, DataObjectReference)
-
   READ_O_ARRAY_OF_OBJECT_21_VOID(DrillReportWellboreInfo, Rig, DataObjectReference)
-
 BSON_READ_OBJECT21_END(DrillReportWellboreInfo)
 
 //struct ns2__DatumElevation
 BSON_READ_OBJECT21_BEGIN(ns2, DatumElevation)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DatumElevation, Elevation, LengthMeasureExt)
   READ_O_OBJECT_21_VOID(DatumElevation, Datum, DataObjectReference)
-
 BSON_READ_OBJECT21_END(DatumElevation)
 
 //struct ns2__ReferencePointElevation
 BSON_READ_OBJECT21_BEGIN(ns2, ReferencePointElevation)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(ReferencePointElevation, Elevation, LengthMeasureExt)
   READ_O_OBJECT_21_VOID(ReferencePointElevation, ReferencePoint, DataObjectReference)
-
 BSON_READ_OBJECT21_END(ReferencePointElevation)
 
 //struct ns2__AbstractElevation
 BSON_READ_OBJECT21_BEGIN(ns2, AbstractElevation)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(AbstractElevation, Elevation, LengthMeasureExt)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, AbstractElevation, DatumElevation, DatumElevation)
-
   READ_O_OBJECT_21_VOID_B(ns2, AbstractElevation, ReferencePointElevation, ReferencePointElevation)
-
 BSON_READ_OBJECT21_END(AbstractElevation)
 
 //struct ns1__DrillReportStatusInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportStatusInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, DTim)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, Md, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, Tvd, AbstractVerticalDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, MdPlugTop, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, DiaHole, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, MdDiaHoleStart, MeasuredDepth)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, DiaPilot, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, MdDiaPilotPlan, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, TvdDiaPilotPlan, AbstractVerticalDepth)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillReportStatusInfo, TypeWellbore, WellboreType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, MdKickoff, MeasuredDepth)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, TvdKickoff, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, StrengthForm, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, MdStrengthForm, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, TvdStrengthForm, AbstractVerticalDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, DiaCsgLast, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, MdCsgLast, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, TvdCsgLast, AbstractVerticalDepth)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillReportStatusInfo, PresTestType, PresTestType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, MdPlanned, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, DistDrill, LengthMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, Sum24Hr)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, Forecast24Hr)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, RopCurrent, LengthPerTimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, RigUtilization, DataObjectReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ETimStart, TimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ETimSpud, TimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ETimLoc, TimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ETimDrill, TimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, RopAv, LengthPerTimeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, Supervisor)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, Engineer)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, Geologist)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ETimDrillRot, TimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ETimDrillSlid, TimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ETimCirc, TimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ETimReam, TimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ETimHold, TimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ETimSteering, TimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, DistDrillRot, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, DistDrillSlid, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, DistReam, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, DistHold, LengthMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, DistSteering, LengthMeasure)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, NumPob)
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, NumContract)
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, NumOperator)
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, NumService)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, NumAFE)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ConditionHole)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, TvdLot, AbstractVerticalDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, PresLotEmw, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, PresKickTol, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, VolKickTol, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, Maasp, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, Tubular, DataObjectReference)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ParentWellbore, DataObjectReference)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, ElevKelly, AbstractElevation)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, CostDay, Cost)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStatusInfo, CostDayMud, Cost)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportStatusInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportStatusInfo)
 
 //struct ns1__Fluid
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, Fluid)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Type)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, LocationSample)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(Fluid, DTim)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Md, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Tvd, AbstractVerticalDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Ecd, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, KickToleranceVolume, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, KickToleranceIntensity, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, TempFlowLine, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, PresBopRating, PressureMeasure)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Fluid, MudClass, MudClass)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Density, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, VisFunnel, TimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, TempVis, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Pv, DynamicViscosityMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Yp, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Gel3Sec, PressureMeasureExt)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Gel6Sec, PressureMeasureExt)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Gel10Sec, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Gel10Min, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Gel30Min, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, FilterCakeLtlp, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, FiltrateLtlp, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, TempHthp, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, PresHthp, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, FiltrateHthp, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, FilterCakeHthp, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, SolidsPc, VolumePerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, WaterPc, VolumePerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, OilPc, VolumePerVolumeMeasure)
@@ -4482,517 +3646,306 @@ BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, Fluid)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, SolidsLowGrav, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, SolidsCalcPc, VolumePerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, BaritePc, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Lcm, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Mbt, CationExchangeCapacityMeasureExt)
-
   READ_A_DOUBLE_NULLABLE_21_OR_ELSE_GOTO_RESUME(Fluid, Ph)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, TempPh, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Pm, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, PmFiltrate, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Mf, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, AlkalinityP1, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, AlkalinityP2, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Chloride, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Calcium, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Magnesium, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Potassium, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, BrinePc, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, BrineDensity, MassPerVolumeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, BrineClass)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Lime, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, ElectStab, ElectricPotentialDifferenceMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, CalciumChloridePc, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, CalciumChloride, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Company, DataObjectReference)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Engineer)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Asg, MassPerMassMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, SolidsHiGravPc, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, SolidsHiGrav, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Polymer, VolumePerVolumeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, PolyType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, SolCorPc, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, OilCtg, MassPerMassMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, OilCtgDry, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, HardnessCa, MassPerMassMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Sulfide, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, AverageCuttingSize, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Carbonate, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Iron, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, MetalRecovered, MassMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Turbidity)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, OilGrease, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Salt, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, SaltPc, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Tct, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, WaterPhaseSalinity, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, WholeMudCalcium, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, WholeMudChloride, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, ZincOxide, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, SodiumChloride, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, SodiumChloridePc, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, PptSpurtLoss, VolumeMeasureExt)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, PptPressure, PressureMeasureExt)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, PptTemperature, ThermodynamicTemperatureMeasureExt)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Comments)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Fluid, Rheometer, Rheometer)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(Fluid, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, Fluid)
 
 //struct ns1__DrillReportPorePressure
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportPorePressure)
-
   READ_A_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME(ns1, DrillReportPorePressure, ReadingKind, ReadingKind)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportPorePressure, EquivalentMudWeight, MassPerVolumeMeasure)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportPorePressure, DTim)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportPorePressure, Tvd, AbstractVerticalDepth)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportPorePressure, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportPorePressure, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportPorePressure)
 
 //struct ns1__TrajectoryOSDUIntegration
 BSON_READ_OBJECT21_BEGIN(ns1, TrajectoryOSDUIntegration)
-
   READ_O_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(TrajectoryOSDUIntegration, ActiveIndicator)
-
   READ_O_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(TrajectoryOSDUIntegration, AppliedOperation)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(TrajectoryOSDUIntegration, IntermediaryServiceCompany, DataObjectReference)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(TrajectoryOSDUIntegration, SurveyToolType)
   READ_O_UTF8_OBJECT_21_VOID(TrajectoryOSDUIntegration, TrajectoryVersion)
-
 BSON_READ_OBJECT21_END(TrajectoryOSDUIntegration)
 
 //struct ns1__DrillReportSurveyStationReport
 BSON_READ_OBJECT21_BEGIN(ns1, DrillReportSurveyStationReport)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, AcquisitionRemark)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, MagDeclUsed, PlaneAngleMeasureExt)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, MdMaxExtrapolated, MeasuredDepth)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, MdMaxMeasured, MeasuredDepth)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, MdTieOn, MeasuredDepth)
-
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, NominalCalcAlgorithm)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, NominalTypeSurveyTool)
   READ_O_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, NominalTypeTrajStation)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, TrajectoryOSDUIntegration, TrajectoryOSDUIntegration)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, GridConUsed, PlaneAngleMeasureExt)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, GridScaleFactorUsed, LengthPerLengthMeasureExt)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, AziVertSect, PlaneAngleMeasureExt)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, DispNsVertSectOrig, LengthMeasureExt)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportSurveyStationReport, DispEwVertSectOrig, LengthMeasureExt)
-
   READ_O_OBJECT_ENUM_NULLABLE_21_VOID(ns2, DrillReportSurveyStationReport, AziRef, NorthReferenceKind)
-
 BSON_READ_OBJECT21_END(DrillReportSurveyStationReport)
 
 //struct ns2__NameStruct
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns2, NameStruct)
-
   READ_A_UTF8_OBJECT_ITEM_21_OR_ELSE_GOTO_RESUME(NameStruct)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(NameStruct, authority)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns2, NameStruct)
 
 //struct ns1__DrillActivity
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillActivity)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillActivity, DTimStart)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, ProprietaryCode, NameStruct)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillActivity, DTimEnd)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, Duration, TimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, Md, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, Tvd, AbstractVerticalDepth)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, Phase)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillActivity, ActivityCode, DrillActivityCode)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, DetailActivity)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillActivity, TypeActivityClass, DrillActivityClassType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, ActivityMdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, ActivityTvdInterval, AbstractTvdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, BitMdInterval, MdInterval)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, State)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillActivity, StateDetailActivity, StateDetailActivity)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, Operator, DataObjectReference)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillActivity, Optimum)
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillActivity, Productive)
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillActivity, ItemState)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, Comments)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, BhaRun, DataObjectReference)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillActivity, Tubular, DataObjectReference)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillActivity, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillActivity)
 
 //struct ns1__BottomHoleCirculatingTemperature
 BSON_READ_OBJECT21_BEGIN(ns1, BottomHoleCirculatingTemperature)
-
   READ_O_OBJECT_21_VOID(BottomHoleCirculatingTemperature, BottomHoleTemperature, ThermodynamicTemperatureMeasure)
-
 BSON_READ_OBJECT21_END_(BottomHoleCirculatingTemperature)
 
 //struct ns1__BottomHoleStaticTemperature
 BSON_READ_OBJECT21_BEGIN(ns1, BottomHoleStaticTemperature)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(BottomHoleStaticTemperature, BottomHoleTemperature, ThermodynamicTemperatureMeasure)
-
   READ_O_OBJECT_21_VOID(BottomHoleStaticTemperature, ETimStatic, TimeMeasure)
-
 BSON_READ_OBJECT21_END(BottomHoleStaticTemperature)
 
 //struct ns1__AbstractBottomHoleTemperature
 BSON_READ_OBJECT21_BEGIN(ns1, AbstractBottomHoleTemperature)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(AbstractBottomHoleTemperature, BottomHoleTemperature, ThermodynamicTemperatureMeasure)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractBottomHoleTemperature, BottomHoleCirculatingTemperature, BottomHoleCirculatingTemperature)
-
   READ_O_OBJECT_21_VOID_B(ns1, AbstractBottomHoleTemperature, BottomHoleStaticTemperature, BottomHoleStaticTemperature)
-
 BSON_READ_OBJECT21_END(AbstractBottomHoleTemperature)
 
 //struct ns1__DrillReportLogInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportLogInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportLogInfo, DTim)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLogInfo, RunNumber)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLogInfo, ServiceCompany, DataObjectReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLogInfo, LoggedMdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLogInfo, LoggedTvdInterval, AbstractTvdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLogInfo, Tool, DataObjectReference)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLogInfo, MdTempTool, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLogInfo, TvdTempTool, AbstractVerticalDepth)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLogInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLogInfo, BottomHoleTemperature, AbstractBottomHoleTemperature)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportLogInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportLogInfo)
 
 //struct ns1__DrillReportCoreInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportCoreInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportCoreInfo, DTim)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportCoreInfo, CoreNumber)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportCoreInfo, CoredMdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportCoreInfo, CoredTvdInterval, AbstractTvdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportCoreInfo, LenRecovered, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportCoreInfo, RecoverPc, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportCoreInfo, LenBarrel, LengthMeasure)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillReportCoreInfo, InnerBarrelType, InnerBarrelType)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportCoreInfo, CoreDescription)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportCoreInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportCoreInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportCoreInfo)
 
 //struct ns1__DrillReportWellTestInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportWellTestInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, DTim)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillReportWellTestInfo, TestType, WellTestType)
-
   READ_A_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, TestNumber)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, ChokeOrificeSize, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, DensityOil, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, DensityWater, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, DensityGas, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, FlowRateOil, VolumePerTimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, FlowRateWater, VolumePerTimeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, FlowRateGas, VolumePerTimeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, PresShutIn, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, PresFlowing, PressureMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, PresBottom, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, GasOilRatio, VolumePerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, WaterOilRatio, VolumePerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, Chloride, MassPerMassMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, CarbonDioxide, MassPerMassMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, HydrogenSulfide, MassPerMassMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, VolOilTotal, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, VolGasTotal, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, VolWaterTotal, VolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, VolOilStored, VolumeMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportWellTestInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportWellTestInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportWellTestInfo)
 
 //struct ns1__DrillReportFormTestInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportFormTestInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, DTim)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, Md, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, Tvd, AbstractVerticalDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, PresPore, PressureMeasure)
-
   READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, GoodSeal)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, MdSample, MeasuredDepth)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, DominateComponent)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, DensityHC, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, VolumeSample, VolumeMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, Description)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportFormTestInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportFormTestInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportFormTestInfo)
 
 //struct ns1__DrillReportLithShowInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportLithShowInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportLithShowInfo, DTim)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLithShowInfo, ShowMdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLithShowInfo, ShowTvdInterval, AbstractTvdInterval)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLithShowInfo, Show)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLithShowInfo, Lithology)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportLithShowInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportLithShowInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportLithShowInfo)
 
 //struct ns1__DrillReportEquipFailureInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportEquipFailureInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportEquipFailureInfo, DTim)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportEquipFailureInfo, Md, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportEquipFailureInfo, Tvd, AbstractVerticalDepth)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportEquipFailureInfo, EquipClass)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportEquipFailureInfo, ETimMissProduction, TimeMeasure)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportEquipFailureInfo, DTimRepair)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportEquipFailureInfo, Description)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportEquipFailureInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportEquipFailureInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportEquipFailureInfo)
 
 //struct ns1__DrillReportControlIncidentInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportControlIncidentInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, DTim)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, MdInflow, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, TvdInflow, AbstractVerticalDepth)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, Phase)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillReportControlIncidentInfo, ActivityCode, DrillActivityCode)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, DetailActivity)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, ETimLost, TimeMeasure)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, DTimRegained)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, DiaBit, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, MdBit, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, WtMud, MassPerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, PorePressure, MassPerVolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, DiaCsgLast, LengthMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, MdCsgLast, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, VolMudGained, VolumeMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, PresShutInCasing, PressureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, PresShutInDrill, PressureMeasure)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillReportControlIncidentInfo, IncidentType, WellControlIncidentType)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillReportControlIncidentInfo, KillingType, WellKillingProcedureType)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, Formation)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, TempBottom, ThermodynamicTemperatureMeasure)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, PresMaxChoke, PressureMeasure)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, Description)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportControlIncidentInfo, ProprietaryCode, NameStruct)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportControlIncidentInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportControlIncidentInfo)
 
 //struct ns1__DrillReportStratInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportStratInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportStratInfo, DTim)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStratInfo, MdTop, MeasuredDepth)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStratInfo, TvdTop, AbstractVerticalDepth)
-
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStratInfo, Description)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportStratInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportStratInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportStratInfo)
 
 //struct ns1__DrillReportPerfInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportPerfInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportPerfInfo, DTimOpen)
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportPerfInfo, DTimClose)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportPerfInfo, PerforationMdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportPerfInfo, PerforationTvdInterval, AbstractTvdInterval)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportPerfInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportPerfInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportPerfInfo)
 
 //struct ns1__DrillReportGasReadingInfo
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportGasReadingInfo)
-
   READ_A_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReportGasReadingInfo, DTim)
-
   READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillReportGasReadingInfo, ReadingType, GasPeakType)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportGasReadingInfo, GasReadingMdInterval, MdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportGasReadingInfo, GasReadingTvdInterval, AbstractTvdInterval)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportGasReadingInfo, GasHigh, VolumePerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportGasReadingInfo, GasLow, VolumePerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportGasReadingInfo, Meth, VolumePerVolumeMeasure)
@@ -5001,11 +3954,8 @@ BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, DrillReportGasReadingInfo)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportGasReadingInfo, Ibut, VolumePerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportGasReadingInfo, Nbut, VolumePerVolumeMeasure)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportGasReadingInfo, Ipent, VolumePerVolumeMeasure)
-
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReportGasReadingInfo, ExtensionNameValue, ExtensionNameValue)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(DrillReportGasReadingInfo, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, DrillReportGasReadingInfo)
 
 //struct ns2__GrowingObjectIndex
@@ -5407,19 +4357,12 @@ BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, MudLogParameter)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(MudLogParameter, MdInterval, MdInterval)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(MudLogParameter, Citation, Citation)
   READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(MudLogParameter, Comments)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, MudLogParameter, MudLogConcentrationParameter, MudLogConcentrationParameter)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, MudLogParameter, MudLogForceParameter, MudLogForceParameter)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, MudLogParameter, MudLogPressureGradientParameter, MudLogPressureGradientParameter)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, MudLogParameter, MudLogPressureParameter, MudLogPressureParameter)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, MudLogParameter, MudLogStringParameter, MudLogStringParameter)
-
   READ_A_PUT_SINGLE_ATTR_21_VOID(MudLogParameter, uid)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, MudLogParameter)
 
 //struct ns1__NameTag
@@ -5574,11 +4517,8 @@ BSON_READ_OBJECT21_END(Geographic2dPosition)
 
 //struct ns2__Abstract2dPosition
 BSON_READ_OBJECT21_BEGIN(ns2, Abstract2dPosition)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Abstract2dPosition, AbstractCartesian2dPosition, AbstractCartesian2dPosition)
-
   READ_O_OBJECT_21_VOID_B(ns2, Abstract2dPosition, Geographic2dPosition, Geographic2dPosition)
-
 BSON_READ_OBJECT21_END(Abstract2dPosition)
 
 //struct ns2__Geocentric3dCrs
@@ -5640,28 +4580,18 @@ BSON_READ_OBJECT21_END(Projected3dPosition)
 
 //struct ns2__Abstract3dPosition
 BSON_READ_OBJECT21_BEGIN(ns2, Abstract3dPosition)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Abstract3dPosition, Geocentric3dPosition, Geocentric3dPosition)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Abstract3dPosition, Geographic3dPosition, Geographic3dPosition)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Abstract3dPosition, LocalEngineering3dPosition, LocalEngineering3dPosition)
-
   READ_O_OBJECT_21_VOID_B(ns2, Abstract3dPosition, Projected3dPosition, Projected3dPosition)
-
 BSON_READ_OBJECT21_END(Abstract3dPosition)
 
 //struct ns2__Abstract3dPosition
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns2, Abstract3dPosition)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Abstract3dPosition, Geocentric3dPosition, Geocentric3dPosition)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Abstract3dPosition, Geographic3dPosition, Geographic3dPosition)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Abstract3dPosition, LocalEngineering3dPosition, LocalEngineering3dPosition)
-
   READ_A_OBJECT_21_VOID_B(ns2, Abstract3dPosition, Projected3dPosition, Projected3dPosition)
-
 BSON_READ_ARRAY_OF_OBJECT21_END(ns2, Abstract3dPosition)
 
 //struct ns2__EngineeringCompoundPosition
@@ -5720,13 +4650,9 @@ BSON_READ_OBJECT21_END(ProjectedCompoundPosition)
 
 //struct ns2__AbstractCompoundPosition
 BSON_READ_OBJECT21_BEGIN(ns2, AbstractCompoundPosition)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, AbstractCompoundPosition, EngineeringCompoundPosition, EngineeringCompoundPosition)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, AbstractCompoundPosition, GeographicCompoundPosition, GeographicCompoundPosition)
-
   READ_O_OBJECT_21_VOID_B(ns2, AbstractCompoundPosition, ProjectedCompoundPosition, ProjectedCompoundPosition)
-
 BSON_READ_OBJECT21_END(AbstractCompoundPosition)
 
 //struct ns2__AbstractPosition
@@ -6031,11 +4957,8 @@ BSON_READ_OBJECT21_END_(ItemWtPerUnit)
 
 //struct ns1__AbstractItemWtOrVolPerUnit
 BSON_READ_OBJECT21_BEGIN(ns1, AbstractItemWtOrVolPerUnit)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractItemWtOrVolPerUnit, ItemVolPerUnit, ItemVolPerUnit)
-
   READ_O_OBJECT_21_VOID_B(ns1, AbstractItemWtOrVolPerUnit, ItemWtPerUnit, ItemWtPerUnit)
-
 BSON_READ_OBJECT21_END(AbstractItemWtOrVolPerUnit)
 
 //struct ns1__Inventory
@@ -6390,25 +5313,7 @@ BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, StimTubular)
   READ_A_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(StimTubular, ExtensionNameValue, ExtensionNameValue)
   READ_A_PUT_SINGLE_ATTR_21_VOID(StimTubular, uid)
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, StimTubular)
-/*
-TODO maybe remove?
-//struct ns1__StimFlowPath
-BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, StimFlowPath)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, AvgPmaxPacPres, PressureMeasure)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, FrictionFactorOpenHole, DimensionlessMeasure)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, AvgPmaxWeaklinkPres, PressureMeasure)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, BreakDownPres, PressureMeasure)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, BridgePlugMD, MeasuredDepth)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, FractureGradient, ForcePerVolumeMeasure)
-  READ_A_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, StimFlowPath, Kind, StimFlowPathType)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, MaxPmaxPacPres, PressureMeasure)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, MaxPmaxWeaklinkPres, PressureMeasure)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, PackerMD, MeasuredDepth)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, FrictionFactorPipe, DimensionlessMeasure)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, TubingBottomMD, MeasuredDepth)
-  READ_A_ARRAY_OF_OBJECT_21_VOID(StimFlowPath, Tubular, StimTubular)
-BSON_READ_ARRAY_OF_OBJECT21_END(ns1, StimFlowPath)
-*/
+
 //struct ns1__StimFlowPath
 BSON_READ_OBJECT21_BEGIN(ns1, StimFlowPath)
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME(StimFlowPath, AvgPmaxPacPres, PressureMeasure)
@@ -6806,30 +5711,6 @@ BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, Scr)
   READ_A_PUT_SINGLE_ATTR_21_VOID(Scr, uid)
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, Scr)
 
-/*
-TODO To be removed?
-//struct ns1__TubularOSDUIntegration
-BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, TubularOSDUIntegration)
-//TODO
-  READ_A_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, ActiveIndicator)
-  READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, ActivityType)
-  READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, ActivityTypeReasonDescription)
-  READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, ArtificialLiftType)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, AssemblyBaseMd, MeasuredDepth)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, AssemblyBaseReportedTvd, AbstractVerticalDepth)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, AssemblyTopMd, MeasuredDepth)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, AssemblyTopReportedTvd, AbstractVerticalDepth)
-  READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, LinerType)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, OSDUTubularAssemblyStatus, OSDUTubularAssemblyStatus)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, Parent, DataObjectReference)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, PilotHoleSize, LengthMeasure)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, SeaFloorPenetrationLength, LengthMeasure)
-  READ_A_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, StringClass)
-  READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME(TubularOSDUIntegration, SuspensionPointMd, MeasuredDepth)
-  READ_A_LONG64_NULLABLE_21_VOID(TubularOSDUIntegration, TubularAssemblyNumber)
-BSON_READ_ARRAY_OF_OBJECT21_END(ns1, TubularOSDUIntegration)
-*/
-
 //struct ns1__OSDUTubularAssemblyStatus
 BSON_READ_OBJECT21_BEGIN(ns1, OSDUTubularAssemblyStatus)
   READ_O_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(OSDUTubularAssemblyStatus, Date)
@@ -7011,11 +5892,8 @@ BSON_READ_OBJECT21_END_(BendOffset)
 
 //struct ns1__AbstractRotarySteerableTool
 BSON_READ_OBJECT21_BEGIN(ns1, AbstractRotarySteerableTool)
-
   READ_O_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractRotarySteerableTool, BendAngle, BendAngle)
-
   READ_O_OBJECT_21_VOID_B(ns1, AbstractRotarySteerableTool, BendOffset, BendOffset)
-
 BSON_READ_OBJECT21_END(AbstractRotarySteerableTool)
 
 //struct ns1__RotarySteerableTool
@@ -7455,25 +6333,15 @@ BSON_READ_OBJECT21_END(WaitingOnExtension)
 //struct ns1__AbstractEventExtension
 BSON_READ_ARRAY_OF_OBJECT21_BEGIN(ns1, AbstractEventExtension)
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractEventExtension, AcidizeFracExtension, AcidizeFracExtension)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractEventExtension, BHPExtension, BHPExtension)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractEventExtension, CementExtension, CementExtension)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractEventExtension, DirectionalSurveyExtension, DirectionalSurveyExtension)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractEventExtension, DownholeExtension, DownholeExtension)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractEventExtension, FluidReportExtension, FluidReportExtension)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractEventExtension, JobExtension, JobExtension)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractEventExtension, LostCirculationExtension, LostCirculationExtension)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractEventExtension, PerforatingExtension, PerforatingExtension)
-
   READ_A_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, AbstractEventExtension, PressureTestExtension, PressureTestExtension)
-
   READ_A_OBJECT_21_VOID_B(ns1, AbstractEventExtension, WaitingOnExtension, WaitingOnExtension)
 BSON_READ_ARRAY_OF_OBJECT21_END(ns1, AbstractEventExtension)
 
@@ -7741,257 +6609,144 @@ bson_read_##object##2_1_resume: \
 
 //struct ns1__BhaRun
 WITSML_OBJECT_BEGIN(ns1, BhaRun)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, BhaRun, Aliases, ObjectAlias)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, BhaRun, Citation, Citation)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, BhaRun, Existence)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, BhaRun, ObjectVersionReason)
-
   READ_W_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, BhaRun, BusinessActivityHistory)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, BhaRun, OSDUIntegration, OSDUIntegration)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, BhaRun, CustomData, CustomData)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, BhaRun, ExtensionNameValue, ExtensionNameValue)
-
   READ_W_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(BhaRun, DTimStart)
   READ_W_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(BhaRun, DTimStop)
   READ_W_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(BhaRun, DTimStartDrilling)
   READ_W_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(BhaRun, DTimStopDrilling)
-
   READ_W_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(BhaRun, PlanDogleg, AnglePerLengthMeasure)
   READ_W_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(BhaRun, ActDogleg, AnglePerLengthMeasure)
   READ_W_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(BhaRun, ActDoglegMx, AnglePerLengthMeasure)
-
   READ_W_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, BhaRun, BhaRunStatus, BhaStatus)
-
   READ_W_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(BhaRun, NumBitRun)
   READ_W_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(BhaRun, NumStringRun)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BhaRun, ReasonTrip)
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(BhaRun, ObjectiveBha)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(BhaRun, DrillingParams, DrillingParams)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(BhaRun, Wellbore, DataObjectReference)
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(BhaRun, Tubular, DataObjectReference)
-
   READ_W_PUT_DEFAULT_ATTRIBUTES_21_VOID(BhaRun)
-
 WITSML_OBJECT_END(BhaRun)
 
 //struct ns1__CementJob
 WITSML_OBJECT_BEGIN(ns1, CementJob)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, CementJob, Aliases, ObjectAlias)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, CementJob, Citation, Citation)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, CementJob, Existence)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, CementJob, ObjectVersionReason)
-
   READ_W_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, CementJob, BusinessActivityHistory)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, CementJob, OSDUIntegration, OSDUIntegration)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, CementJob, CustomData, CustomData)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, CementJob, ExtensionNameValue, ExtensionNameValue)
-
   READ_W_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, CementJob, JobType, CementJobType)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, JobConfig)
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, NameCementedString)
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, NameWorkString)
-
   READ_W_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJob, OffshoreJob)
-
   READ_W_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, MdWater, LengthMeasure)
-
   READ_W_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJob, ReturnsToSeabed)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, MdPrevShoe, MeasuredDepth)
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, MdHole, MeasuredDepth)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, TvdPrevShoe, AbstractVerticalDepth)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, MdStringSet, MeasuredDepth)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, TvdStringSet, AbstractVerticalDepth)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, TypePlug)
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, NameCementString)
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, TypeSqueeze)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, MdSqueeze, MeasuredDepth)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, ToolCompany, DataObjectReference)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, TypeTool)
-
   READ_W_BOOLEAN_NULLABLE_21_OR_ELSE_GOTO_RESUME(CementJob, CoilTubing)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, HoleConfig, WellboreGeometryReport)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, JobReport, CementJobReport)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, Wellbore, DataObjectReference)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, Design, CementJobDesign)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(CementJob, CementingFluid, CementingFluid)
-
   READ_W_PUT_DEFAULT_ATTRIBUTES_21_VOID(CementJob)
-
 WITSML_OBJECT_END(CementJob)
 
 //struct ns1__DownholeComponent
 WITSML_OBJECT_BEGIN(ns1, DownholeComponent)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DownholeComponent, Aliases, ObjectAlias)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DownholeComponent, Citation, Citation)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DownholeComponent, Existence)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DownholeComponent, ObjectVersionReason)
-
   READ_W_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DownholeComponent, BusinessActivityHistory)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DownholeComponent, OSDUIntegration, OSDUIntegration)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, DownholeComponent, CustomData, CustomData)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DownholeComponent, ExtensionNameValue, ExtensionNameValue)
-
   READ_W_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DownholeComponent, StartDate)
   READ_W_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DownholeComponent, EndDate)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeComponent, WellHead, DownholeString)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeComponent, BoreholeStringSet, BoreholeStringSet)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeComponent, DownholeStringSet, DownholeStringSet)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeComponent, EquipmentSet, EquipmentSet)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeComponent, PerforationSets, PerforationSets)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(DownholeComponent, Well, DataObjectReference)
-
   READ_W_PUT_DEFAULT_ATTRIBUTES_21_VOID(DownholeComponent)
-
 WITSML_OBJECT_END(DownholeComponent)
 
 //struct ns1__DrillReport
 WITSML_OBJECT_BEGIN(ns1, DrillReport)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DrillReport, Aliases, ObjectAlias)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DrillReport, Citation, Citation)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DrillReport, Existence)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DrillReport, ObjectVersionReason)
-
   READ_W_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DrillReport, BusinessActivityHistory)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DrillReport, OSDUIntegration, OSDUIntegration)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, DrillReport, CustomData, CustomData)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, DrillReport, ExtensionNameValue, ExtensionNameValue)
-
   READ_W_TIME_21_OR_ELSE_GOTO_RESUME(DrillReport, DTimStart)
-
   READ_W_TIME_21_OR_ELSE_GOTO_RESUME(DrillReport, DTimEnd)
-
   READ_W_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, DrillReport, VersionKind, OpsReportVersion)
-
   READ_W_TIME_NULLABLE_21_OR_ELSE_GOTO_RESUME(DrillReport, CreateDate)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, Datum, DataObjectReference)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, BitRecord, BitRecord)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, WellboreInfo, DrillReportWellboreInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, StatusInfo, DrillReportStatusInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, Fluid, Fluid)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, PorePressure, DrillReportPorePressure)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, ExtendedReport, TimestampedCommentString)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, SurveyStations, DrillReportSurveyStationReport)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, DrillActivity, DrillActivity)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, LogInfo, DrillReportLogInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, CoreInfo, DrillReportCoreInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, WellTestInfo, DrillReportWellTestInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, FormTestInfo, DrillReportFormTestInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, LithShowInfo, DrillReportLithShowInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, EquipFailureInfo, DrillReportEquipFailureInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, ControlIncidentInfo, DrillReportControlIncidentInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, StratInfo, DrillReportStratInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, PerfInfo, DrillReportPerfInfo)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, GasReadingInfo, DrillReportGasReadingInfo)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(DrillReport, Wellbore, DataObjectReference)
-
   READ_W_PUT_DEFAULT_ATTRIBUTES_21_VOID(DrillReport)
-
 WITSML_OBJECT_END(DrillReport)
 
 //struct ns1__FluidsReport
 WITSML_OBJECT_BEGIN(ns1, FluidsReport)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, FluidsReport, Aliases, ObjectAlias)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, FluidsReport, Citation, Citation)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, FluidsReport, Existence)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, FluidsReport, ObjectVersionReason)
-
   READ_W_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, FluidsReport, BusinessActivityHistory)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, FluidsReport, OSDUIntegration, OSDUIntegration)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, FluidsReport, CustomData, CustomData)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, FluidsReport, ExtensionNameValue, ExtensionNameValue)
-
   READ_W_TIME_21_OR_ELSE_GOTO_RESUME(FluidsReport, DTim)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(FluidsReport, Md, MeasuredDepth)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(FluidsReport, Tvd, AbstractVerticalDepth)
-
   READ_W_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(FluidsReport, NumReport)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(FluidsReport, Fluid, Fluid)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(FluidsReport, Wellbore, DataObjectReference)
-
   READ_W_PUT_DEFAULT_ATTRIBUTES_21_VOID(FluidsReport)
-
 WITSML_OBJECT_END(FluidsReport)
 
 //struct ns1__MudLogReport
@@ -8611,73 +7366,39 @@ WITSML_OBJECT_END(DepthRegImage)
 
 //struct ns1__Log
 WITSML_OBJECT_BEGIN(ns1, Log)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Log, Aliases, ObjectAlias)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Log, Citation, Citation)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Log, Existence)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Log, ObjectVersionReason)
-
   READ_W_ARRAY_OF_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Log, BusinessActivityHistory)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Log, OSDUIntegration, OSDUIntegration)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_C(ns2, Log, CustomData, CustomData)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns2, Log, ExtensionNameValue, ExtensionNameValue)
-
   READ_W_OBJECT_ENUM_21_OR_ELSE_GOTO_RESUME_B(ns2, Log, ActiveStatus, ActiveStatusKind)
-
   READ_W_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Log, ChannelState, ChannelState)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, RunNumber)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, PassNumber)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, PassDescription)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, PassDetail, PassDetail)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, PrimaryIndexInterval, AbstractInterval)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, LoggingCompany, DataObjectReference)
-
   READ_W_LONG64_NULLABLE_21_OR_ELSE_GOTO_RESUME(Log, LoggingCompanyCode)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, LoggingToolKind, DataObjectReference)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, LoggingToolClass)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, LoggingToolClassLongName)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, LoggingServicePeriod, DateTimeInterval)
-
   READ_W_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Log, Derivation, ChannelDerivation)
-
   READ_W_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Log, LoggingMethod, LoggingMethod)
-
   READ_W_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, NominalHoleSize, LengthMeasureExt)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, MudClass)
-
   READ_W_UTF8_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, MudSubClass)
-
   READ_W_OBJECT_ENUM_NULLABLE_21_OR_ELSE_GOTO_RESUME(ns1, Log, HoleLoggingStatus, HoleLoggingStatus)
-
   READ_W_MEASURE_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, NominalSamplingInterval, GenericMeasure)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, LogOSDUIntegration, LogOSDUIntegration)
-
   READ_W_ARRAY_OF_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, ChannelSet, ChannelSet)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME(Log, Wellbore, DataObjectReference)
-
   READ_W_OBJECT_21_OR_ELSE_GOTO_RESUME_B(ns1, Log, PPFGLog, PPFGLog)
-
   READ_W_PUT_DEFAULT_ATTRIBUTES_21_VOID(Log)
-
 WITSML_OBJECT_END(Log)
 
 #undef _CWS_NULLABLE_XSD_SIGNED_SHORT
