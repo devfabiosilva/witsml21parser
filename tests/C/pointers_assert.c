@@ -575,6 +575,149 @@ void test_object_assert()
   CHECK_CFG_P(c_json_str.json, NULL, NEQ)
   CHECK_CFG_P(c_json_str.json_len, 0, NEQ)
 
+  cws_internal_soap_recycle(soap_internal);
+  cws_recycle_config(config);
+
+  CLOSE_XML
+
+  OPEN_XML(INVALID_Log)
+
+  thisXml=cws_parse_XML_soap_envelope(test_pointer_assert_rel.soap_internal, (char *)test_pointer_assert_rel.text, test_pointer_assert_rel.textLen);
+
+  C_ASSERT_NOT_NULL((void *)thisXml, CTEST_SETTER(
+    CTEST_TITLE("Checking cws_parse_XML_soap_envelope is NOT NULL with an invalid Log xml"),
+    CTEST_INFO("Return value SHOULD be NOT NULL"),
+    CTEST_ON_SUCCESS("cws_parse_XML_soap_envelope SUCCESS"),
+    CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel)
+  ))
+
+  CHECK_CFG_P(internal_soap_error, 0, EQ)
+  CHECK_CFG_P(internalInitFlag, 0, GT)
+  CHECK_CFG_P(xmlIn, NULL, NEQ)
+  CHECK_CFG_P(xmlLen, 0, NEQ)
+  CHECK_CFG_P(xmlSoap, NULL, NEQ)
+  CHECK_CFG_P(xmlSoapLen, 0, NEQ)
+  CHECK_CFG_P(xmlSoapSize, 0, NEQ)
+  CHECK_CFG_P(internal_os, NULL, NEQ)
+
+  COMP_VAL(config->xmlLen, test_pointer_assert_rel.textLen, EQ)
+  COMP_VAL(config->xmlSoapLen, config->xmlLen, GT)
+  COMP_VAL(config->xmlSoapLen, config->xmlSoapSize, LT)
+
+  CHECK_CFG_P(WitsmlObject, NULL, EQ)
+  CHECK_CFG_P(witsml_version, VERSION_UNKNOWN, EQ)
+  CHECK_CFG_P(object, NULL, EQ)
+  CHECK_CFG_P(c_bson_serialized.bson, NULL, EQ)
+  CHECK_CFG_P(c_bson_serialized.bson_size, 0, EQ)
+  CHECK_CFG_P(c_json_str.json, NULL, EQ)
+  CHECK_CFG_P(c_json_str.json_len, 0, EQ)
+  CHECK_CFG_P(object_type, TYPE_None, EQ)
+  CHECK_CFG_P(object_name, NULL, EQ)
+  CHECK_CFG_P(cws_soap_fault.faultstring, NULL, EQ)
+  CHECK_CFG_P(cws_soap_fault.faultstring_len, 0, EQ)
+  CHECK_CFG_P(cws_soap_fault.XMLfaultdetail, NULL, EQ)
+  CHECK_CFG_P(cws_soap_fault.XMLfaultdetail_len, 0, EQ)
+  CHECK_CFG_P(statistics.costs, 0, EQ)
+  CHECK_CFG_P(statistics.strings, 0, EQ)
+  CHECK_CFG_P(statistics.shorts, 0, EQ)
+  CHECK_CFG_P(statistics.ints, 0, EQ)
+  CHECK_CFG_P(statistics.long64s, 0, EQ)
+  CHECK_CFG_P(statistics.enums, 0, EQ)
+  CHECK_CFG_P(statistics.arrays, 0, EQ)
+  CHECK_CFG_P(statistics.booleans, 0, EQ)
+  CHECK_CFG_P(statistics.doubles, 0, EQ)
+  CHECK_CFG_P(statistics.date_times, 0, EQ)
+  CHECK_CFG_P(statistics.measures, 0, EQ)
+  CHECK_CFG_P(statistics.event_types, 0, EQ)
+  CHECK_CFG_P(statistics.total, 0, EQ)
+  CHECK_CFG_P(statistics.used_memory, 0, EQ)
+  CHECK_CFG_P(initial_resource_size, 0, NEQ)
+
+  err=cws_soap_serve(soap_internal);
+
+  C_ASSERT_EQUAL_INT(13, err, CTEST_SETTER(
+    CTEST_TITLE("Checking cws_soap_serve is 13"),
+    CTEST_INFO("Return value SHOULD be 13"),
+    CTEST_ON_SUCCESS("cws_soap_serve SUCCESS"),
+    CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel)
+  ))
+
+  CHECK_CFG_P(internal_soap_error, 13, EQ)
+  CHECK_CFG_P(internalInitFlag, 0, GT)
+  CHECK_CFG_P(xmlIn, NULL, NEQ)
+  CHECK_CFG_P(xmlLen, 0, NEQ)
+  CHECK_CFG_P(xmlSoap, NULL, NEQ)
+  CHECK_CFG_P(xmlSoapLen, 0, NEQ)
+  CHECK_CFG_P(xmlSoapSize, 0, NEQ)
+  CHECK_CFG_P(internal_os, NULL, NEQ)
+
+  COMP_VAL(config->xmlLen, test_pointer_assert_rel.textLen, EQ)
+  COMP_VAL(config->xmlSoapLen, config->xmlLen, GT)
+  COMP_VAL(config->xmlSoapLen, config->xmlSoapSize, LT)
+
+  CHECK_CFG_P(WitsmlObject, NULL, EQ)
+  CHECK_CFG_P(witsml_version, VERSION_UNKNOWN, EQ) //TODO will be deprecated. ALWAYS VERSION_UNKNOWN
+  CHECK_CFG_P(object, NULL, EQ)
+  CHECK_CFG_P(c_bson_serialized.bson, NULL, EQ)
+  CHECK_CFG_P(c_bson_serialized.bson_size, 0, EQ)
+  CHECK_CFG_P(c_json_str.json, NULL, EQ)
+  CHECK_CFG_P(c_json_str.json_len, 0, EQ)
+  CHECK_CFG_P(object_type, TYPE_None, EQ)
+  CHECK_CFG_P(object_name, NULL, EQ)
+  CHECK_CFG_P(cws_soap_fault.faultstring, NULL, NEQ)
+  CHECK_CFG_P(cws_soap_fault.faultstring_len, 0, NEQ)
+
+  COMP_VAL("Validation constraint violation: type mismatch PlaneAngleMeasure in element 'WGS84Latitude'", config->cws_soap_fault.faultstring, STREQ)
+  CHECK_CFG_P(cws_soap_fault.XMLfaultdetail, NULL, NEQ)
+  CHECK_CFG_P(cws_soap_fault.XMLfaultdetail_len, 0, NEQ)
+  printf("\n%s\n", config->cws_soap_fault.XMLfaultdetail);
+  COMP_VAL("<CWitsmlStoreError type=\"SOAP_INTERNAL\" subCode=\"SOAP-ENV:Client\" errorCode=\"13\">Validation constraint violation: type mismatch PlaneAngleMeasure in element 'WGS84Latitude'</CWitsmlStoreError>", config->cws_soap_fault.XMLfaultdetail, STREQ)
+  CHECK_CFG_P(statistics.costs, 0, EQ)
+  CHECK_CFG_P(statistics.strings, 0, EQ)
+  CHECK_CFG_P(statistics.shorts, 0, EQ)
+  CHECK_CFG_P(statistics.ints, 0, EQ)
+  CHECK_CFG_P(statistics.long64s, 0, EQ)
+  CHECK_CFG_P(statistics.enums, 0, EQ)
+  CHECK_CFG_P(statistics.arrays, 0, EQ)
+  CHECK_CFG_P(statistics.booleans, 0, EQ)
+  CHECK_CFG_P(statistics.doubles, 0, EQ)
+  CHECK_CFG_P(statistics.date_times, 0, EQ)
+  CHECK_CFG_P(statistics.measures, 0, EQ)
+  CHECK_CFG_P(statistics.event_types, 0, EQ)
+  CHECK_CFG_P(statistics.total, 0, EQ)
+  CHECK_CFG_P(statistics.used_memory, 0, EQ)
+  CHECK_CFG_P(initial_resource_size, 0, NEQ)
+
+  C_ASSERT_NOT_NULL((void *)getStatistics(soap_internal), CTEST_SETTER(
+    CTEST_TITLE("Checking getStatistics(soap_internal) is NOT NULL"),
+    CTEST_INFO("Return value SHOULD be NOT NULL"),
+    CTEST_ON_SUCCESS("getStatistics(soap_internal) SUCCESS"),
+    CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel)
+  ))
+
+  CHECK_CFG_P(statistics.costs, 0, EQ)
+  CHECK_CFG_P(statistics.strings, 0, EQ)
+  CHECK_CFG_P(statistics.shorts, 0, EQ)
+  CHECK_CFG_P(statistics.ints, 0, EQ)
+  CHECK_CFG_P(statistics.long64s, 0, EQ)
+  CHECK_CFG_P(statistics.enums, 0, EQ)
+  CHECK_CFG_P(statistics.arrays, 0, EQ)
+  CHECK_CFG_P(statistics.booleans, 0, EQ)
+  CHECK_CFG_P(statistics.doubles, 0, EQ)
+  CHECK_CFG_P(statistics.date_times, 0, EQ)
+  CHECK_CFG_P(statistics.measures, 0, EQ)
+  CHECK_CFG_P(statistics.event_types, 0, EQ)
+  CHECK_CFG_P(statistics.total, 0, EQ)
+  CHECK_CFG_P(statistics.used_memory, 0, NEQ)
+  CHECK_CFG_P(initial_resource_size, 0, NEQ)
+
+  C_ASSERT_NULL((void *)bsonSerialize(soap_internal), CTEST_SETTER(
+    CTEST_TITLE("Checking bsonSerialize(soap_internal) is NULL"),
+    CTEST_INFO("Return value SHOULD be NULL"),
+    CTEST_ON_SUCCESS("bsonSerialize(soap_internal) SUCCESS"),
+    CTEST_ON_ERROR_CB(test_pointer_assert_RELEASE, (void *)&test_pointer_assert_rel)
+  ))
+
   test_pointer_assert_RELEASE((void *)&test_pointer_assert_rel);
 
   C_ASSERT_NULL((void *)test_pointer_assert_rel.soap_internal, CTEST_SETTER(

@@ -27,6 +27,7 @@ void test_object_assert();
 #define CHECK_NEQ(a, b) a!=b
 #define CHECK_GT(a, b) a>b
 #define CHECK_LT(a, b) a<b
+#define CHECK_STREQ(a, b) strcmp(a, b)==0
 
 #define COMP_VAL(a, b, cond) \
   C_ASSERT_TRUE(CHECK_##cond(a, b), CTEST_SETTER( \
