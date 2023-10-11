@@ -159,7 +159,7 @@ public class JWitsmlParser {
         if (this.jsonByteVersion == null)
             this.jsonByteVersion = bsonToString(this.objectVersion);
 
-        return (this.json =  new String(jsonByteVersion, StandardCharsets.UTF_8));
+        return (this.jsonVersion =  new String(jsonByteVersion, StandardCharsets.UTF_8));
     }
 
     public String getJson() throws JWitsmlException, Exception {
