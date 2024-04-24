@@ -143,7 +143,7 @@ readText_exit1:
 inline
 void readTextFree(const char **text)
 {
-  if (text) {
+  if (*text) {
     free((void *)(*text));
     (*text)=NULL;
   }

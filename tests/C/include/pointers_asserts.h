@@ -3,6 +3,7 @@
 
 void test_pointer_assert();
 void test_object_assert();
+void test_text_reader();
 
 #define DECLARE_SOAP_INTERNAL struct soap *soap_internal;
 

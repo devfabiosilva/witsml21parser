@@ -28,6 +28,38 @@ static void test_pointer_assert_RELEASE(void *p)
   cws_config_free(&test_pointer_assert_rel->config);
 }
 
+void test_text_reader()
+{
+  #define MSG_SZ 512
+  const char *msg=malloc(MSG_SZ);
+
+  C_ASSERT_NOT_NULL((void *)msg, CTEST_SETTER(
+    CTEST_TITLE("Testing message text buffer"),
+    CTEST_ON_ERROR("Was expected NOT NULL at malloc msg pointer"),
+    CTEST_ON_SUCCESS("Alloc'd msg=%p with size %d", msg, MSG_SZ)
+  ))
+
+  memset((void *)msg, 0, MSG_SZ);
+
+  readTextFree(&msg);
+
+  C_ASSERT_NULL((void *)msg, CTEST_SETTER(
+    CTEST_TITLE("Testing message text buffer after free"),
+    CTEST_ON_ERROR("Was expected NULL msg pointer"),
+    CTEST_ON_SUCCESS("msg pointer dealloc'd")
+  ))
+
+  readTextFree(&msg);
+
+  C_ASSERT_NULL((void *)msg, CTEST_SETTER(
+    CTEST_TITLE("Testing double free safe"),
+    CTEST_ON_ERROR("Was expected NULL msg pointer"),
+    CTEST_ON_SUCCESS("msg pointer is null")
+  ))
+
+  #undef MSG_SZ
+}
+
 void test_pointer_assert()
 {
   int err;
