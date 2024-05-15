@@ -16,7 +16,8 @@ LIBANAME=cws
 LIBDIR=$(CURDIR)/lib
 
 MONGO_C_GIT=https://github.com/mongodb/mongo-c-driver.git
-MONGO_C_BRANCH=1.24.3
+#MONGO_C_BRANCH=1.24.3
+MONGO_C_BRANCH=1.27.1
 MONGO_C_DIR=$(CURDIR)/third-party/mongo-c-driver
 
 FLAG_JNI=-Wno-stringop-truncation -DJNI_RUSAGE_CHILDREN -DCWS_$(ENDIAN)_ENDIAN -D$(STAT)
