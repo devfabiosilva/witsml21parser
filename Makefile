@@ -16,7 +16,6 @@ LIBANAME=cws
 LIBDIR=$(CURDIR)/lib
 
 MONGO_C_GIT=https://github.com/mongodb/mongo-c-driver.git
-#MONGO_C_BRANCH=1.24.3
 MONGO_C_BRANCH=1.27.1
 MONGO_C_DIR=$(CURDIR)/third-party/mongo-c-driver
 
@@ -414,12 +413,28 @@ else
 	pwd; cd $(CURDIR)/third-party; pwd; git clone -b $(MONGO_C_BRANCH) $(MONGO_C_GIT); cd mongo-c-driver;mkdir compiled && cd compiled; cmake .. -DCMAKE_BUILD_TYPE=Release -DENABLE_MONGOC=OFF -DCMAKE_INSTALL_PREFIX=$(MONGO_C_DIR)/compiled/out; make -j12;make install; pwd; cp out/lib/libbson-static-1.0.a $(LIBDIR) -v;cp -frv out/include/libbson-1.0/bson $(INCLUDEDIR);cd src/libbson/CMakeFiles/bson_shared.dir; pwd; ar rcs $(LIBDIR)/libbson-shared-1.0.a src/bson/*.o src/jsonsl/*.o __/common/*.o
 endif
 
+remove_bson:
+ifneq ("$(wildcard $(LIBDIR)/lib*.a)","")
+	@echo "Removing BSON library"
+	rm -v $(LIBDIR)/lib*.a
+	@echo "Removed"
+else
+	@echo "Nothing to do to remove BSON library"
+endif
+
+ifneq ("$(wildcard $(MONGO_C_DIR))","")
+	@echo "Removing Mongo C branch $(MONGO_C_BRANCH)"
+	rm -rfv $(MONGO_C_DIR)
+	@echo "Removed Mongo C $(MONGO_C_BRANCH)"
+else
+	@echo "Nothing to do to remove Mongo C $(MONGO_C_BRANCH)"
+endif
+
 #TESTS
 pointers_assert:
 	@echo "Building C pointer assert (TEST)"
 	@$(CC) -c -O2 $(TEST_C_DIR)/pointers_assert.c -I$(INCLUDEDIR) -I$(TEST_INCLUDE_DIR) -I$(CURDIR) -L$(LIBDIR) -lpthread -lbson-static-1.0 -o $(TEST_C_DIR)/pointers_assert.o -Wall $(DEBUG_FLAG)
 
-.PHONY:
 test: lib$(LIBANAME)_debug.a pointers_assert
 	@echo "Build C test (TEST) ..."
 	@$(CC) -O2 $(TEST_C_DIR)/main.c $(CURDIR)/src/ctest/asserts.c $(TEST_C_DIR)/pointers_assert.o stdsoap2.c soapC_debug_sanitize.o soapServer.c -I$(TEST_INCLUDE_DIR) -I$(INCLUDEDIR) -I$(CURDIR) -L$(LIBDIR) -l$(LIBANAME)_debug -lpthread -lbson-static-1.0 -o $(TEST_C_DIR)/$(TEST_C_EXEC_NAME) -Wall $(DEBUG_FLAG)

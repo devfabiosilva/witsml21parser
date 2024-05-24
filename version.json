@@ -1,5 +1,5 @@
 {
- "version": "0.1.1",
+ "version": "0.1.2",
  "witsmlVersion": "2.1",
  "website": "https://github.com/devfabiosilva/witsml21parser",
  "license": "MIT",
@@ -33,7 +33,7 @@
    "license": "See https://www.genivia.com/products.html"
   },
   "libbson": {
-   "version": "1.24.3",
+   "version": "1.27.1",
    "website": "https://github.com/mongodb/mongo-c-driver",
    "license": "Apache License 2.0"
   }

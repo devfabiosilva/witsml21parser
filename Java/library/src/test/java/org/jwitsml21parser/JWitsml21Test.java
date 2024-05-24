@@ -176,6 +176,6 @@ public class JWitsml21Test {
     public void testVersion() throws JWitsmlException, Exception {
         JWitsmlParser jWitsmlParser = new JWitsmlParser();
         assertNotNull(jWitsmlParser.getBsonVersion());
-        assertEquals("0.1.1", jWitsmlParser.getBsonVersion().get("version"));
+        assertEquals("0.1.2", jWitsmlParser.getBsonVersion().get("version"));
     }
 }
