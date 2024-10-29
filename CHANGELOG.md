@@ -1,6 +1,9 @@
 # Changelog
 WITSML 2.1 to BSON parser changelogs
 
+## [0.1.3] - 2024-10-29
+- Update BSON version 1.27.1 -> 1.28.1 ✔️
+
 ## [0.1.2] - 2024-05-23
 - Fixing readTextFree bug ✔️
 - Add C Test: double free test in readTextFree ✔️

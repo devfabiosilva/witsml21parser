@@ -16,7 +16,7 @@ LIBANAME=cws
 LIBDIR=$(CURDIR)/lib
 
 MONGO_C_GIT=https://github.com/mongodb/mongo-c-driver.git
-MONGO_C_BRANCH=1.27.1
+MONGO_C_BRANCH=1.28.1
 MONGO_C_DIR=$(CURDIR)/third-party/mongo-c-driver
 
 FLAG_JNI=-Wno-stringop-truncation -DJNI_RUSAGE_CHILDREN -DCWS_$(ENDIAN)_ENDIAN -D$(STAT)
@@ -420,6 +420,14 @@ ifneq ("$(wildcard $(LIBDIR)/lib*.a)","")
 	@echo "Removed"
 else
 	@echo "Nothing to do to remove BSON library"
+endif
+
+ifneq ("$(wildcard $(INCLUDEDIR)/bson)","")
+	@echo "Removing BSON includes $(INCLUDEDIR)/bson"
+	rm -rfv $(INCLUDEDIR)/bson
+	@echo "Removed BSON includes $(INCLUDEDIR)/bson"
+else
+	@echo "Nothing to do to remove BSON includes $(INCLUDEDIR)/bson"
 endif
 
 ifneq ("$(wildcard $(MONGO_C_DIR))","")
