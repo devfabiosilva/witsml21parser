@@ -79,6 +79,9 @@ void cws_internal_soap_recycle(struct soap *soap_internal)
     config->cws_soap_fault.XMLfaultdetail=NULL;
     config->cws_soap_fault.XMLfaultdetail_len=0;
   }
+
+  soap_destroy(soap_internal); /* delete deserialized objects */
+  soap_end(soap_internal);     /* delete heap and temp data */
 }
 
 void cws_internal_soap_free(struct soap **soap)

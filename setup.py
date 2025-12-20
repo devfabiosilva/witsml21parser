@@ -11,7 +11,7 @@ def main():
         maintainer_email="fabioegel@gmail.com",
         ext_modules=[Extension("witsml21bson", ["src/python/module.c", "stdsoap2.c" ,"soapServer.c"],
             library_dirs=['lib'],
-            libraries=['cws_py', 'bson-shared-1.0'],
+            libraries=['cws_py', 'bson-shared-2.2.1'],
             extra_objects=["soapC_shared.o"],
             include_dirs=['include'],
             define_macros=[('CWS_LITTLE_ENDIAN', None), ('WITH_STATISTICS', None)]

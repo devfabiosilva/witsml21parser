@@ -1,8 +1,10 @@
 # Changelog
 WITSML 2.1 to BSON parser changelogs
 
-## [0.1.3] - 2024-10-29
-- Update BSON version 1.27.1 -> 1.28.1 ✔️
+## [0.1.3] - 2025-12-20
+- Update BSON version (MONGO C DRIVER) 1.27.1 -> 2.2.1 ✔️
+- BUG FIX: Implement correct memory cleanup (recycled) of previous parsed WITSML 2.1 object in cws_internal_soap_recycle() ✔️
+- Update Java bson org.mongodb dependency version to 5.6.2 ✔️
 
 ## [0.1.2] - 2024-05-23
 - Fixing readTextFree bug ✔️
@@ -20,6 +22,7 @@ WITSML 2.1 to BSON parser changelogs
 
 ## [master] - current
 
+[0.1.3]: https://github.com/devfabiosilva/witsml21parser/tree/v0.1.3
 [0.1.2]: https://github.com/devfabiosilva/witsml21parser/tree/v0.1.2
 [0.1.1]: https://github.com/devfabiosilva/witsml21parser/tree/v0.1.1
 [0.1.0]: https://github.com/devfabiosilva/witsml21parser/tree/v0.1.0

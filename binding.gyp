@@ -6,7 +6,7 @@
       "include_dirs":[ "./include", "./" ],
       "library_dirs": ["./lib"],
       "libraries": [
-              "-Wl,--start-group ../lib/libcws_js.a ../lib/libbson-shared-1.0.a ../soapC_shared.o -Wl,--end-group"
+              "-Wl,--start-group ../lib/libcws_js.a ../lib/libbson-shared-2.2.1.a ../soapC_shared.o -Wl,--end-group"
           ],
       "defines": ["CWS_LITTLE_ENDIAN", "WITH_STATISTICS"],
       "cflags": ["-Wno-stringop-truncation", "-Wno-format-truncation"],

@@ -16,7 +16,7 @@ LIBANAME=cws
 LIBDIR=$(CURDIR)/lib
 
 MONGO_C_GIT=https://github.com/mongodb/mongo-c-driver.git
-MONGO_C_BRANCH=1.28.1
+MONGO_C_BRANCH=2.2.1
 MONGO_C_DIR=$(CURDIR)/third-party/mongo-c-driver
 
 FLAG_JNI=-Wno-stringop-truncation -DJNI_RUSAGE_CHILDREN -DCWS_$(ENDIAN)_ENDIAN -D$(STAT)
@@ -42,7 +42,7 @@ all: main
 
 cws_version.o:
 	@echo "Generating version ..."
-	@$(CC) -O2 $(CURDIR)/misc/versionBuilder.c $(CURDIR)/src/cws_utils.c $(CURDIR)/src/cws_bson_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/misc/versionBuilder -L$(LIBDIR) -lbson-static-1.0 -Wall $(FLAG) -DVERGEN
+	@$(CC) -O2 $(CURDIR)/misc/versionBuilder.c $(CURDIR)/src/cws_utils.c $(CURDIR)/src/cws_bson_utils.c -I$(INCLUDEDIR) -o $(CURDIR)/misc/versionBuilder -L$(LIBDIR) -lbson-static-$(MONGO_C_BRANCH) -Wall $(FLAG) -DVERGEN
 	cd $(CURDIR)/misc/;./versionBuilder
 	$(LD) -o $(CURDIR)/src/version_bson.o version.bson
 
@@ -124,12 +124,12 @@ soapC_shared_debug_sanitize.o:
 
 main: soapC.o lib$(LIBANAME).a
 	@echo "Compiling ..."
-	@$(CC) -O2 -o $(TARG) main.c stdsoap2.c soapC.o soapServer.c -I$(INCLUDEDIR) -L$(LIBDIR) -lcws  -lpthread -lbson-static-1.0 -Wall $(FLAG)
+	@$(CC) -O2 -o $(TARG) main.c stdsoap2.c soapC.o soapServer.c -I$(INCLUDEDIR) -L$(LIBDIR) -lcws  -lpthread -lbson-static-$(MONGO_C_BRANCH) -Wall $(FLAG)
 	@echo "Finished"
 
 dbg: soapC_debug_sanitize.o lib$(LIBANAME)_debug.a
 	@echo "Compiling in debug mode ..."
-	@$(CC) -O2 -o $(TARG_DBG) main.c stdsoap2.c soapC_debug_sanitize.o soapServer.c -I$(INCLUDEDIR) -L$(LIBDIR) -l$(LIBANAME)_debug -lpthread -lbson-static-1.0 -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 -o $(TARG_DBG) main.c stdsoap2.c soapC_debug_sanitize.o soapServer.c -I$(INCLUDEDIR) -L$(LIBDIR) -l$(LIBANAME)_debug -lpthread -lbson-static-$(MONGO_C_BRANCH) -Wall $(DEBUG_FLAG)
 	@echo "Finished in debug mode."
 
 ##JNI ONLY SOAP INTERNAL
@@ -379,7 +379,7 @@ pre_shared: soapC_shared.o soapC_shared_debug_sanitize.o
 .PHONY:
 jni: lib$(LIBANAME_JNI).a
 	@echo "Compiling $(LIBJNI)..."
-	@$(CC) -O2 -shared -fPIC -o $(LIBJNI) src/jni/parser.c stdsoap2.c soapC_shared.o soapServer.c -I$(INCLUDEDIR) -I$(JAVAINCLUDE) -I$(JAVAINCLUDE_LINUX)  -L$(LIBDIR) -lcws_jni -lpthread -lbson-shared-1.0 -Wall $(FLAG_JNI)
+	@$(CC) -O2 -shared -fPIC -o $(LIBJNI) src/jni/parser.c stdsoap2.c soapC_shared.o soapServer.c -I$(INCLUDEDIR) -I$(JAVAINCLUDE) -I$(JAVAINCLUDE_LINUX)  -L$(LIBDIR) -lcws_jni -lpthread -lbson-shared-$(MONGO_C_BRANCH) -Wall $(FLAG_JNI)
 	@echo "Striping $(LIBJNI) ..."
 	@$(STRIP) $(LIBJNI)
 	@echo "Disabling execstack ..."
@@ -410,7 +410,7 @@ ifneq ("$(wildcard $(MONGO_C_DIR))","")
 	@echo "Already cloned. Skip"
 else
 	@echo "Cloning branch $(MONGO_C_BRANCH) from $(MONGO_C_GIT)"
-	pwd; cd $(CURDIR)/third-party; pwd; git clone -b $(MONGO_C_BRANCH) $(MONGO_C_GIT); cd mongo-c-driver;mkdir compiled && cd compiled; cmake .. -DCMAKE_BUILD_TYPE=Release -DENABLE_MONGOC=OFF -DCMAKE_INSTALL_PREFIX=$(MONGO_C_DIR)/compiled/out; make -j12;make install; pwd; cp out/lib/libbson-static-1.0.a $(LIBDIR) -v;cp -frv out/include/libbson-1.0/bson $(INCLUDEDIR);cd src/libbson/CMakeFiles/bson_shared.dir; pwd; ar rcs $(LIBDIR)/libbson-shared-1.0.a src/bson/*.o src/jsonsl/*.o __/common/*.o
+	pwd; cd $(CURDIR)/third-party; pwd; git clone -b $(MONGO_C_BRANCH) $(MONGO_C_GIT); cd mongo-c-driver;mkdir compiled && cd compiled; cmake .. -DCMAKE_BUILD_TYPE=Release -DENABLE_MONGOC=OFF -DCMAKE_INSTALL_PREFIX=$(MONGO_C_DIR)/compiled/out; make -j12;make install; pwd; cp out/lib/libbson2.a $(LIBDIR)/libbson-static-$(MONGO_C_BRANCH).a -v;cp -frv out/include/bson-$(MONGO_C_BRANCH)/bson $(INCLUDEDIR);cd src/libbson/CMakeFiles/bson_shared.dir; pwd; ar rcs $(LIBDIR)/libbson-shared-$(MONGO_C_BRANCH).a src/bson/*.o src/jsonsl/*.o __/common/src/*.o
 endif
 
 remove_bson:
@@ -441,10 +441,10 @@ endif
 #TESTS
 pointers_assert:
 	@echo "Building C pointer assert (TEST)"
-	@$(CC) -c -O2 $(TEST_C_DIR)/pointers_assert.c -I$(INCLUDEDIR) -I$(TEST_INCLUDE_DIR) -I$(CURDIR) -L$(LIBDIR) -lpthread -lbson-static-1.0 -o $(TEST_C_DIR)/pointers_assert.o -Wall $(DEBUG_FLAG)
+	@$(CC) -c -O2 $(TEST_C_DIR)/pointers_assert.c -I$(INCLUDEDIR) -I$(TEST_INCLUDE_DIR) -I$(CURDIR) -L$(LIBDIR) -lpthread -lbson-static-$(MONGO_C_BRANCH) -o $(TEST_C_DIR)/pointers_assert.o -Wall $(DEBUG_FLAG)
 
 test: lib$(LIBANAME)_debug.a pointers_assert
 	@echo "Build C test (TEST) ..."
-	@$(CC) -O2 $(TEST_C_DIR)/main.c $(CURDIR)/src/ctest/asserts.c $(TEST_C_DIR)/pointers_assert.o stdsoap2.c soapC_debug_sanitize.o soapServer.c -I$(TEST_INCLUDE_DIR) -I$(INCLUDEDIR) -I$(CURDIR) -L$(LIBDIR) -l$(LIBANAME)_debug -lpthread -lbson-static-1.0 -o $(TEST_C_DIR)/$(TEST_C_EXEC_NAME) -Wall $(DEBUG_FLAG)
+	@$(CC) -O2 $(TEST_C_DIR)/main.c $(CURDIR)/src/ctest/asserts.c $(TEST_C_DIR)/pointers_assert.o stdsoap2.c soapC_debug_sanitize.o soapServer.c -I$(TEST_INCLUDE_DIR) -I$(INCLUDEDIR) -I$(CURDIR) -L$(LIBDIR) -l$(LIBANAME)_debug -lpthread -lbson-static-$(MONGO_C_BRANCH) -o $(TEST_C_DIR)/$(TEST_C_EXEC_NAME) -Wall $(DEBUG_FLAG)
 	@$(TEST_C_DIR)/./$(TEST_C_EXEC_NAME)
 
